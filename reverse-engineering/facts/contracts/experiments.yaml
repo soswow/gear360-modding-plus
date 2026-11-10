@@ -1,0 +1,240 @@
+# Bounded post-Phase-2 observations and remaining controller questions.
+claims:
+  - id: experiments.screen-clear-center-driver-returns-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      On the pinned camera, after the stock service became inactive with
+      MainPID 0 and no stock process remained, the verified renderer's
+      full-clear and centered TEST MODE invocations both returned 0.
+      Boot time stayed 1793781685, post-check remained reachable, and all
+      uniquely staged helper files were removed. No capture request ran.
+      The owner subsequently confirmed the text is centered and the old
+      interface is cleared on the physical screen.
+    evidence:
+      - output/screen-live-20261104/03-staged.txt
+      - output/screen-live-20261104/06-stop-clear-center.txt
+      - output/screen-live-20261104/07-health.txt
+      - output/screen-live-20261104/08-cleanup.txt
+      - output/screen-live-20261104/screen-trial.sh
+    not_proven:
+      - long-term absence of redraw or correct screen behavior during capture
+      - capture or reentry compatibility, filesystem health or the cause of observed EXT4 errors
+    detail: output/screen-live-20261104/RESULT.md
+  - id: experiments.jpeg-omission-faster-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      Three matched ABCCBA blocks, 12 frames per policy at TV96/ISO100 with
+      RAW saving, measured mean per-still work of 4.433067 s for JPEG save,
+      4.341300 s for discard and 4.121567 s for skip-copy: 7.03 percent less
+      work for skip-copy. Every still completed and returned its buffers.
+      RTOS JPEG encoding was unchanged. The default remains JPEG save.
+    evidence:
+      - reverse-engineering/unattended-20261104-evidence.json
+      - output/experiments-live-20261104/jpeg_matrix.py
+      - output/experiments-live-20261104/analyse.py
+    not_proven:
+      - disabled RTOS JPEG encoding or speed under other scenes/settings/storage
+    detail: output/experiments-live-20261104/RESULT.md
+
+  - id: experiments.process-reentry-without-power-cycle-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      On boot 1793781685, stock remained inactive after the screen trial.
+      44 sequential hosted capture processes delivered 309 full RAW frames
+      with status 0, flags 0x103, capture-ready and 1236 ordered buffer
+      returns in independent ring observations. No reboot or service restart
+      occurred. The final process exited normally and settings were restored.
+    evidence:
+      - reverse-engineering/unattended-20261104-evidence.json
+      - output/experiments-live-20261104/harness.py
+      - output/experiments-live-20261104/analyse.py
+    not_proven:
+      - all settings/firmware or reentry after an indeterminate/failed still
+      - a general proof of callback retirement beyond these successful process exits
+    detail: output/experiments-live-20261104/RESULT.md
+
+  - id: experiments.frame-copy-speed-and-stress-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      Manual TV96/ISO100/NR-off and auto/default-NR zero-gap 10 then 100-shot
+      tests all passed, with full in-memory RAW copies and buffer returns.
+      The 100-shot median API durations were 1.4074 and 1.7158 s, start-to-start
+      rates 0.61672 and 0.55805 frames/s, and median RAW holds 0.6554 and
+      0.6580 s. A saved post-stress frame/JPEG passed checks. Compact telemetry
+      remained Full/100/Good; driver temperature samples ranged 400 to 420.
+    evidence:
+      - reverse-engineering/unattended-20261104-evidence.json
+      - output/experiments-live-20261104/remaining.py
+      - output/experiments-live-20261104/analyse.py
+    not_proven:
+      - indefinite reliability, calibrated temperature units or a faster copy
+      - cause of occasional longer intervals or every-byte source coherence
+    detail: output/experiments-live-20261104/RESULT.md
+
+  - id: experiments.full-hdr-range-with-frame-copy-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      The canonical 2-EV/8-shot and 3-EV/6-shot HDR sequences each delivered
+      full RAW, JPEGs, capture-ready and ordered returns at every requested
+      TV/ISO. WB Auto was selected, Smart Range and noise reduction were off.
+      Independent RTOS exposure/S-value reports match the requests from
+      125000 us/ISO1600 to 122 us/ISO100. These were separate normal stills.
+    evidence:
+      - hdr/web/hdr-capture.sh
+      - reverse-engineering/unattended-20261104-evidence.json
+      - output/experiments-live-20261104/analyse.py
+    not_proven:
+      - independent optical shutter/gain response, dynamic range or photometric calibration in darkness
+      - functioning firmware bracket, continuous or burst modes
+    detail: output/experiments-live-20261104/RESULT.md
+
+  - id: experiments.main-app-controls-with-capture-20261104
+    status: open
+    kind: inference
+    statement: >
+      Whether a stock-absent controller can own screen, sound, LEDs and
+      button handling while full-frame captures retain their completion
+      and ownership contract.
+    evidence:
+      - tools/experiments/button-observer.c
+      - tools/experiments/gear360-display.c
+      - archive/hdr-integration/controls.h
+      - tools/experiments/run-session.sh
+      - tools/experiments/build-display.sh
+    not_proven:
+      - a complete replacement controller, sound/LED writes or physical button gestures
+      - physical visibility/no redraw during unattended captures
+    detail: tools/experiments/README.md
+
+  - id: experiments.battery-status-controller-20261104
+    status: open
+    kind: inference
+    statement: >
+      The named battery provider has been observed, but cable/charge-state
+      transitions, units, freshness/error semantics and a complete battery
+      controller still require validation and implementation.
+    evidence:
+      - tools/experiments/platform-snapshot.sh
+      - tools/experiments/tests/test_experiments.py
+    not_proven:
+      - charge transitions, all units, freshness/error behavior or a battery controller implementation
+    detail: tools/experiments/README.md
+
+  - id: experiments.named-battery-provider-observed-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      The camera's named /sys/class/power_supply/battery reported Full/100/Good
+      in 3014 compact samples, ac/online 1 and usb/online 0. Temperature is
+      recorded in raw driver units. The separate adc_battery/capacity value
+      1370 is not a percentage source. The compact read-only sampler selects
+      named battery fields and preserves unavailable fields as UNKNOWN.
+    evidence:
+      - reverse-engineering/unattended-20261104-evidence.json
+      - tools/experiments/platform-compact.sh
+      - tools/experiments/tests/test_experiments.py
+    not_proven:
+      - cable transitions, calibrated units, stale detection or a controller
+    detail: output/experiments-live-20261104/RESULT.md
+
+  - id: experiments.optional-library-log-timing-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      The CLI now exposes the existing C API's NULL log path via --library-log
+      off, retaining metrics on stdout. Three matched ABBA blocks, 12 frames
+      per policy at TV96/ISO100 with RAW/JPEG files discarded, measured mean
+      per-still work 1.418967 s sync and 1.337033 s off, a 5.77 percent decrease.
+      Independent ring observation verified all returns. A two-frame combined
+      RAW-saving/skip-copy/log-off case also succeeded. Default logging is sync.
+    evidence:
+      - src/lib/g360cap/g360-shot.c
+      - src/lib/g360cap/tests/test_g360cap.py
+      - output/experiments-live-20261104/log_matrix.py
+      - reverse-engineering/unattended-20261104-evidence.json
+    not_proven:
+      - improved RAW copy duration or disabling native SDK/kernel/observer logs
+      - additive speed gains between separately measured cohorts
+    detail: output/experiments-live-20261104/RESULT.md
+
+  - id: experiments.passive-input-and-arm-guards-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      The passive GPIO keyboard reader polled /dev/event0 for 30 s and exited
+      0 with no events/errors while no physical input was supplied. Actual
+      ARM32 overflow-width, overflow-physical-extent and skip-copy-without-frame
+      CLI guards returned 2 before opening a capture log or issuing a still.
+    evidence:
+      - output/experiments-live-20261104/arm-guards.sh
+      - reverse-engineering/unattended-20261104-evidence.json
+    not_proven:
+      - any new physical button mapping or gesture behavior
+    detail: output/experiments-live-20261104/RESULT.md
+
+  - id: experiments.leds-sound-without-stock-app-20261105
+    status: accepted
+    kind: observation
+    statement: >
+      On boot 1793781685 with the stock app stopped (trials C1 and C1b, user
+      present), g360-ctl read, set, blinked and restored all seven LED-class
+      devices /sys/class/leds/led.0-led.6 through trigger/brightness/
+      delay_on/delay_off, and the restore matched the saved states exactly
+      (led.1, led.3, led.4 at brightness 1). The user mapped them: led.0 side
+      orange, led.1 side green, led.2 side blue, led.3 front (screen side)
+      upper green, led.4 back upper green, led.5 front upper orange, led.6
+      back upper orange; the timer trigger blinked the side orange LED. Both
+      stock WAVs (shutter.wav, BT_connected.wav) played through
+      /usr/bin/paplay with exit 0 (242-396 ms) while pulseaudio and
+      sound_server ran without the stock app; the user heard them.
+    evidence:
+      - output/controls-C1/RESULT.md
+      - output/controls-C1b/RESULT.md
+      - src/lib/g360ctl/g360ctl.c
+    not_proven:
+      - that the stock app's devman LED setters use the same nodes (strings only)
+      - volume control and sound latency under capture load
+    detail: output/controls-C1b/RESULT.md
+
+  - id: experiments.button-events-recorded-20261105
+    status: accepted
+    kind: observation
+    statement: >
+      With the stock app stopped, guided presses (trials C2, C2d, C2e; the
+      screen prompted one action at a time while /dev/input/event0 was read
+      passively) show what each button sends. Menu short: 127 press and
+      release with one timestamp, at release. Menu hold: 215 only, pressed
+      once the hold is recognised (about 1.5 s) and released at let-go.
+      Power short: 73 pulse at release. Power hold: 116 (KEY_POWER) only,
+      same pattern. Capture: 126 with its real press and release times;
+      holds and double presses are two ordinary events or pairs. Menu and
+      Capture together arrive independently. No auto-repeat or SYN_DROPPED.
+      The device declares exactly 73, 116, 126, 127 and 215. A 2 s Power
+      hold does not power the camera off with the stock app stopped.
+    evidence:
+      - output/controls-C1b/RESULT.md
+      - output/controls-C2/RESULT.md
+      - output/controls-C2e/RESULT.md
+      - src/lib/g360ctl/g360ctl.h
+    not_proven:
+      - the exact hold thresholds (estimated from prompted hold lengths)
+      - which component acts on 116 when the stock app runs
+      - button behaviour during a RAW capture
+    detail: output/controls-C2e/RESULT.md
+
+
+  - id: experiments.minimal-app-staged-20261105
+    status: open
+    kind: observation
+    statement: >
+      Minimal C camera app and reusable OLED library pass host/sanitizer and
+      ARM build checks. Build b6c19d42 was hash-verified on the SD card and
+      the existing double-Power target was redirected after verified backup.
+      User is ready for an attended READY/Capture/sound/DNG-JPEG/READY trial;
+      physical behavior and saved output are not yet accepted evidence.
+    detail: src/app/VALIDATION.md

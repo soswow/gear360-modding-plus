@@ -1,0 +1,44 @@
+{
+  "source_sha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7",
+  "load_base": "0x80000000",
+  "reviewed_memory_vtable_entries": [
+    {
+      "table_address": "0x8062651c",
+      "source_offset": "0x62651c",
+      "bytes": "58120a80",
+      "target": "0x800a1258"
+    },
+    {
+      "table_address": "0x8062b808",
+      "source_offset": "0x62b808",
+      "bytes": "d0e60a80",
+      "target": "0x800ae6d0"
+    },
+    {
+      "table_address": "0x8062b80c",
+      "source_offset": "0x62b80c",
+      "bytes": "1ce70a80",
+      "target": "0x800ae71c"
+    }
+  ],
+  "rejected_code_labels": [
+    {
+      "address": "0x807932e0",
+      "source_offset": "0x7932e0",
+      "bytes": "c0d15980e4d15980c8e85980d0e8598080d2598010d1598088d1598004d25980",
+      "sha256": "683da4d178c08651075770e6a567a65f72f66ef0c6c00e6fbc7a235acabf5d72",
+      "interpretation": "RTTI/type-info pointer data; prior code label rejected"
+    },
+    {
+      "address": "0x80793378",
+      "source_offset": "0x793378",
+      "bytes": "b0df5980d4df5980c8e85980d0e8598080d2598010d1598020e65980cce05980",
+      "sha256": "83f47cbf065faa1355b19b5db6159654205114641a4c08bcb07985cf3d052383",
+      "interpretation": "RTTI/type-info pointer data; prior code label rejected"
+    }
+  ],
+  "limitations": [
+    "Static original-byte verification only",
+    "Does not observe runtime receiver or cache hardware effects"
+  ]
+}

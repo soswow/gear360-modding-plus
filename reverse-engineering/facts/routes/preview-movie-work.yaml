@@ -1,0 +1,62 @@
+# Preview buffer observed in movie-work memory.
+# Diagnostic route. Not the capture-library backend.
+
+claims:
+  - id: preview.role14-explains-the-address
+    status: accepted
+    kind: static
+    statement: >
+      CLiveviewBuffer::getBaseAddress at 0x8014c500 gives roles 14 through 18
+      three strides via capture-memory-manager slot +0x70. Role 14's stride
+      is 0x17bb000 (24883200 bytes). Three strides are 0x4731000 (74649600
+      bytes), matching the observed movie-work allocation. The name table
+      maps all five roles to movWrk. The name does not select the role.
+      A nonnegative counter yields base + offset + stride * (counter mod 3).
+      The reviewed code does not increment that counter on WDMA completion.
+    address_space: rtos
+    not_proven:
+      - temporal frame rotation
+      - a safe export interval
+      - that this path assigned the selected image on the observed boot
+    detail: archive/RAW_MOVIE_ROLE_SELECTION_20261018.md
+
+  - id: preview.live-address-matches-role14
+    status: accepted
+    kind: runtime
+    applies_when: >
+      The 18 October 2026 guarded read of the selected image, not a later boot.
+    statement: >
+      Selected image PData 0xa77bb000 is one role-14 stride above allocation
+      base 0xa6000000. The image extent was 2764800 bytes, request 0xffffffff,
+      kind 0. All 1781 prefix records in that snapshot had tag 40 (0x28).
+      27 extents in the allocation are not 27 temporal frames.
+    address_space: physical
+    not_proven:
+      - the assignment owner and counter value
+      - a coherent finished sensor frame
+    detail: archive/RAW_MOVIE_ROLE_SELECTION_20261018.md
+
+  - id: preview.linux-maps-it-uncached
+    status: accepted
+    kind: runtime
+    applies_when: the 18 October 2026 kernel reads on that boot
+    statement: >
+      Physical 0xa77bb000 is outside the sole observed System RAM region
+      [0x86000000, 0x9de00000). For that offset, phys_mem_access_prot clears
+      memory-type bits 0x3c and returns without testing O_SYNC. That matches
+      the Linux 3.5 ARM uncached software-PTE encoding. The running kernel's
+      __pv_phys_offset word was 0x86000000 and the patch byte was 0xc6.
+    address_space: linux-kernel
+    not_proven:
+      - an RTOS cache flush
+      - retained backing
+      - a finished frame
+    detail: archive/RAW_LINUX_MAPPING_20261018.md
+
+  - id: preview.not-the-product-buffer
+    status: rejected
+    kind: inference
+    statement: >
+      Copying this preview buffer is not the capture library's RAW result.
+      Use it only when a completion or ownership question names this allocation.
+    superseded_product_route: route.type0.normal-graph

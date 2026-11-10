@@ -1,0 +1,17 @@
+> **Frozen 20 October 2026.** Not the task list. Claims live in `reverse-engineering/facts/`. The open phase is `reverse-engineering/CURRENT_INVESTIGATION.md`.
+
+# 01:05 continuation: reviewed handoff
+
+17 October 2026, Australia/Sydney. Resume with [full-buffer/Bayer evidence](RAW_FULL_BUFFER_AND_BAYER_20261017.md), then [the current work-buffer contract](RAW_LIVE_WORK_BUFFER_20261017.md). The overarching verified sensor RAW acquisition goal is **unfinished**.
+
+The original other-agent full-buffer acquisition was reviewed and integrated in local master commit **8b56c3f**, with its sample and transfer evidence versioned. This pass added three passive full-buffer observations and three allocator/descriptor observations. All six camera/Mac hash and size checks, PID254/starttime1042 checks, 21 untraced-thread checks and temporary-file cleanup checks passed. Captures occurred at night; the user confirmed a face-down lens. No new imaging command or device write was sent.
+
+The firmware's format1 Bayer label and independent phase statistics support Bayer preview data, with GRBG/GBRG still unresolved. The live buffer's recorded size matches the entire saved extent. Its backing lies inside the cached movie-work allocation; stored request`0xffffffff`/kind0 distinguish it from the prior Still candidate. Capacity27×extent and offset9×extent do not prove a frame ring. Seven to nine cadence ticks occurred during the copies, including the optimized one. A coherent, freshly completed frame and safe retention remain unproved.
+
+The normal Pause leaves are register setters without a source-visible drain. Two real generic-export callers belong to Still-adjust callbacks; their image payload is not linked to current preview. A vendor-kernel mapping lead is saved, but its external extraction attempt reached a step limit and yielded no accepted kernel result.
+
+Luna performed bounded source tracing and reader changes; the parent reviewed original bytes, corrected a decimal/hex tag typo (40 decimal=`0x28`), rejected brittle implementation-mirroring tests, reran host contracts and deterministic builds, performed the authorized RAM observations, and owns integration. Cursor reported **Grok4.6Medium** and supplied reproducible phase tests; MiniMax reported **M3.1-Flash-Preview**, thinking variant, with high effort requested. The text-only MiniMax review is qualified by the parent's incorrect O2 premise and its seven/nine-count mistake. The separate kernel task failed at its step cap. No numerical credit-saving claim is made.
+
+**Resource boundary:** this pass began at0% five-hour/91% weekly used. Wind-down began at48% five-hour/**98% weekly used**: the weekly allowance became the binding limit before the requested95% five-hour cutoff. No reset credit was consumed. Stop before the weekly allowance abruptly prevents preservation; a later pass can resume the concrete boundaries above.
+
+The reviewed evidence archive index (not published: `../evidence/pass0105-20261017-reviewed.index.json`) accompanies `pass0105-20261017-reviewed.tar.gz`. It preserves source-bound REA records, closed native snapshots, original-byte checks, helper builds/source snapshots, exact commands/responses, raw sample hashes, numerical scripts/results, external-agent records including failures, and parent runtime audits. Provider diagnostics remain local outside the archive; Python bytecode caches are excluded. Sources remain unchanged and unrelated local work is preserved. All owned workers/native analysis sessions are closed; no remote push.

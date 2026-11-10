@@ -1,0 +1,317 @@
+# The camera's own Linux ABI, measured on the target. The camera's C library
+# is installed without headers, so the programs that run on it carry their own
+# numbers; these are the measured ones, not the generic Linux numbers.
+# Addresses in target-abi are linux-capture-elf unless a claim says otherwise.
+
+claims:
+  - id: target.open-flag-numbers-are-not-the-generic-ones-20261105
+    status: accepted
+    kind: runtime
+    statement: >
+      On boot 1793844742 an ARM probe measured the camera's open() flag bits
+      directly. O_CREAT is 0100, O_EXCL 0200, O_TRUNC 01000, O_APPEND 02000,
+      O_NONBLOCK 04000, O_DSYNC 010000, O_DIRECTORY 040000, O_NOFOLLOW
+      0100000, O_DIRECT 0200000, O_LARGEFILE 01000000, O_CLOEXEC 02000000 and
+      O_PATH 0100000000. O_DIRECTORY is 040000 because a regular file opened
+      with it gives ENOTDIR; O_NOFOLLOW is 0100000 because a symbolic link
+      opened with it gives ELOOP; O_CLOEXEC is 02000000 because it is the only
+      bit that sets FD_CLOEXEC; 0100000000 gives a descriptor whose fsync
+      fails with EBADF, which is O_PATH. The generic Linux numbers put
+      O_DIRECTORY at 0200000, which on this camera is O_DIRECT. The card
+      (FAT32, served by the kernel's exfat driver; first recorded here as
+      FUSE exfat, corrected the same day) rejects that bit: opening a
+      directory with it fails with EINVAL. This is the whole root cause of the camera app's
+      fresh-boot "storage open: storage IO failure": the app's first open of
+      its own photo directory was rejected, before any capture-library call
+      and before the photos directory was created. Directory fsync works on
+      the card, so the counter slots' durability needs no change, and
+      O_CREAT with O_EXCL creates a new file and refuses an existing one with
+      EEXIST, which is what the app's no-overwrite reservation relies on.
+    address_space: linux-capture-elf
+    evidence:
+      - output/camera-app-20261105/open-flags-probe.txt
+      - output/camera-app-20261105/storage-open-strace.txt
+      - src/app/tools/open_flags_probe.c
+      - src/app/VALIDATION.md
+    not_proven:
+      - other differences between the camera's ABI and the generic one
+      - the meaning of every bit this probe did not test
+      - the flags' behaviour on filesystems other than the card, the root
+        filesystem and tmpfs on this camera
+      - anything about the stock application's own use of these flags
+    detail: src/app/VALIDATION.md
+
+  - id: target.card-rename-over-existing-leaves-old-entry-20261105
+    status: accepted
+    kind: runtime
+    statement: >
+      The card (/dev/mmcblk1p1, FAT32 with boot-sector OEM "BSD  4.4",
+      16 KiB clusters, mounted as type exfat by the camera kernel's driver)
+      keeps the old directory entry live when a file is renamed over an
+      existing one. On boot 1793849521, "mv g360-app.new g360-app" succeeded,
+      and the raw directory then had two live G360-APP entries (positions 2
+      and 15) with separate, intact cluster chains in FAT 1; ls listed the
+      name twice. The stale entry was removed by renaming the current file
+      away, deleting the remaining old one and renaming back; the raw
+      directory then had one live entry and the old chain was free. The card
+      root already had three live MOD.SH entries from earlier work. The
+      driver writes only the first FAT: the second copy held none of the
+      files written that day, even after a deviced unmount and two
+      power-offs.
+    address_space: physical
+    evidence:
+      - src/app/VALIDATION.md
+    not_proven:
+      - whether every rename over an existing file behaves this way, or why
+      - the driver's handling of the duplicate when it looks the name up
+        later (the first entry in directory order is the likely match)
+
+
+  - id: target.built-in-flash-opt-usr-for-frames-20261105
+    status: accepted
+    kind: runtime
+    statement: >
+      On boot 1793857325 the camera's eMMC (Samsung, manfid 0x15, eMMC 5.0,
+      7.82 GB, made 05/2017; HS200, 8-bit bus at 200 MHz) has its data
+      partition p13 "opt-usr" (2.1 GB) mounted at /opt/usr as ext4
+      (rw, noatime, data=ordered), with 1,890,536 KB free; it held only
+      lost+found, an empty media/ and a 204 KB var/. "/" is read-only, /opt
+      (p10) has 37 MB free, and /tmp, /run and /var/log are tmpfs (RAM).
+      dd of 33,751,040 bytes with conv=fsync in 64 KiB blocks took
+      0.77-0.83 s per file (40.8-43.8 MB/s) eight times in a row, against
+      2.05 s (16.5 MB/s) on the card; CPU was 43-52% busy during a flash write
+      and 24% during a card write. Copying such a file from /opt/usr to the
+      card with fsync took 2.35-2.59 s. A 20-byte write with fsync took
+      20-23 ms. 8 back-to-back stills saving each DNG to /opt/usr took 2.10 s
+      start to start (0.77 s saving), against 3.45 s saving to the card; a
+      background dd to /opt/usr slowed back-to-back stills from 1.33 s to
+      1.60 s. EXT_CSD, readable as 512 bytes of hex at
+      /sys/kernel/debug/mmc0/mmc0:0001/ext_csd, reads PRE_EOL_INFO 1
+      (normal) and DEVICE_LIFE_TIME_EST_TYP_A/B 1 (0-10% used); the camera
+      app read the same values after a sweep (build b447d6e6...).
+    address_space: physical
+    evidence:
+      - output/speed-20261105/RESULT.md
+      - tools/experiments/speed-run.py
+    not_proven:
+      - the chip's write endurance (not published; about 8 TB at 1,000
+        erase cycles is an assumption)
+      - whether writing two frames at once fits in RAM (about 67 MB free)
+
+  - id: target.wifi-station-join-and-return-20261106
+    status: accepted
+    kind: runtime
+    statement: >
+      The camera's Wi-Fi can leave its own access point, join an existing
+      WPA2 network and come back, on one boot, without the stock app and
+      without writing to the built-in flash beyond what every access point
+      start already writes. On boot 1793924221 (attended):
+      org.tizen.tethering.disable_wifi_ap on mobileap-agent stopped hostapd
+      within 1-2 s (reply "(uint32 10, uint32 0)") and the agent deleted its
+      /opt/var/lib/mobileap-agent/hostapd.conf until the next start. Writing
+      /lib/firmware/wlan_net_bcm43455.bin and the nvram path to
+      /sys/module/dhd/parameters and bringing wlan0 up loaded
+      "7.120.5 (C0 Station/P2P feature) FWID 01-bfcd16ca", region US. The
+      stock wpa_supplicant 2.3 started without D-Bus (-Dnl80211, config in
+      /tmp) joined a WPA2-PSK/CCMP network on 2.4 GHz channel 3 (-62 dBm)
+      within 1 s, and toybox udhcpc got a /24 lease (7200 s) 5 s later; the
+      card's web server answered the Mac on that address. Stopping both,
+      bringing wlan0 down and calling enable_wifi_ap with the access point's
+      name, passphrase and channel 6 brought hostapd, dnsmasq,
+      192.168.43.1 and the apsta firmware back within 5 s. ConnMan's
+      /opt/var/lib/connman held only "settings" throughout. The access
+      point's name equals vconf db/setting/device_name ("Gear 360(FE17)").
+      wl scan works while hostapd runs. toybox udhcpc leaves its finished
+      event-script children as zombies until it exits.
+    address_space: physical
+    evidence:
+      - output/wifi-station-20261106/RESULT.md
+      - src/wifi/wifi-join.sh
+    not_proven:
+      - the script's failure paths and watchdog on the camera (host-tested only;
+        the deployed copy da82890c... adds per-run done markers and PID identity
+        checks after the trial)
+      - lease renewal, throughput and power use in station mode
+      - 5 GHz, WPA3, and channels 12-13 under the US region
+  - id: target.quick-replug-not-recognised-by-charger-20261106
+    status: accepted
+    kind: observation
+    statement: >
+      On boot 1793936180, with the stock app stopped and g360-app running,
+      the USB cable was unplugged at uptime 10002.6 s and plugged back about
+      4 s later (10006.7 s). The kernel log shows the detach reaching the
+      battery driver (batt_handle_notification CMD=DETACH, then
+      Status:Discharging). On the replug the USB-C controller attached as a
+      sink and the MUIC saw VBUS (vbvolt 1), ran "DCD RESCAN after afc
+      reset" and logged "Valid VBUS-> handled in irq handler", but no charger
+      type followed (chg_type 0x0, no attach notification to the battery
+      driver). The battery driver then reported Cable(1) (battery only) and
+      Discharging every 10 s. At 16:25 (camera clock) sec/switch/vbus_value
+      read 5V, attached_dev read "No VPS", every extcon/muic cable read 0 and
+      power_supply ac/usb online read 0: power at the connector, no charging.
+    address_space: physical
+    evidence:
+      - output/status-corner-20261106/RESULT.md
+    not_proven:
+      - the cause (the 4 s replug, the charger, or the stock app being stopped)
+      - whether a slower replug on the same boot is recognised
+
+  - id: target.motion-history-sample-layout-and-axes-20261106
+    status: accepted
+    kind: runtime
+    statement: >
+      The kernel motion history at physical 0x9cd00000 (device_get_property
+      size 8000000, position via _IOR('l',7,4) on /dev/accel; 400000 slots of
+      20 bytes, position wraps, about 200 samples/s since boot, filled with
+      the stock app running or frozen) holds one record per sample: u32 word0
+      a timestamp (about 1 us units, 4900-4940 per sample), word1 0, and words
+      2-4 six signed 16-bit values, high half first. The position runs ahead
+      of the data: reading up to it returns a stale record from the previous
+      lap (timestamp about 2e9 older) about every 4th sample; staying 10
+      samples (50 ms) behind it gave 0 bad timestamp deltas in 992 samples.
+      Axes as the user identified them by hand-moving the camera with a live
+      chart (camera held with the front lens, the one on the screen side,
+      facing the viewer): word3 low = linear Z, -8023 stationary upright and
+      about +8500 upside down; word2 low = linear Y (from the screen-side lens
+      forward), about -8100 face up and +8200 the other way up; word2 high =
+      linear X (to the right of the viewer, toward the buttons), about -8100
+      with the buttons up and +8100 the other side; word4 low = rotation
+      about X, word3 high = rotation about Y, word4 high = rotation about Z.
+      The linear channels read about +-8100..8500 at 1 g; the chip is set
+      to +-4 g (8197 counts per g) and the rotation channels are gyroscope
+      angular rate at +-2000 deg/s, 0.07 deg/s per count
+      (target.linux-peripherals-survey-20261106).
+      Read at the same moment with the camera still, the history accel X, Y,
+      Z equal the driver's accel_raw_data (r0, -r2, r1) minus calib_xyz, and
+      the gyro X, Y, Z equal gyro_raw_data (g0, -g2, g1) minus its
+      calib_xyz: a proper rotation of the chip's axes, so a reading is +1 g
+      on the axis pointing up. The positive axes therefore point away from
+      the buttons (X), away from the front lens (Y) and down out of the
+      grip when upright (Z). On the 6 November 10 s recording, integrating
+      the gyro with this pairing and all-positive signs predicted the
+      gravity direction 0.25 s ahead within 11.8 deg on average (42.1 deg
+      with no rotation; the next-best pairing 21.6 deg).
+      A live UDP view (accelserve on the camera, accel_live.py on the Mac,
+      203 samples/s, 0 lost datagrams) read the stream.
+    address_space: physical
+    evidence:
+      - output/gyro-test-20261106/RESULT.md
+    not_proven:
+      - which LSM6DS3 axis and sign each history channel is (the chip, scales and rate are in target.linux-peripherals-survey-20261106)
+      - signs of the rotation channels and of each axis beyond the stationary readings above
+      - whether the words 2-4 order or the word1 zero ever change
+      - bias, scale and temperature behaviour (one run, no calibration)
+    detail: output/gyro-test-20261106/RESULT.md
+
+  - id: target.linux-peripherals-survey-20261106
+    status: accepted
+    kind: runtime
+    statement: >
+      Read-only survey of the devices Linux sees (boot 139ef0e1, stock app
+      running; reads of /sys, /proc and dmesg only). The motion chip is an
+      ST LSM6DS3 (input event1 accelerometer, event2 gyroscope, event3-6
+      significant motion, step counter, step detector, tilt; only the first
+      two enabled). Accelerometer 208 Hz, +-4 g, sensitivity file 122
+      ug/count; gyroscope 208 Hz, +-2000 deg/s, 70000 udeg/s per count;
+      calib_xyz accel -55 -235 367, gyro -49 -57 0. Reading
+      /sys/class/accelerometer/accel/read_reg prints registers 0x00-0x6b to
+      the kernel log: WHO_AM_I 0x69, CTRL1_XL 0x58, CTRL2_G 0x5c, CTRL10_C
+      0x3c, INT1_CTRL 0x02, OUT_TEMP 0x00ef (about 39.9 C die). Temperatures:
+      drime5-thermister batt 44.0 C and vbatt 42.0 C, power_supply battery
+      temp 42.0 C; channels cis_a and cis_b give raw ADC counts only (1119,
+      1160). Two 24C64 EEPROMs (at24) at 0x50 on I2C bus 3 (front sensor's
+      control bus) and bus 4 (rear's), 8 KiB each, stable over two reads
+      (sha256 d651b1f5... and a4491590...): date 20170527, the same ID
+      string CFN000805E48254 in both, 15 identical doubles at 0xd8, and at
+      0x228 four (R, 4096, B) gain triples that differ per module. DRM
+      HDMI-A-1 is disconnected; LVDS-1 is connected at 720x480. rtc0
+      (drime5) holds UTC; hctosys 0. No magnetometer, barometer, GPS or
+      light sensor is registered with Linux.
+    address_space: linux-kernel
+    evidence:
+      - output/peripherals-20261106/RESULT.md
+      - output/peripherals-20261106/EEPROM_AND_REGISTERS.md
+    not_proven:
+      - that cis_a and cis_b are the image sensors' thermistors, or their conversion to degrees
+      - devices wired only to the RTOS CPU
+      - whether reading the EEPROMs on buses 3 and 4 is safe during a capture (no lock between Linux and the RTOS on those buses)
+    follow_up: >
+      The EEPROM contents are decoded in
+      target.lens-eeprom-field-map-and-awb-points-20261107 and
+      target.lens-eeprom-optical-axis-block-20261107.
+
+  - id: target.lens-eeprom-field-map-and-awb-points-20261107
+    status: accepted
+    kind: static
+    also_kind: observation
+    statement: >
+      Both lens-module EEPROMs (A = I2C bus 3, front lens, RTOS adjust region
+      0x85c20000; B = bus 4, rear, 0x85c40000) follow the stock factory
+      table in libfactory-mode.so (sha256 927c9e04..., 179 EEPA_* entries of
+      0x60 bytes at file offset 0xf7e08: name, u64 id = region<<32 | offset,
+      size); the camera's factory log writes EEPB_* at the same offsets.
+      Every non-0xff byte of both images falls in a named field. The u32 at
+      0x7fc (CHECKSUM) is the sum of the little-endian u32 words
+      0x000-0x7fb; it matches in both images. The RTOS reads four white
+      points per lens (G = 4096): point 0 = AWB_LOW_GAIN 0x040, points 1-3 =
+      AWB_EEPROM_POINT2-4 at 0x228, 0x22e, 0x234 (getters FUN_803a3558...
+      FUN_803a3838 behind adjust-interface vtable 0x806c1b48 slots
+      0x2c/0x30/0x34). They equal, value for value and in order, the stock
+      JPEG AWB record's white points P1-P4 for lens a (EEPROM A) and lens b
+      (EEPROM B). calcBodyAdjustGain (FUN_803bb4d8 -> FUN_803c0fe8) sets the
+      lens adjustment to golden/point-0 for R and B, truncated to 1/65536,
+      with golden 46160 and 22064 (/65536) at AWB tuning data 0x806d5450
+      +0x144/+0x14c; this reproduces the record's 0x2dac (67141, 65536,
+      61688) and 0x2db8 (66016, 65536, 61985) exactly, the same in all 660
+      JPEGs from this camera. So lens a is the front module, the left half
+      of the frame. 0x23a (AWB_MODULE_LOW_GAIN) is read only by the factory
+      AWB adjust (AdjGetAwbResult FUN_803a1fc8, type 1). The 0x315
+      "OVKER" bytes are MODULE_ID and 0x320-0x39b are SET_* noise, dust,
+      shading and exposure test results.
+    address_space: rtos and linux-factory-elf
+    evidence:
+      - reverse-engineering/eeprom/README.md
+      - reverse-engineering/eeprom/lens_eeprom.py
+      - reverse-engineering/eeprom/tests/test_lens_eeprom.py
+      - output/peripherals-20261106/EEPROM_AND_REGISTERS.md
+    not_proven:
+      - RTOS functions and golden values come from the saved decompile and ELF of 19 October (pass-opus-engine-20261019), not re-confirmed in a fresh REA session
+      - the illuminant of each white point
+      - the run-time use of LIVE_ISO_GAIN_X1/X2 and the meaning of MOT_PIMA's ten values
+      - the second camera's EEPROMs (only its JPEG adjustments are seen)
+    detail: reverse-engineering/eeprom/README.md
+
+  - id: target.lens-eeprom-optical-axis-block-20261107
+    status: open
+    kind: static
+    also_kind: inference
+    statement: >
+      EEPROM 0x0d0-0x20f are OPTICAL_AXIS_01-40 (8 bytes each) and 0x210
+      OPTICAL_AXIS_FLAG (2). Slot 01 holds u32 2; slots 02-16 hold 15
+      doubles, identical in both modules; 17-40 are zero.
+      ADE_ImageStitch_get_OPAX in libdi-alg-imagestitch.so (sha256
+      d84fb7a6...) copies EEPROM A 0x0d0-0x16f verbatim; this is MakerNote
+      tag 0x0012 in every stock JPEG (byte for byte). get_OPAI builds tag
+      0x0013 from version 3, the u32 at 0x260 of each EEPROM (unset here, so
+      the version becomes 0xffffffff) and memory/private/pmode_uniqueno
+      (= SET_ID). No camera code parses the doubles; the on-camera ArcSoft
+      stitcher (libdi-arc-imagestitch.so) reads 40 int32/1e6 values from
+      adjust region 0x85600000 or a built-in 195-degree default instead.
+      Inferred, not named by firmware: doubles 0-3 are the two lens centres
+      (x, y) in 2896x2896 half pixels, front/left lens first (within 0.05-3.2
+      px of our ChArUco principal points), and doubles 4-5 the image-circle
+      radii, each the smaller of a measured radius and the distance to the
+      nearest edge of the half (one radius equals a centre coordinate in
+      both cameras seen).
+    address_space: linux-alg-imagestitch-elf
+    evidence:
+      - ev_52f7c0a531ed969fb9f5fd8910cf4c7d72c83e5fb2c1ca76159567656903c97b
+      - ev_e104b3c61d91d371d8f4b0175f272c72c8393c3904369519248438df8edbd4c4
+      - ev_231fbbe5c420463f5310da2cbc2f2d37520b9bd89541f2dac53fad0116132414
+      - ev_e899f5f9d1f74d613f348fb29b98d3c020f10fbc805664cf2d23f9312ee2aa62
+      - ev_0402966e7efe1c600b4d62a567edcfcb0987a0c5be1fec24abcaa6197d68aae2
+      - reverse-engineering/eeprom/README.md
+    not_proven:
+      - the meaning of doubles 6-14 and the axis conventions
+      - the centre/radius reading (needs the off-camera stitcher that reads tag 0x0012, or a direct image-circle measurement)
+    detail: reverse-engineering/eeprom/README.md

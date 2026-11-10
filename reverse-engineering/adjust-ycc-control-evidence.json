@@ -1,0 +1,180 @@
+{
+  "schema": "gear360-reviewed-static-evidence-v1",
+  "report": {
+    "path": "reverse-engineering/RAW_ADJUST_YCC_CONTROL_ROUTE.md",
+    "bytes": 6022,
+    "sha256": "cf7caaa0d328394357cdb62d0329fd822ad89ac0be414d1a157d4be912ddd0d4"
+  },
+  "archive": {
+    "path": "reverse-engineering/evidence/pass-resume-20261016-control-input.tar.gz",
+    "bytes": 1657050,
+    "sha256": "9dd7885c63d3e57b00768a0ca18f57231ac6b463b791c9d353ec6ea2b9e6615d"
+  },
+  "files": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass7/geometry-row-writers/fulltext-row-state.manifest.json",
+      "bytes": 3092,
+      "sha256": "9fd8c93064ac970698b33bc40cb99ddb3b85b498207b6e3d95f61a125becbc41"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch/evidence-bundle.json",
+      "bytes": 1601042,
+      "sha256": "3e9b7a4b108958b4fa8283e0688be5afbbda9b726057484281070777a2231510"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch/parent-original-source-window-schema.json",
+      "bytes": 2010,
+      "sha256": "d89558dd95ec5951c19c9b27902409d3c8cca54ec0912f246de8f23572bbd3f9"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch/report.md",
+      "bytes": 5478,
+      "sha256": "2487278574717aefe0316e32b4ba5b10ba58cb300dc65a02fbe9b3e66234c027"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch/snapshot.json",
+      "bytes": 3181576,
+      "sha256": "1a5d3386d79208281edaf0ad6e360fe84f6cff64ff4c5b776bde4207fcd6271f"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch/source-windows/adapter-example-0109000b.bin",
+      "bytes": 108,
+      "sha256": "aea6ec42c4a3ce613bf6864a1b0bb101e5ff6eb5f3898e847a9cf34d8570f604"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch/source-windows/adapter-example-0109000c.bin",
+      "bytes": 108,
+      "sha256": "982cbdceb79c44ac705134bbdb17e203dfef7533d6f9e80defa515760d120a71"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch/source-windows/callsite-01090006-one-byte.bin",
+      "bytes": 32,
+      "sha256": "3e6416410f2b38a82b3e70f0362c8cb11006c6cdaf57950ecfa9b1c230d9ce1b"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch/source-windows/dispatch-callsite.bin",
+      "bytes": 32,
+      "sha256": "f94b315be0942db8ddf4c9e241a864f8c2f4d29d669edf8d303669398f7be5b9"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch/source-windows/length-validation-id-01090006.bin",
+      "bytes": 40,
+      "sha256": "25c518b9ed70157c4f2cce536cb387fe4316f6b8e79ea026408b3e7363d2b899"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch/source-windows.json",
+      "bytes": 3141,
+      "sha256": "2e210c828b6f0cf2452886609569e165b47a4376dc11abda1fa062a7280d1e50"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/adjust-dispatch-validation.json",
+      "bytes": 8359,
+      "sha256": "88eb85ff96004c8e96f67cebe603f99d842f3b06e3b9fb49523d35e4603a3d7c"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/app-address-bias-check.json",
+      "bytes": 1572724,
+      "sha256": "7b5a3b375212a6dff1ab48c998f9649fb54f4a43715c0933fcf569a6f6bf6316"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/app-address-bias-check.snapshot.json",
+      "bytes": 3145835,
+      "sha256": "272a91492ebe35aa14232b55dc702c9ade1cab275db608b1d1e1fb6baa3073f6"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/app-adjust-helper.json",
+      "bytes": 50590,
+      "sha256": "33d68c5f7e9fba7a0506c04af24a86692d97e77840a55c1294ad4e54f9e71766"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/app-adjust-session.snapshot.json",
+      "bytes": 101567,
+      "sha256": "2c0dbce67ff37ce5f07ba3078b874eea5d3c6988353cb915dadbd73e10eae62e"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/app-caller.json",
+      "bytes": 6858382,
+      "sha256": "b019e7362af43bfa4cd0d0a5e8a7a87612b234ce2a2ca5703a985d2915d9dc5e"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/caller-session.snapshot.json",
+      "bytes": 13717151,
+      "sha256": "fcbfb85e17235c8e8c3e84432ffea8ed54983a7e27ff3758faa17622c0a37103"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/capture-session.snapshot.json",
+      "bytes": 94403,
+      "sha256": "1a86b5b91113c96a24e043f586c8a068da09fed7a8ebf0a1679758b7c9f079c0"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/capture-setter.json",
+      "bytes": 47012,
+      "sha256": "82e0c79bee1d40249d4450d784b45f7b08e3f089ea19ad267a88d8d0b61eb5a3"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/manifest.json",
+      "bytes": 2847,
+      "sha256": "c546b69b9a70ad22dcd87cf30d9e2b4bfc62726e70adbfd34fa7aaecf643d2ff"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/parent-original-manifest.json",
+      "bytes": 2704,
+      "sha256": "bcd53d7a3d6a7a5e204690825370a98b040b3dc6cc6981a34b590740ef2aeae1"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/parent-original-source-window-schema.json",
+      "bytes": 34034,
+      "sha256": "853f9c27d17ffda46b8f92cd26b1819e1740ba71e6618271bab9660dda59a9f3"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/phase2/STATUS.md",
+      "bytes": 847,
+      "sha256": "aa3cb48d4533089c93563c5170111a659e130e2efc1d22777535c50e5f296e1f"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/phase2/app-0x113ef8.json",
+      "bytes": 292,
+      "sha256": "0bd68713838b2536f67ff683b284d35008b5fcdcc05cfac608dee9c0b1a5e847"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/report.md",
+      "bytes": 5033,
+      "sha256": "3a41d1c11f46706b5dec112ae0fdf1273588647ce5ff63c3602656ae8ec68236"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/retained-CMCBAdapter-SetParam.json",
+      "bytes": 65409,
+      "sha256": "12f55daef19b38db186af044429441c904c8b0b9d840be22b8bc4e95fe1d143b"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/retained-SetCaptureDataMCB.json",
+      "bytes": 5599347,
+      "sha256": "3ac2af1df54715dc0f78773b3c83c465f96373109a420046bae77be3f43aea17"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/linux-adjust-ycc/source-windows.json",
+      "bytes": 34421,
+      "sha256": "7a4f8e91620b40e5e646dd72699ba7b08b92eab22ac55ecb507d376469e05290"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-adjust-dispatch-census.json",
+      "bytes": 538,
+      "sha256": "914498790c037e27e223957bea799692234d2792c854bc39897f67531a5585d7"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-linux-window-review.json",
+      "bytes": 2835,
+      "sha256": "0f60727a8b249dad522f486d89744c11d56d248e9a34346917a7f069a8b42f84"
+    }
+  ],
+  "source": {
+    "path": "output/decompile/rea/rtos-p6.bin",
+    "sha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7",
+    "base": "0x80000000"
+  },
+  "dependencies": [
+    "reverse-engineering/recipe-command-gates-evidence.json",
+    "reverse-engineering/core-input-cleanup-evidence.json"
+  ],
+  "validationLimits": "Complete native records retained. Canceled phase2/app-0x113ef8.json is explicitly no Evidence. Original schema/manifest backups are historical. Parent corrected two app address mappings and refreshed corresponding manifest hashes. Schema/hash validation is not semantic or runtime certification."
+}

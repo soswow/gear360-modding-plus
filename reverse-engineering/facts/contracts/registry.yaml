@@ -1,0 +1,284 @@
+# Camera software command registry and the CP15 control-register reader.
+# Addresses are in the rtos space. Records below are corrected per the parent
+# review of 21 October 2026: the accepted records are narrowed to the evidence
+# that was actually checked, the console-exclusivity and only-command-reachable
+# -reader conclusions are withdrawn, and the control-register proof is rejected.
+
+claims:
+  - id: registry.ref-reg-uatb-is-conditional-ttbr-input
+    status: accepted
+    kind: static
+    statement: >
+      Getter service0x80023260 and setter0x80022fdc select records
+      through the same pointer cell0x81c101d8, with positive stride
+      (selector-1)*0xf0. Setter0x80022fdc stores input[0] into+0xd4
+      and input[1] into+0xd8. Only on its selected-record-equals-current
+      branch does it read CP15 c2/c0/1 and write c2/c0/0. Under the
+      applicable VMSA interpretation these are TTBR1 and TTBR0. A
+      nonzero input[0] is ORed with sampled TTBR1 low7 bits; zero
+      input[0] instead leaves sampled TTBR1 as the written value.
+      The UATB-labelled stored word is thus used as an input to this
+      conditional path, not a fresh register readback. Helper0x80022acc
+      also copies supplied C+8 into record+0xd4 under its C-nonnull gate.
+    address_space: rtos
+    addresses:
+      getter_service: "0x80023260"
+      record_pointer_cell: "0x81c101d8"
+      current_record_cell: "0x81c10198"
+      setter: "0x80022fdc"
+      record_write: "0x80023090"
+      cp15_read: "0x800230a0"
+      cp15_write: "0x800230bc"
+      context_copy_setter: "0x80022acc"
+    not_proven:
+      - actual execution, valid configured addresses or runtime table persistence
+      - active TTBR0, SCTLR, remap registers or installed shared-ring mappings
+      - complete writer coverage, sensor provenance or RAW ownership
+    detail: output/decompile/rea/pass-audit-20261022-review/svc-context-review.md
+
+  - id: registry.ref-reg-context-service-conditional
+    status: accepted
+    kind: static
+    statement: >
+      Wrapper0x80517a98 supplies key0x80120400 through SWI6. Under the
+      checked ordinary SVC entry, registered prefix0x80023fc0 and
+      unchanged saved key, the copied-default hook source points to
+      signed-key decoder0x8002401c. The key is negative, so the positive
+      subsystem branch is not selected. If the admission gates permit
+      dispatch, signed index-32750 and biased base0x80043dac select
+      slot0x80023df4, whose original word is0x80023260. The hook cell
+      also has decoded writers, so this is a conditional source binding.
+    address_space: rtos
+    addresses:
+      wrapper: "0x80517a98"
+      svc_prefix: "0x80023fc0"
+      default_hook_source: "0x807ef918"
+      hook_cell: "0x81006018"
+      signed_decoder: "0x8002401c"
+      selected_slot: "0x80023df4"
+      service: "0x80023260"
+    not_proven:
+      - current vector, startup copy, hook, table, admission or task state
+      - command invocation safety, active control state or receiver readiness
+    detail: output/decompile/rea/pass-audit-20261022-review/svc-context-review.md
+
+  - id: registry.ref-reg-uatb-word-source
+    status: accepted
+    kind: static
+    statement: >
+      On the checked0x80023260 branch, a selected record is passed with
+      the three output pointers to0x80022b84. With third output C
+      non-null, the copy helper loads selected-record+0xd4 and stores
+      it at C+8, the word labelled UATB by the accepted caller formatter.
+      The helper loads its saved-context pointer from record+0xd0 and
+      copies other context words as well. Its checked body has no CP15
+      read. The field source is established; its hardware meaning is not.
+    address_space: rtos
+    addresses:
+      service: "0x80023260"
+      copy_helper: "0x80022b84"
+      source_load: "0x80022bfc"
+      destination_store: "0x80022c0c"
+    not_proven:
+      - all source-field writers or equivalence to an active TTBR
+      - active SCTLR/remap state, freshness, caller safety or RAW ownership
+    detail: output/decompile/rea/pass-audit-20261022-review/svc-context-review.md
+
+  - id: registry.shell-command-map-is-single-caller
+    status: accepted
+    kind: static
+    statement: >
+      Accepted, static, narrowed to the executor's own instructions. The parent
+      re-read the MCB SHELL_COMMAND executor 0x8004a848 through REA/Ghidra. For
+      argc>1 it builds a key from argv[1] with 0x805c4388, calls 0x80540820 with
+      this+4, checks the result and the end condition, and on the admitted branch
+      calls the found object's vtable slot +8 with argc-1 and argv+1. That is the
+      checked behaviour of that function. It does not establish the key strings
+      that are actually inserted into the command map, constructor activation,
+      complete registry membership, or that every path to that map uses this
+      particular lookup. No caller is assigned here to the map search 0x80540b14,
+      which would need separate evidence. The claim id is retained from the worker
+      pass for historical reference and does not assert a single-caller property.
+    address_space: rtos
+    addresses:
+      executor: "0x8004a848"
+      key_builder: "0x805c4388"
+      map_lookup: "0x80540820"
+      map_search: "0x80540b14"
+    not_proven:
+      - the key strings that are actually inserted into the command map
+      - which tokens in a node name block are insertable command names
+      - constructor activation and complete registry membership
+      - that every path to that map uses this particular lookup
+      - the caller set of the map search 0x80540b14
+    detail: output/decompile/rea/pass-sc-parent-review-20261021/parent-review.md
+
+  - id: registry.sc-handler-is-console-only
+    status: open
+    kind: static
+    statement: >
+      Worker finding awaiting parent review, narrowed. The parent re-read the
+      references of the sc handler 0x800136e8 through REA/Ghidra; the fresh
+      resolved-xrefs response lists the console input loop site 0x80012270. That is
+      resolved-reference coverage and does not exclude computed or relative
+      addresses, other encodings, runtime registration, alternate entry points or
+      unresolved calls. Whether the handler is present in the host-reachable command
+      map is not established, because the registry's membership is unproved. The sc
+      literal did not appear among the tokens recovered in the worker's registry
+      node name-block corpus; that corpus is finite and is not the registry's
+      membership. The claim id is retained for historical reference and does not
+      assert exclusive accessibility.
+    address_space: rtos
+    addresses:
+      handler: "0x800136e8"
+      only_reference: "0x80012270"
+    not_proven:
+      - whether a different command name reaches the same branch
+      - any live execution of the branch
+      - whether the handler is registered in the runtime command map
+      - any route into the handler other than the resolved reference checked above
+    detail: output/decompile/rea/pass-sc-parent-review-20261021/parent-review.md
+
+  - id: registry.control-register-has-one-reader
+    status: rejected
+    kind: inference
+    statement: >
+      Rejected as a proof, retained as an id. The record's masked sweep used the
+      literal pattern 10 1f 11 ee with mask f0 ff ff ff. That mask admits 16
+      distinct words, 0x101f11ee through 0x1f1f11ee, because the low four bits of
+      the first byte vary while the second byte is fixed at 0x1f; the sweep
+      therefore does not accept arbitrary destination-register encodings, and it
+      does not cover the whole mrc p15,0,rX,c1,c0,0 family. The mask is a byte
+      pattern: no ARM field is assigned from it, and no absence of readers is
+      concluded from it. The corrected count of eight candidate sites is itself
+      finite, and a finite candidate count cannot establish that no other reader
+      exists, nor that any listed site is or is not command-reachable. The
+      eight-site list is retained as a worker lead for further native work, not as
+      an accepted exhaustive result. The id is retained so the original report's
+      reference still resolves.
+    address_space: rtos
+    addresses:
+      branch: "0x80013910"
+      opcode: "0xEE111F10"
+      other_readers: "0x80000168, 0x80000218, 0x80000e48, 0x80000ed0, 0x80001320, 0x80005828, 0x80011608"
+    correction: >
+      Restated by the integrating session on 21 October 2026, and rejected as a
+      proof by the parent review of 21 October 2026. The original record and the
+      original report both asserted that exactly one instruction in the image
+      reads the control register. That assertion is not supported. The sweep
+      pattern 10 1f 11 ee with mask f0 ff ff ff admits 16 distinct words,
+      0x101f11ee through 0x1f1f11ee, with the low four bits of the first byte
+      varying and the second byte fixed at 0x1f; it does not accept arbitrary
+      destination-register encodings, and it also does not cover the whole family.
+      The mask is a byte pattern, so no ARM field is assigned from it and no
+      absence of readers is concluded from it. The corrected eight-site count is a
+      finite candidate set and still cannot prove the absence of other readers,
+      nor of command-reachable readers; the parent rejected that inference rather
+      than accepting the corrected count as exhaustive. The id is retained so the
+      original report's reference still resolves.
+    not_proven:
+      - the live SCTLR value, active mapping attributes or copy visibility
+      - a CP15 read expressed through a different encoding or an indirect call
+      - the enclosing functions of the four readers in unanalysed islands
+      - the absence of further control-register readers
+      - command reachability of any of the eight candidate sites
+    detail: output/decompile/rea/pass-sc-parent-review-20261021/parent-review.md
+
+  - id: registry.node-name-block-layout
+    status: open
+    kind: static
+    statement: >
+      Worker layout interpretation remains open. Parent REA bytes at
+      0x805e840c hold the pointer 0x805e8410, where the text begins ASCII
+      18CDebugConsoleProxy (31 38 43 44...), rather than a binary length
+      byte0x18. CAP_ADJ begins at0x805e842c, not0x805e8428. A C++ type-name
+      encoding is a candidate; neither a general name/help/class layout nor
+      an inserted command key follows from this adjacency. Actual command
+      registration is being recovered separately.
+    address_space: rtos
+    addresses:
+      root_vtable: "0x805e8400"
+      root_name_block: "0x805e8410"
+      adjacent_cap_adj: "0x805e842c"
+    not_proven:
+      - semantic structure of this block or a general layout for other nodes
+      - actual inserted command keys or runtime command membership
+      - what CAP_CTRL reports
+    detail: output/decompile/rea/pass-sc-parent-review-20261021/parent-review.md
+
+  - id: registry.ref-key-object-dispatch-chain
+    status: accepted
+    kind: static
+    statement: >
+      Constructor0x800e8514 stores vtable0x80636af8 at object O+0,
+      builds a string from literal ref at0x80636aec, obtains the proxy
+      through0x8004a79c and passes that key and O to0x8004a9e0. The
+      add helper calls0x80540914 on proxy+4. Executor0x8004a848 looks
+      up its own argv[1] on proxy+4 and calls the found object's vtable+8.
+      That slot in0x80636af8 contains0x800e8718. If initialization ran,
+      insertion retained O and its vptr remains unchanged, this is a
+      concrete ref-to-object-to-execute binding. It is not derived from
+      nearby help text or from the name CDebugConsoleProxy.
+    address_space: rtos
+    addresses:
+      constructor: "0x800e8514"
+      name: "0x80636aec"
+      vtable: "0x80636af8"
+      execute: "0x800e8718"
+      proxy_add: "0x8004a9e0"
+      map_insert_wrapper: "0x80540914"
+    not_proven:
+      - runtime initialization, successful insertion, duplicates or object lifetime
+      - complete command membership or a fully safe host invocation route
+      - ref item semantics, active control-register state or copy visibility
+    detail: output/decompile/rea/pass-sc-parent-review-20261021/parent-review.md
+
+  - id: registry.proxy-add-result-is-not-membership-proof
+    status: accepted
+    kind: static
+    statement: >
+      On its normal non-null third-argument path,0x8004a9e0 calls
+      0x80540914 with a stack result buffer, destroys its temporary pair,
+      sets a local byte to1 and returns it without inspecting the insertion
+      result. A null third argument returns0. This add-helper return alone
+      does not establish that the requested key/value became a member.
+    address_space: rtos
+    addresses:
+      add_helper: "0x8004a9e0"
+      insertion_call: "0x8004aa54"
+      success_store: "0x8004aa68"
+    not_proven:
+      - allocation or exception behavior of the insertion implementation
+      - actual insertion failure, duplicate behavior or live registry membership
+    detail: output/decompile/rea/pass-sc-parent-review-20261021/parent-review.md
+
+  - id: registry.ref-reg-formatted-context
+    status: accepted
+    kind: static
+    statement: >
+      The ref node execute0x800e8718 forwards argc/argv to0x800126e8.
+      Its selected reg branch passes r4 and three stack-buffer pointers
+      to0x80517a98 (SWI6, key0x80120400). On a nonnegative return it
+      calls0x80516ae4 with console sink0x80011e70 and those buffers.
+      Six format lines label PC/CPSR/TMF, R0..R11, IP/LR and
+      USP/SSP/LSID/UATB. In the third buffer C, the last format consumes
+      USP=C+4, SSP=C+0, LSID=C+0xc and UATB=C+8 as raw32-bit words;
+      LSID is displayed in signed decimal, the other three in hex.
+      A later, separate0x80517768 call supplies the additional stack-area
+      displays. The first service is not a TID parser and the output is
+      not stack geometry alone. These are labels and caller dataflow;
+      the subsequent conditional service/copy source is recorded separately.
+      Runtime activation and active-register meaning remain unproved.
+    address_space: rtos
+    addresses:
+      node_execute: "0x800e8718"
+      shared_dispatcher: "0x800126e8"
+      getter_wrapper: "0x80517a98"
+      formatter: "0x80516ae4"
+      format_block: "0x8079dbc8"
+      selected_call: "0x80012834"
+    not_proven:
+      - runtime service selection, full saved-task layout or hardware readback
+      - UATB equivalence to a live TTBR, active SCTLR or mapping attributes
+      - successful runtime membership, invocation safety or fresh diagnostic output
+    detail: output/decompile/rea/pass-sc-parent-review-20261021/parent-review.md

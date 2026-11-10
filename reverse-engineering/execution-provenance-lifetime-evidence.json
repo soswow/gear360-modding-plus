@@ -1,0 +1,1012 @@
+{
+  "scope": "Reviewed pass8 investigation milestone; verified sensor RAW capture remains unfinished",
+  "source_sha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7",
+  "p6": {
+    "start": 95420928,
+    "endExclusive": 126878208,
+    "bytes": 31457280,
+    "sha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7"
+  },
+  "reviewedReports": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/active-geometry/independent-review/geometry-role-audit.md",
+      "bytes": 5692,
+      "sha256": "702fc340392c759231826811dd53322255f8ffbcdbea69483da6337301b0847f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/active-geometry/report.md",
+      "bytes": 13005,
+      "sha256": "aad53eb50107ad9dc0936fcbcdbff7dd63e640e6f70ee39a50802365d6f28679"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/backing-owner/outer-independent-review.md",
+      "bytes": 9792,
+      "sha256": "9d6f1ae708c1d738f44c22a336c1fd23fd5aceb0201cedfa6607d327b7916b0c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/backing-owner/report.md",
+      "bytes": 10319,
+      "sha256": "ee316b352d5a2a86c294de283034451bc3184ea02769dc09668f6271abcbf54d"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/boot-artifact-binding/report.md",
+      "bytes": 11241,
+      "sha256": "ae31f0001056df289a46f6dd99746b41806cfdb64bfa97ab4b72cef3e797dae2"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/export-config-invocation/report.md",
+      "bytes": 5182,
+      "sha256": "433314026ffbc666427939783d3f2c58d4e81d19820556cd060338641b3364e9"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/frontend-completion/independent-review/independent-review.md",
+      "bytes": 8001,
+      "sha256": "fc8103c5a43289b14a86d193da18077789c7ce7bdb404585ca6f8cd26143eb86"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/frontend-completion/report.md",
+      "bytes": 9562,
+      "sha256": "01109cb71feea4f5c84d82987e5e8e13af2a59ac8e7a1aade81f3d81d496c3af"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/hardware-completion-source/report.md",
+      "bytes": 5103,
+      "sha256": "44664f252ba5a52aa1d7ed5e67691b2b360ac1ae757670690d5ed25b5ed7157b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/material-image-alias/checkpoint.md",
+      "bytes": 1412,
+      "sha256": "f804070d0da90731b6460da3aa3169d502278e38a9a0f82ed7f9fec116f65ac8"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/material-image-alias/independent-review/material-alias-pointer-chain-review.md",
+      "bytes": 5443,
+      "sha256": "23822e05d1a015ac7416e546c9c60fced6d2dff5749d0684a94779bf485b26e2"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/material-image-alias/report.md",
+      "bytes": 9372,
+      "sha256": "67e73ea58489d0bd1ba3f1888257709c2ea204860cf83b8ae3b0ff21d16cb570"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/outer-graph-executor/checkpoint.md",
+      "bytes": 2215,
+      "sha256": "b1e64a1c15c882e7b95cb5c54286b66352a349f6b2049791ca3f7affb931bac7"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/outer-graph-executor/report.md",
+      "bytes": 8056,
+      "sha256": "0e11c9c1a1b20587d6bdd62aa663ed8363159db630edb4e81e5573ed8fd3fa32"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/output-packing-programming/report.md",
+      "bytes": 7876,
+      "sha256": "7c7447d525f6c3418c9a9113cfc75adfbce2e3404d96227de91db74430794cd4"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/rtos-static-initialization/report.md",
+      "bytes": 4023,
+      "sha256": "dc39809d455d6d61bf3e031c42b968742ddb9e0f6277938cb220d8129aafa37b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/ssif-receive/independent-review/report.md",
+      "bytes": 4522,
+      "sha256": "25db78976a9316fa6d4b6f235388e1badf875d5d1376e2efb3e1f8b7000295de"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/ssif-receive/report.md",
+      "bytes": 7315,
+      "sha256": "2d2c33e3271cb767579534b6bbe7556a24c7fecc8914014ffae72b2eca2ff69f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/task-identity-review.md",
+      "bytes": 5297,
+      "sha256": "91fbe4b70e16b511a4ab02e0233bdfa8f4ec13035acd77cc346c1ae200ae368c"
+    }
+  ],
+  "parentAudits": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/parent-validation.json",
+      "bytes": 270161,
+      "sha256": "194c5cd51d3a029f6933d20efef893996129e18e3be35fcabe7f7cf51dc24386"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/parent-read-bytes-validation.json",
+      "bytes": 76877,
+      "sha256": "21300bb016429971c058ac05160805eebada4dd9b2d3531a19cac1f060e53b55"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/parent-irq-source-review.json",
+      "bytes": 8032,
+      "sha256": "e146520d333a8ba0f32bb0e88322eacfb07771b493a7044c9eb7de36700c4d23"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/parent-geometry-template-review.json",
+      "bytes": 1211,
+      "sha256": "334e0e4de01d2c1eb64366a4e2a35d2d29004381b492515c1f6f8a32baf69aa6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/parent-irq-source-disassembly.txt",
+      "bytes": 7922,
+      "sha256": "468a13785bae468245a99ce7c85dbd99a4c2d6775d1ad9d7392b17fc3713f0b6"
+    }
+  ],
+  "citedRecords": {
+    "ev_013962ceae2d2ff6385c0dbd2e9f6f97d83535737a6f88f556fb863a08fe1c35": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_frontend_video_setinfo_base.json",
+    "ev_03536511788845a424ba6eca64f4bda7c16b1631e68686b3eaaecf40728216f7": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-row22-geometry.snapshot.json",
+    "ev_079d7172c1b82c92d7f32e44f0963cbbda375622e5d93b78292615a9ec675034": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/closed-private-hw-v2.json",
+    "ev_0ef56bfe885f71be32761afec92e8c640cabf6d5c7ac911b32e90cb9c5ab5275": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v6-isr-vtable.json",
+    "ev_1ff2af027c8c8263a6da778f9d2a7fde6a3c7ec50f46fcca86d0d091f422fc0e": "output/decompile/rea/continuation-20261015/pass8/outer-graph-executor/procedure-update-chain.json",
+    "ev_23623ce572201b43d31cc5928e8abfb5957284cede66c80e277651e5c20d4bc5": "output/decompile/rea/continuation-20261015/pass8/rtos-static-initialization/runtime-init-pointer-table-bytes.json",
+    "ev_243a14906940d19c8c217d2590cea3c1261b12bb2b14c9a0a028ea92657d7bd1": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-active-geometry.snapshot.json",
+    "ev_275095532dba9d90dbddfdb89bf9736beb9532031b892eb4e897aca5836c3640": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/analyze-pp-wdma.json",
+    "ev_2a083fdab590bff1e37ae0b86618288988c1b8eccf1ae08a36db64b31f793fff": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/closed-private-hw-v2.json",
+    "ev_318fa7b183daa44e6b71aa6d541f3afcc5400ff266f1d44e15ee9f7b5f887320": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/analyze-caller-801813a0.json",
+    "ev_3a7ba22f41750fc725010fdab3e89bbe3fa6247e86876b9c5c46ea0ecd1afb27": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-pool.snapshot.json",
+    "ev_3c32416749bb5ba4e8d8804ea808002491dc0beec142eeb8fd5c62ded8bfb5b0": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/reanalyze-ssif-setter-full.json",
+    "ev_3cd108e9c56e23d566c3e706999a2e72776fa8a14f19ef66fe989e0d8c9d2aaf": "output/decompile/rea/continuation-20261015/pass8/output-packing-programming/closed-output-packing-programming.snapshot.json",
+    "ev_494d5b2b1b862e0aecb0a6e77a266971d3436786f098e0454589b96d9075e7aa": "output/decompile/rea/continuation-20261015/pass8/output-packing-programming/closed-output-packing-programming.snapshot.json",
+    "ev_5095dc4bdd868172ac86dd823ed11bc8348d0736d9c63bce28cdb5b0f621823b": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_material_slot64.json",
+    "ev_519799b20961605f0d147a469a37f0a62cd064132c646eb8f5204c00f3904ba0": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v6-subobject.json",
+    "ev_52f91b8455f191a94ede8d5f53d30910f0cd077c8e3fab2195c2630c65666148": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v8-manager-task.json",
+    "ev_65262ee87dd742cf36b34d982a4c31627a654a3cfac5312cde38c20e7c841be2": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-pool.snapshot.json",
+    "ev_6631a35b435bbe721d6b323d7e676bed3769e234eeadfc76f9795a351bd2381d": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_event_manager_dispatch.json",
+    "ev_7051062c41beb0bc6ffc9e58f89ade36310c3674d85316d68557de978ffd9095": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-active-geometry.snapshot.json",
+    "ev_74bd84ea347f9d7e87046ef9e40d087dace759eca6e7d2344879bfb9c6a9b4ae": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-row22-geometry.snapshot.json",
+    "ev_8b10f143aec09b50e798f66a12586eccd8faae0e207fd6f789c8908fbddbb29c": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v10-switch-handler.json",
+    "ev_92866b71e4ddaef410e853bc66f777c73ee59b5553f41af9ba80d6797f6317d0": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-candidate.snapshot.json",
+    "ev_948da8b550d7cd7628eb8a7b69e389ebbcfa9a1e1a56060430a294e0ca148916": "output/decompile/rea/continuation-20261015/pass8/rtos-static-initialization/runtime-analyze-late-init.json",
+    "ev_94d7b8aa9986e04f22bfdc197ceb4bf6b8aec1fe982b14a2e854b1ae61197743": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-cook-boundary.snapshot.json",
+    "ev_a9cb3de6f4ee61d56176130adcc92b8cb1fc0a03d1ca9518841dc89932cb5fa5": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v10-switch-handler.json",
+    "ev_a9e006363f8cd5269e26e4aa9a67ca3c17058b12c19857e2b382dfb67ec02f78": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/closed-private-hw-v6.json",
+    "ev_b04b2e9ea68ec0004fa227a9887988a5fd4021843f282243e0fb2c65aee89a1a": "output/decompile/rea/continuation-20261015/pass8/outer-graph-executor/initial-decomp-pass8.json",
+    "ev_b6f21bfb11b29158b1d750db4d72eaacdecf8da6e620a52596dd49cf4470151a": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_cpp_preview_consumer.json",
+    "ev_b7096affbf6e17b41ee34e1bde5129484c91f176a944d9334d4e7e5be8b4e93e": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-loaderbase-table-bytes.json",
+    "ev_bb82bb0f393113f01e5268b5fbdc49fcce74d9f303710b892948cea2b69d2b1d": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_cpp_core_output_writer.json",
+    "ev_c1451fa6cff3550948c0dbfe3178919f014041b92362af216e71e802bfb7e17a": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_buffer_get_address.json",
+    "ev_c19ace5db7ad2c354af2c45740d87cdabacc950555539543b4dd28e5775f8b2a": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-active-geometry.snapshot.json",
+    "ev_c52615668bffe10d08e5cd6c6bb3463038202be50cb07f03610518ad2ca92598": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-row22-geometry.snapshot.json",
+    "ev_c9f79e9e5d49103a8c424b22a20bd3526b40dec5ca782dbed769225a8f1695b0": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/closed-phase2.snapshot.json",
+    "ev_d108641e3bcbb816e8c3227207057e895fd59ff0e06d30d0250dce9dc802839c": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/closed-private-hw-v6.json",
+    "ev_d33c2d0919f68f0fda8f2e18ececf3ba13597e68331d3d3ef524dcbc2d072cf2": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/analyze-branch-manager-ctor.json",
+    "ev_d638e8d217b9870d8d0e11fb026709d2fad4f1291f0f717b77d1e9c9e2591f13": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-cook-boundary.snapshot.json",
+    "ev_d89f0f4456ae7365382c163120c9f98780dac38e6778ec9ccee9a088accd7ffb": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_event_manager_copy.json",
+    "ev_dd23e0c0aadbae80f497a9d5825ba32aabc99b54c58f10ce9322188c50ec484e": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-pool-cleanup-callers.snapshot.json",
+    "ev_dde4abc7e7bfc10258c1aa328ef3f5f4dde6ae8efddaa66faf017eb9da689fd4": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/candidate-writer-3937c.json",
+    "ev_e0156f0a81ecc7c560e204ea2bab5e6663050478a69b3d680db31cf8b4ee28d3": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-row22-geometry.snapshot.json",
+    "ev_e1e4b520b33af1ddd1f9eeb282d692e455a1148b39b9809c8213092cc968ee81": "output/decompile/rea/continuation-20261015/pass8/output-packing-programming/closed-output-packing-programming.snapshot.json",
+    "ev_f002d086a90b5643a7b92815cdc88766651eb30a2103b58b41425e7b36cd6fa2": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-loaderbase-vector-bytes.json",
+    "ev_f376f54c504b99ae3e2311e3a5a1a14be476bb6cb42fd20df5b9853fdc61e829": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-row22-geometry.snapshot.json",
+    "ev_f5a7e5adfe38d8320cb1a7ce2ba309fe7c0afdaf67aa1b6afe168ab9dded8c8a": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v10-switch-handler.json",
+    "ev_f68beb0514f334a1bb7cd06ff958b946d89ca1bc28a4cbd179658f7e1d0f8703": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-cook-boundary.snapshot.json",
+    "ev_f82128b7bee927a05009d810551a65db501794d7b93af200f2946268f884ce7a": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-active-geometry.snapshot.json",
+    "ev_fd19fead2c3cbdb2fc7946ab0b755992c66d2620e8fe5798d8030e571170630c": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/p6-vector-bytes.json"
+  },
+  "retainedArtifactIdentities": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-active-geometry.snapshot.json",
+      "bytes": 27117334,
+      "sha256": "e1c55a735e30839eb97ec6d391a5e58193408c098b0cec6f873260920fea199c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/active-geometry/closed-row22-geometry.snapshot.json",
+      "bytes": 36053155,
+      "sha256": "fc986971ca6f539ee777facf7be0d80492b4f76d576a4e7256ddbeed4cc04cde"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/active-geometry/source-byte-windows.json",
+      "bytes": 60215,
+      "sha256": "7bef2fbf6890070fe356d203da8eb70a37dd0f0a6b831efb6b89c14df58bc548"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/active-geometry/source-bytes-manifest.json",
+      "bytes": 19350,
+      "sha256": "a473f3e8e7838c6657d5a6b37cd66ce8207db48419fa5ff958b0aaa2b9c39703"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/candidate-lifecycle.manifest.json",
+      "bytes": 10175,
+      "sha256": "f3e0309ffd1176c75b28d9bce2700a27bb0a07deb79b2b5dcc7027397bcc700a"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-candidate.snapshot.json",
+      "bytes": 48885,
+      "sha256": "be4af3557731aac563ee3e01ceb74734969c5ce98b7afa9f55aaa8f794543083"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-cleanbuffers-callers.snapshot.json",
+      "bytes": 14857,
+      "sha256": "11768e666d300c14c7110f4c6a094f304731bdeb2c128b2fdc60c3e21bd5e216"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-manager-base-init.snapshot.json",
+      "bytes": 6580,
+      "sha256": "2bb4819927f16c2f256389f32e2e7b65e89d8f32d4d4646c0c91e50775b6e41a"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-manager-config-flags.snapshot.json",
+      "bytes": 9036,
+      "sha256": "b14471d9481a93fd44a102cc88791069e4140f9a3610755f2a2e8df3717cd6f3"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-manager-init-route.snapshot.json",
+      "bytes": 15541,
+      "sha256": "a9b4dd8824f87e77e1ab4c80cf8936649f657fa270114b24695eaa71f7ae6aa1"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-pool-cleanup-callers.snapshot.json",
+      "bytes": 15331,
+      "sha256": "b565ee4d42e645e73c5d08cced96d499417bc145d909d6f51b7f4761af2f0edd"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-pool-manager-methods.snapshot.json",
+      "bytes": 42592,
+      "sha256": "8d0ca15d0a5a4c4a0e6300fe44daa9a60cd32ae177a3e960a48a6c707cc91b98"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-pool-reset-audit.snapshot.json",
+      "bytes": 10955,
+      "sha256": "2318db3348bf2a1a833c1bd92efd34b447fb022c4d5ab15574ae1142ab6b6bb6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/closed-pool.snapshot.json",
+      "bytes": 50617,
+      "sha256": "046023567886fa3e7ab8e256e0054fb8ae872d29af22d02037703afc154844c1"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-assistant-dtor-info.snapshot.json",
+      "bytes": 13930,
+      "sha256": "e1f1541a937f3346a9481cb7551fa9e2f2b0c65435e47e0c16a82c620cdc02fa"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-cook-boundary.snapshot.json",
+      "bytes": 66876,
+      "sha256": "81ab58bef5e07f20756ef58e33f89fbca3f8f89aef256d6aef05e9f303fc7170"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-cook-carrier.snapshot.json",
+      "bytes": 23756,
+      "sha256": "c173f1edfb0571d5456aa3669a91d058d7b56d45dbebcb886111d3469e348851"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-dtor-correction.snapshot.json",
+      "bytes": 11330,
+      "sha256": "fb19ee135e9ed29c72d9ef8dad6c352bec8897657c7e7ae911143f5e3910c545"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-review-ctor-cprocedure.snapshot.json",
+      "bytes": 27141,
+      "sha256": "47d6e7550fbd5c45db3e06b4eaba190e0429473358e9200d3b5e012457976792"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-review-full.snapshot.json",
+      "bytes": 220883,
+      "sha256": "67f7248c00a5d5d1a2c1b32047e9d75586a628d1101bddab071ab3a249c11595"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-review-lifecycle.snapshot.json",
+      "bytes": 107842,
+      "sha256": "5e1d058d8f22f61ecba2b9907a37128f30abcd9145bb19d1d8d5711adb6f6e1d"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/closed-review.snapshot.json",
+      "bytes": 92879,
+      "sha256": "7be0faac42770c1e77e1b5756e960ec440faedc39761773894c11b0cbc35e111"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/outer-review-cook.manifest.json",
+      "bytes": 4447,
+      "sha256": "bd44f9cdff3bc69cba26bfa8589762ce961b4d3a304ece8d6f6389aea06c9d71"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/outer-review.manifest.json",
+      "bytes": 4121,
+      "sha256": "ea2e0606293c8e7e5186f2d90ee1e7ba5c0576ea836a18579ba2285abe94549e"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/source-byte-windows-cook.json",
+      "bytes": 9941,
+      "sha256": "124bb846df0f24aed1f301aca946232045023dfc038bcb0c0c97abb93fa29698"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/outer-independent-review/source-byte-windows.json",
+      "bytes": 12034,
+      "sha256": "68499f98c1a5e6bb42b7163308a35e3236218fdcc33ae83faedc13b384c145a4"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/pool-provider.manifest.json",
+      "bytes": 12706,
+      "sha256": "c5d613eb09680062474375f70add1b6692a1f658481c0a4ff33e089be0aa6001"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/source-byte-windows.json",
+      "bytes": 12460,
+      "sha256": "150b293c0d5a3da74669b3bf3db9185c648aef4636b426f14ddd42b0763ad3bd"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/boot0-loaderbase-carrier.manifest.json",
+      "bytes": 1025,
+      "sha256": "3081fdd7b51b94c30f15b6477245f2f14c42bf8c8a0eaa00a00d52fccb7346a2"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/boot0-offset-carrier.manifest.json",
+      "bytes": 991,
+      "sha256": "441f6f5b185ccdce2b78a6d4e6d3109be7aedf4ad1dacd954d7600bad1c8acd1"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/boot0-zero-coordinate.manifest.json",
+      "bytes": 1010,
+      "sha256": "6a46790f0468dcc3da12b545d37d70baa144edd478bfaea4ea5cb9f538ba5b78"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-closed-snapshot.json",
+      "bytes": 26093,
+      "sha256": "7197033ec67d8a3a48ad74f23f54bde274f355f589555e631b5f35ac2be14f64"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-core-closed.json",
+      "bytes": 540552,
+      "sha256": "921f263370c9bfb9b837c1ea622b5b1fede86ac79aaf0cb2de1766a3bf7b445f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-linux-closed.json",
+      "bytes": 12322,
+      "sha256": "dec0a35e7bcd35192ebb6990450b44436931bbb949eeff19200367bc2d0ea44b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-loaderbase-table-bytes.json",
+      "bytes": 8608,
+      "sha256": "888f6b3fb106f959158b1eb53008c28932d010ded3653df815e279a3dd69fec9"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-loaderbase-vector-bytes.json",
+      "bytes": 7830,
+      "sha256": "7558fdb08d253b4e1d5ad69ee38fe2a5f9a27cbcd579b9b1f9476c1c80d1e6d1"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-procedures-closed.json",
+      "bytes": 40675,
+      "sha256": "d5dca7d54467ab225095c347a6e087bda290a7a72f0d4e8a8bd617823b08031b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-stage-strings-closed.json",
+      "bytes": 29611,
+      "sha256": "301cce90999c929c18c2dd3b6034904e8d4a583fbc00e6e57c878e173a4af493"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-table-followup-closed.json",
+      "bytes": 17790,
+      "sha256": "dd295ee4b808100a1c7571673900b5cb943de72654f4a477a3155820f7a8ba0a"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-vector-closed.json",
+      "bytes": 5087,
+      "sha256": "17c5bd4e45e5dc50508297e5b9449bab836d3ae9629d7521430d8bb22c60babb"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-xrefs-closed.json",
+      "bytes": 20163,
+      "sha256": "051d9d8a0a2aa50792d856ed1cd9690ad1bc78dfd1b8d4b7b982822e22e80f5c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/boot0-zero-closed.json",
+      "bytes": 51341,
+      "sha256": "c9f4dc22ca2fc178d2d271de16c397e2f92f66e0794fd9670416f215526b5e3f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/p6-vector-bytes.json",
+      "bytes": 7802,
+      "sha256": "2038f0f1130c105abc4f38b3949b4c40942386685ac5391237ff15e3a0f195a7"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/owned-rea/p6-vector-closed.json",
+      "bytes": 8513,
+      "sha256": "c209ad702db363d48583c50c15f7c84c198dfeaf268ccdad88becc7bb744102e"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/p6-vector-window.manifest.json",
+      "bytes": 1124,
+      "sha256": "28665250a33a31ffd1580351a72cf6325b83ea1db70c761f8576e554ed310502"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/boot-artifact-binding/rtos-startup-pass8-snapshot.json",
+      "bytes": 1510,
+      "sha256": "11968542d82912179e30d20edb8f778d9592f91c5375f4b39f3dd20f787f207e"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/closed-task-identity-review.json",
+      "bytes": 976361,
+      "sha256": "a966a349e5879974f3a4173876cee3303d78edfae20787fd185a6f6f9558504e"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/analyze-branch-manager-ctor.json",
+      "bytes": 1147587,
+      "sha256": "95aa45bb4e7d3c3d98b0f564cdeb3c97d0a366ac8c2b2843f4eb80a6c91d9881"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/analyze-caller-801813a0.json",
+      "bytes": 586967,
+      "sha256": "5103737ee2a853b7d300530d3a126c7964fec35981cb699d848b06e7675f38d3"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/closed-phase1.snapshot.json",
+      "bytes": 738310,
+      "sha256": "6f2e780eb074937c2ed260903e07f70801456cc44926bfb6ec8dfcc708a4a65c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/closed-phase2.snapshot.json",
+      "bytes": 141906,
+      "sha256": "793b4bbc54a27ecd8c38830af17e6c20b0f596b8874cf16abbf5f4029f8132ac"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/closed-phase3.snapshot.json",
+      "bytes": 426431,
+      "sha256": "da3999b0d897958bc93bc319da019362f3e05e46f182c9e7840a0a18a9c03bdf"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/closed-phase4.snapshot.json",
+      "bytes": 741484,
+      "sha256": "2e43a118afaa75312b95fc56983da9dfface2c20b108b83f1d4fc51d5985a380"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/closed-phase5.snapshot.json",
+      "bytes": 120130,
+      "sha256": "7e0dc298d70efcaffd469fb8376a58d2c4ad4e3a7d039e6bf20c7f1da5982a4a"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/closed-phase6.snapshot.json",
+      "bytes": 381703,
+      "sha256": "84637d170fab9752fd4cb86fd14674845f6e0f537a9b803f8085a6e9dcb44256"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/closed-phase7.snapshot.json",
+      "bytes": 83199,
+      "sha256": "fc328b3793607143b13cde8ac8d637a3ca542d9b2c12200bfd219792acb010a0"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/closed-phase8.snapshot.json",
+      "bytes": 51231,
+      "sha256": "93985b01a6bac4a456239b555bfca3bf9d00bce03d241099cb06bf4e305a517c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/closed-phase9.snapshot.json",
+      "bytes": 291623,
+      "sha256": "2c0482c9d0dbb737356f99d93f10eba63982aa158ec47e62ed5334ce0335eea6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/export-owner-v1.manifest.json",
+      "bytes": 4562,
+      "sha256": "8e7f5da5751734b9bdf20ca57b50c6382c3b9ac2a9492c1915d0e8487620930f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/export-owner-v2.manifest.json",
+      "bytes": 4777,
+      "sha256": "94f3a90e347ba51ebc609b1001ac7590b305099d2cea3c0afca2db2485135fd5"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/export-owner-v3.manifest.json",
+      "bytes": 6094,
+      "sha256": "27f6a62a848456e260b78c110bd06aae03d63b079af6996572f14ee142d60041"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/export-owner-v4.manifest.json",
+      "bytes": 6531,
+      "sha256": "a84efe41db4a921446f5946400ed61d312129fabae287fcb0ef38653106542ac"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/export-owner-v5.manifest.json",
+      "bytes": 6975,
+      "sha256": "4a5954582bad0e1440617851a9db90ca83947a90854e6224d74a7b6e16dad246"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/export-owner-v6.manifest.json",
+      "bytes": 7295,
+      "sha256": "298d506b879be3ba674d5af9e6a2afc2a685e7c6fec50ba37b06cbef6a9e9b9f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/source-byte-windows.json",
+      "bytes": 13961,
+      "sha256": "6e85f3f6e3c70a426613106f04632d907054ab2c1128cfcbf67567ee33708768"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-pass8-construction.json",
+      "bytes": 2643151,
+      "sha256": "6399a1a2c166babce4d843d635aad8aa6909bae357d72c6a6d069e28c34c7dcc"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v10-switch-handler.json",
+      "bytes": 644046,
+      "sha256": "b4d90bd33c1fc19d04724cd87e8bd837e1c9bdb74569efbe5a8fa130afd7ac6b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v11-vd-falling.json",
+      "bytes": 520861,
+      "sha256": "34a7e32f39406ab7c7e0fcc3f2a146a31612af3215e7bf29b931f62de6622483"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v12-vdfalling-id.json",
+      "bytes": 81400,
+      "sha256": "ec6b9aea8e28be08106606c1898fe667fbb30d235f4269eb4ee7a4f03953cfde"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v13-status-check.json",
+      "bytes": 2681746,
+      "sha256": "a479aabb0b3113ef74190f2c0b60354e9f9d7820c3c3d82fea7ae0137946cabe"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v14-task-setter.json",
+      "bytes": 61027,
+      "sha256": "d23d30f5c10ab86ffa2f169619ca34dae099487cf842a5797ef8c214c24e90a8"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v6-isr-vtable.json",
+      "bytes": 336702,
+      "sha256": "a67d66fe8963659e063279b88b18737fd17db5ddf6ae97c41be9092c9e279a20"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v6-subobject.json",
+      "bytes": 1641988,
+      "sha256": "20c990fe2f90351e6c6afedb9a2b6d5b3cbe8666bfb5024d79ae45ff7e3c59d8"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v7-descriptor-thunk.json",
+      "bytes": 1100668,
+      "sha256": "34744c95287b8abc7692eef818849216016ce07b5b01768124c08c23a3c28d5e"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v8-manager-task.json",
+      "bytes": 226409,
+      "sha256": "aa17557007470ad7963f6b18c2180d6ec9088953939e609559020b885403acbd"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/closed-v9-vd-rising.json",
+      "bytes": 461945,
+      "sha256": "6cd3fa71e60895ec20e1932c8408abad031652f2eabb84d08fc69dadd2464ad8"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/frontend-completion/frontend-completion-v6.manifest.json",
+      "bytes": 13532,
+      "sha256": "78161ff1811543a73c4a8c5b8acdc2a1e793104c2dbec0f7da8e13e3fa4ede02"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/closed-private-hw-v1.json",
+      "bytes": 1189319,
+      "sha256": "a417b22146e2cfe2e1d46514c8ea5118eca7dc0580d7609b97e99cee789aa586"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/closed-private-hw-v2.json",
+      "bytes": 506219,
+      "sha256": "bc265cf427a5bdb5ef9e3f2bc91889d70eae9265a314bbfdd72a4685cd0d0b9a"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/closed-private-hw-v3.json",
+      "bytes": 530735,
+      "sha256": "0bb9df2dd1ef89624f52688995ee4278c85f612753be05ac82e4e4f5804f1fde"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/closed-private-hw-v4.json",
+      "bytes": 102225,
+      "sha256": "d854fae2980c61a7a8d6084bc8a00ec5393db23c8aab92b625ae02bef10fbfcc"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/closed-private-hw-v5.json",
+      "bytes": 11136,
+      "sha256": "3063d651a776f22e19f0d2eef3548c39bcd7f03ce2d9eadaba9553ac8ba909fb"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/closed-private-hw-v6.json",
+      "bytes": 159751,
+      "sha256": "04aadb2660dae1b4e606a5efdde180447d0bf4fbac6edba8f9d50cea5442a973"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/hardware-completion-v6.manifest.json",
+      "bytes": 14531,
+      "sha256": "49281ba7f8c0176cf73f704d8a73c47914f5fe977d5c1d06e21cf9a2b56d2bd1"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/hardware-completion-source/hardware-completion.manifest.json",
+      "bytes": 13870,
+      "sha256": "7181e76f7fcd12742bd009b4452154ca79c0739d2c0c3e8b80a9223e4ec63a52"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_buffer_get_address.json",
+      "bytes": 392561,
+      "sha256": "d2f9619f732d0895ba49ba7858cb6815486f7fbc073b5bbb65903d40023fef61"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_cpp_core_output_writer.json",
+      "bytes": 105843,
+      "sha256": "d911507a97109a40c23d821988c6bbaf592f4c0be5843222cff476584061d25b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_cpp_preview_consumer.json",
+      "bytes": 305211,
+      "sha256": "11bab7e74b76be2205722579fe1b71a9dac3094874bdf4e3236d5f000538b1a7"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_event_manager_copy.json",
+      "bytes": 1083523,
+      "sha256": "4b359f32fd9cffebc5d91d724b8aec14496945e21c39fceb985105319de0b1ca"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_event_manager_dispatch.json",
+      "bytes": 219299,
+      "sha256": "f9ccb94789c1a2a2f8d68f0129d8b5d9705bc75bffa9c3d0117df26d5e8c2454"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_frontend_video_setinfo_base.json",
+      "bytes": 644885,
+      "sha256": "a017f2139262e9c276cacfbcfa7efdfa843e6f10ee6ed5508aaf7429aa80df9c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_material_slot64.json",
+      "bytes": 192771,
+      "sha256": "e9f43f5e8be318ec70dfd26a27bf4736f00af6bb3315cf41b6dc2c67a8a75933"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/independent-review/frontend-config-ctor-v2.manifest.json",
+      "bytes": 1190,
+      "sha256": "cba24dbea2d6dde655af6684e9c0a15d233df8e66793c54ba4b995b367cb1ff7"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/independent-review/frontend-config-ctor-v3.manifest.json",
+      "bytes": 1190,
+      "sha256": "eda4bea17545023893726daf412d887f8b99fa60b23d7e1276f1a6fa7a54d7b6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/independent-review/frontend-config-ctor.manifest.json",
+      "bytes": 1187,
+      "sha256": "7e9e34455982e37cc1448e6062681c9d24d70031fb4bf84543f037ff690af48f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/independent-review/rea-checkpoints/alias-chain-before-ctor.snapshot.json",
+      "bytes": 67186,
+      "sha256": "3bd4544e68102b92b9c0aee1e00f0a9aa0ae97b9679067aa4466bfd8da702496"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/independent-review/rea-checkpoints/alias-final-review.snapshot.json",
+      "bytes": 18602,
+      "sha256": "ff1cb8212fd84595fe991f74967c860cd117a14321cc00f74b21ae944f086c67"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/independent-review/rea-checkpoints/base-ctor-v2.snapshot.json",
+      "bytes": 4992,
+      "sha256": "ed1ffe4cb2d170c5a0e3b7669ec262505e22e8ce57abf0f3ca8502f591c4d383"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/independent-review/rea-checkpoints/base-ctor.snapshot.json",
+      "bytes": 8355,
+      "sha256": "d56009e381a37de60922a0cd3c50bae9176fe56916f2fc6a5230e49e74b55f34"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/independent-review/rea-checkpoints/helper-field.snapshot.json",
+      "bytes": 16381,
+      "sha256": "3ae1a89424c52d049d86f0803bd73c5a2ba357d040f766158ef625dd2de3c9c3"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/material-image-alias-v2.manifest.json",
+      "bytes": 5439,
+      "sha256": "35fa4417534933ed732b8a0d0137863a90aacc95cc03d522f9e10ca4ab4036fe"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/material-image-alias-v3.manifest.json",
+      "bytes": 6383,
+      "sha256": "4ab7df9e85decc7ca0ac993dd9d3df13fba953139833a687e73b893c7a7d3cb8"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/material-image-alias-v4.manifest.json",
+      "bytes": 7097,
+      "sha256": "d8dbff391478449bdc594f29afa31856dcc1d982856b5e0d0a45b78056912d30"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/material-image-alias-v5.manifest.json",
+      "bytes": 8098,
+      "sha256": "bf868e2260ae231a38e17567c21fe50da6b245a1ec5c82e217ab7948fb82f046"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/material-image-alias-v6.manifest.json",
+      "bytes": 9237,
+      "sha256": "7f5998e9da103beb95815ff09cfbd3291ffde8ed00d5e730b4ab74bb6a309a76"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/material-image-alias-v7.manifest.json",
+      "bytes": 9656,
+      "sha256": "2ce966e833c2f4f6c721cdc9657850b987749bc93e189878cf4ed53f37b28368"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/material-image-alias.manifest.json",
+      "bytes": 4482,
+      "sha256": "5b482f6a14165cfcabf69d7ef836c20e07953239889d4fd18ce1eb6b7067e228"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/source-windows.json",
+      "bytes": 42283,
+      "sha256": "c2a84ef0cb588a50ac35ab0d407b238070ebec3c46599b735be763e5ada64f3d"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/outer-graph-executor/graph-data-v2.manifest.json",
+      "bytes": 1993,
+      "sha256": "2d5cfddfc10b70a74853d374f5d66ca9f86f0c913d063b8fc00e3809139347c2"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/outer-graph-executor/graph-data.manifest.json",
+      "bytes": 1984,
+      "sha256": "2b35740cb82dae8f54404c540432971191cc3007c14c5aaeeba7f4d2319d5fb8"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/outer-graph-executor/initial-decomp-pass8.json",
+      "bytes": 13817,
+      "sha256": "41a2bd4590e69c0d3506bf8b4f19e62affd8c41bf531745cf6b9a4793c90a7f1"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/outer-graph-executor/procedure-update-chain.json",
+      "bytes": 15059,
+      "sha256": "38ad17ef67c571e7f8674d6d09f8d52c2b19a6de3759a09b75d7b850ea83f219"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/outer-graph-executor/source-windows.json",
+      "bytes": 3069,
+      "sha256": "7587e8a27df3da1fa0986ecbd4387a6c6156ba6a3f290580f0f489d644631d2e"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/output-packing-programming/closed-output-packing-programming.snapshot.json",
+      "bytes": 3327322,
+      "sha256": "5fa836ab74ef87ff7e3d75e1d23c7de6a44fe90662501f70e082d4e7294453e0"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/output-packing-programming/source-byte-windows.json",
+      "bytes": 14878,
+      "sha256": "98232592c70e7357d782444a6f465df7b623280c9b06fde1821ae79926c21eb1"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/output-packing-programming/source-bytes-manifest.json",
+      "bytes": 8032,
+      "sha256": "dfe17a4067bd72943708c4a45c3d1883b00080c72ea55bb182f3fdabca94f284"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/rtos-static-initialization/rtos-startup-boundcopy.manifest.json",
+      "bytes": 1589,
+      "sha256": "1cc44c0e595f076df835d947709c84b9edb736c0b074f111698a0af21d1c715c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/rtos-static-initialization/rtos-startup-runtime.manifest.json",
+      "bytes": 2403,
+      "sha256": "3b2125261511909dd06a14f7420c9e8fcafc17d3461e644de0f05889c6b7419d"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/rtos-static-initialization/runtime-analyze-late-init.json",
+      "bytes": 1083859,
+      "sha256": "a366de46ad229db10506236ce495657191d6b39821e1d45ec73b0938717d2839"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/rtos-static-initialization/runtime-init-pointer-table-bytes.json",
+      "bytes": 7828,
+      "sha256": "84895b99295e20f12a2eea0e516317e90c86485732df46891d08126cfd39bb15"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/analyze-pp-wdma.json",
+      "bytes": 583415,
+      "sha256": "a9ea2c5c0e36efdc636b82e3a963bec74e061760cb3d6220ccfb9199f23d3b23"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/candidate-writer-3937c.json",
+      "bytes": 170183,
+      "sha256": "df29f4519da3f14a862a61a39f917119fa27fb98634f62aa994fbe617214424c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/capture-route.manifest.json",
+      "bytes": 2273,
+      "sha256": "1e0b520e159f61fd30571a042d1d8ac79b08f4aeaf726a9a0a9abe2ce774bb78"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/cdrive-wrapper.manifest.json",
+      "bytes": 2413,
+      "sha256": "b080f4bb02ea9cf2181314b36b18e140718cb169f6d9f0e08a6cbd32874669df"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-callback-registration.json",
+      "bytes": 1510,
+      "sha256": "2b57132f9d6c0fd863d0c7b80eba516b78bf55a602f51b395dea983b7bdf67c1"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-cdrive-neighbors.json",
+      "bytes": 32273,
+      "sha256": "cd158d9f78f465b0d085ee1cfd3042ff0433d8635a7917a42b5fbb6c206f041f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-cdrive-wrapper.json",
+      "bytes": 459569,
+      "sha256": "bd9c509a7ef2c08b4315014736c4878ea86cc4a8783d50f0b64b11e10ee7ca31"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-cpp-irq.json",
+      "bytes": 421007,
+      "sha256": "8eb374dc8b72055a9215f1863ed3dfd949863d30b20e88d17afb6af10a25a995"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-cpp.json",
+      "bytes": 42174,
+      "sha256": "118e815a073418a74844a79c384de17ef6891913d1f544868836ff33fadb108b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-finalbytes.json",
+      "bytes": 12395,
+      "sha256": "88bc4c3d8ad385e1016b28e71c40f02c1928c70a850bbc341c41450afc2c3b83"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-initial.json",
+      "bytes": 537326,
+      "sha256": "07757fc914c1cd4631a897de06b2b6b3895f94b435b77b0c77b5285dc7040a00"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-irq-registry.json",
+      "bytes": 150284,
+      "sha256": "ef261fe9f297b9343493c60d5bdadbffb5687d8021ffb2c92b90c50d63b6fabb"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-irq-xrefs.json",
+      "bytes": 10944,
+      "sha256": "6d5470f61cbbe2523f62cf34b9c14e12f74af8043bbc0295b0800a7a169b6685"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-isr-entry-xrefs.json",
+      "bytes": 10920,
+      "sha256": "766c5fab5c5148ca1d4d3e717b5e976f7d615b9ad16a7b69a720ba877d7158f6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-isr-registration-path.json",
+      "bytes": 271100,
+      "sha256": "a5e20c272ff461066388436d54623d623f670cde9f3a262200107c86c6bcc2a9"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-nextshot-route.json",
+      "bytes": 262007,
+      "sha256": "23ae2c7ae2e75ab690a018bd2b9784f250db4c1f99565ba8e4932bdb910f8315"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-nextshot-strings.json",
+      "bytes": 8786,
+      "sha256": "5b3bd86b677ee0987e9cb041d0b73ccea4acbe1e6a161d75fd82dcb663957acd"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-register-writer-scan.json",
+      "bytes": 604174,
+      "sha256": "470a501f827d5ff107d621572819940affd22cd719226010844e9f16e20084c1"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-request-expanded.json",
+      "bytes": 326080,
+      "sha256": "7a0864d5c9979a35e8fa5fc8d01fe03d2943a55bb905baf6c39b6fa4bd14bfec"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-request-route.json",
+      "bytes": 954431,
+      "sha256": "920a2badedd4a52f1e62aa0509c83c02d26a7cd7c827c6c4d597a8f154a98d29"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-route-dispatch.json",
+      "bytes": 1409773,
+      "sha256": "64a004502d7375ae6378f81324346c081253c3bb29c64706c12d611df06efd5c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-route-service-expanded.json",
+      "bytes": 76741,
+      "sha256": "73feb99a90824f9f6e3b819774988dc8e76109c4421e4ece9e9c6f0976117f5e"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-route-service-impl.json",
+      "bytes": 90008,
+      "sha256": "d0b5d9d3e290abf6395bfb0f6d26d15f09ff5d69f1a427265863d15f92f4ffbb"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-route-service-leaves.json",
+      "bytes": 803361,
+      "sha256": "9ffc69a2bc9c0ab0b4277cc3e341f80c4ba6d20537d8f2991583cf0887c0d044"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-route-service.json",
+      "bytes": 792345,
+      "sha256": "0d6a11ee336b2c7a381545979d6f589a79e951e9fdaddd72571c13d15424c054"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-route.json",
+      "bytes": 577115,
+      "sha256": "d5b2220bb921697864bf2cb6c7dfa5cf2d8423bb8aa78c3f24caaa9f23ce7583"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-service.json",
+      "bytes": 1204078,
+      "sha256": "0e6a31ea9be43b479fb79128f46cd03df8d00a1ddaf8445666cda8c438cde003"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-servicebytes.json",
+      "bytes": 9865,
+      "sha256": "4e9ef1338801a3add7300ffd4e3ff12e5be56aaa5e1521dd77a40e135030bec7"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-sourcebytes.json",
+      "bytes": 13932,
+      "sha256": "8711311139458f56c0ba9942296c9efbca8e34243e61955fc56c6d99c9475c4f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-ssif-registers-expanded.json",
+      "bytes": 518648,
+      "sha256": "4be45f239e64ebf7b89eb49fb4e46ce4baa63fbeeee0afaf815035a6d00fbb85"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-ssif-registers.json",
+      "bytes": 909882,
+      "sha256": "b0268be185b5cd4dd9de5415087367e8ba6ad85fedeee2459af61da16137f3e8"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-strings.json",
+      "bytes": 12889,
+      "sha256": "bf3342d817bc5fc8d794c96d5dfc7a933c5b852c56ac626856e603d4f6473693"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/closed-svc-r12-target.json",
+      "bytes": 54008,
+      "sha256": "db44998bce422529a25348706a701e8f3b3ca9242b5ffef7110d202fc50aae6d"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/cpp-irq.manifest.json",
+      "bytes": 1447,
+      "sha256": "378d1ec70be0e93759582600565809d915ce1a587b47f010770949b6276a5919"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/nextshot.manifest.json",
+      "bytes": 1979,
+      "sha256": "83964fb3323f8fa36579461d6491df941360ca8b8adadd4695290fbde2a9848b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/reanalyze-ssif-setter-full.json",
+      "bytes": 2041437,
+      "sha256": "05018419263508cd0a129e648a0d0df0fc5828b3e66c4a4ad47fb574a9035345"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/register-writer-scan.manifest.json",
+      "bytes": 2735,
+      "sha256": "d158c2011e71dad855cbea3ef1db07380512297f3d833268806c8ab38c0d4bb0"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/request-route-expanded.manifest.json",
+      "bytes": 4122,
+      "sha256": "a347df3d80d3407d31b6d99f005d79e33a3eb89a75081544f525bd28bc90ac10"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/request-route.manifest.json",
+      "bytes": 4113,
+      "sha256": "1e43fb439bf85dc0c5881d1a403d5cf92531008c9287dafa8087722f61004262"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/route-dispatch.manifest.json",
+      "bytes": 3351,
+      "sha256": "574d44909511b9998e56e63ff459fe55a5b3c2302a37eb6bef03a32a1300b72f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/route-service.manifest.json",
+      "bytes": 5965,
+      "sha256": "58c6b36bc930f484454d153262505afb57cd9ff79f19f7bf0c96cbef37552af2"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/service.manifest.json",
+      "bytes": 1665,
+      "sha256": "a6789b250a8dd0169bf224cdb09d1b55a26fcecb3b8c2e05d84ed23cbc45c1d0"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass8/ssif-receive/ssif-registers.manifest.json",
+      "bytes": 4051,
+      "sha256": "541d507b7c97cc73afbd2bfba0c39b0c3b247ee993f8210f7734f42a512f65d1"
+    }
+  ],
+  "counts": {
+    "carriers": 39,
+    "carrierSegments": 344,
+    "bootCarriers": 3,
+    "sourceWindows": 307,
+    "snapshotFiles": 92,
+    "uniqueSnapshotHashes": 92,
+    "evidenceIds": 859,
+    "frozenReports": 19
+  }
+}

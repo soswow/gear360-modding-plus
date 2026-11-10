@@ -1,0 +1,677 @@
+# Completion of the still that was just submitted.
+# A generic interrupt flag is not completion. See PROJECT_GOAL.md.
+
+claims:
+  - id: completion.notify-callback-data-release-after-return
+    status: accepted
+    kind: static
+    statement: >
+      Pinned CCapNotifyCb::OnCallback at capture Ghidra0x8da9c checks
+      callback word this+4, obtains the publishConvert return, then calls
+      that function with r0=converted value, r1=word this+8 and r2=word
+      this+0xc. After ordinary callback return, if both pointer and length
+      are nonzero it clears length, calls the deallocator identified as
+      free, then clears the pointer. Notification data cannot be assumed
+      valid after this call; this is separate from image/RAW callbacks.
+    address_space: linux-capture-elf
+    evidence:
+      - ev_0198daa766c60587ba4ce6fdd40408476b61904ad89115468255ea6c17433b01
+      - ev_a589b5dad466d47957e60d49b86eab1a111e3e25b94674e7f744d10b1f69dc62
+    not_proven:
+      - active binding, data layout or extent, concurrency or callback delivery
+      - request identity, fresh completion or ownership of sensor samples
+    detail: output/decompile/rea/pass-poweroff-integration-20261029/parent-review.md
+
+  - id: completion.public-encoded-set-subscription-converts-to-internal
+    status: accepted
+    kind: static
+    statement: >
+      Pinned CCapImageSetCb subscribeConvert at Ghidra8c19c extracts
+      input u32 highbyte as operation and bits16..23 as kind. Operation4
+      and kind1 select the switch mapping public04010005 to internal
+      03010005. Operation3 instead logs Operation Error and returnsff.
+      The public registration input is therefore not interchangeable
+      with the internal publication ID. This does not qualify the
+      upstream registration result, callback execution or completion.
+    address_space: linux-capture-elf
+    evidence:
+      - ev_f87563f2a1615201df1dab028f8fa6f0b803dd4f83b28060154cb4dacb6b0bbe
+      - ev_5f5f924aa4d84622fe41bc7b7465eed17f6426464de837b273184fdc002022a6
+    not_proven:
+      - successful live subscription, current publisher state or delivery
+      - association with the current still, sensor RAW or retained backing
+    detail: output/decompile/rea/pass-own-transport-20261029/parent-review.md
+
+  - id: completion.write-done-notification-sends-zero-address
+    status: accepted
+    kind: static
+    statement: >
+      Libcapture CNotifyHandler::onWriteDone at ELF92868/Ghidraa2868 checks
+      object word+0x04 for2. On that branch it passes the pointer at object+0x08 plus8 to
+      getParam<unsigned_short>, forwards that helper result as the public
+      ReleaseCaptureBuffer type and explicitly passes address0 through
+      PLT39d48; it returns the API result. Other word+0x04 values returnminus2.
+      This observed method supplies no nonzero address capable of matching
+      the selected raw/JPEG/metadata release lists. Its existence therefore
+      does not close their per-output address-retirement obligations. Type
+      dependent side effects and other cleanup routes remain separate.
+    address_space: linux-capture-elf
+    evidence:
+      - ev_7ce526c86aee430cd8d4ae3140359a12207221a445e68729e2cf5a6a8f72f127
+      - ev_0869558088cd8c1a6454508a9b5f5c3aa3aef36819c5194ad3e86654e5ba5ee4
+    not_proven:
+      - helper payload schema, installed handler/dispatch, callback timing or actual invocation
+      - that library or stock application performs no cleanup elsewhere
+      - complete native resource inventory, successful retirement or reusable capture session
+    detail: output/decompile/rea/pass-base-lrc-20261026/parent-review.md
+
+  - id: completion.adapter-defers-release-during-native-call
+    status: accepted
+    kind: static
+    statement: >
+      The experimental adapter admits and reserves its own setter/submission
+      calls under the callback lock, arming a still in the same locked step.
+      A callback copies and latches its first eligible result immediately,
+      but queues first-image release while that native call is reserved.
+      Call exit atomically clears the reservation and claims a queued release,
+      then invokes release without the lock and guards later host writes by
+      live pointer and identity. A failed deferred release is not retried:
+      copied bytes remain collectable, while mutation and process reuse are
+      refused. Busy host close skips native client destruction and leaves
+      that obligation unrecovered. Stable setting-error messages and captured
+      mode verbosity avoid the reviewed post-call freed-host accesses.
+      Parent ASan/UBSan checks, ten fresh-process TSan cases and offline ARMv7
+      linking pass. These are software/stub/build contracts only.
+    code: src/lib/capture-session/capture_session_library.c
+    not_proven:
+      - a general concurrent caller API, eventual native return or late post-close delivery retirement
+      - qualified callback ABI, valid native copy interval or native tolerance for deferred release
+      - sensor provenance, same-request completion, whole-result retirement or camera recovery
+      - working phase2 capture or permission to execute the target SDK path
+    detail: output/decompile/rea/pass-lrc-export-20261026/parent-review.md
+
+  - id: completion.adapter-latched-copy-and-retirement-state
+    status: accepted
+    kind: static
+    statement: >
+      The experimental library adapter latches its first validated private
+      copy. An extra encoded set before or after collection is refused before
+      payload access and quarantines local process reuse. Native-release
+      progress and nonzero/uncertain outcome are tracked separately from
+      private-copy ownership. Mutating requests are blocked during release
+      or after uncertainty, while already copied data remains collectable
+      unless the separate pre-existing abandoned-request state applies.
+      Closing a host/session with release in progress also forbids reuse.
+      A locked health snapshot reports actual remaining private buffers
+      and local admission state; zero native return proves no remote retirement.
+      Parent ASan/UBSan suite and six targeted TSan processes pass, as does
+      offline ARMv7 linking against pinned libraries. No camera code executes.
+    code: src/lib/capture-session/capture_session_library.c
+    not_proven:
+      - request identity, sensor provenance, safe native copying or callback ABI at runtime
+      - whole-result retirement, remote quiescence or recovery by a new process
+      - working phase2 capture or a qualified reusable native session
+    detail: output/decompile/rea/pass-host-services-20261026/parent-review.md
+
+  - id: completion.explicit-caller-result-release
+    status: accepted
+    kind: static
+    statement: >
+      The portable capture-session core refuses another trigger with
+      BAD_STATE while either previous output remains held, before any
+      backend release or submit. Caller release or close retires those
+      local buffers. A partially failed release keeps only the failed
+      buffer held and blocks another trigger. A blocking call refused
+      before submission preserves the caller's existing output structure.
+      Parent validation passes446 core checks and290 stub-adapter checks
+      under ASan/UBSan, C++ linkage, refusal-before-SDK-load and ARMv7
+      core object compilation. No public function was added.
+    code: src/lib/capture-session/capture_session.c
+    not_proven:
+      - native resource retirement, request association, quiescence or safe reopen
+      - sensor provenance, completed RAW or a working phase2 backend
+    detail: output/decompile/rea/pass-host-services-20261026/parent-review.md
+
+  - id: completion.cook-arg4-record-and-conditional-mailbox-copy
+    status: accepted
+    kind: static
+    statement: >
+      Cook Order0x802526c0 saves incoming r3 at frame-0x4c and copies
+      its four bytes to frame-0x18. Its record base is frame-0x38,
+      so argument4 occupies record+0x20 in the0x2c-byte constructed
+      record. The call at0x80252770 passes that record to0x802544cc,
+      which forwards it to0x8051e560 with Cook+0x1c as mailbox.
+      FMbox::setMsg takes its copy length from mailbox word0 and,
+      after the nonnull-source and created-byte gates, copies into
+      a0x324-byte local buffer. With a valid length covering bytes
+      0x20..0x23, the argument4 word is included. Queue capacity and
+      send-path results remain separate gates. Cook returns1 when
+      its wrapper returns0, otherwise0; enclosing Kitchen0x80255f94
+      normally returns0 regardless, as the previous fact records.
+    address_space: rtos
+    evidence:
+      - ev_b8506680cc7c7e1121451e27260cdaca34252159feb7b556f329926992210fb9
+      - ev_9f6c3c7e928cdfeea9ffb894b6b070501a9414334d415700c367c2deae7cbf5c
+      - ev_686fbc4cc0e3206c495386687e3729ddbfa8fbda332ecba4b6a4cf2c73b2d487
+      - ev_01bfc8dca68801a3cf3d8e3f6111e595632a31e959af9e8569f8e33e1b71882c
+    not_proven:
+      - configured mailbox length, valid live source/destination or successful queueing
+      - argument4 uniqueness, units or a join to the encoded callback opaque header
+      - exhaustive table writers, exclusion of a still association or retained sensor RAW
+    detail: output/decompile/rea/pass-a177dc3-review-20261025/parent-review.md
+
+  - id: completion.actual-single-order-zero-result-is-not-refusal
+    status: accepted
+    kind: static
+    statement: >
+      The selected mode0 capture virtual0x8027510c obtains receiver
+      0x801388ac, supplies order word1 or3 and value from0x8052060c
+      to0x80138a40, and normalizes its boolean.0x80138a40 gets the
+      Kitchen handle, allocates0x260bytes, calls0x80132258 and passes
+      that object to eight-argument Order0x80255f94. This Order selects
+      Cook index=order>>24, calls0x802526c0 on its nonzero Cook result
+      or the dereferenced fallback entry's virtual+0x18, and normally
+      returns byte0 regardless of the submitted call's result. The
+      enclosing0x80326240 preparation ignores its virtual+0x70 return.
+      Thus the local zero/normalized-1 does not prove no work queued,
+      and preparation's0 does not prove completion. Argument4 is logged
+      CapNo; it is not an established configuration pointer or request ID.
+      Original0x8052060c calls0x8002bbb0 then0x8053e4a4 with1000/0,
+      leaving that helper's r0 as the consumed value; its units are open.
+    address_space: rtos
+    evidence:
+      - ev_81829b5a2f0dc61572318b2ab3bf730b7a293f88d6976948b5a08a3f8405ae25
+      - ev_cd4644d74600a3863f7e795cbb34f21c66879c838f3229d8306cc01fb2ffceed
+      - ev_5f03b15c5841ca52f452621e140b8e38749547c7f70e361405648c20cd76055b
+      - ev_1f63bc70cfed6966dc158149f086f8a761129caf760b0c14900572812763519e
+      - ev_aa5659b472ffc366af6e9967f4e6922607d029fe0b03be504f0fc0020177cb94
+      - ev_c1843d0e08aae62b3a362177dca0c87606aa2715041efb0f33ced3a276554ca1
+    not_proven:
+      - allocation failure safety, successful queueing, callee blocking or actual live activation
+      - CapNo uniqueness/units or association with the encoded callback's opaque header
+      - applying three-argument Order callback semantics to this overload
+      - fresh sensor completion, retained backing or a safe retry after uncertain submission
+    detail: output/decompile/rea/pass-b024fca-review-20261025/parent-review.md
+
+  - id: completion.selected-drive-table-binds-shared-prepare-entry
+    status: accepted
+    kind: static
+    statement: >
+      Constructor0x800f96bc clears16 handler slots and installs allocation
+      results at mode indices0,1,4,10 using constructors0x80554cec,
+      0x802770b0,0x802775b4,0x80272c20 respectively. The lazy
+      singleton path returns0x81c0dd80 and can cache it at0x819520c4.
+      Original constructor instructions and literal words bind final vptrs
+      0x8067d900,0x8067dc90,0x8067e7d0,0x8067cc78. Their exact+8
+      words are0x80326240 for modes0,1,4 and0x80272cec for mode10.
+      Shared0x80326240 stores count at handler+4, gates on virtual
+      +0x58/+0x5c returning0, then invokes+0x60,+0x64,+0x68,+0x6c,
+      +0x74,+0x70 in that order. This is preparation, not completion.
+    address_space: rtos
+    evidence:
+      - ev_4e087ed2546b0d17d4d1d58513b8a55d0ceaec76e69637d5d5e429f75ecd08cd
+      - ev_a899d597eaf70b0c62f153c74c0b8ae230ad1a893d8662652183429016aa9d0e
+      - ev_bd2d15d4658212a781469efeea6231c20ce7effde990d711ff9d5e6ad3a3c37a
+      - ev_19d7d51f951f79c410c634826b43b6a0d9789f13a0cde6aca8f8b528eab1c19b
+      - ev_559d0403d35c49f613377b172c13f40abaa23a324f3b13675bf226d934ea5e48
+      - ev_4ec45643eee163cff8d9c1eb34e2b484cd24ba492a388e430e587c61d72abc83
+      - ev_c649f093263f84d0d4c0ecdf005c65ada04a297edeea3a031fa8e361a5f0972d
+      - ev_42ae238016a3e1c0727f7f4f6a0338907f2648bb4f64e00da45c5b15130932b3
+      - ev_d0a09e51456eb0730ca68fe99cd8c3ada90b711fed0a5df62ea8a4a0fa92ac69
+      - ev_5acf23783256c0e7aeccd2e37a63b367b9313b1c520e9b5e5354ce338dc60ce9
+      - ev_807589849432ee2fdff31e26819e96cd5843cfbd1189078171c5e39110d31a3c
+      - ev_aa5659b472ffc366af6e9967f4e6922607d029fe0b03be504f0fc0020177cb94
+    not_proven:
+      - successful allocations, current global/table/vptr state or absence of later replacement
+      - the concrete Cook callback, sensor acquisition or request-associated completion
+    detail: output/decompile/rea/pass-b024fca-review-20261025/parent-review.md
+
+  - id: completion.normal-still-selects-nullable-drive-handler
+    status: accepted
+    kind: static
+    statement: >
+      Normal handler0x800ef078 passes global0x819520c4, the return
+      of0x80272b8c and count to0x8025ab24. The return is a mode index:
+      raw0x11 maps to10,0x13 to4,4 to1, otherwise0. Getter0x8025b2e4
+      rejects indices outside0..15; otherwise it loads u32[B+4+4*mode].
+      A valid index can still yield NULL.0x8025ab24 returns-1 for NULL,
+      otherwise0x80325d20 invokes handler virtual slot+8 with count.
+      This dispatch does not identify a concrete completion callback.
+    address_space: rtos
+    evidence:
+      - ev_07e470d1d82bacddb02a97208ef014e0dc77795fe6d6a62398ed0b53a229bd5a
+      - ev_29624fd2b771e44124346eabd83d549419b8c3fc54890dc94ac00def5af39bd5
+      - ev_9fa22f9ac71085aed2c305abeddc9f52e107b8a16a1f4e8ec6b12084c4c9f8e0
+      - ev_152236cc04c8a8884b176d15e9fe132b033e3689cbe34b55fc3b3d3fffb1e1ad
+      - ev_0ded3249cf6325f1505722725b94bd7568f44e351d425c41ba54535799ce23ec
+    not_proven:
+      - live table population, concrete installed handler or request-associated completion
+      - that mutable global words in the offline carrier represent live pointer state
+    detail: output/decompile/rea/pass-b024fca-review-20261025/parent-review.md
+
+  - id: completion.vsync-error-does-not-stop-output-programming
+    status: accepted
+    kind: static
+    statement: >
+      In frame-readout routine0x8031a704, call0x80323514(0x96)
+      precedes the final call to0x8031c098. A nonzero wait result
+      logs an error but still reaches that final programming call.
+      Wait helper0x80323514 uses the object held at0x81952fc4,
+      selector2 and a local output word; it returns zero normally,
+      0xffffff96 when the object is absent or0xffffff95 for the
+      checked timeout return-2. The output word is not its return.
+      This is a pre-programming wait/status path, not demonstrated
+      completion associated with a submitted image.
+    address_space: rtos
+    evidence:
+      - ev_6c2c2547756358e9ae73079a3e13a744751d624513c2f83a3f98341cad71af2d
+      - ev_dd8e0dff77910c3dd987c501236af77d96cd89f17d3e80f5bac266253923adb6
+    not_proven:
+      - local output-word semantics, successful synchronization or all helper effects
+      - a fresh DMA result, request association, image identity or retained pixels
+    detail: output/decompile/rea/pass-owned-raw-20261025/parent-review.md
+
+  - id: completion.library-encoded-callback-preserves-opaque-header
+    status: accepted
+    kind: static
+    statement: >
+      Pinned libcapture GetStillImageEncData (ELF0x79d34, Ghidra0x89d34) copies0xd70 bytes from
+      preference offset0x19354 plus position*0xf00 into the caller record.
+      The encoded-set arm of CCapImageSetCb::OnCallback (ELF0x6f004, Ghidra0x7f004) passes its
+      converted topic and the local record pointer to the raw host callback,
+      with the two remaining arguments explicitly zero. The constituent's
+      unknown word+4 survives within the bulk copy; no request meaning for
+      that word is established. These callback arguments alone supply no
+      separately identified request token. Unknown record bytes may still
+      carry information requiring a producer-side proof.
+    producer_checkpoint: >
+      RTOS constructor8029b534 zero-fills its inline0x228 block at object+18,
+      including the questioned word at object+1c. Bridge800609f8 zeroes the
+      output record then conditionally copies that constituent from context+10
+      into its prefix. The checked serializer writes type+0 and image blocks
+      from+8. Zero at constituent+4 is therefore consistent with this checked
+      construction path, conditional on no other writer; it is not an
+      established request cookie or a universal constant. Keep decoding it
+      as unknown rather than using it for matching.
+    address_space: linux-capture-elf
+    evidence:
+      - ev_dc9aaa3e7cc43f0a821518e3d0fd073a9754c0ba93328adcda03e5ece3e26d80
+      - ev_304658ed6d8c149c57b4b65c8042f87fb3bc84859103a9be845534db4eb0664d
+      - ev_a69ee2d65c72be1ddc59aa736f27ef65410cad567865a22c2845eeebab051394
+      - ev_90eed4fe20f9a62dead2f7569ab04e4d7d02114afeb26723ce763d51361b0ecd
+    not_proven:
+      - header+4 writer, semantics or association with a submitted still
+      - universal absence of identifiers in other record bytes or paths
+      - fresh delivery, sole producer, sensor origin or retained backing
+    detail: output/decompile/rea/pass-0f976d1-review-20261024/parent-review.md
+
+  - id: completion.ffa0598-library-backend-review
+    status: open
+    kind: static
+    statement: >
+      The ffa0598 library backend was a candidate requiring source repairs.
+      The reviewed24 October continuation imports a repaired experimental
+      adapter: encoded-topic filtering precedes payload access, normal demo
+      mode refuses before SDK loading, unknown byte stride stays zero,
+      abandoned requests prevent host reuse, and open failures retain their
+      error. Parent359 core and161 adapter sanitizer checks, C++ linkage,
+      ARM compilation and pinned-library linking pass. These are software
+      checks only. Completion still uses arrival order rather than proved
+      request identity; first-image sensor provenance and native copy bounds
+      remain unproved. No SDK execution is established by this import.
+    review_checkpoint: >
+      Follow-up0f976d1 review imports exact native input-domain fixes and
+      release-after-unlock with per-open identity. Parent359 core and272
+      adapter sanitizer checks, C++ linkage and pinned ARM linking pass.
+      Retention capability stays false; candidate enabling is not adopted.
+      A later reviewed repair preserves outstanding state after an actual
+      native still-send error, quarantines the host/process from further
+      mutating requests or reuse, and allows owned-copy cleanup. Local
+      pre-SDK rejection remains reusable. Parent359 core and276 adapter
+      checks, sanitizers, C++ linkage and pinned ARM link pass. These
+      quarantine rules do not establish device cancellation or recovery.
+      See output/decompile/rea/pass-0f976d1-review-20261024/parent-review.md.
+    not_proven:
+      - initialized exclusive hosted context or safe device teardown
+      - first-image sensor provenance, byte stride or same-capture JPEG
+    detail: output/decompile/rea/pass-ffa0598-review-20261024/parent-review.md
+
+  - id: completion.portable-session-core
+    status: accepted
+    kind: static
+    statement: >
+      The capture-session software core enforces one outstanding request,
+      preserves timeout/clock-failure requests for late collection, refuses
+      configuration while in flight and latches malformed completions until
+      close. It handles per-output release failures, exact aliases and callback
+      borrowing against a backend seam. Parent359 sanitizer-backed C checks,
+      C++ linkage and ARMv7 object compilation pass. Partial initialization
+      and rejected/failed-release cleanup remain the backend close contract.
+    review_checkpoint: >
+      The optional collect_image collector carries layout with the pointer/size
+      tuple in one collection. The callback and blocking return use that
+      snapshot; legacy collection reports zero/unknown layout. These fields
+      are backend assertions, not validation of packing or provenance.
+    code: src/lib/capture-session/capture_session.c
+    not_proven:
+      - real backend initialization, callback ABI, quiescence or device teardown
+      - hardware completion, request association, sensor samples or geometry
+      - a working phase2 capture API or same-capture JPEG output
+    detail: output/decompile/rea/pass-phase2-integration-20261023/parent-review.md
+
+
+  - id: completion.offline-observer-trace-decoder
+    status: accepted
+    kind: static
+    statement: >
+      The offline observer-trace decoder parses ring labels separately from
+      hex previews, respects the recorded delta minus the four-byte outer
+      envelope, handles multiple packets, and excludes first samples without
+      a baseline from current events. Zero delta yields no event; oversized
+      previews are rejected. Every frame from the live observer retains
+      sampling uncertainty, including complete aggregated frames. Format
+      completeness does not establish coherent publication or DMA completion.
+      Parent ran61 regression cases with the retained historical fixture;
+      one optional legacy comparison was skipped. Independent zero-delta,
+      oversized-preview and uncertainty counterexamples were checked.
+    not_proven:
+      - owned receive, full-lap detection, coherent copy or request correlation
+      - current camera activation, sensor completion or retained RAW backing
+    detail: output/decompile/rea/pass-4d2deb0-review-20261023/parent-review.md
+
+  - id: completion.encoded-ready-payload-context
+    status: accepted
+    kind: static
+    statement: >
+      In RTOS0x800609f8's ENC_SET0x03010005 case, the ordinary branch
+      copies constituent descriptors into the pref ring through0x80061158
+      and selects category0x81, attribute0x0201, length4. The body contains
+      the image-set context argument value. Suppression word2 instead
+      releases planes and omits that ordinary notification. The body is
+      not a demonstrated sensor-plane pointer, object lease or request
+      cookie; its pointed bytes require their own object-identity proof.
+    address_space: rtos
+    evidence:
+      - ev_87ec911380e2c7cdff43f0467cf3d75d0cea8cb351c0fff955d0ad45fd2d0680
+      - ev_90eed4fe20f9a62dead2f7569ab04e4d7d02114afeb26723ce763d51361b0ecd
+    not_proven:
+      - live invocation, freshness or association with an external caller's still
+      - lifetime or field layout of the pointed object, sensor pixels or RAW ownership
+    detail: output/decompile/rea/pass-8315d77-review-20261023/parent-review.md
+
+  - id: completion.nextshot-ready-wire-encoder
+    status: accepted
+    kind: static
+    statement: >
+      Subscription routine0x8005ea2c attempts to register object+8 for
+      internal id0x01010006 through publisher Subscribe0x8006d21c.
+      Callback thunk0x8005e3e4 adjusts this by-8 and reaches0x8005fadc.
+      For id0x01010006, the encoder selects high byte2 and low byte10,
+      composing attribute0x020a through0x80060854. The selected branch
+      leaves body length0 and pointer null, then calls0x8006ab48 with
+      category0x82. This establishes a conditional zero-body wire encoding;
+      the existing local-dispatch, publisher and sender gates still apply.
+      It carries no request token, image address or RAW lease.
+    address_space: rtos
+    evidence:
+      - ev_d769e4ff1c9167ba9feee88d9cc62af45c38082b54fe2dc63e0a451ecf11c1a8
+      - ev_e6f9c278d17f46f68fcf1e69ef59c8436a8c120b73f9aa80769da85e32f27b41
+      - ev_cc70745fe2ee09c251d6a774b19e8e8b26abc7d8a2b71883cd26ce4740f928f3
+      - ev_ebb4a29f0a04320c7fe281e634e4dd7835c56319ccf442d3eaed37af88191958
+    not_proven:
+      - successful current registration, delivery or selected Linux callback execution
+      - request association, selected sensor-DMA completion or RAW backing lifetime
+    detail: output/decompile/rea/pass-contract-workers-20261023/parent-review.md
+
+  - id: completion.nextshot-ready-internal-id
+    status: accepted
+    kind: static
+    statement: >
+      The separate tail call in 0x80274bfc invokes 0x8006ebcc with a
+      source-name string and value zero. That helper logs NotifyNextShotReady,
+      calls 0x80100004 with one and tries local dispatch of internal id
+      0x01010006 with the supplied value. If local dispatch returns zero,
+      it invokes publisher 0x8006e050 with that same id/value. The local
+      dispatch and publisher have their own gates. This identifies a
+      conditional internal notification path, not a Linux wire frame or
+      selected sensor-DMA completion. No per-request token or buffer is
+      supplied in this call's zero value.
+    address_space: rtos
+    evidence:
+      - ev_3a2cf8ab71e6610bf2f7a4cc3d0cc68f9c440c12edfa8d9f67871baf5775ac53
+      - ev_87d8c64842e141b40c32545cd59451a98f0df9c15b710324a97befc66043e8e6
+      - ev_643612d2b6f9fb38a90fd99fea973a0c35caef21aae82dfecde084cd0c14b14b
+      - ev_c0f4dbb6bedb56d888517d9d2e3665b40830584cf4fe330dcdc2c23ae26c8511
+    not_proven:
+      - selected Linux subscriber, actual delivery and failure handling; the static encoder is now recorded in completion.nextshot-ready-wire-encoder
+      - which acquisition or frame caused the notification
+      - selected DMA completion, pixel validity, backing lifetime or RAW ownership
+    detail: output/decompile/rea/pass-minimax-followup-review-20261023/parent-review.md
+
+  - id: completion.nextshot-ready-marker-is-diagnostic
+    status: accepted
+    kind: static
+    statement: >
+      In sendNextCaptureAvailable at 0x80274bfc, a nonzero object byte
+      at +0x0c gates the branch. A manager virtual-call result other than
+      one emits the SSIF-buffer-full warning, but both outcomes continue
+      after clearing the byte. The cited 0x800aac64 call is a conditional
+      formatted log, and 0x800aaa60 with Send_NEXTSHOT_READY conditionally
+      records a diagnostic entry via 0x800aafd8. These inspected calls are
+      not an established intercore notification or selected RAW DMA event.
+    address_space: rtos
+    evidence:
+      - ev_3a2cf8ab71e6610bf2f7a4cc3d0cc68f9c440c12edfa8d9f67871baf5775ac53
+      - ev_5a240aa00371b00d1e9d2d0077ca3184a10ea900ae56a8e88e0d5174409233a8
+      - ev_2aca5db168aa160fae626c67929524708e9777823f4635291aef922cf8b382cd
+      - ev_f5d92ea0f442b34b85a94df0d87ad11e7cb2125378228a2a3b765ef0f321d1df
+      - ev_bb47010aad5ce128c0506340ffdd377031abeaa65ede24874b5c5e81ac496f53
+      - ev_bddb91f74114481a024db7004d7bda758a8f1e03a3fd01cfaf71ee1d2c73db17
+    not_proven:
+      - semantics of the manager virtual-call slot or other call paths
+      - a wire category/attribute, per-request token, RAW completion or lease
+    detail: output/decompile/rea/pass-minimax-followup-review-20261023/parent-review.md
+
+  - id: completion.passive-observer-review-20261023
+    status: open
+    kind: inference
+    statement: >
+      MiniMax retained useful historical result packets with a read-only
+      ring observer. To use such observation for an owned capture result,
+      establish detectable loss, immutable complete-copy lifetime and
+      association with this caller's request. A producer-cursor sample and
+      matching category/attribute alone do not provide those properties.
+      The stock consumer can release the bytes independently of the
+      observer; equal modulo cursors can hide a complete revolution.
+    detail: output/decompile/rea/pass-minimax-review-20261023/parent-review.md
+
+  - id: completion.event3-has-hardware-source
+    status: accepted
+    kind: static
+    statement: >
+      On the type-0 path, PP hardware status bit 6 invokes driver callback
+      index 6, then an event-3 fanout. The callback table entry +24 is at
+      0x8144a780. The dispatcher reads bit 6 from 0x20800018 and acknowledges
+      through 0x20800020. Secondary thunks adjust this by -0x120 and reach
+      the S and PP handlers. The fanout calls (listener, 3, 0). It carries
+      no image address, request token, or generation.
+    address_space: rtos
+    not_proven:
+      - that event 3 means the still requested by command 0x01010001
+      - a fresh frame
+      - cache visibility to Linux
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_DUAL_PRODUCER.md
+
+  - id: completion.dma-wrapper-return-is-constant
+    status: accepted
+    kind: static
+    statement: >
+      DMA-control wrapper 0x800cb010 calls a lower validator and always
+      returns -1. The lower validator's result is discarded. Do not use
+      this return as success, failure, or a retry signal.
+    address_space: rtos
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_DUAL_PRODUCER.md
+
+  - id: completion.frontend-calls-are-rtos-internal
+    status: accepted
+    kind: static
+    statement: >
+      The recovered front-end and Core calls on this path are RTOS-internal.
+      No Linux-callable retained-result ABI was demonstrated for them.
+    address_space: rtos
+    not_proven:
+      - that firmware modification is the only remaining interface
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_DUAL_PRODUCER.md
+
+  - id: completion.linux-stage-notifications-have-no-request-token
+    status: accepted
+    kind: static
+    statement: >
+      Linux onBackendComplete at ELF 0x92c40 and onCaptureMemorySafe
+      at ELF 0x92d60 require zero payload bytes and publish fixed
+      internal topics 0x0101000e and 0x01010011 with integer zero.
+      The checked bodies therefore do not carry a request token or
+      sample pointer. onCaptureReady at ELF 0x92a00 accepts one byte;
+      onImageReady at ELF 0x927e8 accepts two and forwards the value
+      with topic 0x0201000a. Those scalar widths do not establish
+      association with command 0x01010001.
+    address_space: linux-capture-elf
+    not_proven:
+      - the RTOS producers and ordering of these notifications for a normal still
+      - the semantic identity of the two-byte onImageReady parameter
+      - safe association by serialization in a sole capture session
+      - any RAW lease or completion and visibility of sensor samples
+    detail: output/decompile/rea/pass-ssif-optional-reader-20261020/parent-review.md
+
+  - id: completion.normal-graph-publishes-encoded-set
+    status: accepted
+    kind: static
+    statement: >
+      Type-0 builder 0x802ab858 calls JPEG builder 0x802c5f4c.
+      That builder constructs callback 0x8029b534 and registers it
+      with RegisterDoneCallback on its last JPEG material. The
+      constructor installs 0x80688518; slot +8 is 0x8029ba94.
+      On its successful paths that method publishes 0x03010005.
+      Bridge body 0x800609f8 can serialize this ENC_SET into the
+      pref descriptor ring and send category 0x81, attribute 0x0201.
+      Linux setCaptureImageReady, ELF 0x9b1cc, selects the ENC_SET
+      callback, which reads that ring. This establishes the encoded-set
+      result route. Its optional first descriptor has a configuration-selected
+      type; the ENC_SET name alone does not exclude RAW. See
+      raw.encoded-set-descriptor-writer and the open conditional-RAW candidate.
+    address_space: rtos
+    also_involves: linux-capture-elf
+    not_proven:
+      - live graph execution or request association
+      - bridge listener registration and current interceptor state
+      - the gate value when a future still completes
+      - sample lifetime or caller-owned sensor RAW
+    detail: output/decompile/rea/pass-enc-ring-20261020/parent-review.md
+
+  - id: completion.enc-ring-position-is-not-request-generation
+    status: accepted
+    kind: static
+    statement: >
+      RTOS writer 0x80061158 uses pref byte 0x1c50 modulo 25,
+      stride 0xf00, base offset 0x19354 and transfer size 0xd70.
+      A nonzero ready value at 0x342ad + slot only logs; the
+      writer still copies, writes its successor cursor, then
+      ready 1. Linux GetStillImageEncData at ELF 0x79d34 uses
+      independent byte 0x1c51 modulo 25. If the selected ready
+      value is zero it copies the previous slot without checking
+      that slot's readiness, advances from that selected index
+      and clears its ready byte. Neither ring control compares
+      a request cookie or generation. A result callback or cursor
+      advance alone therefore does not establish this still's
+      fresh result. Selector 0xff resolves to 0x85400000, so the
+      two cursors and 25 ready bytes have fixed physical locations
+      observed by enc-ring-state, not by a pixel reader.
+    address_space: rtos
+    also_involves: linux-capture-elf
+    code: tools/probes/ram-reader/ram_helper.c
+    not_proven:
+      - that opaque EXIF or maker data contains no usable identifier
+      - lower pref synchronization or cache visibility
+      - a live overwrite or stale read
+      - a pixel lease from a descriptor-ring slot
+    detail: output/decompile/rea/pass-enc-ring-20261020/parent-review.md
+
+  - id: completion.request-associated-event
+    status: open
+    kind: static
+    statement: >
+      The normal graph has an encoded-result delivery route
+      (completion.normal-graph-publishes-encoded-set), but its
+      ring controls do not match a result to the submitted still
+      (completion.enc-ring-position-is-not-request-generation).
+      Bind an actual metadata identifier to command 0x01010001,
+      or recover a sole-producer, one-flight session contract
+      that makes association valid. The two-byte ImageReady
+      handler is an inbound decoder, not a proved outgoing source.
+      Event 3 and zero-payload stage notifications do not close
+      this edge. Owned sensor RAW remains a separate missing
+      non-debug receiver.
+    blocks: owned RAW and the on-camera demo
+    detail: output/decompile/rea/pass-enc-ring-20261020/parent-review.md
+
+  - id: completion.enc-ring-live-baseline-20261020
+    status: accepted
+    kind: observation
+    statement: >
+      On 20 October, the reviewed enc-ring-state helper exited zero
+      with both complete records after matching the camera app hash
+      and both immutable RTOS signatures. Both cursor bytes and all
+      25 ready bytes were zero. The cursor recheck passed, app identity
+      was unchanged, and the temporary helper directory was removed.
+      No capture or consuming ioctl was issued.
+    address_space: physical
+    addresses:
+      cursors: "0x85401c50"
+      ready_bytes: "0x854342ad"
+    not_proven:
+      - cache coherence, atomicity, or freshness of a result
+      - pending work elsewhere or a caller-owned RAW lease
+    detail: output/decompile/rea/pass-enc-ring-20261020/parent-review.md
+
+
+  - id: completion.enc-set-adjust-ycc-gate
+    status: accepted
+    kind: static
+    statement: >
+      Getter0x80546c54 loads u32 word0x81482ea4. For ENC_SET topic0x03010005,
+      callback0x800609f8 suppresses ordinary category0x81/attribute0x0201
+      delivery only when that whole word equals2, releasing four planes
+      through manager slot+0x5c. Otherwise it publishes descriptors through
+      the pref ring. Both paths then clear the low two bits via0x800ff824.
+      The incoming Adjust Ycc control maps input3 to2, input4 to4 and
+      therefore does not suppress every nonzero setting.
+    address_space: rtos
+    addresses:
+      getter: "0x80546c54"
+      gate_word: "0x81482ea4"
+      setter: "0x800ff824"
+      callback: "0x800609f8"
+    not_proven:
+      - the gate value when a future still completes or execution of this callback
+      - request association, sample lifetime or sensor RAW ownership
+    detail: output/decompile/rea/pass-peer-alive-20261021/parent-review.md
+
+
+  - id: completion.enc-export-gate-live-20261021
+    status: accepted
+    kind: observation
+    statement: >
+      At21 October10:52 AEDT the fixed enc-export-state reader returned
+      four zero bytes from0x81482ea4 and exited0. Consecutive word reads
+      matched. App identity and both immutable RTOS anchors matched;
+      upload round-trip and camera hash passed, and temporary helper
+      cleanup was verified. No setting, capture or IPC command was sent.
+      The gate was therefore observed as0, not the suppression value2.
+    address_space: physical
+    addresses:
+      export_gate_word: "0x81482ea4"
+    code: tools/probes/ram-reader/ram_helper.c
+    not_proven:
+      - atomicity, cache coherence or the gate value at later capture completion
+      - graph execution, request association, result lifetime or sensor RAW
+    detail: output/decompile/rea/pass-peer-alive-20261021/parent-review.md

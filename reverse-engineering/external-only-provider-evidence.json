@@ -1,0 +1,443 @@
+{
+  "schema": "gear360-reviewed-static-evidence-v1",
+  "report": {
+    "path": "reverse-engineering/MULTI_PROVIDER_REVIEW_20261016_EXTERNAL_ONLY.md",
+    "bytes": 6207,
+    "sha256": "eb6638ce117ea093e8c89cfe15724a8e87930eff4884bc1cf7d70072a5b1c02e"
+  },
+  "archive": {
+    "path": "reverse-engineering/evidence/pass-resume-20261016-final-external.tar.gz",
+    "bytes": 968410,
+    "sha256": "f7dcceda111073c59acb34c7896e37e5218fdfdd03c236e2803f66cef7f8906b"
+  },
+  "files": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass6/r210-selection/rtos-attributes/mcb-rtos-fulltext.manifest.json",
+      "bytes": 1776,
+      "sha256": "311b655266987ef4b8faa95436feaa58c1562297aa3defe10c1a60d85c023cc7"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass7/geometry-row-writers/fulltext-row-state.manifest.json",
+      "bytes": 3092,
+      "sha256": "9fd8c93064ac970698b33bc40cb99ddb3b85b498207b6e3d95f61a125becbc41"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/audit_native_body_sources.py",
+      "bytes": 4794,
+      "sha256": "1f237e5c9c479e2d49cda96cb7b1394ae1e1690cd8480bdda8167c7b726e2979"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-indexer-prompt.txt",
+      "bytes": 2172,
+      "sha256": "5a7c7f3acaea29ed6d8d69a31dd5d33f408ef031e5df48f7f50a720ffe04a7a1"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-indexer-result.md",
+      "bytes": 1665,
+      "sha256": "42f77c7286d7c4d03416e5774a8d15fd3f738ef7865d6053d7cc6032430f477f"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-indexer-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-indexer.jsonl",
+      "bytes": 228592,
+      "sha256": "fede4f33e051f1f8bf8207591daf3ee4576f04ec9ea2f2c9b3c7937a2bb2e3ad"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-wire-native-prompt.txt",
+      "bytes": 2379,
+      "sha256": "bb4a4a43570737809c8c1cdd1ec12b802a1d4a5ed3ad39a756fb27bc0a52f041"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-wire-native-result.md",
+      "bytes": 2595,
+      "sha256": "5e0a09f24ed61066cb0a41c6ee6f0f6cdfa68b0b70d40ceaaa6217908a3397fe"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-wire-native-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-wire-native.jsonl",
+      "bytes": 422896,
+      "sha256": "56a0eb6417f63d5cf915780208b1f3d85ee74cae0acc7824db7976911da7e81a"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-wire-prompt.txt",
+      "bytes": 2156,
+      "sha256": "a4e04b62513adc3fc0d5e63c66330570c1f65e54a06a9f4ebee6fdad65cca7d3"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-wire-result.md",
+      "bytes": 3854,
+      "sha256": "d105bf8d4a2ef1e61e9ae859baaa4eca2a144889fcbc06c4bd6c8822479448dc"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-wire-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/cursor-wire.jsonl",
+      "bytes": 428929,
+      "sha256": "f6b5ae1d7f39a8f6f06bb77fb05f0e498ec03c8a435bdc9303c60ed24ba37014"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/external-provider-run-metrics.json",
+      "bytes": 1750,
+      "sha256": "0c8013703da629ae347dfbe25155cebf633e6f4850b7ec0bbf91088d81ff7c98"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/final-owned-session-state.json",
+      "bytes": 533,
+      "sha256": "dbc3c34a930cdf6cbecb0cc992b1a1455a385f32e0fac01e6f8b8f811fa94057"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-corrected-result.md",
+      "bytes": 5330,
+      "sha256": "d9664ee3e937bc451ed72d7510e6981be9a334af87b393bd475622e80c3d5f20"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-corrected-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-corrected.jsonl",
+      "bytes": 514414,
+      "sha256": "3a680ca995fe040db099ce956e71c86a6416bd8b59fb28a353f1f81b1f82e676"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/dossiers/fn-80212b9c.json",
+      "bytes": 178943,
+      "sha256": "6c3035bece6f6acbdca5ab34cfb55a236deebcb5c6dda517da21f153c116c391"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/dossiers/fn-80212b9c.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/dossiers/fn-80580aa4.json",
+      "bytes": 41067,
+      "sha256": "1d08aea884a1ff2f4d4f02fec77851fa22c4ea51b73c3fa4f0efed5a0125db4a"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/dossiers/fn-80580aa4.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/dossiers/fn-80585914.json",
+      "bytes": 3300347,
+      "sha256": "49766f8ecb88efaadd599646d790e425297a90555e71698ff654733d360b4ce6"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/dossiers/fn-80585914.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/report.md",
+      "bytes": 8715,
+      "sha256": "5c0a378f7637ed9e202ba34ab04346bed04265771b6fb56bcc4b3d54c7792ea9"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/snapshots/snap-80212b9c.json",
+      "bytes": 358264,
+      "sha256": "57382244432b9098a46fe0d37413a7977a5e1cb06c27463823efae25ef40de94"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/snapshots/snap-80580aa4.json",
+      "bytes": 82512,
+      "sha256": "8d58b75517c7ab083a4692abad614dc55855729c7ad62b55c29bace4912ffe76"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/snapshots/snap-80585914.json",
+      "bytes": 6601072,
+      "sha256": "acc7c97e57c0cee2d12217e7640767d0ff52fc420100c8fd7d55dd2d2826cf33"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode/source-windows/source-windows.json",
+      "bytes": 2648,
+      "sha256": "e4714c94337bac565ba509921014414efc79beddef1ad68b66a5cb2d576218bc"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode-prompt.txt",
+      "bytes": 2086,
+      "sha256": "e48b1887fcbfbe926036d964cd025cc12dada3d31ab2ad9552129745ba80effb"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode-result.md",
+      "bytes": 3812,
+      "sha256": "b00f5e8273cd3baba8ffefb109f99a7b0d78b7f95b0caca4e8bc3c4e362c3481"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode-validation.json",
+      "bytes": 4487,
+      "sha256": "6d67e542031e2775baed6f570c2b7d39fb2ebc97ed3b5a4d4a031314d76bfd7b"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-fill-mode.jsonl",
+      "bytes": 284685,
+      "sha256": "f6f2a452fc893a626a3c7cf3d214605140b2af739cfe44d4d1ab7a54b1b8b022"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-prompt.txt",
+      "bytes": 2346,
+      "sha256": "9cd39d9c02d711d871ef6426741ba2a74b4dec0f1f37f69fbeace9337bbc61b7"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-result.md",
+      "bytes": 3165,
+      "sha256": "1f63d909d32052b40d8d4d10a28c410a08c406a77ab6d42a4ef4c1523245ed76"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-validation.json",
+      "bytes": 3773,
+      "sha256": "028b7bb44dc90fed5f10e34e6307d3141166548e88be8a0269ce847c902a5429"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers/dossiers/fn-8020d260.json",
+      "bytes": 355255,
+      "sha256": "d1a3867fbb74334816564533542627fa4b41bd440a1ada4a3a3865a0e18e78ea"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers/dossiers/fn-8020d260.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers/report.md",
+      "bytes": 6592,
+      "sha256": "4aead1bf6b3741212b4b2bb4fb5073ffeed1ce266f96f3d303b0191047a0a2bd"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers/snapshots/snap-8020d260.json",
+      "bytes": 710888,
+      "sha256": "3aaf3cbe2ffa635786036b51d75079964b53cacf8f9195e2e1add3b26e5e5f93"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers/source-windows/source-windows.json",
+      "bytes": 2117,
+      "sha256": "c5fb3531795ffcc52f5a63e6afd4ae8bb316c01478c086fff88ef956941dedb1"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers-phase2/dossiers/fn-80320e90.json",
+      "bytes": 158351,
+      "sha256": "196cc196883a7b94ed3cf1ee970af83ee6845d9f37cbbe33fbcce11d5961bc82"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers-phase2/dossiers/fn-80320e90.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers-phase2/dossiers/fn-80393ec0.json",
+      "bytes": 64477,
+      "sha256": "bcb8944748f4216c2752fd1c646df50a5e99410bc541ee08cb9db8cb77266552"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers-phase2/dossiers/fn-80393ec0.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers-phase2/report.md",
+      "bytes": 8133,
+      "sha256": "482f0aea55b3fa4a6ec1c7c0095b9f529373cb185b9db7c61746d6f0fa1f87af"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers-phase2/snapshots/snap-80320e90.json",
+      "bytes": 317080,
+      "sha256": "1318b4ab22f8b010fb2bf112974a0c8c677a9fd19690b1f2a0a5064336d36cfc"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers-phase2/snapshots/snap-80393ec0.json",
+      "bytes": 129332,
+      "sha256": "74cf50968e88e5a6ecae329335af0628c8f659719536dcb9eee17bd2f5700d0e"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input-writers-phase2/source-windows/source-windows.json",
+      "bytes": 2454,
+      "sha256": "397bd413e2aa48d7d26e37c3bccd171b6e4c8d6dc398e435ac6c90b5752228e7"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input.jsonl",
+      "bytes": 447931,
+      "sha256": "4fa9706cc429e6edb167425645fd3869b8d69fd7ac90d048b0f677561836cdd1"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input2-prompt.txt",
+      "bytes": 1864,
+      "sha256": "45d209f30e96c6bc7a24137333e5d06f73273600bb5be8f992b68af147a61184"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input2-result.md",
+      "bytes": 3753,
+      "sha256": "409fbab32f08ea3e2d2764b8da6f0b5a9b707c4c4f7c82b878e2b4bdcc95d956"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input2-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input2-validation.json",
+      "bytes": 4215,
+      "sha256": "2e3c311416e4b12b949184f7f4c44ab7a47295b5a8786d32a9349bf8a9110472"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-input2.jsonl",
+      "bytes": 393956,
+      "sha256": "c0a17989f9551e762067d4f51022729e89068fa7bc43dc73f923124de231359b"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-runtime-input/dossiers/fn-80393f5c.json",
+      "bytes": 55039,
+      "sha256": "a11d189f96c9a79fdfa5e7721fa008c3194fd8090faf70225251608a735fe0f4"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-runtime-input/dossiers/fn-80393f5c.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-runtime-input/report.md",
+      "bytes": 5684,
+      "sha256": "720106913f5c42feae896ccccbe81ca67395eadf5afd05f37c74b57c817143fb"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-runtime-input/snapshots/snap-80393f5c.json",
+      "bytes": 110456,
+      "sha256": "deb461895724da7ea4e7753a685b54b30047066601b0f3972c114fecab33c0c4"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-runtime-input/source-windows/source-windows.json",
+      "bytes": 1939,
+      "sha256": "e859a90e26a434ec7dacd65e867074a1277e5a3caecfeecca62cffc0ad5bb47f"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-runtime-prompt.txt",
+      "bytes": 1764,
+      "sha256": "0e176ab8834c0f4936dab9515d0492df5cae339677271f6a45e792254dd03f10"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-runtime-result.md",
+      "bytes": 2820,
+      "sha256": "276da50a7dfe5fa1aec920bfbbc9c37c8085e727361cd00605d4a81268a1d20b"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-runtime-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-runtime-validation.json",
+      "bytes": 3512,
+      "sha256": "bc894749ddd945c6b94124eef08aed4be0b23a58cceef5a4ebcf33552fd2662c"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/minimax-runtime.jsonl",
+      "bytes": 272584,
+      "sha256": "0687c82dcd875db43f57eb2e6751a8aca79ba32531145cdf7f0e55a3da756feb"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-adjust-dispatch-census.json",
+      "bytes": 538,
+      "sha256": "914498790c037e27e223957bea799692234d2792c854bc39897f67531a5585d7"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-descriptor-destructor-review.json",
+      "bytes": 736,
+      "sha256": "6ec2dd7494eaea4d8b9451aef4ed6682b50092039c057ff6d259ba29da6bfc63"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-descriptor-destructor-review.llvm.txt",
+      "bytes": 1094,
+      "sha256": "8c774c5d6d01257181fafc6f227bce9b0d41ece902464448cf64b1132a17edeb"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-external-source-review.json",
+      "bytes": 6909,
+      "sha256": "72df3f2fa3cabcd7a6eb08bb659c918032e1b1106a3297d5e7a6fa642cf6e7cd"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-final-index-helper.llvm.txt",
+      "bytes": 4411,
+      "sha256": "44b820b615f74cf519013a51cb343749e1299ad0541d320af78100c7adfb1d0d"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-late-source-window-review.json",
+      "bytes": 6049,
+      "sha256": "08166cbd01be8de2d0e1bd66447adb3e8328bf6e35934b4f6bcb294015580593"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-linux-window-review.json",
+      "bytes": 2835,
+      "sha256": "0f60727a8b249dad522f486d89744c11d56d248e9a34346917a7f069a8b42f84"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-mask8-branch-census.json",
+      "bytes": 291,
+      "sha256": "021139688a09441251d78eb14bfe54158a45965054657e0153d3a8f7651b6dff"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-minimax-source-review.json",
+      "bytes": 566,
+      "sha256": "de622ac000980b9033dbdd58f2ae97fac921a74c06166e7b572c69c39d073cc2"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-native-body-source-bindings.json",
+      "bytes": 16508,
+      "sha256": "1553b8dfab51751c11f26e29115a61e0f44b9bef9eb714b07677f375a0da73de"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-recipe-source-review.json",
+      "bytes": 812,
+      "sha256": "1690a1302793fcaec9281f898147197c4cf679f4d0e266cf0c1ff091f4c283c5"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-rejected-offset-census-review.json",
+      "bytes": 1980,
+      "sha256": "5024122cd7e8b77ebd6afa8bcb0ea2ef85e304a1b5c35134526dc768853df084"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-sleep-source-review.llvm.txt",
+      "bytes": 5896,
+      "sha256": "16531bdda95f6891bb15256a436f3d49a096b5e00090e9c9112d33a5a8f40c66"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-sleep-source-windows.json",
+      "bytes": 2648,
+      "sha256": "1bad354668cc677a61280b81ec72fdeb40cc176959bdddf92bbb41ab91acfbeb"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-wire-indexer-hypothesis.json",
+      "bytes": 594,
+      "sha256": "e3ddfbb257e2058aac5e56f61aeaba3cb8db60393d42fbea9f7737efe2fbea36"
+    }
+  ],
+  "dependencies": [
+    "reverse-engineering/cleanup-event-wrapper-evidence.json",
+    "reverse-engineering/input-producer-recipe-byte-evidence.json",
+    "reverse-engineering/adjust-ycc-control-evidence.json",
+    "reverse-engineering/core-input-cleanup-evidence.json",
+    "reverse-engineering/dump-protocol-evidence.json"
+  ],
+  "validationLimits": "Original worker reports include rejected claims and are historical raw outputs. Authoritative claims are in the reviewed report and parent corrections. Complete native records/snapshots and provenance audits are preserved; body boundaries are provider-supplied. No runtime, delivery, sensor provenance, pixel packing, freshness or lifetime certification. No verified sensor RAW file exists."
+}

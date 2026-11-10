@@ -1,0 +1,107 @@
+# Pinned public-source comparisons. These are not transferred camera-runtime facts.
+claims:
+  - id: external.tkernel-eventflag-primary-abi-source
+    status: accepted
+    kind: static
+    statement: >
+      Official tron-forum/tkernel_2 commit5778f619bdb354443551888dc2e9aa191e684da8
+      defines TFN_CLR_FLG80350200 and TFN_WAI_FLG80360500, matching the pinned
+      native wrapper literals. Its public eventflag source uses AND with a
+      keep-mask for clear, ALL matching with mode0, and clear-all flag0x10.
+      errno.h defines E_TMOUTffce0000 and E_DISWAIffcc0000. These are primary
+      source/ABI comparisons; the full camera kernel build and live control
+      flow are not equated to the published source by a matching constant.
+    scope: selected pinned public text and explicit native constant comparisons
+    not_proven:
+      - whole-kernel binary/source identity, live active vector or timing source
+      - safe idle, reset, receiver drain or exclusive hosted initialization
+    detail: output/decompile/rea/pass-idle-ownership-20261027/parent-review.md
+
+  - id: external.nx-platform-lifecycle-source-overlap
+    status: accepted
+    kind: static
+    statement: >
+      Metol revision cb82f4886c1174261cbba8127000c7b696944ff4 publishes
+      embedded NX500 plaintext whose SHA256s independently match those bytes.
+      di-camera-app.service, hibernation.service, hib_post.service,
+      hib_post.path and hib_tmp.sh are byte-identical to the retained
+      SM-R210 files. hibernation.sh differs in snapshot partition p9 versus
+      p8, LED card versus led.2, and whitespace. Its HIB/export, hib_exjob
+      and direct app-launch lines are comments in both versions.
+    scope: retained firmware plaintext and the pinned published source only
+    not_proven:
+      - execution or presence of every referenced unit on a current camera
+      - common native implementations, restart failure cause or hibernation state
+      - exclusive receiver ownership, safe handover or remote cleanup
+    detail: output/decompile/rea/pass-local-comparison-20261026/parent-review.md
+
+  - id: external.c200-rvf-helper-is-stock-app-dependent
+    status: accepted
+    kind: static
+    statement: >
+      At C200 repository revision7373bf39ac55793b46c0c6cd9ee80805cd5e5876,
+      the published RVF injector/preload helpers target the running onboard
+      di-camera-app, while phone-app-free means without the Android app.
+      The shipped rvf-start.sh instead implements its v13 USB-shell route.
+      Report11 describes crashes/reboots qualifying earlier report10/12
+      injection proposals. Those are published experiments, not repeated
+      SM-R210 observations. The preload port-string check does not test
+      socket LISTEN state or owning process.
+    scope: selected source and report chronology, not verification of C200 native claims
+    not_proven:
+      - universal ptrace impossibility, syscall-restart corruption or watchdog causation
+      - a working trigger, app-absent host or caller-owned sensor RAW
+      - any transferred C200 address, operation or recovery behavior on SM-R210
+    detail: reverse-engineering/LOCAL_SOURCE_COMPARISON_20261026.md
+
+  - id: external.nx500ex-control-and-debug-file-boundary
+    status: accepted
+    kind: static
+    statement: >
+      Pinned nx500ex revisionfb7fe9bd3207cad16c1fd18f65d512ce8857e8f9
+      supplies stock st/key/control helpers and dated LUT/debug reports.
+      Its CCapAdjIf/0xaa06 and IPC raw-file descriptions are external
+      NX500 native-analysis leads, not accepted SM-R210 instruction evidence.
+      The later MCB-refusal/freeze account qualifies earlier mode/stop
+      proposals, without isolating the causal command. Selected helpers
+      do not establish our hosted context or owned sensor-buffer lifetime.
+    scope: selected source/helpers and published descriptions in the inventory
+    not_proven:
+      - actual debug-save output or general safe-command behavior
+      - SM-R210 message meanings, addresses, fresh completion or backing ownership
+    detail: reverse-engineering/LOCAL_SOURCE_COMPARISON_20261026.md
+
+  - id: external.libraw-samsung3-input-contract
+    status: accepted
+    kind: static
+    statement: >
+      At LibRaw revision2caab57e269cc7fce17c3189e4d4d7e3e5861875,
+      samsung3_load_raw consumes established dimensions, stream origin and
+      output storage. Its logical header requests total128 bits; the depth
+      nibble begins at bit20, option nibble at bit84, and14-bit initial
+      sample at bit114. The reader refills little-endian32-bit words and
+      resets buffered bits; rows align relative to data_offset modulo16.
+      TIFF tag0xa010 selects this decoder for compression0x8005. The source
+      reconstructs ushort samples but provides no live camera ownership.
+    scope: checked decoder, reader, TIFF dispatch and ordinary unpack source paths
+    not_proven:
+      - equivalence of Samsung3 encoding and selected SM-R210 LRC backing
+      - input completeness, camera payload extent, provenance or retained pixels
+      - a complete standalone decoder validator or acquisition backend
+    detail: reverse-engineering/LOCAL_SOURCE_COMPARISON_20261026.md
+
+  - id: external.nx1-sdk-documentation-boundary
+    status: accepted
+    kind: static
+    statement: >
+      The retrieved Samsung NX1 manual and manufacturer announcement describe
+      USB remote control from a Windows PC. The later English manual at
+      physical page218 separates Remote Studio download from SDK Request
+      for sample source and the API manual. The actual SDK source/header/API
+      package was not acquired in the bounded searches. These documents
+      do not specify the SM-R210 on-camera capture-library bootstrap.
+    scope: manufacturer documentation, not an inspected SDK implementation
+    not_proven:
+      - absence of an SDK package elsewhere or its complete API semantics
+      - any on-device initialization or RAW ownership implementation
+    detail: output/decompile/rea/pass-local-comparison-20261026/source-inventory.md

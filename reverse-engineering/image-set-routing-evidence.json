@@ -1,0 +1,50 @@
+{
+  "rtos_sha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7",
+  "jump_dispatch_file_offset": "0x60a40",
+  "base_topic": "0x03010001",
+  "raw_case_topic": "0x03010002",
+  "raw_case_target": "0x80060f70",
+  "table": [
+    {
+      "topic": "0x3010001",
+      "target": "0x80060a68"
+    },
+    {
+      "topic": "0x3010002",
+      "target": "0x80060f70"
+    },
+    {
+      "topic": "0x3010003",
+      "target": "0x80060d04"
+    },
+    {
+      "topic": "0x3010004",
+      "target": "0x80060f70"
+    },
+    {
+      "topic": "0x3010005",
+      "target": "0x80060b4c"
+    },
+    {
+      "topic": "0x3010006",
+      "target": "0x80060dd0"
+    },
+    {
+      "topic": "0x3010007",
+      "target": "0x80060edc"
+    },
+    {
+      "topic": "0x3010008",
+      "target": "0x80060ef0"
+    }
+  ],
+  "original_excerpt": {
+    "start": "0x60a30",
+    "end_exclusive": "0x60a68",
+    "sha256": "693aa89359b162cb8c6a17027f1f32cd6ca334168cb1c17f4a95a3e2a0ba6056",
+    "bytes_hex": "ff3f0fe3fe3c4fe3033082e0070053e303f19f97490100ea680a0680700f0680040d0680700f06804c0b0680d00d0680dc0e0680f00e0680"
+  },
+  "limitations": [
+    "Proves branch destination in this specific firmware function, not global RAW impossibility"
+  ]
+}

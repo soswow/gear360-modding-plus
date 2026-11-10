@@ -1,0 +1,1608 @@
+{
+  "schema": "gear360-completion-identity-recipe-dispatch-evidence-v1",
+  "sourceSha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7",
+  "carrierSha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f",
+  "validationCounts": {
+    "carrierManifests": 1,
+    "carrierSegments": 17,
+    "bootManifests": 0,
+    "sourceWindows": 20,
+    "closedSnapshots": 0,
+    "structuredSnapshotFiles": 1,
+    "evidenceIds": 13,
+    "duplicateEvidenceSchemaOccurrences": 0,
+    "readBytesUniqueIds": 0,
+    "duplicateReadSchemaOccurrences": 0,
+    "readBytesChecked": 0,
+    "readBytesExcluded": 0,
+    "readBytesEmpty": 0,
+    "readBytesFailed": 0,
+    "errors": 0,
+    "priorMetadataSkipped": 0
+  },
+  "validationErrors": [],
+  "note": "output/ is gitignored. These hashes identify the local artifacts. Function Evidence IDs are also inside the snapshot bundle.",
+  "functions": [
+    {
+      "evidence_id": "ev_09f720191fde9052b800efc8eae7ab61253a51f3c042093a956675b90e020e8e",
+      "operation": "analyze_function",
+      "address": "0x8031e630",
+      "name": "analyst_fe_start",
+      "inclusive_ranges": [
+        {
+          "end": "0x8031e857",
+          "start": "0x8031e630"
+        }
+      ],
+      "total_bytes": 552
+    },
+    {
+      "evidence_id": "ev_1782f8cb648969f4de831c3f4e0b1616245539599c3eea17ba36953e93ebed89",
+      "operation": "analyze_function",
+      "address": "0x802536bc",
+      "name": "analyst_cook_create",
+      "inclusive_ranges": [
+        {
+          "end": "0x8025380b",
+          "start": "0x802536bc"
+        }
+      ],
+      "total_bytes": 336
+    },
+    {
+      "evidence_id": "ev_2fac4ea25a5f4f8b957cbca22d021e37133b3ed6c551089146ef2a209834faf4",
+      "operation": "analyze_function",
+      "address": "0x8031dfd0",
+      "name": "analyst_fe_ctor",
+      "inclusive_ranges": [
+        {
+          "end": "0x8031e3c3",
+          "start": "0x8031dfd0"
+        }
+      ],
+      "total_bytes": 1012
+    },
+    {
+      "evidence_id": "ev_4df8ad87deaee6467c507258cea7755879cfe7e6845113d878125211d23f478f",
+      "operation": "analyze_function",
+      "address": "0x8031e490",
+      "name": "analyst_fe_getter",
+      "inclusive_ranges": [
+        {
+          "end": "0x8031e4b3",
+          "start": "0x8031e490"
+        }
+      ],
+      "total_bytes": 36
+    },
+    {
+      "evidence_id": "ev_5379a6540275f66b974b9be2d1ec6defcc57bb79b3a8f483263501dbc13c07f3",
+      "operation": "analyze_function",
+      "address": "0x802e4e3c",
+      "name": "analyst_material_ctor",
+      "inclusive_ranges": [
+        {
+          "end": "0x802e4f6f",
+          "start": "0x802e4e3c"
+        },
+        {
+          "end": "0x802e4f9b",
+          "start": "0x802e4f90"
+        }
+      ],
+      "total_bytes": 320
+    },
+    {
+      "evidence_id": "ev_77fcf3c420d4b541c4d5b7f4bf0465693c0727e49dda17b2f9bbc33ba7482ef5",
+      "operation": "analyze_function",
+      "address": "0x80280570",
+      "name": "analyst_still_book_slot8",
+      "inclusive_ranges": [
+        {
+          "end": "0x802808fb",
+          "start": "0x80280570"
+        },
+        {
+          "end": "0x8028091f",
+          "start": "0x80280914"
+        }
+      ],
+      "total_bytes": 920
+    },
+    {
+      "evidence_id": "ev_9d299c97f9d463676196f8460cd98954695b73ff7d4063a759465c9306f7b78f",
+      "operation": "analyze_function",
+      "address": "0x8051ff04",
+      "name": "analyst_sem_create",
+      "inclusive_ranges": [
+        {
+          "end": "0x8052001b",
+          "start": "0x8051ff04"
+        }
+      ],
+      "total_bytes": 280
+    },
+    {
+      "evidence_id": "ev_bc43f686427e00d00edf075f0dc799a550835614c19cea4de3fa805db078b436",
+      "operation": "analyze_function",
+      "address": "0x80325b48",
+      "name": "analyst_manager_plus4",
+      "inclusive_ranges": [
+        {
+          "end": "0x80325bbf",
+          "start": "0x80325b48"
+        }
+      ],
+      "total_bytes": 120
+    },
+    {
+      "evidence_id": "ev_d03942d6635229940f10de3025c5c48185376f354905ff07845ff935a5e4782c",
+      "operation": "analyze_function",
+      "address": "0x80569248",
+      "name": "analyst_size_setter",
+      "inclusive_ranges": [
+        {
+          "end": "0x80569273",
+          "start": "0x80569248"
+        }
+      ],
+      "total_bytes": 44
+    },
+    {
+      "evidence_id": "ev_d30be48323027531cab8a0f238674e7442336ab256fd0e287694745ab3ee08db",
+      "operation": "analyze_function",
+      "address": "0x8027afc8",
+      "name": "analyst_branch_builder",
+      "inclusive_ranges": [
+        {
+          "end": "0x8027b40f",
+          "start": "0x8027afc8"
+        },
+        {
+          "end": "0x8027b48b",
+          "start": "0x8027b480"
+        }
+      ],
+      "total_bytes": 1108
+    },
+    {
+      "evidence_id": "ev_e1bae5bec10edda52fa6bb38616dad35dcef50bd1e28ffffb02925b96ccf4544",
+      "operation": "analyze_function",
+      "address": "0x802e5c74",
+      "name": "analyst_completion_slot18",
+      "inclusive_ranges": [
+        {
+          "end": "0x802e5e63",
+          "start": "0x802e5c74"
+        },
+        {
+          "end": "0x802e5e73",
+          "start": "0x802e5e68"
+        }
+      ],
+      "total_bytes": 508
+    },
+    {
+      "evidence_id": "ev_eb1b238fa4f8a76a666f4e69842cffcd67cd442bc917644641fd187fa49c0c1a",
+      "operation": "analyze_function",
+      "address": "0x8027b888",
+      "name": "analyst_branch_slot8",
+      "inclusive_ranges": [
+        {
+          "end": "0x8027b943",
+          "start": "0x8027b888"
+        }
+      ],
+      "total_bytes": 188
+    },
+    {
+      "evidence_id": "ev_ee963d8d87e4f5c507e0e4f63e9a7540175b3667187e3264063898c9dd658727",
+      "operation": "analyze_function",
+      "address": "0x8031f958",
+      "name": "analyst_fe_pwr",
+      "inclusive_ranges": [
+        {
+          "end": "0x8031f98b",
+          "start": "0x8031f958"
+        },
+        {
+          "end": "0x8031fb87",
+          "start": "0x8031f9c4"
+        }
+      ],
+      "total_bytes": 504
+    }
+  ],
+  "files": [
+    {
+      "path": "reverse-engineering/RAW_COMPLETION_IDENTITY_AND_RECIPE_DISPATCH.md",
+      "bytes": 41350,
+      "sha256": "1905f97b69414ebd238c554a296e634cc97c018a2c8521c0fe03daca734cc0b1"
+    },
+    {
+      "path": "reverse-engineering/INVESTIGATION_CHECKPOINT_20261015_PASS11.md",
+      "bytes": 2541,
+      "sha256": "54c78722d7fdc965c884dac62a051d9388cc3e0cea7df3515308d1b77ae154b7"
+    },
+    {
+      "path": "reverse-engineering/RAW_INTERRUPT_AND_RECIPE_EXECUTION.md",
+      "bytes": 15934,
+      "sha256": "12683c9a2625b4e4c4906f80d570af773957029183cb29b54276ada54a15f24d"
+    },
+    {
+      "path": "reverse-engineering/BINARY_COMPONENT_MAP.md",
+      "bytes": 9941,
+      "sha256": "b5c5a749b8dbd0fdf651cccea8dc057a0c5effbaa821b64277ae8ff55a0cb8dd"
+    },
+    {
+      "path": "REVERSE_ENGINEERING_LEDGER.md",
+      "bytes": 53681,
+      "sha256": "8263009083b61d9b1c525485eae1054275617d653351984390c146a0e8ffec3a"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/independent-byte-review/report.md",
+      "bytes": 9288,
+      "sha256": "da0f5523ae971df3a65fb8f39eedbe1bf9e4e96c652c4ce0699e4202fefdf7c4"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/session-cleanup-audit.json",
+      "bytes": 600,
+      "sha256": "7323b99c2e5982b5c55dd11b70f950c99c9558f3373f9dfcaba1e9dad11b7621"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/validation.json",
+      "bytes": 10439,
+      "sha256": "7cefece5e4797433c9d3915781f2848c5d2eb7fa6e4831e9ad2f1c56cb80f547"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/carrier-config.json",
+      "bytes": 2785,
+      "sha256": "eb2dd1f582aad9c67058459ff4a453e3accc8d080e15f5aa957c82fc0ed523b6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf",
+      "bytes": 100256,
+      "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.manifest.json",
+      "bytes": 8163,
+      "sha256": "a1ff1266d4542588a9c3b71c4b5f85069149f1df959b145586ae662c05ab543f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/source-byte-windows.json",
+      "bytes": 8788,
+      "sha256": "5fa791bc054d5353c4e7db1f4396fab77b06cc882f97a2571f7796a47e56eca9"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/evidence-index.json",
+      "bytes": 5522,
+      "sha256": "d6648f44b48a535cba9224e5182f52f0f05b363ff630682df82e9009f095c4d7"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/session.snapshot.json",
+      "bytes": 5432617,
+      "sha256": "79c8b8ccbdf4cd47b47990c733fcff0c8e94a173744943c6ae8384a1a8727fc9"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-branch-builder.json",
+      "bytes": 411691,
+      "sha256": "684bf654e14476aedea68a4ecebfc174169e5e354d1f51be3863a1252404965c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-branch-slot8.json",
+      "bytes": 88427,
+      "sha256": "64ea09d903bce3e41f0a93a1d19655fa85657d003f6fec89f9d6834abecc5391"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-completion-slot18.json",
+      "bytes": 283761,
+      "sha256": "c202fff66233491fe76800c08d1176abf2075421dd100c02f15fb29146172cdd"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-cook-create.json",
+      "bytes": 131763,
+      "sha256": "873ca9a81113503d7580146e9c69f076a2bcae042037298cb2690e4c46a43c40"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-fe-ctor.json",
+      "bytes": 379949,
+      "sha256": "653c1bf8e95c20a309e920765d067bde459d8083959906879e1ca9c2eae8227b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-fe-getter.json",
+      "bytes": 44247,
+      "sha256": "39b266243f798d403882a5ad46bdf98ef332200b22cd09c54518f2a9baccead1"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-fe-power.json",
+      "bytes": 288547,
+      "sha256": "9812a377907e8ab919d987d77aca4fa8bc2046f6e9b714aec7be967f0c673db8"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-fe-start.json",
+      "bytes": 208363,
+      "sha256": "1ecb0dbf0c7b10613b5d252a70018260514377ae96581c00f0ed97a051f38cb5"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-manager-plus4.json",
+      "bytes": 50615,
+      "sha256": "97d076872ae8b67b22ccb6b2ba65b6f38f06a289bcff954de245cfdbfce1e4aa"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-material-ctor.json",
+      "bytes": 133787,
+      "sha256": "c34d4e08788c2fbe8420a887f75573e9d2f14c17c3f4eed2eedcc9dc2bf1eefb"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-sem-create.json",
+      "bytes": 149861,
+      "sha256": "a17d1376148a3026295d0c38f15ad5f7712ad0490c4c2b08d8bea4ba81a995cc"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-size-setter.json",
+      "bytes": 32319,
+      "sha256": "9ab3c8716aa1964e3eb4e47ca0d6249f5a18a13e1c3052a696b85b2788aedeb4"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-still-book-slot8.json",
+      "bytes": 520633,
+      "sha256": "b303e52101dd6f07e4972bc04a7cc337a66f512a2bc71935b9366ac7c779791d"
+    }
+  ],
+  "validationScope": "Original validationCounts/functions describe the initial pass11 subset. citationAudit covers every full Evidence ID in the reconciled main report and candidate allocation/export contract, including later and carried-forward records. Byte and artifact validation does not certify semantic conclusions or runtime activation.",
+  "citationAudit": {
+    "reports": [
+      {
+        "path": "reverse-engineering/RAW_COMPLETION_IDENTITY_AND_RECIPE_DISPATCH.md",
+        "bytes": 41350,
+        "sha256": "1905f97b69414ebd238c554a296e634cc97c018a2c8521c0fe03daca734cc0b1"
+      },
+      {
+        "path": "reverse-engineering/RAW_CANDIDATE_ALLOCATION_AND_EXPORT_CONTRACT.md",
+        "bytes": 6959,
+        "sha256": "15a2f1d5e58eb7f290f9a836a9c03abd30e89cc70df8daef6a1de3c3550dbc9b"
+      }
+    ],
+    "citedEvidenceIds": 48,
+    "missingEvidenceIds": [],
+    "validation": {
+      "path": "<repo>/output/decompile/rea/multi-provider-run/citation-validation.json",
+      "bytes": 73040,
+      "sha256": "54e32e11b659a2e62328a56086bc23de5b11ce491b395b660bf22db5649a2cb1"
+    },
+    "validationCounts": {
+      "carrierManifests": 18,
+      "carrierSegments": 231,
+      "bootManifests": 0,
+      "sourceWindows": 0,
+      "closedSnapshots": 0,
+      "structuredSnapshotFiles": 2,
+      "evidenceIds": 285,
+      "duplicateEvidenceSchemaOccurrences": 404,
+      "readBytesUniqueIds": 3,
+      "duplicateReadSchemaOccurrences": 3,
+      "readBytesChecked": 3,
+      "readBytesExcluded": 0,
+      "readBytesEmpty": 0,
+      "readBytesFailed": 0,
+      "errors": 0,
+      "priorMetadataSkipped": 0
+    },
+    "sourceCarrierManifests": [
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-3458e4295afe254257f5a533686f451a854eb327b5234a3ad043e4dd952dd6f7.manifest.json",
+        "bytes": 3092,
+        "sha256": "9fd8c93064ac970698b33bc40cb99ddb3b85b498207b6e3d95f61a125becbc41"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-4e68b67bea8708e0fc96bbadfe89be9e86887617208d85bb09fe5c2bf4939a3a.manifest.json",
+        "bytes": 13177,
+        "sha256": "f1094594807ee0beb9eccab43272754bceca746f255f98600c998d7b06f6f5bf"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-531bd3c6c4dc0f046b515d80bb09d2c843f57505024136246f1bb9c530d17cff.manifest.json",
+        "bytes": 9528,
+        "sha256": "4140a2fbf77019042da5e11749fcfa6379a5c309cd0d005ae6064146a8d93e14"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-660eb55e8ed9cd6e059303b430ae520776b37f088bc7447b933b1c7013de888e.manifest.json",
+        "bytes": 10175,
+        "sha256": "f3e0309ffd1176c75b28d9bce2700a27bb0a07deb79b2b5dcc7027397bcc700a"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-71229e7ff07872c1b0d869aada9b9a2b1d87b4b9c471f085b56415a3062a76f9.manifest.json",
+        "bytes": 4001,
+        "sha256": "26d12a2f947a2f60f1d55f8b3d4daeed608f83eae2998a19d21c5e9b6af82606"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-967b088c15c964808aff207ff89a5926ded7a873b355226a99c46f7e5051901a.manifest.json",
+        "bytes": 7706,
+        "sha256": "623c23362c17fb97d3a3ab28bd6ec006c8bc6ba2fed1a109481aa8b7a254b2d0"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f.manifest.json",
+        "bytes": 8163,
+        "sha256": "a1ff1266d4542588a9c3b71c4b5f85069149f1df959b145586ae662c05ab543f"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-a78488036cd153cf4cdab559bc9f7f7975eb74e116f6430f2de71968bac1dabe.manifest.json",
+        "bytes": 2898,
+        "sha256": "b098c57bada17c258fa871acaffe8580e1a65f00e4c28ea872e47c53d64957e2"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-b92b98a3082b71ee045c225bac4938c830ae5f00df90fb21201adeec7f9b9d38.manifest.json",
+        "bytes": 9346,
+        "sha256": "6176812d2aa3621dfa5412baba39d7428f223fc9f1d4f0ac071d5035c836e7d7"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-bb96cb039051d8558c8767064878d58c2ed1ad2e7939505237949f6e3a4dbab7.manifest.json",
+        "bytes": 11600,
+        "sha256": "ac707311df0aca4414c43feb1eccae48ea36f28a91a4c79992b67339b7db4cf7"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-bddbb2035b82beb283acd97700f33f3cf9b63492126545bc4cebc064750c449f.manifest.json",
+        "bytes": 8145,
+        "sha256": "eceef4c46b0f142841779df929cb1da08baf8e7fcf64efaeb94a7c4f16afdbb4"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-c979230d2c08fea1d701f9c19350b38e190a607b6ae859fd19f4140d4fff2170.manifest.json",
+        "bytes": 2697,
+        "sha256": "b806f4fbcb6750d17db239e7d89d9bb05d13f39bf4e976ea6e38964fad910fe4"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-c97e5737020f47a03290626f289cf913a1f11f4c3cb8a23fbc8c302f75f32386.manifest.json",
+        "bytes": 4226,
+        "sha256": "3b8656fa8cded18eaff34dc6fbcff77d76a09c05e581a57c4529d1ec175dc424"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-d6311c2b31aebc351331a407c54597ce0d60b90a610ee48457fc14d54beeaddd.manifest.json",
+        "bytes": 9237,
+        "sha256": "7f5998e9da103beb95815ff09cfbd3291ffde8ed00d5e730b4ab74bb6a309a76"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-da325f9c926b0ae292556f7335158fa6fb6a0b4c56efa78265bcd58c047b65b5.manifest.json",
+        "bytes": 12706,
+        "sha256": "c5d613eb09680062474375f70add1b6692a1f658481c0a4ff33e089be0aa6001"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-db7e564f85b3d05ace7292a19bdda5d3933581e7d0bdec4bdb93cbb444b4207e.manifest.json",
+        "bytes": 2161,
+        "sha256": "af3da9f5890c89eb0760e93f656bc7849734cc60edef7efd05a0bb489a6cbf75"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-e6a4e61259b3cedaecd5317d98d282a888ccf4c2bd8227911a247de814e452e8.manifest.json",
+        "bytes": 7881,
+        "sha256": "c868c70558d4d3d3c68c9cbd0528e955001b6d66b4626c52c17e575e09acb930"
+      },
+      {
+        "path": "output/decompile/rea/multi-provider-run/retained-citations/carrier-fe4bf0ae9dec68376ef88fd94ed225a21b5ee94e255eb5b5c0c966b9780c0721.manifest.json",
+        "bytes": 2319,
+        "sha256": "0fcc643f6428cf00313c86a5bf629269c0056ef3096ff41f48264583330ec819"
+      }
+    ],
+    "records": [
+      {
+        "evidence_id": "ev_03ee3e9b25eda928fe03ee19756a39485b9ee8ebf66f3c4e6ecfe13886cabf4f",
+        "operation": "procedure_pseudo_code",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261014/pass4/image28/evidence-config-buffer.json",
+          "bytes": 331312,
+          "sha256": "30085857158bfb8322a5869b34b38c496c6a83f257e9078eb1a34b19647e409c"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_03ee3e9b25eda928fe03ee19756a39485b9ee8ebf66f3c4e6ecfe13886cabf4f.json",
+          "bytes": 331312,
+          "sha256": "30085857158bfb8322a5869b34b38c496c6a83f257e9078eb1a34b19647e409c"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "bb96cb039051d8558c8767064878d58c2ed1ad2e7939505237949f6e3a4dbab7"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261014/pass4/image28/image28.elf",
+          "name": "image28.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_041e97f97459b2653208c43f68082ee82537100b5dd73ee2618587bb2909fa1c",
+        "operation": "batch_decompile",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass7/candidate-lifetime/decompile-dump-size-post-callback.json",
+          "bytes": 25972,
+          "sha256": "4f943f4101b87bffcae0c1ce546b35721705a687d8735928c1926b7cf8f65cff"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_041e97f97459b2653208c43f68082ee82537100b5dd73ee2618587bb2909fa1c.json",
+          "bytes": 25972,
+          "sha256": "4f943f4101b87bffcae0c1ce546b35721705a687d8735928c1926b7cf8f65cff"
+        },
+        "subject": {
+          "name": "candidate-lifecycle-v9.elf",
+          "digest": {
+            "sha256": "660eb55e8ed9cd6e059303b430ae520776b37f088bc7447b933b1c7013de888e"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass7/candidate-lifetime/candidate-lifecycle-v9.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_04288ad9ad41c191bdeda4a015014c1505fd47d4b7adfe08feef5b06b1294b62",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/cook-message-send/analyze-send.json",
+          "bytes": 150105,
+          "sha256": "aafc8e9ccaa8c21fd2799b10fe45110521ac30c431b36aa212700e0003c6a4d6"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_04288ad9ad41c191bdeda4a015014c1505fd47d4b7adfe08feef5b06b1294b62.json",
+          "bytes": 150105,
+          "sha256": "aafc8e9ccaa8c21fd2799b10fe45110521ac30c431b36aa212700e0003c6a4d6"
+        },
+        "subject": {
+          "name": "carrier.elf",
+          "digest": {
+            "sha256": "fe4bf0ae9dec68376ef88fd94ed225a21b5ee94e255eb5b5c0c966b9780c0721"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/cook-message-send/carrier.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_08e82c952b579ea6ac486d6d352123204ed4759e9ecc93ec7a90f5e859587484",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass6/syscall-registration/filedump-contract/pre-scheduler-snapshot.json",
+          "bytes": 4210820,
+          "sha256": "b99e5d9e566a5a4ffed0fdd27246aa39fbf15539a00ac73bd3b9cc8603674ec0"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_08e82c952b579ea6ac486d6d352123204ed4759e9ecc93ec7a90f5e859587484.json",
+          "bytes": 4210820,
+          "sha256": "b99e5d9e566a5a4ffed0fdd27246aa39fbf15539a00ac73bd3b9cc8603674ec0"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "e6a4e61259b3cedaecd5317d98d282a888ccf4c2bd8227911a247de814e452e8"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass6/syscall-registration/filedump-contract/filedump-contract.elf",
+          "name": "filedump-contract.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_09f720191fde9052b800efc8eae7ab61253a51f3c042093a956675b90e020e8e",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-fe-start.json",
+          "bytes": 208363,
+          "sha256": "1ecb0dbf0c7b10613b5d252a70018260514377ae96581c00f0ed97a051f38cb5"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_09f720191fde9052b800efc8eae7ab61253a51f3c042093a956675b90e020e8e.json",
+          "bytes": 208363,
+          "sha256": "1ecb0dbf0c7b10613b5d252a70018260514377ae96581c00f0ed97a051f38cb5"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_0fa01a39e8cfbd589a38d032836fbb99184f4a1130f77e1589f5704a21aca82f",
+        "operation": "batch_decompile",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass7/candidate-lifetime/decompile-phase6-focus.json",
+          "bytes": 89192,
+          "sha256": "6c8fbaeca8b101f54b2ed01c3c294bd8d498c8953addee79b6d09cb3799b1073"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_0fa01a39e8cfbd589a38d032836fbb99184f4a1130f77e1589f5704a21aca82f.json",
+          "bytes": 89192,
+          "sha256": "6c8fbaeca8b101f54b2ed01c3c294bd8d498c8953addee79b6d09cb3799b1073"
+        },
+        "subject": {
+          "name": "candidate-lifecycle-v5.elf",
+          "digest": {
+            "sha256": "967b088c15c964808aff207ff89a5926ded7a873b355226a99c46f7e5051901a"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass7/candidate-lifetime/candidate-lifecycle-v5.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_1782f8cb648969f4de831c3f4e0b1616245539599c3eea17ba36953e93ebed89",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-cook-create.json",
+          "bytes": 131763,
+          "sha256": "873ca9a81113503d7580146e9c69f076a2bcae042037298cb2690e4c46a43c40"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_1782f8cb648969f4de831c3f4e0b1616245539599c3eea17ba36953e93ebed89.json",
+          "bytes": 131763,
+          "sha256": "873ca9a81113503d7580146e9c69f076a2bcae042037298cb2690e4c46a43c40"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_23b637bff0f70fdb90f9c3d5e2a0254eabae316b2927e7b1f1009bef7145a63d",
+        "operation": "procedure_assembly",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261014/pass4/image28/evidence-provider.json",
+          "bytes": 243777,
+          "sha256": "8e7da285946946063cca8b15a74b620d4b582c40d98458a4c21466074012ed5e"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_23b637bff0f70fdb90f9c3d5e2a0254eabae316b2927e7b1f1009bef7145a63d.json",
+          "bytes": 243777,
+          "sha256": "8e7da285946946063cca8b15a74b620d4b582c40d98458a4c21466074012ed5e"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "4e68b67bea8708e0fc96bbadfe89be9e86887617208d85bb09fe5c2bf4939a3a"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261014/pass4/image28/image28-provider.elf",
+          "name": "image28-provider.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_2723f54bd96f746667a1f21344a7a508135d327324699a90a03670fca57ec61b",
+        "operation": "procedure_pseudo_code",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261014/pass4/image28/evidence-config-buffer.json",
+          "bytes": 331312,
+          "sha256": "30085857158bfb8322a5869b34b38c496c6a83f257e9078eb1a34b19647e409c"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_2723f54bd96f746667a1f21344a7a508135d327324699a90a03670fca57ec61b.json",
+          "bytes": 331312,
+          "sha256": "30085857158bfb8322a5869b34b38c496c6a83f257e9078eb1a34b19647e409c"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "bb96cb039051d8558c8767064878d58c2ed1ad2e7939505237949f6e3a4dbab7"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261014/pass4/image28/image28.elf",
+          "name": "image28.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_2fac4ea25a5f4f8b957cbca22d021e37133b3ed6c551089146ef2a209834faf4",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-fe-ctor.json",
+          "bytes": 379949,
+          "sha256": "653c1bf8e95c20a309e920765d067bde459d8083959906879e1ca9c2eae8227b"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_2fac4ea25a5f4f8b957cbca22d021e37133b3ed6c551089146ef2a209834faf4.json",
+          "bytes": 379949,
+          "sha256": "653c1bf8e95c20a309e920765d067bde459d8083959906879e1ca9c2eae8227b"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_371fc8cb4ca21b62bc7f76d213fd7f907e5ec760001a75a1a88e3a1c1b11ff20",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/frontend-semaphore-post/decomp-08031f3f8.json",
+          "bytes": 176199,
+          "sha256": "70d022722727c910fee9a5b9406758a8c842f568a1a2ba157cdc1f44e6ab98d7"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_371fc8cb4ca21b62bc7f76d213fd7f907e5ec760001a75a1a88e3a1c1b11ff20.json",
+          "bytes": 176199,
+          "sha256": "70d022722727c910fee9a5b9406758a8c842f568a1a2ba157cdc1f44e6ab98d7"
+        },
+        "subject": {
+          "name": "carrier.elf",
+          "digest": {
+            "sha256": "c979230d2c08fea1d701f9c19350b38e190a607b6ae859fd19f4140d4fff2170"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/frontend-semaphore-post/carrier.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_3a1bfff0657365c278ce63dbe46d43f9e15fb774587b70a89210a8f3d2c52f85",
+        "operation": "batch_decompile",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass7/candidate-lifetime/decompile-mid-post-and-callback-cleanup.json",
+          "bytes": 15055,
+          "sha256": "55699892df2a0222cc263be4c07ef497eb3dd3fcada00f14d24580a037451d9f"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_3a1bfff0657365c278ce63dbe46d43f9e15fb774587b70a89210a8f3d2c52f85.json",
+          "bytes": 15055,
+          "sha256": "55699892df2a0222cc263be4c07ef497eb3dd3fcada00f14d24580a037451d9f"
+        },
+        "subject": {
+          "name": "candidate-lifecycle-v7.elf",
+          "digest": {
+            "sha256": "531bd3c6c4dc0f046b515d80bb09d2c843f57505024136246f1bb9c530d17cff"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass7/candidate-lifetime/candidate-lifecycle-v7.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_3a7ba22f41750fc725010fdab3e89bbe3fa6247e86876b9c5c46ea0ecd1afb27",
+        "operation": "batch_decompile",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass8/backing-owner/decompile-pool-allocation-release-records.json",
+          "bytes": 48146,
+          "sha256": "26bcc01d4f872e1270a96f12d2e191d62e6d56d37a4dcea23771da73bfaf1166"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_3a7ba22f41750fc725010fdab3e89bbe3fa6247e86876b9c5c46ea0ecd1afb27.json",
+          "bytes": 48146,
+          "sha256": "26bcc01d4f872e1270a96f12d2e191d62e6d56d37a4dcea23771da73bfaf1166"
+        },
+        "subject": {
+          "name": "pool-provider.elf",
+          "digest": {
+            "sha256": "da325f9c926b0ae292556f7335158fa6fb6a0b4c56efa78265bcd58c047b65b5"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass8/backing-owner/pool-provider.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_3b509edd00a2f17600226d9eb3abcddb53cec3018b71dde7f1e881ebc9f3fd93",
+        "operation": "procedure_pseudo_code",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass8/active-geometry/evidence-bundle.json",
+          "bytes": 18363523,
+          "sha256": "5862df3eb761f90faa3c74abce13f1fe8a91db97d4273503d279870a1a758588"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_3b509edd00a2f17600226d9eb3abcddb53cec3018b71dde7f1e881ebc9f3fd93.json",
+          "bytes": 18363523,
+          "sha256": "5862df3eb761f90faa3c74abce13f1fe8a91db97d4273503d279870a1a758588"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "3458e4295afe254257f5a533686f451a854eb327b5234a3ad043e4dd952dd6f7"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass7/geometry-row-writers/fulltext-row-state.elf",
+          "name": "fulltext-row-state.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_413625e8cdd0fc2f244a95765d8df0fbf24972d5491ad71b3d3cc84b5c2438ba",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/still-book-indirect/analyze-exp-80281460.json",
+          "bytes": 817405,
+          "sha256": "32635e58ee385d32547b11d973e5a3351cad740a8dff4a368f290a5c39acffc1"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_413625e8cdd0fc2f244a95765d8df0fbf24972d5491ad71b3d3cc84b5c2438ba.json",
+          "bytes": 817405,
+          "sha256": "32635e58ee385d32547b11d973e5a3351cad740a8dff4a368f290a5c39acffc1"
+        },
+        "subject": {
+          "name": "still-book-indirect-expanded.elf",
+          "digest": {
+            "sha256": "c97e5737020f47a03290626f289cf913a1f11f4c3cb8a23fbc8c302f75f32386"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/still-book-indirect/still-book-indirect-expanded.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_4a0f63e3bedac7324d00f2030743d36cac67862db57373cf76a7731988a49dfe",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/cook-message-send/analyze-cook-send.json",
+          "bytes": 66053,
+          "sha256": "7adcfea035e7e0bf6768786845b1487b6b0ed9f1c3e88effb2ff80d9f064242f"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_4a0f63e3bedac7324d00f2030743d36cac67862db57373cf76a7731988a49dfe.json",
+          "bytes": 66053,
+          "sha256": "7adcfea035e7e0bf6768786845b1487b6b0ed9f1c3e88effb2ff80d9f064242f"
+        },
+        "subject": {
+          "name": "carrier.elf",
+          "digest": {
+            "sha256": "fe4bf0ae9dec68376ef88fd94ed225a21b5ee94e255eb5b5c0c966b9780c0721"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/cook-message-send/carrier.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_4dbd59afc0997df268e07692107d0ba264bd3805411af6032ca0bc945720463f",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/frontend-semaphore-post/decomp-08031e858.json",
+          "bytes": 112371,
+          "sha256": "0d520fa26cb3b2acca0b4b458e4703722a682ae1786969f9fd1c1413b743bcc1"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_4dbd59afc0997df268e07692107d0ba264bd3805411af6032ca0bc945720463f.json",
+          "bytes": 112371,
+          "sha256": "0d520fa26cb3b2acca0b4b458e4703722a682ae1786969f9fd1c1413b743bcc1"
+        },
+        "subject": {
+          "name": "carrier.elf",
+          "digest": {
+            "sha256": "c979230d2c08fea1d701f9c19350b38e190a607b6ae859fd19f4140d4fff2170"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/frontend-semaphore-post/carrier.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_4df8ad87deaee6467c507258cea7755879cfe7e6845113d878125211d23f478f",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-fe-getter.json",
+          "bytes": 44247,
+          "sha256": "39b266243f798d403882a5ad46bdf98ef332200b22cd09c54518f2a9baccead1"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_4df8ad87deaee6467c507258cea7755879cfe7e6845113d878125211d23f478f.json",
+          "bytes": 44247,
+          "sha256": "39b266243f798d403882a5ad46bdf98ef332200b22cd09c54518f2a9baccead1"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_518ce43419e7cada848babeec803bb66855ad52c0f0e650fc35cc58302ec0e42",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/frontend-semaphore-post/decomp-08031f274.json",
+          "bytes": 162449,
+          "sha256": "622e7beb16128686c8cad3e5e24b5d8c3fb19bf7060f808e1ba7e1491e7d7ce1"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_518ce43419e7cada848babeec803bb66855ad52c0f0e650fc35cc58302ec0e42.json",
+          "bytes": 162449,
+          "sha256": "622e7beb16128686c8cad3e5e24b5d8c3fb19bf7060f808e1ba7e1491e7d7ce1"
+        },
+        "subject": {
+          "name": "carrier.elf",
+          "digest": {
+            "sha256": "c979230d2c08fea1d701f9c19350b38e190a607b6ae859fd19f4140d4fff2170"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/frontend-semaphore-post/carrier.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_520d4c87a83011c7edad9f6bdc50743bf6724199ee1b6b99627dc1b6890987c6",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass6/syscall-registration/filedump-contract/pre-scheduler-snapshot.json",
+          "bytes": 4210820,
+          "sha256": "b99e5d9e566a5a4ffed0fdd27246aa39fbf15539a00ac73bd3b9cc8603674ec0"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_520d4c87a83011c7edad9f6bdc50743bf6724199ee1b6b99627dc1b6890987c6.json",
+          "bytes": 4210820,
+          "sha256": "b99e5d9e566a5a4ffed0fdd27246aa39fbf15539a00ac73bd3b9cc8603674ec0"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "e6a4e61259b3cedaecd5317d98d282a888ccf4c2bd8227911a247de814e452e8"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass6/syscall-registration/filedump-contract/filedump-contract.elf",
+          "name": "filedump-contract.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_5379a6540275f66b974b9be2d1ec6defcc57bb79b3a8f483263501dbc13c07f3",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-material-ctor.json",
+          "bytes": 133787,
+          "sha256": "c34d4e08788c2fbe8420a887f75573e9d2f14c17c3f4eed2eedcc9dc2bf1eefb"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_5379a6540275f66b974b9be2d1ec6defcc57bb79b3a8f483263501dbc13c07f3.json",
+          "bytes": 133787,
+          "sha256": "c34d4e08788c2fbe8420a887f75573e9d2f14c17c3f4eed2eedcc9dc2bf1eefb"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_5ccbeb4a0d1a5a1568e395e6009a60c354e2fdb78225a70dbd477b4ab8834c11",
+        "operation": "batch_decompile",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261014/pass5/ssif-buffer/phase4/evidence-phase4-expanded.json",
+          "bytes": 24654,
+          "sha256": "d425d7619b9a6756818d5022ecafcbc4f3ca292cd7a12437e568a451b9a38d4e"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_5ccbeb4a0d1a5a1568e395e6009a60c354e2fdb78225a70dbd477b4ab8834c11.json",
+          "bytes": 24654,
+          "sha256": "d425d7619b9a6756818d5022ecafcbc4f3ca292cd7a12437e568a451b9a38d4e"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "bddbb2035b82beb283acd97700f33f3cf9b63492126545bc4cebc064750c449f"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261014/pass5/ssif-buffer/phase4-expanded.elf",
+          "name": "phase4-expanded.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_5fd64d8ec28e2441284a3a953eef32d2a779c01d9675a5b949e0a53cc4ddce70",
+        "operation": "procedure_assembly",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261014/pass4/image28/evidence-provider.json",
+          "bytes": 243777,
+          "sha256": "8e7da285946946063cca8b15a74b620d4b582c40d98458a4c21466074012ed5e"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_5fd64d8ec28e2441284a3a953eef32d2a779c01d9675a5b949e0a53cc4ddce70.json",
+          "bytes": 243777,
+          "sha256": "8e7da285946946063cca8b15a74b620d4b582c40d98458a4c21466074012ed5e"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "4e68b67bea8708e0fc96bbadfe89be9e86887617208d85bb09fe5c2bf4939a3a"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261014/pass4/image28/image28-provider.elf",
+          "name": "image28-provider.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_6fa70d1078958c3e4686b898b7e91648c7fe4f635a04ef0847d6ec38f6a04f74",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/frontend-semaphore-post/decomp-08031e9dc.json",
+          "bytes": 264297,
+          "sha256": "73d4371192fbb59429b24a5212b822e0f61db09f0c82e209f3420841e343caca"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_6fa70d1078958c3e4686b898b7e91648c7fe4f635a04ef0847d6ec38f6a04f74.json",
+          "bytes": 264297,
+          "sha256": "73d4371192fbb59429b24a5212b822e0f61db09f0c82e209f3420841e343caca"
+        },
+        "subject": {
+          "name": "carrier.elf",
+          "digest": {
+            "sha256": "c979230d2c08fea1d701f9c19350b38e190a607b6ae859fd19f4140d4fff2170"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/frontend-semaphore-post/carrier.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_77fcf3c420d4b541c4d5b7f4bf0465693c0727e49dda17b2f9bbc33ba7482ef5",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-still-book-slot8.json",
+          "bytes": 520633,
+          "sha256": "b303e52101dd6f07e4972bc04a7cc337a66f512a2bc71935b9366ac7c779791d"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_77fcf3c420d4b541c4d5b7f4bf0465693c0727e49dda17b2f9bbc33ba7482ef5.json",
+          "bytes": 520633,
+          "sha256": "b303e52101dd6f07e4972bc04a7cc337a66f512a2bc71935b9366ac7c779791d"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_87961a13b925d476895fe41ad1b7e22cb22a28c72942916206d3b661a186707f",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/frontend-semaphore-post/decomp-0803118c0.json",
+          "bytes": 130549,
+          "sha256": "e5cb14dddf178057d667906cf5aaccc9eeb8b26c39238bf929c5331aba401bfe"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_87961a13b925d476895fe41ad1b7e22cb22a28c72942916206d3b661a186707f.json",
+          "bytes": 130549,
+          "sha256": "e5cb14dddf178057d667906cf5aaccc9eeb8b26c39238bf929c5331aba401bfe"
+        },
+        "subject": {
+          "name": "carrier.elf",
+          "digest": {
+            "sha256": "c979230d2c08fea1d701f9c19350b38e190a607b6ae859fd19f4140d4fff2170"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/frontend-semaphore-post/carrier.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_9d299c97f9d463676196f8460cd98954695b73ff7d4063a759465c9306f7b78f",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-sem-create.json",
+          "bytes": 149861,
+          "sha256": "a17d1376148a3026295d0c38f15ad5f7712ad0490c4c2b08d8bea4ba81a995cc"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_9d299c97f9d463676196f8460cd98954695b73ff7d4063a759465c9306f7b78f.json",
+          "bytes": 149861,
+          "sha256": "a17d1376148a3026295d0c38f15ad5f7712ad0490c4c2b08d8bea4ba81a995cc"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_9d38393f3b7c53115f561881b2a07981dfc7fc384e6447b5e217f404c4e5d960",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/still-book-indirect/analyze-exp-80280920.json",
+          "bytes": 2519271,
+          "sha256": "a9a4e5a5c4a5cd240975ab407e1eb150a6bde6a9973548d8791a546d4dfcd62f"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_9d38393f3b7c53115f561881b2a07981dfc7fc384e6447b5e217f404c4e5d960.json",
+          "bytes": 2519271,
+          "sha256": "a9a4e5a5c4a5cd240975ab407e1eb150a6bde6a9973548d8791a546d4dfcd62f"
+        },
+        "subject": {
+          "name": "still-book-indirect-expanded.elf",
+          "digest": {
+            "sha256": "c97e5737020f47a03290626f289cf913a1f11f4c3cb8a23fbc8c302f75f32386"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/still-book-indirect/still-book-indirect-expanded.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_ad353411ce44744a4e34166794683e21214e6657e8aa0127e669cc159c5db796",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/recipe-id-writers/analyze-0x80254558.json",
+          "bytes": 82403,
+          "sha256": "8487463e49b5a55ac9e1368c0c584ee5f6b0dde259bf89dcad5170c2782168b0"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_ad353411ce44744a4e34166794683e21214e6657e8aa0127e669cc159c5db796.json",
+          "bytes": 82403,
+          "sha256": "8487463e49b5a55ac9e1368c0c584ee5f6b0dde259bf89dcad5170c2782168b0"
+        },
+        "subject": {
+          "name": "recipe-id-writers.elf",
+          "digest": {
+            "sha256": "db7e564f85b3d05ace7292a19bdda5d3933581e7d0bdec4bdb93cbb444b4207e"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/recipe-id-writers/recipe-id-writers.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_bc43f686427e00d00edf075f0dc799a550835614c19cea4de3fa805db078b436",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-manager-plus4.json",
+          "bytes": 50615,
+          "sha256": "97d076872ae8b67b22ccb6b2ba65b6f38f06a289bcff954de245cfdbfce1e4aa"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_bc43f686427e00d00edf075f0dc799a550835614c19cea4de3fa805db078b436.json",
+          "bytes": 50615,
+          "sha256": "97d076872ae8b67b22ccb6b2ba65b6f38f06a289bcff954de245cfdbfce1e4aa"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_bcbd5659eb24fa8187466f28d30896a30d628447ca1ad4a563481932e87f7f78",
+        "operation": "procedure_pseudo_code",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261014/pass4/image28/evidence-open-carrier.json",
+          "bytes": 40309,
+          "sha256": "e07f5b6f52d03482c064b4728a813b3bec2f15ee46cb0429e350f9b46911d4ec"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_bcbd5659eb24fa8187466f28d30896a30d628447ca1ad4a563481932e87f7f78.json",
+          "bytes": 40309,
+          "sha256": "e07f5b6f52d03482c064b4728a813b3bec2f15ee46cb0429e350f9b46911d4ec"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "b92b98a3082b71ee045c225bac4938c830ae5f00df90fb21201adeec7f9b9d38"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261014/pass3/material-factory/material-factory.elf",
+          "name": "material-factory.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_c1451fa6cff3550948c0dbfe3178919f014041b92362af216e71e802bfb7e17a",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass8/material-image-alias/decomp_buffer_get_address.json",
+          "bytes": 392561,
+          "sha256": "d2f9619f732d0895ba49ba7858cb6815486f7fbc073b5bbb65903d40023fef61"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_c1451fa6cff3550948c0dbfe3178919f014041b92362af216e71e802bfb7e17a.json",
+          "bytes": 392561,
+          "sha256": "d2f9619f732d0895ba49ba7858cb6815486f7fbc073b5bbb65903d40023fef61"
+        },
+        "subject": {
+          "name": "material-image-alias-v6.elf",
+          "digest": {
+            "sha256": "d6311c2b31aebc351331a407c54597ce0d60b90a610ee48457fc14d54beeaddd"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass8/material-image-alias/material-image-alias-v6.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_c3a207a379b987bdd5daf6f8828f30dc49dfac3d1934577cfb250f8266ce2051",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/recipe-id-writers/analyze-0x80252410.json",
+          "bytes": 121549,
+          "sha256": "1d23871d76345fe3a309f312f2bd53ce5e16dc87b8d4ff58ab6a651ec8c15377"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_c3a207a379b987bdd5daf6f8828f30dc49dfac3d1934577cfb250f8266ce2051.json",
+          "bytes": 121549,
+          "sha256": "1d23871d76345fe3a309f312f2bd53ce5e16dc87b8d4ff58ab6a651ec8c15377"
+        },
+        "subject": {
+          "name": "recipe-id-writers.elf",
+          "digest": {
+            "sha256": "db7e564f85b3d05ace7292a19bdda5d3933581e7d0bdec4bdb93cbb444b4207e"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/recipe-id-writers/recipe-id-writers.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_c3af02a8fd88e2152509cc3926d1024eccbe6c042fc5f974ca76fa1e5889489c",
+        "operation": "procedure_pseudo_code",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261014/pass4/image28/evidence-config-buffer.json",
+          "bytes": 331312,
+          "sha256": "30085857158bfb8322a5869b34b38c496c6a83f257e9078eb1a34b19647e409c"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_c3af02a8fd88e2152509cc3926d1024eccbe6c042fc5f974ca76fa1e5889489c.json",
+          "bytes": 331312,
+          "sha256": "30085857158bfb8322a5869b34b38c496c6a83f257e9078eb1a34b19647e409c"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "bb96cb039051d8558c8767064878d58c2ed1ad2e7939505237949f6e3a4dbab7"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261014/pass4/image28/image28.elf",
+          "name": "image28.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_c4cb78375b7e3487178805c7c490ea604d1fff21e64eeaf87c369f627a16c2a9",
+        "operation": "procedure_pseudo_code",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261014/pass4/image28/evidence-config-buffer.json",
+          "bytes": 331312,
+          "sha256": "30085857158bfb8322a5869b34b38c496c6a83f257e9078eb1a34b19647e409c"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_c4cb78375b7e3487178805c7c490ea604d1fff21e64eeaf87c369f627a16c2a9.json",
+          "bytes": 331312,
+          "sha256": "30085857158bfb8322a5869b34b38c496c6a83f257e9078eb1a34b19647e409c"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "bb96cb039051d8558c8767064878d58c2ed1ad2e7939505237949f6e3a4dbab7"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261014/pass4/image28/image28.elf",
+          "name": "image28.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_caee950de9434961fd192d23e8eb6ff74b4d63eede7782451bd5f84ba97f4d28",
+        "operation": "procedure_pseudo_code",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261014/pass4/image28/evidence-config-buffer.json",
+          "bytes": 331312,
+          "sha256": "30085857158bfb8322a5869b34b38c496c6a83f257e9078eb1a34b19647e409c"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_caee950de9434961fd192d23e8eb6ff74b4d63eede7782451bd5f84ba97f4d28.json",
+          "bytes": 331312,
+          "sha256": "30085857158bfb8322a5869b34b38c496c6a83f257e9078eb1a34b19647e409c"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "bb96cb039051d8558c8767064878d58c2ed1ad2e7939505237949f6e3a4dbab7"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261014/pass4/image28/image28.elf",
+          "name": "image28.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_d03942d6635229940f10de3025c5c48185376f354905ff07845ff935a5e4782c",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-size-setter.json",
+          "bytes": 32319,
+          "sha256": "9ab3c8716aa1964e3eb4e47ca0d6249f5a18a13e1c3052a696b85b2788aedeb4"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_d03942d6635229940f10de3025c5c48185376f354905ff07845ff935a5e4782c.json",
+          "bytes": 32319,
+          "sha256": "9ab3c8716aa1964e3eb4e47ca0d6249f5a18a13e1c3052a696b85b2788aedeb4"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_d30be48323027531cab8a0f238674e7442336ab256fd0e287694745ab3ee08db",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-branch-builder.json",
+          "bytes": 411691,
+          "sha256": "684bf654e14476aedea68a4ecebfc174169e5e354d1f51be3863a1252404965c"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_d30be48323027531cab8a0f238674e7442336ab256fd0e287694745ab3ee08db.json",
+          "bytes": 411691,
+          "sha256": "684bf654e14476aedea68a4ecebfc174169e5e354d1f51be3863a1252404965c"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_de221dc24730480ec96e0faa45dc44a501a84d342510daa021647491ad0021b8",
+        "operation": "procedure_pseudo_code",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass8/active-geometry/evidence-bundle.json",
+          "bytes": 18363523,
+          "sha256": "5862df3eb761f90faa3c74abce13f1fe8a91db97d4273503d279870a1a758588"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_de221dc24730480ec96e0faa45dc44a501a84d342510daa021647491ad0021b8.json",
+          "bytes": 18363523,
+          "sha256": "5862df3eb761f90faa3c74abce13f1fe8a91db97d4273503d279870a1a758588"
+        },
+        "subject": {
+          "architecture": "arm",
+          "digest": {
+            "sha256": "3458e4295afe254257f5a533686f451a854eb327b5234a3ad043e4dd952dd6f7"
+          },
+          "format": "elf",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass7/geometry-row-writers/fulltext-row-state.elf",
+          "name": "fulltext-row-state.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_e1bae5bec10edda52fa6bb38616dad35dcef50bd1e28ffffb02925b96ccf4544",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-completion-slot18.json",
+          "bytes": 283761,
+          "sha256": "c202fff66233491fe76800c08d1176abf2075421dd100c02f15fb29146172cdd"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_e1bae5bec10edda52fa6bb38616dad35dcef50bd1e28ffffb02925b96ccf4544.json",
+          "bytes": 283761,
+          "sha256": "c202fff66233491fe76800c08d1176abf2075421dd100c02f15fb29146172cdd"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_e31a3977b6c855346905c535b97a197d79a8b0caa5dcef548a4892a0715fc8f3",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/still-book-indirect/analyze-fact-802b3b90.json",
+          "bytes": 557129,
+          "sha256": "03c030a35eb5a292b819d94d10d6b0419b680d259975149ccf2570f44c497e40"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_e31a3977b6c855346905c535b97a197d79a8b0caa5dcef548a4892a0715fc8f3.json",
+          "bytes": 557129,
+          "sha256": "03c030a35eb5a292b819d94d10d6b0419b680d259975149ccf2570f44c497e40"
+        },
+        "subject": {
+          "name": "still-book-indirect-factories.elf",
+          "digest": {
+            "sha256": "a78488036cd153cf4cdab559bc9f7f7975eb74e116f6430f2de71968bac1dabe"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/still-book-indirect/still-book-indirect-factories.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_e504e814b9e92001febefe90121b202b4b067144150c78dc4d4ccd4a0639816f",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/cook-message-send/analyze-recv.json",
+          "bytes": 106541,
+          "sha256": "1ddfe3443c1771f3a20308ec5f627d8b14ad2679848f0b63e8a30bb0ceaf05a4"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_e504e814b9e92001febefe90121b202b4b067144150c78dc4d4ccd4a0639816f.json",
+          "bytes": 106541,
+          "sha256": "1ddfe3443c1771f3a20308ec5f627d8b14ad2679848f0b63e8a30bb0ceaf05a4"
+        },
+        "subject": {
+          "name": "carrier.elf",
+          "digest": {
+            "sha256": "fe4bf0ae9dec68376ef88fd94ed225a21b5ee94e255eb5b5c0c966b9780c0721"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/cook-message-send/carrier.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_eb1b238fa4f8a76a666f4e69842cffcd67cd442bc917644641fd187fa49c0c1a",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-branch-slot8.json",
+          "bytes": 88427,
+          "sha256": "64ea09d903bce3e41f0a93a1d19655fa85657d003f6fec89f9d6834abecc5391"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_eb1b238fa4f8a76a666f4e69842cffcd67cd442bc917644641fd187fa49c0c1a.json",
+          "bytes": 88427,
+          "sha256": "64ea09d903bce3e41f0a93a1d19655fa85657d003f6fec89f9d6834abecc5391"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_ee963d8d87e4f5c507e0e4f63e9a7540175b3667187e3264063898c9dd658727",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-fe-power.json",
+          "bytes": 288547,
+          "sha256": "9812a377907e8ab919d987d77aca4fa8bc2046f6e9b714aec7be967f0c673db8"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_ee963d8d87e4f5c507e0e4f63e9a7540175b3667187e3264063898c9dd658727.json",
+          "bytes": 288547,
+          "sha256": "9812a377907e8ab919d987d77aca4fa8bc2046f6e9b714aec7be967f0c673db8"
+        },
+        "subject": {
+          "name": "completion-and-branch.elf",
+          "digest": {
+            "sha256": "99ff1af5cc51dd029b063f589e54c159d47c35c88d4548243e45146a25adb80f"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass11/completion-and-branch/completion-and-branch.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_f10e1652c588ba7c31595210b59215718a1df1add771f31849c9a6e539b08a94",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/recipe-id-writers/analyze-0x80252fb0.json",
+          "bytes": 1137853,
+          "sha256": "cf9c82e69e2fdd655ce576942e5a6a0e502cfdaac5bb050a5d44ec06fa03c77e"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_f10e1652c588ba7c31595210b59215718a1df1add771f31849c9a6e539b08a94.json",
+          "bytes": 1137853,
+          "sha256": "cf9c82e69e2fdd655ce576942e5a6a0e502cfdaac5bb050a5d44ec06fa03c77e"
+        },
+        "subject": {
+          "name": "recipe-id-writers.elf",
+          "digest": {
+            "sha256": "db7e564f85b3d05ace7292a19bdda5d3933581e7d0bdec4bdb93cbb444b4207e"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/recipe-id-writers/recipe-id-writers.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_f236c68455cbad92afe92f1c6691dcc19e9ce24004aa1430e17e253eb491eb30",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/recipe-id-writers/analyze-0x8025227c.json",
+          "bytes": 129969,
+          "sha256": "f72b65583662cceb7fb981eb78a8e4ef24a20c84f285830a379626e47ab10a3d"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_f236c68455cbad92afe92f1c6691dcc19e9ce24004aa1430e17e253eb491eb30.json",
+          "bytes": 129969,
+          "sha256": "f72b65583662cceb7fb981eb78a8e4ef24a20c84f285830a379626e47ab10a3d"
+        },
+        "subject": {
+          "name": "recipe-id-writers.elf",
+          "digest": {
+            "sha256": "db7e564f85b3d05ace7292a19bdda5d3933581e7d0bdec4bdb93cbb444b4207e"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/recipe-id-writers/recipe-id-writers.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_f332ac30a581abcc2f6ffcb104c14b2b9ed763d4114354a64ccd6109271343c0",
+        "operation": "read_function_instructions",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass7/candidate-lifetime/insns-mid15000-producer.json",
+          "bytes": 40290,
+          "sha256": "6e1915f276e9ae3291d7580b3db185f0482adf0d5e1d84f28c3f6d2c7d1931db"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_f332ac30a581abcc2f6ffcb104c14b2b9ed763d4114354a64ccd6109271343c0.json",
+          "bytes": 40290,
+          "sha256": "6e1915f276e9ae3291d7580b3db185f0482adf0d5e1d84f28c3f6d2c7d1931db"
+        },
+        "subject": {
+          "name": "candidate-lifecycle-v5.elf",
+          "digest": {
+            "sha256": "967b088c15c964808aff207ff89a5926ded7a873b355226a99c46f7e5051901a"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass7/candidate-lifetime/candidate-lifecycle-v5.elf"
+        }
+      },
+      {
+        "evidence_id": "ev_f81cb84f0028be47b57777f104e8a34c30621a1f1b56a1b685b00d079238163e",
+        "operation": "analyze_function",
+        "record": {
+          "path": "output/decompile/rea/continuation-20261015/pass12/still-book-indirect/analyze-80572700.json",
+          "bytes": 25159,
+          "sha256": "2b94cb0d05b42aabff228d082b94f19331561380bc5a806d21688f0337e0e395"
+        },
+        "retainedCopy": {
+          "path": "output/decompile/rea/multi-provider-run/retained-citations/ev_f81cb84f0028be47b57777f104e8a34c30621a1f1b56a1b685b00d079238163e.json",
+          "bytes": 25159,
+          "sha256": "2b94cb0d05b42aabff228d082b94f19331561380bc5a806d21688f0337e0e395"
+        },
+        "subject": {
+          "name": "still-book-indirect.elf",
+          "digest": {
+            "sha256": "71229e7ff07872c1b0d869aada9b9a2b1d87b4b9c471f085b56415a3062a76f9"
+          },
+          "format": "elf",
+          "architecture": "arm",
+          "local_path": "<repo>/output/decompile/rea/continuation-20261015/pass12/still-book-indirect/still-book-indirect.elf"
+        }
+      }
+    ]
+  },
+  "parentReconciliationEvidence": {
+    "sourceWindows": {
+      "path": "<repo>/output/decompile/rea/multi-provider-run/parent-source-checks/source-byte-windows.json",
+      "bytes": 1661,
+      "sha256": "4591654f8f054d537f3aa8e2803814b5f3151cc01d8530d3d7d9ba314670ae23"
+    },
+    "validation": {
+      "path": "<repo>/output/decompile/rea/multi-provider-run/parent-source-validation.json",
+      "bytes": 3335,
+      "sha256": "fbc27e4668a08db3a27e019796a7b67686b9ce83466416b7708b30ca27112840"
+    },
+    "instructionAudit": {
+      "path": "<repo>/output/decompile/rea/multi-provider-run/parent-instruction-audit.json",
+      "bytes": 242,
+      "sha256": "cb41c2398048a5c998ea1da57b7544e35510bfa0be54804fd5b13c6ec34277e6"
+    }
+  }
+}

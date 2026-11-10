@@ -1,0 +1,585 @@
+{
+  "schema": "gear360-reviewed-static-evidence-v1",
+  "report": {
+    "path": "reverse-engineering/RAW_RECIPE_SELECTION_AND_COMMAND_GATES.md",
+    "sha256": "b76a01572558473b99921dc012bd09ba0839fb694e4db29bb353f2208278eb16"
+  },
+  "archive": {
+    "path": "reverse-engineering/evidence/pass0345-final-native.tar.gz",
+    "bytes": 1544583,
+    "sha256": "4675d6a8c81d6315b50a702a3f0ba2ec16b00d5f4d5052aa30b4069b8174f8a3"
+  },
+  "files": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass11/completion-and-branch/analyze-still-book-slot8.json",
+      "bytes": 520633,
+      "sha256": "b303e52101dd6f07e4972bc04a7cc337a66f512a2bc71935b9366ac7c779791d"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass7/geometry-row-writers/fulltext-row-state.manifest.json",
+      "bytes": 3092,
+      "sha256": "9fd8c93064ac970698b33bc40cb99ddb3b85b498207b6e3d95f61a125becbc41"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/b6-validation.json",
+      "bytes": 18884,
+      "sha256": "2827358e66fda4f41804e655d315f40ec09f2f0035dac5a78e55669c8d3bf57f"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/caller-80102684.snapshot.json",
+      "bytes": 170632,
+      "sha256": "2c86c5a6cf2c1b0dc0c7916be475b52c7c209ff28b960978cf244492926b77a0"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/caller-80102804.snapshot.json",
+      "bytes": 142772,
+      "sha256": "c6b2d26486d1fd7d85bc1c3f755ec870aa3edb06e7b270646732b2d8e34f2aab"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/function-80102684.json",
+      "bytes": 85127,
+      "sha256": "3e66845a70c98d22c8727e0d2447fcd2ff2e5c6ec120149f7bbc2b6a298bbc9a"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/function-80102804.json",
+      "bytes": 71197,
+      "sha256": "9587d64a7346a04076490130e2650c8de62fa0284c795179072c845b046edbf4"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/phase2/function-8020d23c.json",
+      "bytes": 712389,
+      "sha256": "af5c61d65fd0777d3019919cc4e0bff6acd34975453c7ca905af06da4abf5e24"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/phase2/getter-8020d23c.snapshot.json",
+      "bytes": 1425156,
+      "sha256": "80262db50588121af6db61d236302dc654efe203ce0ca54b4c6d4f2fed04455a"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/phase2/raw-pointer-census.json",
+      "bytes": 1657,
+      "sha256": "04ca2aec9448ab40e6bf28c906ccc05696812ada21edb38bcef0faf5db87c2fa"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/phase2/report.md",
+      "bytes": 4933,
+      "sha256": "35a771c9e7214c3b59c276d1a778a6736cddc81225fb7305c29c7c6cc24c107b"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/phase2/source-byte-windows.json",
+      "bytes": 2806,
+      "sha256": "0258f62682ad1fdf3dbed1a4ac3eae3ed4e082232754e32b7018fc0aad628455"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/phase3/function-80102350.json",
+      "bytes": 292,
+      "sha256": "0bd68713838b2536f67ff683b284d35008b5fcdcc05cfac608dee9c0b1a5e847"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/phase3/parent-original-window-schema.json",
+      "bytes": 1632,
+      "sha256": "2bfd2988f3fa9e999d3accbe041e5e9c5d43dd5e2492d4b2fae213111394851f"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/phase3/report.md",
+      "bytes": 4204,
+      "sha256": "623b2c82cfbc91aa40029c15348130c8c33aa5204e79df88406a6d0e90526728"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/phase3/source-byte-windows.json",
+      "bytes": 1693,
+      "sha256": "56ef083b7326ff504df9b43ca54c107c4db6ec59e5b02005a76fd4b1b3e858aa"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/report.md",
+      "bytes": 5113,
+      "sha256": "469f88a6be613d760e5666ed4d44b6ebee59d14b673f7f9deb0a7d6cb3085c9d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/bulk-release-invocation/source-byte-windows.json",
+      "bytes": 2161,
+      "sha256": "707fd13eb737636e4740b355dc9ce4b5965fa78735b706c5b2e903f9de430d3f"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/callback-supplier-validation.json",
+      "bytes": 14858,
+      "sha256": "f2e827a6460cfb747d2209d313d7308541acd2c2c069a4467eef94d04e436c34"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/cleanup-validation.json",
+      "bytes": 7078,
+      "sha256": "f13f4eaa9a726475ec050e7d14f5aecc6966eb5bdb06bac99e1e41dab1de02fa"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-phase2-validation.json",
+      "bytes": 6437,
+      "sha256": "3e7d92bee9196cb3a4177beae624b6ca825b77c4a227d3553f1fdd7e29ef7186"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-validation.json",
+      "bytes": 11055,
+      "sha256": "6a78ed38b7e97d3bd4747ed2ed6e96e5d33aa7ccfa8a6c3161338bf864698a1d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/RUN_CHECKPOINT.json",
+      "bytes": 1554,
+      "sha256": "036ab3120fb76d93847383131e6ef1e4a3abc1ec1ba912d26c951bd40b292159"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/core-input-writers.evidence.json",
+      "bytes": 1170451,
+      "sha256": "94d524d198e6980c26d3d0a65271e363af5f8a6b19fd152704925df3f64dc3bc"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/core-input-writers.snapshot.json",
+      "bytes": 2288607,
+      "sha256": "67d70f2b204da71b19ac7a5cfbef63850ea11e457310707e23cadb48751fe58b"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/phase2/RUN_CHECKPOINT.json",
+      "bytes": 807,
+      "sha256": "a7a4f4287b929516a1db15ce078067ae5ed81bc88f092e0763ee9152d9b53854"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/phase2/core-input-phase2.evidence.json",
+      "bytes": 679623,
+      "sha256": "ba3ba295be2171df7f4abc47f9876f2ab1ffa9abfbe1d762ade3ce13dfaa3476"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/phase2/core-input-phase2.snapshot.json",
+      "bytes": 1131864,
+      "sha256": "d65d9576a0131a5395e011d7edfdc309e21403d6c957c850cfd39a3fa95c230d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/phase2/parent-original-window-schema.json",
+      "bytes": 3404,
+      "sha256": "3edeedb0a395fb078df39dd105ede81d88b207388734c21d75c76d9d8f30fe92"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/phase2/report.md",
+      "bytes": 4315,
+      "sha256": "664d4e0c5130238446ff1ba28a73b883d5ede9712c7553fe2663ee34c91636ec"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/phase2/source-byte-windows.json",
+      "bytes": 3860,
+      "sha256": "4768d59a275bfd3827807c25487c003511d96554a994c25d4d08087ad1f77209"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/report.md",
+      "bytes": 4510,
+      "sha256": "5fabdc83ab5c126e9dd2a76ffee46ea70cdc930fd50852010cbd949ff07c7b8d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/core-input-writers/source-byte-windows.json",
+      "bytes": 6998,
+      "sha256": "ac4eb0c42a984f524b6d618992ec747ef09eb679eb2c83735855a5db2c467cc8"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/cursor-callback-corrected-result.md",
+      "bytes": 2482,
+      "sha256": "b62a8ccfd5008963ef7131bc97cb1d36a6bd655c6e4b2cfc95986fa2ddc8f056"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/cursor-callback-correction-prompt.txt",
+      "bytes": 960,
+      "sha256": "47fb49d870923ceda93f7fb0de671ab1c077ddbb60f8f4ac0532bae6ecde49e0"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/cursor-callback-correction.jsonl",
+      "bytes": 13129,
+      "sha256": "5c485a1bc8f446f6a193943ae0cfa116525e24e112b660d4f7fbd21a36965aa1"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/cursor-callback-prompt.txt",
+      "bytes": 1183,
+      "sha256": "76112382bb7801fd4eb43adf3940e41c2ad672a71d41088915dde228443feafe"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/cursor-callback-result.md",
+      "bytes": 7801,
+      "sha256": "e00112b33e0b830b91c19ffe5dbfed800ff7b41c5f2786bd3cf602b710bf936a"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/cursor-callback.jsonl",
+      "bytes": 141855,
+      "sha256": "b1e27f9efbd9434e9540e551117d3573a18529395d3f8aa96c6e2016938ec1a8"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/cursor-shell-route-review-prompt.txt",
+      "bytes": 792,
+      "sha256": "fcb1af09bc2ba24481c2ca689562e20e9f37cfedc3a62065465b7ac2611403ff"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/cursor-shell-route-review-result.md",
+      "bytes": 6301,
+      "sha256": "fefef21aed11edfcdc168611b5552ab584dec3e5b30c0ef8a00e7d21ac4ec17a"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/cursor-shell-route-review.jsonl",
+      "bytes": 773356,
+      "sha256": "6f5d61e57d1c78c43ba3f55f42d3b966e306aa4afc2d04c15c41bc6a6bde4d91"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-callback-validation.json",
+      "bytes": 6845,
+      "sha256": "6005d9826878b4e05c36841d8bee1c5b33f8a0ed8ccb676ff2c79a43a7a2bb03"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/80272cec_body0.bin",
+      "bytes": 288,
+      "sha256": "8221fcf98bca9babeba55243892c2d154c3664e6e9052bb44f1021245b1cdb71"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/802735d8_body0.bin",
+      "bytes": 536,
+      "sha256": "d720ca18fc3089a8312209fbd007b05e113c0d9c1dd0d0783f3bbe9e911b4b64"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/802735d8_body1.bin",
+      "bytes": 12,
+      "sha256": "d2755683e020c7dc7056c056209f390649aa994422d2d2f3d434368730a545bb"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/80274304_body0.bin",
+      "bytes": 60,
+      "sha256": "592bda88344092520b6404fd1ed53b8f66f16d0a4bc8d64a0e5c7ce979c6a74b"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/80274304_body1.bin",
+      "bytes": 12,
+      "sha256": "d6606b17983545c35977730b2c4a01688a48558c860b7422e6fe375238ce0e74"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/base_ctor_80325cd4.bin",
+      "bytes": 72,
+      "sha256": "21a7c730e256f645668aa711bd2c928d1f02a8e55d6a1475e6125d0dc574d79e"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/drive_vtable_8067cc78.bin",
+      "bytes": 208,
+      "sha256": "24e3c7be3721327c5f2e5b578af6975cb799434b52116f2202c4133d05fbf5fd"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/ev_3b11ede56cb52f95478995ba2959e128e34a6393e7425c26caf6e2eecb149acc.json",
+      "bytes": 202102,
+      "sha256": "e2a2deac8c0c6456526c1a7ec1f5887708661e7a01d1b87eae223b4782709d30"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/ev_5ed9caddec4b0eb2c7ffa0aa3537299a79127cd0deea077b8bdd7e07ae26c595.json",
+      "bytes": 446756,
+      "sha256": "89313ff195ca346982eee9f54f1d8c6d80405a45dee124c13d941738b712a887"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/ev_6a8096a2d17ccb13bd3ff427a8ce3d39ad457740474e4dc7aeae6a685b668dbb.json",
+      "bytes": 51206,
+      "sha256": "64cb376cab51af0b0523491b556cbd6e025c3ba20d7cb3c776efb27d747bb28b"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/evidence-bundle.json",
+      "bytes": 797646,
+      "sha256": "3141bcffbf18cbdcad3c3e30a80e8db1fae4dba900904aeba55d818890b79a2f"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/parent-original-provenance.json",
+      "bytes": 6465,
+      "sha256": "cd4474da717dd79e36f1393bde2f34a168285c16a2ced775c5e014be84682f68"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/provenance.json",
+      "bytes": 6627,
+      "sha256": "640eca5866ff66c617e6881414cb9deb1c05bd2af7f45c0a182423d74577d680"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/rea-80272cec.snapshot.json",
+      "bytes": 222636,
+      "sha256": "bebb6a2f7c18cdfc39d7616e3fd22e479d067c6e0f3125b942913ac3497833ff"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/rea-802735d8.snapshot.json",
+      "bytes": 474632,
+      "sha256": "d0969d42f07ffc658a71ca8f342489a8be53c62431d2b2fa9140e9d0ffd6f7db"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/rea-80274304.snapshot.json",
+      "bytes": 61584,
+      "sha256": "b26027c258cd5a190075523ea06d14060509baede6305a81064174337a189c79"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/report.md",
+      "bytes": 2986,
+      "sha256": "e60d00a636c80958b8925c80521fbcf6dedf73d914139fbf35fbbd96efe83000"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/source-byte-windows.json",
+      "bytes": 3733,
+      "sha256": "366fa405bc435724683e10bdab857437795f3cc83faefed0e6059dc4e9037446"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/drive-order-callback/source-window-disassembly.txt",
+      "bytes": 12225,
+      "sha256": "0c3e83e495dfdd357ed9dbf0abe27db7ebce3cc280787b87f41c5f9d2515f97d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcb-c-api-bridge/manifest.json",
+      "bytes": 911,
+      "sha256": "d116fa3cd42a6163bd78840b25f426fa9e76c35dea927e52e56b4cafae94eed3"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcb-c-api-bridge/mcb-send.json",
+      "bytes": 28196,
+      "sha256": "e672de0a0cb18a49b760a4fe661dab03354ad9d823378b47e27aeb1f742bda2b"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcb-c-api-bridge/mcb-send.snapshot.json",
+      "bytes": 56770,
+      "sha256": "c9482689f0ee58d6bfb4918711c8886e0174304eecc9fad81a8ee55e4403fd38"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcb-c-api-bridge/report.md",
+      "bytes": 1835,
+      "sha256": "846b4690fb74b6f7c20ecc99e8b70a14f16049d058b5ff8ccc5dd025d02429d8"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcb-c-api-bridge/source-windows.json",
+      "bytes": 3971,
+      "sha256": "1e41c39451712f374a72a72fc16b545eb8c6709d0df08f93f103c9e5c13da015"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-export-correction-prompt.txt",
+      "bytes": 882,
+      "sha256": "7f4a42cdc4068f4e12e459d4f5f0de5d8a483db36775aa28f4d497663b2a38f6"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-export-correction-result.md",
+      "bytes": 3267,
+      "sha256": "6c65e880bf27a85b6761cf064ad1dd2bae1d3f62a597fa5821e0a135314ccb40"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-export-correction.jsonl",
+      "bytes": 163224,
+      "sha256": "a05c43818dbbb8099fa8119099339b0907e32f92e2e3ae79204ce5cc277aa485"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-export-prompt.txt",
+      "bytes": 1062,
+      "sha256": "c0a0592ba6af29bec57c5ec2f99f860b2864cc28688d7039b5be8c1c4792eddc"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-export-result.md",
+      "bytes": 5877,
+      "sha256": "bdc57f1dbc66dd6b3f702c8eb2973b4069b7358ba8320fb02f52d705be02fd6d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-export.jsonl",
+      "bytes": 395741,
+      "sha256": "22350b9bbd63159ab01486d4f7a67728bb1c799012b94d232c8705aa4deefb98"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-mcb-import-prompt.txt",
+      "bytes": 971,
+      "sha256": "a5b49d4e763caf2546578a2b1f326f08aaa6a69b301a28b728811a7bf248a7fe"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-mcb-import-result.md",
+      "bytes": 3929,
+      "sha256": "0757522f5877e8e1db4e58ef8e76151d151f964086b40b18ef8e85bdd491a2b0"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-mcb-import.jsonl",
+      "bytes": 381961,
+      "sha256": "96265fc447b05c9aa0ae265be56b14f3e06e1cbe7a29798caf212a13a029039c"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-raw-setting-prompt.txt",
+      "bytes": 1012,
+      "sha256": "90ddda6834a2f8c07ed304dfd7f23ece6ceafa39fc5720368a9cec3bacdc42b9"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-raw-setting-result.md",
+      "bytes": 4875,
+      "sha256": "eeea83b8a9c09f73b07e3335a7a36ab8f2bdbe515a10580593cdef9d57037219"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-raw-setting.jsonl",
+      "bytes": 419262,
+      "sha256": "740f0493a1d0e35e8fed23244df7a185cd769f90d24ee62292da06a9e26ad7d2"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-token-join-prompt.txt",
+      "bytes": 1468,
+      "sha256": "a89eb60655893944bc91360ceef9f3ae22167e1f7be981644c25d7f1d9b620c9"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-token-join-result.md",
+      "bytes": 4208,
+      "sha256": "2017610e67f18498e9059053778df780c6dec2cdfd1b93555418901214daf4c0"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/mcode-token-join.jsonl",
+      "bytes": 643565,
+      "sha256": "a79391c07d25499240b616001fb98c39614a15c642693dc1f96e97d5319aa0c7"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-adjust-ycc-diagnostic.bin",
+      "bytes": 32,
+      "sha256": "b4f87a404232f8429646db342e6c01dd7cdb554e1b024f54f83619a453816e2a"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-byte170-store-candidates.json",
+      "bytes": 786,
+      "sha256": "65d929ee46c1a486b67f28431c8b2c28e18a53820b8a6ed027b311230a21129f"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-callback-rtti.bin",
+      "bytes": 96,
+      "sha256": "baafd89e25978156ac45d9a655cae7efd6580228a973e848e700b5bbe01c07e4"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-global81482ea4-candidates.json",
+      "bytes": 327,
+      "sha256": "e967e82fb7226153aac56ad81d4b1dd343b54dd15dc10047b2db7546483543b9"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-native-window-review.json",
+      "bytes": 7393,
+      "sha256": "c4b748b76920f603238c4eaf941894f2012ab7c712279b41f130924f7bcf2b27"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-pointer-census.json",
+      "bytes": 388,
+      "sha256": "acd484557c759cdb6b01c1e06fcff50d2352fa0871e500592f2a9495a04ea2c6"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-recipe-gate-source.json",
+      "bytes": 1632,
+      "sha256": "1cb9d4a967d3980c43acf3e91a86d613311a1bdb90004abf220a61ce6b9a9502"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-selector-byte170-getter.bin",
+      "bytes": 40,
+      "sha256": "cea88b3b7178c31cdefdc4cc8dbe914a240af6ca4ff0e6567fa457dd05f9b57c"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-selector-byte49-getter.bin",
+      "bytes": 44,
+      "sha256": "48388b1c813052de615dcb5a26969a85b5be5c4977cf308048371fe040c1263d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-setting-lowbits-clear.bin",
+      "bytes": 20,
+      "sha256": "891600b0d7a24e6f1b3d710e28911b7836f65b10aca23911f43e573bcca6e101"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-setting-option-dispatch-with-jumptable.bin",
+      "bytes": 200,
+      "sha256": "bd5224918a73195e12aba99c389e3438bb4a212db5af7a886fbdbb19222b8af0"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-snapshot-validation.json",
+      "bytes": 604,
+      "sha256": "643ad0b4abeee82e16f97dd1f45d7340d7f3cbab3f55a7c8c36c11341986437d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-gate-validation.json",
+      "bytes": 11296,
+      "sha256": "acff64e1316c3554c93f21abb8eaadfcb32b8cf971afd58db92916a03e045c2a"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/guard-8013372c.json",
+      "bytes": 165009,
+      "sha256": "3c16c1b4bb70613add21a39bcabc0e18a1d121f9f645e0542e60fa9d9aa106b0"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/guard-8013372c.snapshot.json",
+      "bytes": 330396,
+      "sha256": "44ed9a475d6ec80dd2743e6c934b54e7d8bf3b332804fe981ea4ef468745f6f1"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/key20.json",
+      "bytes": 538873,
+      "sha256": "6ab208f60c260f05a0761e88f73152aa3a047f7079019c311bb7a99cd31c5c88"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/key20.snapshot.json",
+      "bytes": 1078124,
+      "sha256": "f613fc1e085d0329ea16f092bfc3e0a6fd5eb2b20c48730ecc94db3dc01ed1d7"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/key21.json",
+      "bytes": 543653,
+      "sha256": "bd60debf4bd957f56efe09f63e60fb40bc9a88cdf028d0d819c541c3ece48b6b"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/key21.snapshot.json",
+      "bytes": 1087684,
+      "sha256": "52c3cbfdb432adcfc79159a0ebe02c63bca7ec23fd018fafd958ffdc1949d06a"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/manifest.json",
+      "bytes": 2181,
+      "sha256": "f2f166747c551a0dce36217dcf7dc85ff3c57bfc9472e40489ac36de16f3704f"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/report.md",
+      "bytes": 9340,
+      "sha256": "5772a6480c5c52a805977c2e1c320e642bc86f09b7176223c58985690df54a49"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/selector.json",
+      "bytes": 771273,
+      "sha256": "089a23cc82fab5bc5ce6432cdd90e83556b79683b8ce7160e79973a79910db49"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/selector.snapshot.json",
+      "bytes": 1542924,
+      "sha256": "5da7bbb9b19d1675503f1bb54ceb6d10c378551f867f24f8d373b134bdee7eb8"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/source-byte-windows.json",
+      "bytes": 15340,
+      "sha256": "cae708d3e1fe03fb2c63ea2a282098831b4b113e3721ac02155da45c976e5a9d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-predicates/source-windows.json",
+      "bytes": 18754,
+      "sha256": "cdd84339485a4e8d68974e523fe8e91465f12844ce45a5685d609b990b23829c"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-key-validation.json",
+      "bytes": 7533,
+      "sha256": "e225d9ee1f446d27ce0396bbfd589d7a66d9c63e9b0fd95586c6177a6608e2da"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-raw-flag-source/evidence-bundle.json",
+      "bytes": 1468143,
+      "sha256": "9149dbd0229220f3b7c4833620a69894eade77ca74a42345229b5324135d2da5"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-raw-flag-source/report.md",
+      "bytes": 6584,
+      "sha256": "4db84b4eab88af33af17641ead143180d2522ab19d5480704289310c7022da25"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-raw-flag-source/snapshot.json",
+      "bytes": 2783820,
+      "sha256": "05e67695c0f6b1e5031d55d6bdf150f9e268656926b0252be444e4b34053ce91"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-raw-flag-source/source-byte-windows.json",
+      "bytes": 7107,
+      "sha256": "5c294147af200088ec2817276f4701026c4ef078e3cec87167d9230b11c4f374"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-raw-flag-source/source-window-index.json",
+      "bytes": 3650,
+      "sha256": "1061d6e0d90d7a41f118ee80eb8e7a7573839d852add33a14291e3a98ac16731"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/recipe-request-validation.json",
+      "bytes": 6474,
+      "sha256": "bbd9de4539132e43dae13faa58246ab2ae3b7aa7cb99e983c2b3de05a4845191"
+    }
+  ],
+  "validationLimits": "Native schema/source checks pass for Core phases, cleanup, recipe guards, selector and drive callback. A descriptive mapping string was renamed to avoid a boot-manifest schema collision, retaining the original. No semantic/runtime certification. Canceled Sleep dossier has no claimed Evidence ID."
+}

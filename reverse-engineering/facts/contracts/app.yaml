@@ -1,0 +1,355 @@
+# The minimal camera app on the camera itself. Its own behaviour, the
+# library it drives and the files it writes. Addresses in app are
+# linux-capture-elf unless a claim says otherwise.
+
+claims:
+  - id: app.first-camera-capture-with-raw-dng-and-exif-jpeg-20261105
+    status: accepted
+    kind: runtime
+    statement: >
+      On boot 1793844742 the camera app was launched on the same boot with the
+      stock service inactive and MainPID 0; no service was started, no
+      firmware was written and the camera was not power-cycled. Storage
+      initialized and created photos/, state/counter.0, state/counter.1 (20
+      bytes each), state/storage.lock and the capture library's
+      state/capture.log. The library reported mm_camera_create succeeded,
+      the bridge alive and open: ready. The user pressed Capture once and
+      confirmed seeing CAPTURING... and READY on the screen. The app wrote
+      20261105-125537-00001.dng (33,733,196 bytes) and
+      20261105-125537-00001.jpg (4,729,708 bytes) and returned to READY; the
+      counter slot advanced to 1. On the host the DNG passes
+      exiftool -validate with no warning and carries SAMSUNG/SM-R210,
+      5824x2896, 16-bit, GRBG, ColorMatrix1, AsShotNeutral, WhiteLevel 65472
+      and BlackLevel 4106. The JPEG carries the Exif profile (SAMSUNG/SM-R210,
+      software g360cap, 1/100 s, ISO 125, Program AE, F2.2, sRGB, Auto white
+      balance, date 2026:11:05 12:55:37) and the Samsung Type 2 MakerNote
+      with AWB, AE and colour records, which stock_iq.py decodes from the
+      file. Rebuilding the DNG with make_dng.py from the RAW samples and this
+      shot's own IQ records gives a byte-for-byte identical file.
+    address_space: linux-capture-elf
+    also_involves: [physical]
+    evidence:
+      - reverse-engineering/camera-app-20261105-evidence.json
+      - src/app/VALIDATION.md
+      - src/app/tools/verify-shot.py
+    not_proven:
+      - the fresh-boot path; validated later in
+        app.fresh-boot-flow-two-shots-20261105
+      - how the controls behave during a RAW capture, or what the app does
+        with the Power hold
+      - Menu or Power actions in the app
+    detail: src/app/VALIDATION.md
+
+  - id: app.fresh-boot-flow-two-shots-20261105
+    status: accepted
+    kind: runtime
+    statement: >
+      After a normal reboot (boot 1793849521) the user double-pressed Power
+      and the launcher logged launch mode=fresh with executable ab627b29...;
+      the stock service was inactive with MainPID 0 afterwards and g360-app
+      kept running. The library reported open: ready 42.4 s after boot. Two
+      Capture presses 5.5 s apart wrote 20261105-133248-00003 and
+      20261105-133253-00004 (.jpg and .dng; RAW holds 625 and 578 ms), and
+      the app returned to READY after each. The counter continued across the
+      reboot from 00002 (taken at 13:22 on boot 1793844742). On the host all
+      three new DNGs pass exiftool -validate with no warning and equal
+      make_dng.py's rebuild byte for byte; the JPEGs carry their own times
+      and exposures (1/100 s ISO 100, 1/100 s ISO 100, 1/125 s ISO 100,
+      Program AE, Auto WB). Every file matched its on-camera SHA-256.
+    address_space: linux-capture-elf
+    also_involves: [physical]
+    evidence:
+      - src/app/VALIDATION.md
+      - src/app/tools/verify-shot.py
+    not_proven:
+      - how the controls behave during a RAW capture
+      - what the app should do with the Power hold; answered in
+        app.power-hold-poweroff-20261105
+
+  - id: app.stock-poweroff-sequence-20261105
+    status: accepted
+    kind: static
+    statement: >
+      The stock app's power-off ends in CAPPPowerOffMode::powerOffSystemShutdown
+      (0xba534): setDevicePowerShutdown(1) at 0xbacf4, which is
+      device_set_property(4, 0x15, 1); deviceRequestPowerOff at 0xbaee8, which
+      is deviced_request_power_off(); then setDevicePowerSuspend, which is
+      device_set_property(4, 4, 0), either directly (0xbb868) or at the end of
+      the power-off LED thread (0xb9b7c). Before it, powerOffSystemShutdownMode
+      runs saveValueAndEndMMPkg (RTOS PowerSave(1) and the PowerOff wait unless
+      the lens is in error). In libdevice-node, device 4 ("power", 0x1f11c)
+      has a Thumb setter at 0x14384 whose jump table sends property 4 to
+      plugin slot +0x15c and property 0x15 to slot +0x460, passing the value;
+      the devman plugin's interface table (0x2a260) has
+      OEM_sys_set_power_state at +0x15c and OEM_sys_set_power_shutdown at
+      +0x460. OEM_sys_set_power_shutdown(v) writes v to
+      /sys/devices/platform/d5-keys/shutdown; OEM_sys_set_power_state(0)
+      writes 2 there. deviced_request_power_off is a blocking system-bus call
+      of org.tizen.system.deviced.core.PowerOff on
+      /Org/Tizen/System/DeviceD/Core with an int32 reply. deviced acts on it
+      only in state 1 (set by BootingDone), then sets state 2, and runs its
+      type-1 notifiers: uevent stop, card uevent stop, sync and card unmount,
+      USB off, battery timers off. Its card unmount is forced: when busy it
+      runs /sbin/fuser -m -k -SIGTERM on /opt/storage/sdcard, then -SIGKILL
+      5 s later, then a lazy unmount. In the kernel, the d5-keys shutdown
+      store (0xc0392240) parses the value and, for 2, calls the pointer at
+      0xc07b9d8c, which board init sets to 0xc001e048: the board power-off,
+      which reboots instead only when the 1shot value is 1 or 9, and
+      otherwise switches the power chip off. A value of 1 is only stored.
+    address_space: linux-app-elf
+    also_involves: [linux-device-node-elf, linux-kernel]
+    evidence:
+      - ev_fb02639c211eadbcbb84021bd2706a05d73267790d72c8c422b2b4c3533c6b97
+      - ev_e9c2d4d04d237f24f89f1ffa851db024e458a53cc9c55e8391b8bae2c29893ef
+      - ev_efcb8380d10e249145560777631e6f94128a01a7ef27ec4395225014f3981260
+      - ev_d0c70f3779aaf653d3c4a521b616157efa69acae243b6e6f7fef26ef1852f183
+      - ev_b6794cda077e261af1aefd92e9a2c43cf27be23232209b3eb1cf98df21567550
+      - ev_83adb96860eecf7756bb17579a0f437e7034c0f1e86ee49018ce511d3038461d
+      - ev_a992e44fe96e731a4966f0a05da9a47dfc04d9901e76b28714bdce575668b1b3
+      - ev_38d34487aa9b41f3775add378b3a0abe96493b2fb0826df6c3e0130d90ca7bcb
+      - ev_91dacc252c0567fd08326d6099c2869ed02d439c52948aae396d8e91dfc63765
+      - ev_109dac92150d933d31363a7e5f38f3dd3fbf76e3a4d61bbb3a4d8fcfe79d6da1
+      - ev_829c550d2cbeea13f426c56e6962d5c827d0beba738635e0a1112ce7a6126437
+      - ev_181180749d440a1d228e497fd8f5c12a4d28dd7b83fec375998a3ef7765daad5
+      - ev_4e0e4c52428621ce39f8222ea2d2141142544c78bab7cd2ddf9e952bdd503050
+      - ev_0f8e3b60a3f0cf859d9ed07176856e34da1ff73c97b3cb3f4d6c3fca70316732
+      - ev_349bbf76d6774b6067a87109fdcbe6b97e81298320ddf99462863587b66b3c30
+      - ev_f7547d28178afa0feed009942d7a6877ddd06b7a4b0d5db8a5af8297db13ec58
+      - ev_b1cced386811d6b591b49d491173103b6340e4da16dc9de7d82994335e168849
+    not_proven:
+      - the meaning of the power-chip calls inside the board power-off
+      - whether the RTOS PowerSave matters for anything once the power is cut
+      - the plugin's sys_set_int text format (decimal is assumed)
+    detail: src/app/VALIDATION.md
+
+  - id: app.power-hold-poweroff-20261105
+    status: accepted
+    kind: runtime
+    statement: >
+      With executable 15a28f82..., a Power hold (key 116 press) at READY made
+      the app close its capture session and storage, play powerOFF.wav, re-run
+      itself from /tmp/g360-app-poweroff as --power-off and run sync,
+      device_set_property(4, 0x15, 1), deviced_request_power_off(), sync and
+      device_set_property(4, 4, 0). The camera switched itself off, on two
+      boots (1793856869 and 1793857076), and booted normally afterwards. On
+      the next boot the card mounted without a kernel error, both FAT copies
+      carried the clean-shutdown bits, the app's directories had one live
+      entry per name, both counter slots held 4, and shots 00002 to 00004
+      matched their earlier host copies byte for byte.
+    address_space: linux-app-elf
+    also_involves: [physical]
+    evidence:
+      - src/app/VALIDATION.md
+      - src/app/tests/test_power.py
+      - src/app/tests/test_app.py
+    not_proven:
+      - a Power hold during a capture on the camera (host-tested only)
+      - deviced's reply and whether its unmount needed the forced path
+      - the time from the hold to power-off
+    detail: src/app/VALIDATION.md
+
+  - id: app.hdr-sweep-via-flash-queue-20261105
+    status: accepted
+    kind: runtime
+    statement: >
+      With executable 517ad99b..., `g360-app --sweep-once` on boot 1793857325
+      (stock app inactive, no service started, no power cycle) took 8 stills
+      at the hdr-capture.sh exposures (TV/ISO 48/1600, 48/400, 48/100,
+      80/100, 112/100, 144/100, 176/100, 208/100) with the JPEG copies
+      skipped, saving each DNG to the /opt/usr queue with fsync before the
+      next. Each still's own Exif record matched the request (1/8 s at
+      ISO 1600, 400 and 100, then 1/30 to 1/8000 s at ISO 100). From the
+      first capture's start to the last capture's end took 16,702 ms;
+      moving the 8 frames to the card took 19,426 ms. The card got eight
+      33,733,196-byte DNGs on consecutive counter numbers and a sweep CSV
+      with the exposures; the queue was empty afterwards. In frames 1, 4 and
+      8 of a dark scene the maximum sample fell from 65472 (clipped) to
+      17536 and 8128. The same build, launched through the double-Power
+      trampoline and start.sh (eefff93c...), reached READY with the queue
+      /opt/usr/g360-app/queue and sweeps available.
+    address_space: linux-capture-elf
+    also_involves: [physical]
+    evidence:
+      - src/app/VALIDATION.md
+      - src/app/tests/test_queue.py
+      - src/app/tests/test_app.py
+      - src/app/tools/sweep-trial.py
+    not_proven:
+      - the hold-Capture gesture and the HDR SWEEP hint on the real buttons
+        and screen (host-tested only)
+      - a Power hold during a sweep, and the move of left frames at the
+        next start, on the camera (host-tested only)
+    detail: src/app/VALIDATION.md
+
+  - id: app.sweep-save-options-and-settings-20261106
+    status: accepted
+    kind: runtime
+    statement: >
+      With executable 72e552d1..., on boot 1793857325 (stock app inactive, no
+      service started, no power cycle), `g360-app --sweep-once` with the
+      maintenance overrides gave: 8 shots straight to the card held still
+      26,418 ms (last frame saved at 28,520 ms); 6 shots straight to the card
+      19,343 ms (21,514 ms); 6 shots via the /opt/usr queue 12,548 ms
+      (13,343 ms), then 14,760 ms to move them to the card. Each run left its
+      DNGs and a sweep CSV with one line per frame on the card and an empty
+      queue. The same build, launched through the double-Power trampoline,
+      logged its settings (defaults: single, 8 shots, flash first) and
+      reached READY.
+    address_space: linux-capture-elf
+    also_involves: [physical]
+    evidence:
+      - src/app/VALIDATION.md
+      - src/app/tests/test_app.py
+      - src/app/tests/test_settings.py
+    not_proven:
+      - the settings screen with the real buttons and the three-line text on
+        the OLED (host-tested only)
+      - stored settings across a reboot on the camera (host-tested only)
+    detail: src/app/VALIDATION.md
+
+  - id: app.double-power-tries-home-wifi-20261106
+    status: accepted
+    kind: runtime
+    statement: >
+      A double-Power launch of g360-app tries the home network first. After
+      the stock app is inactive, src/app/start.sh (16aef4e5...) runs
+      src/wifi/wifi-join.sh app-start (9461bd52...)
+      while holding the controls, screen and experiments locks, and only
+      when the card has its "wifi" network file. On boot 1793924221, with
+      g360-app stopped by SIGTERM and the camera's access point up, a
+      double-Power ran it at 12:24:23 (camera clock). wl scan from the
+      running access point found the network; disable_wifi_ap at 12:24:32;
+      the station firmware loaded and wpa_supplicant joined WPA2-PSK/CCMP at
+      12:24:38; DHCP gave <home-network-ip> at 12:24:39. A keeper started from a
+      copy in /tmp, and g360-app reached READY about 20 s after the press.
+      Then g360-app held all three locks; the keeper, wpa_supplicant and
+      udhcpc held no lock and no card file, all with their working directory
+      at /. /opt/var/lib/connman held only "settings". Later on the same
+      boot: with the link dropped on purpose (wpa_cli disconnect, 12:27:15),
+      the keeper reported "no link for 120s" at 12:29:22 and the access point
+      was back at 12:29:26, with the app still running. With a made-up network
+      name in the card's file, a double-Power at 13:01:03 kept the access
+      point (same hostapd process) and the app started at 13:01:14. On fresh
+      boots with the stock app active: a double-Power joined (boot
+      1793934917); a Power hold while joined powered off normally; a press
+      about 3 s after the stock screen ran app-start 38 s after boot. With a
+      plain wl scan that run wrongly kept the access point (a plain scan found
+      the network in 2 of 3 tries); wl scan -s <name> found it 5 of 5, and
+      with it the same early press joined (boot 1793936180, 17 s to READY).
+    address_space: physical
+    evidence:
+      - output/wifi-station-20261106/RESULT.md
+      - src/app/tests/test_launcher.py
+      - src/wifi/tests/test_wifi_join.py
+    not_proven:
+      - the join failure paths on the camera (wrong password, no DHCP; host-tested only)
+      - a press in the seconds before the stock app's access point is up (the
+        15 s wait for it is host-tested only)
+  - id: app.status-corner-wifi-battery-20261106
+    status: accepted
+    kind: runtime
+    statement: >
+      g360-app c0a7349e... draws a status corner at the top right of every
+      screen: the Wi-Fi state (home network, the camera's own access point,
+      or none), the battery with a bolt while charging, and the charge in
+      percent. Its UI loop reads the kernel's files every 2 s and redraws
+      only on a change. On boot 1793936180, on the home network with the
+      cable in, the camera read battery/status Full, capacity 100,
+      ac/online 1, usb/online 0, wlan0 operstate up and a default route on
+      wlan0 via <home-network-ip>. The app, relaunched through the double-Power
+      entry script at 15:29:56 (camera clock), logged "APP STATUS Wi-Fi home
+      network, battery 100%, charging" and reached READY. On that boot wl ap
+      read 1 on the home network, so it can't tell the modes apart; the
+      access point is recognised as wifi-join.sh does it (a hostapd process
+      and 192.168.43.0 on wlan0).
+      Later on that boot the user unplugged the cable and the bolt went
+      (APP STATUS ... battery 100% without "charging"). Build f3144cfa...
+      (same boot, relaunched the same way) shows, where READY was, what a
+      Capture click takes and how many more fit in the card budget; with the
+      stored HDR 6-shot settings and 10.07 GB free it showed "48 SWEEPS" /
+      "HDR 6 FLASH".
+    address_space: physical
+    evidence:
+      - output/status-corner-20261106/RESULT.md
+      - src/app/tests/test_status.py
+      - src/app/tests/test_app.py
+      - src/lib/g360display/tests/test_display.c
+    not_proven:
+      - the bolt coming back after a replug the charger chip recognises
+      - the no-network and access point icons on the camera (host-tested only)
+      - the count going down after a shot on the camera
+  - id: app.stock-app-follows-battery-and-ap-by-subscription-20261106
+    status: accepted
+    kind: static
+    statement: >
+      The stock di-camera-app (output/firmware-survey/di-camera-app) imports
+      vconf_notify_key_changed, vconf_get_int and vconf_keynode_get_int, and
+      the tethering callbacks tethering_set_enabled_cb,
+      tethering_set_disabled_cb and tethering_set_connection_state_changed_cb.
+      Its strings name memory/sysman/battery_capacity, battery_charging,
+      battery_charge_full, battery_status_low, battery_health and
+      VCONFKEY_SYSMAN_BATTERY_CHARGE_FULL. On the camera these
+      memory/sysman values are deviced's (battery_capacity 100,
+      battery_charging 0, battery_charge_full 1 while Full on a charger, boot
+      1793936180). So the stock app is told of battery and access point
+      changes rather than polling. From imports and strings only; the
+      callbacks' code was not decompiled.
+    address_space: linux-app-elf
+    evidence:
+      - output/status-corner-20261106/RESULT.md
+    not_proven:
+      - which callback redraws the stock screen's battery icon, and how often deviced updates the values
+  - id: app.wifi-setting-off-ap-home-20261106
+    status: accepted
+    kind: runtime
+    statement: >
+      g360-app 8272f99a... has a WIFI setting (OFF, AP, HOME; HOME offered
+      only with the card's network file) stored in byte 15 of its settings
+      slots, and starts src/wifi/wifi-join.sh "apply
+      off|ap|home" in the background at start and on each selection; the
+      launcher (start.sh 528cbfa6...) no longer joins. On boot 1793949314
+      (the user's Power-off, power-on and double-press), with wifi-join.sh
+      09177a6f...: the start's apply home found the network by a named scan
+      from the access point and joined (address 17:16:07, camera clock); OFF
+      stopped the keeper, udhcpc and wpa_supplicant (17:16:44) and the corner
+      showed no Wi-Fi; AP asked the agent at once and the access point was up
+      at 17:17:09; the next HOME turned the access point off, loaded the
+      station firmware and then failed NOT FOUND after 30 s in SCANNING, and
+      brought the access point back (17:18:13); HOME selected again joined 1
+      s after the firmware loaded (17:18:36). In the kernel log the failed
+      attempt shows one completed scan (6 networks) and no connect or further
+      scan for 30 s, where both successful joins connected within 10 ms of
+      their first scan.
+    address_space: physical
+    evidence:
+      - output/wifi-setting-20261106/RESULT.md
+      - src/app/tests/test_app.py
+      - src/app/tests/test_settings.py
+      - src/wifi/tests/test_wifi_join.py
+    not_proven:
+      - why wpa_supplicant stalled after its first scan (its debug log was overwritten)
+      - the second wpa_supplicant (wifi-join.sh 30ce0149...) rescuing a stalled join on the camera
+      - a fresh boot with OFF stored
+
+  - id: app.live-preview-on-the-remote-page-20261107
+    status: accepted
+    kind: runtime
+    statement: >
+      On boot 139ef0e1 (stock stopped, hotspot <hotspot-ip>) g360-app
+      258ef764 served the camera's movie preview: after cmd=preview&on=1 the
+      capture worker started g360_preview_start (1280x640) and the app sent
+      640x320 JPEGs (libturbojpeg) as multipart MJPEG on port 8090, about
+      7.7 per second and 14.7 KB each to curl, and through the page's CGI
+      relay (cgi-bin/g360?cmd=stream) to remote.html in a browser. A remote
+      Capture with a 5 s delay kept the preview through the countdown,
+      stopped it before the still (paused for the capture: ok), saved JPEG
+      and DNG 20261107-154615-00105 and started it again; the page's stream
+      resumed on the same connection. cmd=preview&on=0 stopped the camera
+      preview and closed the stream; with the page closed the app stopped it
+      20 s later. No kernel fault; the app kept running.
+    address_space: linux-app-elf
+    evidence:
+      - src/app/VALIDATION.md
+    not_proven:
+      - a sweep with the preview on, phone browsers, more than two viewers, hours-long runs
+    detail: src/app/VALIDATION.md

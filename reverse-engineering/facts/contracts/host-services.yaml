@@ -1,0 +1,195 @@
+# Host obligations for one selected ordinary 360 still. Static edges only.
+# Required responders, current activation and whole-transaction qualification stay open.
+
+claims:
+  - id: host.gyro-expansion-request-and-auxiliary
+    status: accepted
+    kind: static
+    statement: >
+      Selected callback0x80139df8 allocates12 bytes through allocator slot+0x24
+      and publishes0x03010008 with scalar argument0 and a0x3c8-byte stack
+      descriptor. Its last four u32 words at+0x3b8/+0x3bc/+0x3c0/+0x3c4
+      are a value loaded from context+0x6c, the auxiliary pointer,3 and0.
+      The built-in Linux callback interprets+0x3c0 as a discriminator;
+      value3 selects its orientation branch, not a three-word count.
+      It then invokes the event receive helper with raw trailing arguments
+      1,0xffffffff,out-pointer,0xffffffff, checks bit0 of the output word,
+      clears the event, reads auxiliary words+0/+4/+8 through the float
+      widening helper, and eventually releases that auxiliary via slot+0x5c.
+      The receive return itself is not tested. The auxiliary is distinct
+      from the descriptor and is not identified as an SSIF image plane.
+    address_space: rtos
+    evidence:
+      - ev_ba2696deaa15c8f2a2acff009677c362a77ba54f8af604b4044f46010a7f70e3
+      - ev_1d74302fa03c2c4f2f071ccbf6483ac192b528047493ffdac20725332a5ef3d2
+      - ev_5e2239747c141ce77e6ee6c907523fa6cb910b18e7130e0010427d385535d6c7
+    not_proven:
+      - physical units/meaning of context+0x6c or valid runtime pointer translation
+      - successful allocation or wait, maximum service duration or error-path hold
+      - completed sensor backing, cache visibility, freshness or safe copying
+    detail: output/decompile/rea/pass-host-services-20261026/parent-review.md
+
+  - id: host.expansion-request-to-linux-client
+    status: accepted
+    kind: static
+    statement: >
+      RTOS0x800609f8's0x03010008 arm copies0x3c8 bytes to0x81476090,
+      calls expansion preference writer0x800614a8 and requests category0x81,
+      attribute0x020b with length4 and the original descriptor-pointer word.
+      This is the outgoing request notification, not the host's reply.
+      The writer uses preference base0x30a54 plus index*0x240, index modulo25,
+      and copies0x3c8 bytes. Library GetStillImageExpansionData (Ghidra0x8b0cc,
+      ELF0x7b0cc) reads that same base/spacing/extent, may fall back to the
+      previous position when readiness is zero, advances and clears readiness.
+      Library OnCallback's expansion arm invokes its registered client as
+      converted-topic,0,stack-descriptor-pointer,0x3c8; converter0x8bb38
+      maps0x03010008 to0x04010008. This is descriptor
+      transport; the four-byte notification is neither16 context bytes nor
+      a sensor-pixel transfer. The current adapter ignores this non-encoded
+      topic before reading its payload and implements no responder there.
+    address_space: rtos
+    also_involves: linux-capture-elf
+    evidence:
+      - ev_87ec911380e2c7cdff43f0467cf3d75d0cea8cb351c0fff955d0ad45fd2d0680
+      - ev_90eed4fe20f9a62dead2f7569ab04e4d7d02114afeb26723ce763d51361b0ecd
+      - ev_e81c8c1a77d7c7b2633b63a83e0e5a2a3383a054e21e1d2f49ada8d4833c5f70
+      - ev_50c45f38681d8aa7e6cb34079539a86c2bc5a501f4f6288edb59b2e48a5fd4c9
+      - ev_026e8074b640105da88b2e127b3c6f69e4e3757fab9c52a6b99e519f60a1c549
+      - ev_304658ed6d8c149c57b4b65c8042f87fb3bc84859103a9be845534db4eb0664d
+      - ev_b07a20166e9ec5b0c8475203e7788b13fb9d2c5d72ed7a366189a26ef30417d1
+    code: src/lib/capture-session/capture_session_library.c
+    not_proven:
+      - live subscriptions, publication, association or qualified host readiness
+      - auxiliary pointer mapping, pixel identity or lifetime beyond the callback
+      - overflow from spacing smaller than copied descriptor size
+      - absence of another responder elsewhere in the library or process
+    detail: output/decompile/rea/pass-host-services-20261026/parent-review.md
+
+  - id: host.gyro-return-selector-to-event
+    status: accepted
+    kind: static
+    statement: >
+      Wrapper0x800630fc accepts a body length of4 and passes its body word
+      to0x80111e9c. Selector9 in that consumer calls0x80139da4 with value2.
+      That helper tests event-handle word0x81483518 for nonzero and passes
+      its address, not its dereferenced handle value, to0x8051eec4 along
+      with value2. These functions do not write the three auxiliary words.
+      Linux BeautyCaptureProcessEvent (Ghidra0x608d0, ELF0x508d0) sends
+      its one u32 argument as category0x83 attribute0x0210 with length4.
+      Group2 dispatch uses low-byte index16 and the eight-byte member
+      entry0x8100f8c0, whose direct target is0x800630fc with adjustment0.
+      Thus selector9 has a concrete static sender-to-event path; it does
+      not itself write the auxiliary words or prove a current response.
+    address_space: rtos
+    evidence:
+      - ev_6d89ae2ff713f1b6f6265268672e199874cecc28235e9dea29874dbc2bcd0cf7
+      - ev_219ab678d8f6ccb7f06caab42d7977f32fa6b5d227878721890ee79bc83c8f10
+      - ev_80d6bcafa641156e20ece2edc4b8a75f85e7262f957279a400b1ecb90bfa9851
+      - ev_fdd901a6df0cfe030d8f3a77c7b149a9416bb59d3ed82d60bba9759ac87082d2
+      - ev_286271fa55fa1b9402d7c364590411b34dd0640e3837b4e9af3e8254f41462bc
+      - ev_e9fc41ba61ce365f3eb139b3862f659a663cb2dc5fe373a36456b17594d23ef4
+      - ev_2d7af6659858b8709efcf6311dad7a5f935f2cd143567faf3f208e7980a485f5
+      - ev_896db031ef6989aa97ebd81b3e32cdcfc9e3cd80a1119ff055b48ab2cf213de6
+    not_proven:
+      - live sender/registration, valid mapped data or reply success
+      - event syscall semantics, service duration or sensor-plane completion
+    detail: output/decompile/rea/pass-host-services-20261026/parent-review.md
+
+  - id: host.ordinary-gyro-builtin-responder
+    status: accepted
+    kind: static
+    statement: >
+      Pinned libcapture constructor CBeautyFaceIf_Linux (Ghidra0xb1350,
+      ELF0xa1350) attempts RegCallbackClient with name fd_alg and image-set
+      callback0xaef7c, then subscribes a nonnegative client result to0x4010008.
+      Callback0xaef7c's discriminator3 arm runs inline: it obtains device
+      properties(2,0x20),(2,0x18),(2,0x19), maps descriptor+0x3bc for12 bytes
+      and maps the property-provided history region. It calls imported
+      ACGY_GetAngle_Still with eight AAPCS arguments including this and the
+      descriptor+0x3b8 word; the three float outputs are stored to mapped
+      auxiliary offsets0/4/8. It unmaps history and auxiliary mappings,
+      then calls BeautyCaptureProcessEvent(9), joining the return path above.
+      The tag3 branch does not use the class thread. This is a built-in
+      library responder, conditional on its local construction/subscription
+      and usable dependencies; a replacement in our adapter is not established
+      as necessary. This request carries the auxiliary descriptor, not an
+      identified completed camera SSIF plane.
+    address_space: linux-capture-elf
+    evidence:
+      - ev_9c4e533deb30caa7dd340a7da377a717a6383e7cfb018a2f5d7547a01325dc3c
+      - ev_114f582806eaa4a654896c971f21224b46f8fa04154a7114c3dcfd786eacf4b7
+      - ev_d1ffa69f11d68d8c7dcfb38d3f728b66eb6d7732ae85ba8f146112b3ea9886f7
+      - ev_02c3a12b0290941af3f2fa14578c2ceb6893d8d7d707b86db2c8570b2cb26b2a
+      - ev_2d7af6659858b8709efcf6311dad7a5f935f2cd143567faf3f208e7980a485f5
+    not_proven:
+      - current subscription, property validity, safe mappings or valid history bounds
+      - successful callback execution, response timing, error recovery or remote receipt
+      - orientation quality, exposure association, camera RAW freshness or copying safety
+      - complete inventory of other host requests on the selected graph
+    detail: output/decompile/rea/pass-host-services-20261026/parent-review.md
+
+  - id: host.orientation-defaults-can-still-be-signalled
+    status: accepted
+    kind: static
+    statement: >
+      Pinned libdi-alg-acgy ACGY_GetAngle_Still (Ghidra0x119f0, ELF0x19f0)
+      calls InitFilters, derives count=u32(size-word)/20, and initializes
+      output floats to1,2,0. If position>=count, it sets the third output
+      to-1 and returns without entering the sample loop. Otherwise the
+      inspected loop uses20-byte records and signed16-bit loads at+8/+10/+12
+      for CalcAngle_Acc; the third output is eventually forced to0. The
+      by-value context/exposure argument at incoming stack slot0 is not
+      loaded in this checked method. The library caller performs no quality
+      check before its three stores and event9 submission. A signalled
+      response therefore does not certify valid orientation or fresh samples.
+    address_space: linux-acgy-elf
+    also_involves: linux-capture-elf
+    evidence:
+      - ev_36a2b1d188e84934e67734a3d64f990f8c2db9e6d3c623069d82d3f688200191
+      - ev_935b1794a69332533879d88196ebac32d122112153def6266e5a2a648b1593ae
+      - ev_4790b98e767eb92fc4b976f3d62dd42623aa314671d33d5a19ffb6d324bfe559
+      - ev_02c3a12b0290941af3f2fa14578c2ceb6893d8d7d707b86db2c8570b2cb26b2a
+    not_proven:
+      - actual property/history values, safe loop extents, units or sensor freshness
+      - valid exposure-time association or a target observation of default outputs
+      - event submission or method return as proof of camera capture completion
+    detail: output/decompile/rea/pass-host-services-20261026/parent-review.md
+
+  - id: host.orientation-singleton-is-not-subscription-status
+    status: accepted
+    kind: static
+    statement: >
+      Pinned libcapture CBeautyFaceIf_Linux::GetInstance at Ghidra0xb1260
+      tests its process-local singleton, allocates0x74 bytes and calls the
+      constructor only when that singleton is null, then caches the allocated
+      object pointer. The constructor logs a negative RegCallbackClient result
+      and skips topic registration on that arm. On a nonnegative result it
+      calls RegImageSetCallbackId for0x04010008 and discards its status.
+      The getter does not test either registration result and subsequent
+      calls return the cached pointer without repeating this construction.
+      A nonnull getter result is therefore not a subscription-success signal.
+    address_space: linux-capture-elf
+    evidence:
+      - ev_bd2afe4c4cf87d6b711786207ac95df7a59f67784f54e491aa83721d027bfbc5
+      - ev_d1ed15f02a17ed4e192f20518a50646b50408eae316a63ca02b90695e20df4db
+      - ev_9c4e533deb30caa7dd340a7da377a717a6383e7cfb018a2f5d7547a01325dc3c
+      - ev_114f582806eaa4a654896c971f21224b46f8fa04154a7114c3dcfd786eacf4b7
+    not_proven:
+      - actual registration failure, initial singleton state or concurrent getter safety
+      - direct invocation ABI, valid dependencies, recovery or runtime responder readiness
+      - sensor completion, buffer provenance, visibility or retained backing
+    detail: output/decompile/rea/pass-lrc-export-20261026/parent-review.md
+
+  - id: host.fixed-mode-required-responders
+    status: open
+    kind: static
+    statement: >
+      Qualify the built-in orientation responder's process-local activation,
+      shared-state readiness, property/history validity, mapping and failure
+      behavior in an exclusive app-absent host. Inventory other mandatory
+      requests on the selected graph. Static request/writeback/reply edges
+      are joined; live readiness, service duration and sensor RAW are not.
+      No replacement responder, fake orientation values, withheld reply,
+      SDK execution or target acquisition is authorized by these facts.
+    blocks: qualification of an app-absent host-service transaction
+    detail: output/decompile/rea/pass-host-services-20261026/parent-review.md

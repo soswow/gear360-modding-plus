@@ -1,0 +1,605 @@
+# Exposure and capture settings. Native RTOS ids and Linux wire ids are
+# different domains. Do not copy one numbering into the other.
+
+claims:
+  - id: settings.drive-to-first-image-selector
+    status: accepted
+    kind: static
+    statement: >
+      Composer801358c8 reads decimal key10 through80084cfc using the pointer
+      at object+0x08, then stores one byte at object+0x49. Native inputs 0xa0001/0xa0006/0xa0007 use four ordered predicates
+      to choose0x0a/0x0b/0x0d/0x10 or0; 0xa0002/0xa0003 map to1/2; 0xa0004 maps to3/4 by
+      predicate; 0xa0005/0xa0008/0xa0009/0xa000a/0xa000b map to5/6/7/8/9. Other inputs map to0.
+      Then byte+0x31 equal0x24 overrides to0x11; byte+0x30 equal0x15 overrides last to0x0c.
+      Therefore the 0xa0001/0xa0006/0xa0007 family always produces a value outside signed
+      1/2, regardless of those predicate results or these overrides. If that
+      composed byte reaches the checked encoded builder unchanged and byte+0x48
+      exceeds3, its consumer selects material0x14000/fallback0x14001 lookup.
+      Inputs0xa0002/0xa0003 select the supplied-image arm only without an override.
+      Ordinary argument12 remains null, so that arm skips first-image setup.
+      This identifies a static native-drive source/gate, not an active sheet
+      instance or a demonstrated RAW setting.
+    address_space: rtos
+    evidence:
+      - ev_d6d268ee64f9e99da3b21cf42aa7a4bfbda5dc3db440f6bbab97c1c0b891bee0
+      - ev_89910daa21596f22bea295bcda9a6c84479a4b7c72c19595f66e9c7e3ce9a529
+      - ev_fe887146004fbd4a5ef1d63479b30dfc429c05813948cc9d8cd9ecb568e78df5
+    not_proven:
+      - predicate mode meanings, current native input, sheet identity or absence of later field writes
+      - complete Linux setting-to-selected-instance binding or initialized setting object
+      - nonzero image backing, physical sensor samples, extent or retained ownership
+    detail: output/decompile/rea/pass-base-lrc-20261026/parent-review.md
+
+  - id: settings.library-user-variable-id-domains
+    status: accepted
+    kind: static
+    statement: >
+      In pinned libcapture, mm_camera_set_usr_attributes accepts API IDs0..90
+      before conversion. API3 accepts only0x30000..0x30007 and preserves
+      those tagged values for the0x1103 wire attribute. API4 preserves its
+      input value for0x1104 except the0xffffffff error sentinel. API2's
+      value-conversion arm refuses every value. mm_camera_set_var_attributes
+      instead accepts IDs0x100..0x12b; its converter preserves0x101, and
+      the four-byte SetVariableDataMCB call produces attribute0x1302.
+      Passing firmware index2 to this variable facade fails local range
+      validation. These are facade domains and frame preparation, without
+      proving that a future setting takes effect on a sensor.
+    address_space: linux-capture-elf
+    ghidra_addresses:
+      user_setter: "0x3c724"
+      user_converter: "0x4408c"
+      variable_setter: "0x3c9b0"
+      variable_converter: "0x4736c"
+    evidence:
+      - ev_119a3daa37bd54c1894ce4feb93298889356bc30b63125cc6bd4cee32ba47352
+      - ev_540bbb110c7c5b4d0322de1bdcfd8b6177543d89af4e76034cb7d9894234c01a
+      - ev_134a355f073ea94f354480ff0cbabb3ad434a97e14704b05e0ecb68444bc8828
+      - ev_5a46966d0624e9faa4f47bde46c74773f49923796ee251845ed3271315910332
+      - ev_3694f3c19dfb12862c9fafe5bb8cccec0bf01a269235f1d790914c8f41ececae
+      - ev_0b65162c4f6f9b473b0a4239b59e768e1117d2bb95f391ea84a93afd21b0f608
+      - ev_169e7b01a5264d815f984a82d975f93c6544fb2a3e6c1716ead88e0026cec55a
+      - ev_28f31ef251a63db9a71778c14a31b18b84111fbc75376cc945c219e7ca83592a
+    not_proven:
+      - sensor exposure units, hardware effect or successful native initialization
+      - transport acceptance, active sheet backing or request-associated completion
+      - that selecting a raw-named quality establishes sensor retention
+    detail: output/decompile/rea/pass-0f976d1-review-20261024/parent-review.md
+
+  - id: settings.quality-api-three-value-conversion
+    status: accepted
+    kind: static
+    statement: >
+      In80052b9c the API3 arm at80052de8 stores native userdata ID4
+      and calls805426d8 for the separate converted value. That converter
+      accepts input values0x30000..0x30007 and writes respectively0x40003,
+      0x40000,0x40001,0x40002,0x40004,0x40005,0x40006,0x40007. Other values write
+      ffffffff; the converter returns its original input. Thus0x30004
+      can convert to0x40004 on this checked route. Combined with the
+      sheet writer this identifies a candidate value path, not an
+      established active-setting or sensor effect.
+    address_space: rtos
+    evidence:
+      - ev_b7e0b0ed1abb0024ca7f9ff93295de119920f7aa323569d91e4339355175babd
+      - ev_329e3dcfa6deb0579f3365b093e802175c896944cd60a1e9b41d845c4fa21791
+      - ev_7c1e6e09ccf28ba4f625e4d0f4e4c49c581beefe7cb62ccb40dd8b25efa4d713
+      - ev_aa8fdb50a90338574c22e4d6b0c14d4a520f2e564432fb37a36560c1bb5edd4d
+      - ev_e1cd4fc11dbdd60c6ab1964380d1a0fc0236caee1008ad596863232ea992c03c
+    not_proven:
+      - Linux facade packing, accepted native write or current sheet values
+      - that0x30004 enables sensor RAW, valid planes or retained ownership
+      - the134 override's live state or success of a future capture
+    detail: output/decompile/rea/pass-minimax-forward-20261024/parent-review.md
+
+  - id: settings.order-sheet-configuration-writer
+    status: accepted
+    kind: static
+    statement: >
+      RTOS801357b0 reads80084cfc(sheet+8,4), initializing a local byte to0
+      and mapping values0x40000..0x40007 respectively to1,2,3,8,4,5,6,7.
+      It then calls80084c04(sheet+8,0x134) (corrected 4 November 2026: the
+      key is hexadecimal 0x134, variable data, not decimal 134); any nonzero return overrides
+      that byte to3. The final ARM strb at801358b4 stores it at sheet+48.
+      The override is not simply a boolean setting:80084c04 defaults its
+      return toffffffff and also returns that on failed lookup, so a
+      failure takes the same override branch. Getter80132f80 reads this
+      byte; its value greater than3 gates optional-image setup in the
+      checked encoded builder. These are static dataflow edges only.
+    address_space: rtos
+    evidence:
+      - ev_64bf24b73b47db90f77417da075dfcbf0556b0e35d3dda55f21a1f6773fed3c8
+      - ev_1285f91bd4d95d264df1ffd4f4b622ab7fe4908945c7cc4f23aca94223f55b14
+      - ev_226b7cf3102d6185e4b20a01fecb54e92e1721a241107601d04dce738943c2fa
+      - ev_f1265f107494d3bb8da765f9876a494ffede5f2dcda7b10d1f937580892c90da
+      - ev_2090969e6b7b2fb6301bfc31dc8218f3174d10042722c51b9709da77d2d57cc6
+    not_proven:
+      - which Linux setting inputs reach these source values on a live request
+      - uniqueness of this writer under indirect calls or future runtime changes
+      - a sensor RAW switch, buffer binding, sample layout or retention
+    detail: output/decompile/rea/pass-minimax-forward-20261024/parent-review.md
+
+  - id: settings.userdata-wire-native-translation
+    status: accepted
+    kind: static
+    statement: >
+      For the checked initial RTOS category0x81/attribute0x11xx tables,
+      Run0x801294e4 selects category record2 at0x8101150c containing
+      direct handler0x80129e98 with zero member-function flags. Its
+      high-byte0x11 group8 record0x810115ac contains0x8012a600 with
+      zero flags. That handler extracts the attribute low byte and
+      first payload u32, then calls0x800507e4. Converter0x80052b9c
+      has99 explicit API-id cases through0x68; their native output
+      IDs are distinct values within0..110, with no122..126. Its100
+      literal output-id stores including default were checked against
+      ARM instructions. API4 selects native5 and converter0x805427d8;
+      default sets output-id0xffffffff and converted-value output-1 and fails.
+      Passing native SSIF_RAW124 as this API id does not configure it.
+    address_space: rtos
+    also_involves: linux-capture-elf
+    evidence:
+      - ev_713276c637dc35b000a704c165b277c4522e7e6a0f546da96e35b8194fc753b7
+      - ev_ab72dd313717c94aa30b86ae3696e7bd5ee2be2a0361de7cbbbce882eb93a8ab
+      - ev_329e3dcfa6deb0579f3365b093e802175c896944cd60a1e9b41d845c4fa21791
+      - ev_5393383d441376d0dec7bf6d0ac220d5efc8a5901b95d8716a0a965e9b800d22
+      - ev_9185dad5110d02c1e21ef494cc136397df551c51134c9affbc8d243ff4ecb8c6
+    not_proven:
+      - runtime table replacement, registration or a different active dispatcher
+      - that no other Linux-callable or native route can configure RAW
+      - that the raw switch is settings-store-only
+      - payload validation outside the checked handler, runtime application or ownership
+    detail: output/decompile/rea/pass-minimax-forward-20261024/parent-review.md
+
+  - id: settings.quality-drive-stock-query-20261023
+    status: accepted
+    kind: observation
+    statement: >
+      Parent read-only stock-tool queries reported native userdata4 as
+      IMAGEQUALITY_SUPERFINE (0x40000) and userdata10 as DRIVE_SINGLE
+      (0xa0001). Pinned app executable SHA matched and process start1042
+      was unchanged before/after these queries. These are observed tool
+      reports, not proof of an active order-sheet instance or sensor state.
+      The differing low bytes do not support the worker's unconditional
+      same-value interpretation of a shared registration descriptor.
+    not_proven:
+      - current RTOS object/list identity or producer registration-to-value binding
+      - quality/drive setter wire mapping, accepted RAW options or hardware effect
+      - request completion, caller-owned RAW or backing lifetime
+    detail: output/decompile/rea/pass-4d2deb0-review-20261023/parent-review.md
+
+  - id: settings.iso-shutter-wires
+    status: accepted
+    kind: static
+    statement: >
+      The Linux ISO handler requires 2 input bytes, zero-extends to 4, and
+      sends category 0x81, attribute 0x1104, length 4. The shutter handler
+      requires 4 bytes and sends category 0x81, attribute 0x1302, length 4.
+      SetUserDataMCB uses (uint16)id OR 0x1100. SetVariableDataMCB uses
+      (id - 0xff) OR 0x1300. Local cached-property setters do not apply hardware.
+    address_space: linux-capture-elf
+    not_proven:
+      - physical ISO enum values
+      - shutter time units
+      - that a successful wire send changed the sensor
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_SOFTWARE_CONTROL.md
+
+  - id: settings.native-iso-shutter-storage
+    status: accepted
+    kind: static
+    statement: >
+      On the RTOS side, ISO is translated to native tagged id 5, checked
+      against a runtime option mask, and stored as one byte. The value
+      converter maps numeric 100 to 0x00050001 and 0 to 0x00050000 in a
+      legacy table. Shutter native id 0x101 uses four-byte DataBox storage
+      from the startup-copied length table. Successful changes notify
+      observers by data id. An unchanged path may return success without
+      notification. The input getter shifts the shutter by 4, and a snapshot
+      truncates it to 16 bits. Reader failures can feed an initialized 0.
+      Registration and read returns are ignored.
+    address_space: rtos
+    not_proven:
+      - full hardware support for every table entry
+      - physical shutter units
+      - persistence across reboot
+      - sensor application
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_EXPOSURE_USE.md
+
+  - id: settings.exposure-reaches-register-path
+    status: accepted
+    kind: static
+    statement: >
+      The 3A calculation can write the result model that capture reads.
+      Model +32 is passed through a heap receiver into 0x803b4340. Record
+      +2 and +4 are capture model +34 and +36. Native shutter participates
+      in the context+14 == 2 branch, which has its own shooting and movie
+      mode gates. StartAe forwarding reaches 0x80242dc8, which reads a
+      selected timing object and clamps a converted quantity. 0x80242318
+      submits registers 0x0202 and 0x0340 through 0x80243a04. The duration
+      table base is 0x806c6478 after its negative displacement, not the
+      literal 0x806c6660.
+    address_space: rtos
+    not_proven:
+      - physical time units
+      - which timing object is selected on a live capture
+      - lower transport success
+      - a sensor effect
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_EXPOSURE_USE.md
+
+  - id: settings.native-raw-flags-are-not-ownership
+    status: accepted
+    kind: static
+    statement: >
+      Native userdata ids ISO 5, RAW_SAVE 123, SSIF_RAW 124, RAW_BIT 125,
+      and RAW_PACK 126 are a different domain from the Linux API ids.
+      RAW_SAVE value 0x007b0001 also invokes a raw filepath workflow.
+      Values 123 and 124 together change selected routing rows. That does
+      not supply owned pixels.
+    address_space: rtos
+    not_proven:
+      - a caller-owned RAW buffer behind those flags
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_SOFTWARE_CONTROL.md
+
+  - id: settings.lens-360-is-type-0
+    status: accepted
+    kind: static
+    statement: >
+      0x80138188 maps userdata 0x810000 (LENS_MODE_360) to sheet byte +0x229
+      = 0. Right and left 180 modes map to 2 and 1. The camera reported 360
+      mode on the 19 October 2026 read-only check. The live recipe key still
+      depends on unread sheet fields.
+    address_space: rtos
+    not_proven:
+      - the recipe key actually used on that boot
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_CODEX_RECONCILIATION.md
+
+  - id: settings.sensor-effect
+    status: open
+    kind: runtime
+    statement: >
+      Which of the recovered ISO and shutter stores changes the sensor for
+      a type-0 still, and what the shutter unit is.
+
+
+  - id: settings.adjust-ycc-incoming-wire
+    status: accepted
+    kind: static
+    statement: >
+      The RTOS attribute handler decodes category0x81, attribute0x0288,
+      payload length4 to wrapper0x8012e0e8, then native SetCaptureData
+      command0x01090006 and method0x801153cc. The command validates exactly
+      four bytes. The method reads the first little-endian u32 and maps
+      input1,2,3,4,5 to internal0,1,2,4,0 respectively, default0, then
+      calls0x800ff824. Its log names Set Adjust Ycc Capture. This word
+      gates ENC_SET delivery; it is not a sensor RAW ownership switch.
+    address_space: rtos
+    addresses:
+      handler_run: "0x801294e4"
+      incoming_wrapper: "0x8012e0e8"
+      native_method: "0x801153cc"
+      setter: "0x800ff824"
+    not_proven:
+      - live firmware acceptance
+      - property0xb9 meaning, hardware effect or retained sensor samples
+    detail: output/decompile/rea/pass-peer-alive-20261021/parent-review.md
+
+
+  - id: settings.adjust-ycc-linux-producer
+    status: accepted
+    kind: static
+    statement: >
+      Exported Linux C symbol SetCaptureDataMCB at ELF0x4e95c accepts native
+      command0x01090006 with the validator requiring four bytes. This case
+      selects attribute0x0288 and passes the supplied body to SetParam at
+      ELF0x8ac58, which calls bridge Send with category0x81. This agrees
+      with the recovered RTOS decoder. CAttributeHandler setAdjustYCC also
+      requires four bytes before invoking that exported function.
+    address_space: linux-capture-elf
+    also_involves: rtos
+    addresses:
+      set_capture_data_mcb: "0x4e95c"
+      length_validator: "0x51160"
+      set_param: "0x8ac58"
+      set_adjust_ycc: "0x9ba48"
+    not_proven:
+      - initialized sole ownership, delivery, hardware effect or live acceptance
+      - safe retry after a negative return, completion or retained sensor RAW
+    detail: output/decompile/rea/pass-peer-alive-20261021/parent-review.md
+
+  - id: settings.raw-quality-override-is-prosuggest-sample-capture-20261104
+    status: accepted
+    kind: static
+    statement: >
+      The RTOS order-sheet writer 0x801357b0 forces sheet byte 3 when
+      FUN_80084c04(sheet+8, 0x134) returns nonzero. That getter selects the
+      table by the key's high byte (1, variable data) and returns -1 when the
+      key's type query is 5 or more or the read fails, else the stored
+      value. By the RTOS name-table order (VARIABLE_TV at index 1 = native
+      0x101, the known shutter id), variable entry 0x34 is
+      VARIABLE_PROSUGGEST_SAMPLE_CAPTURE. So a RAW native quality reaches
+      the sheet (0x40004 -> byte 4 -> set type 3; 0x40003 -> 8 -> set type
+      2) unless that flag is set or unreadable.
+    address_space: rtos
+    evidence:
+      - ev_f6151363fe0b8ae4727a550d9858eaaf87e280b4f8014749c8ea84362ae6ecc9
+      - ev_95a3659d3d693b119aac87b9caa586bd6bb69244a4c7174de3c722bed740ea8b
+    not_proven:
+      - the flag's live value, or that the name-table order equals the id order
+      - that the user-data store accepts a RAW value on this camera
+    detail: output/decompile/rea/pass-raw-quality-route-20261104/RESULT.md
+
+  - id: settings.stock-app-sets-quality-through-user-spec-20261104
+    status: accepted
+    kind: static
+    statement: >
+      The stock app calls mm_camera_set_usr_attributes only from
+      UI_Mm_Camera_Panorama_Thumbnail and UI_Mm_Camera_Wifi_Mode; its other
+      settings go through the shared user-spec block and
+      mm_camera_set_userspec(handle, id, value) (UI_Mm_Camera_Set_User_Spec,
+      and UI_Mm_Camera_Set_User_Spec_All_Change with id -1), which libcapture
+      sends with SetUserSpecDataMCB. mm_camera_set_usr_attributes(handle, 3,
+      value) sends wire attribute 0x1103 through SetUserDataMCB, and the
+      RTOS SetUserData (0x800507e4) logs "SetUserData 0x%08X 0x%08X" before
+      converting and storing it.
+    address_space: linux-capture-elf
+    also_involves: [rtos]
+    evidence:
+      - ev_9bf0533660d0497a91f244df6312d765bbbef7fb5333d1215910b9849566ae39
+      - ev_169e7b01a5264d815f984a82d975f93c6544fb2a3e6c1716ead88e0026cec55a
+      - ev_a1f29aa7de7f6a55a55fe30b27e203fdb96f48b5f835e90fd8c024806151bacc
+      - ev_6d6dfae80dcb5be04d11768f7f9aef64e540b35191932ee6effcb3e16cf96aa4
+      - ev_a5c0a6da95642ff76ecf0a2145845867e5b8c08cfd1216be77089d20dea9c4f0
+    not_proven:
+      - the store's validation behind its virtual setter, or acceptance of RAW values
+      - whether the stock app's next user-spec push overwrites a 0x1103 change
+    detail: output/decompile/rea/pass-raw-quality-route-20261104/RESULT.md
+
+  - id: settings.drive-selects-capture-type-and-recipe-20261104
+    status: accepted
+    kind: static
+    statement: >
+      The RTOS order-sheet composer FUN_80134ee0 writes the capture type at
+      sheet +0x30 from USERDATA_DRIVE: CONTI 0xa0002-0xa0004 -> 0x13, BURST
+      0xa0005 -> 4, ADJUST 0xa0007 -> 0x11, AEBRK 0xa0008 -> 5, WBBRK 0xa0009
+      -> 6, PWBRK 0xa000a -> 0xa, DEPTHBRK 0xa000b -> 9, TIMELAPSE 0xa000c ->
+      0x23, otherwise 1 (with a few special cases). getRecipeBookId
+      (FUN_80281460) maps a still's capture type to a recipe id: 5, 9 and
+      0x24 -> 0; 6 and 0xa -> 10 (8 for a long exposure); 4 -> 1; 0x11 ->
+      0x11; 1 -> 8 for a long exposure, else from the drive selector +0x49
+      and other sheet fields (0, 4, 6, 0x14, 0x15, 0x1b or 0x20). The
+      registration FUN_80280920 maps ids 0 and 4 to the normal recipe
+      0x802a9570, 5 to HDR 0x802a6cec, 10 to RecipeBracket 0x802aee04, 11 to
+      RecipeBracketBackEnd, 13 to best face, 15 to RecipeMultiExp. So
+      DRIVE_WBBRK and DRIVE_PWBRK select RecipeBracket, and DRIVE_SINGLE and
+      DRIVE_AEBRK the normal recipe.
+    address_space: rtos
+    evidence:
+      - ev_d3242ad0beaa2cec225acf6e22e5b70c0fabf17143fbfec4bca6c9f7fa81c04f
+      - ev_cf01e4a0ae2b18a5ecee355f50feeac01f307fb766980e817eb8020a9f1068ad
+      - ev_e95d4baf0db8bb281a191fe424239e935ca8287ca26b9e02ba4b2fbe6a43debf
+      - ev_77ca5b1b51e1d22df93cd38e4bd3983ae079e12ed9c8dc8415e929f28aa55315
+    not_proven:
+      - that RecipeBracket works on the Gear 360's dual-lens still pipeline
+      - the live values of the other sheet fields on this camera
+    detail: output/decompile/rea/pass-drive-recipe-20261104/RESULT.md
+
+  - id: settings.drive-mode-linux-attribute-8-20261104
+    status: accepted
+    kind: static
+    statement: >
+      libcapture's mm_camera_set_usr_attributes converter accepts attribute
+      8 values 0x80000-0x80009 unchanged (wire attribute 0x1108). The RTOS
+      API converter sends API 8 to native user data 10 (DRIVE) through
+      FUN_80542fb8: 0x80000 SINGLE 0xa0001, 0x80001 0xa0003, 0x80002 0xa0004,
+      0x80003 BURST, 0x80004 AEBRK, 0x80005 WBBRK, 0x80006 PWBRK, 0x80008
+      DEPTHBRK; other values fail.
+    address_space: rtos
+    also_involves: [linux-capture-elf]
+    evidence:
+      - ev_8ab83ed72a7b4c07914cfa122fe0e73ab9052de655d5588b16bf5e29887d3644
+      - ev_fb6498aa0ae44feeb2311d2841fbf68eaf974ab81562730b29936d8a831383d1
+      - ev_f966865c2870441b629d5d5cede127ca5a0c158071319b866a23153c8cbf3f1e
+    not_proven:
+      - that the store accepts every value on this camera
+    detail: output/decompile/rea/pass-drive-recipe-20261104/RESULT.md
+
+  - id: settings.exposure-attributes-through-libcapture-20261104
+    status: accepted
+    kind: static
+    statement: >
+      Through mm_camera_set_usr_attributes, libcapture keeps Linux ids 0, 1,
+      4, 5, 16, 22 and 23 as wire ids, which the RTOS maps to DIALMODE,
+      SHOOTINGMODE, ISO, WB, SMARTRANGE, ISONR and LTNR (Linux id 39 is
+      ISOAUTOMAX). Value conversions: DIALMODE 1 -> native 2 (PROGRAM), 3 ->
+      4; SHOOTINGMODE is shifted by libcapture (0x10000 -> 0x10001 PROGRAM,
+      0x10003 -> 0x10004 MANUAL); ISO is a number (0 AUTO, 100 -> 0x50001,
+      125 -> 0x50002 ...); ISONR 0x160000..3 -> 0x1e0000..3; LTNR 0/1 ->
+      0x1f0000/1. The shutter is variable 0x101: mm_camera_set_var_attributes
+      sends the value unchanged (wire 0x1302) and the RTOS SetVariableData
+      stores it as VARIABLE_TV, the value the camera shell's setvar TV writes
+      (16 * log2(1/seconds); EXIF 1/60 s for TV 95 in September 2026).
+    address_space: linux-capture-elf
+    also_involves: [rtos]
+    evidence:
+      - ev_e0ff9be24aafadfac63bb0c941827cd072cc51863322991223a6905545877909
+      - ev_0443be32d774067cbe87a3b84f4fa21e53c2403e6e4db3c98ab89b2f6d06185a
+      - ev_379823e9331317d56c6cebf5bd6267a8117d445904dfcf81f9953d29c807f950
+      - ev_729fe2965b990d5da27e6fcae3f68e0cbf7f7739edd1dad9eb96b3b699b202df
+      - ev_ef4b3d162c528f6896461db58769f23d832ccecc753be4cc20d7a0e659075aeb
+      - ev_d3914fb453c77e5ad35b1c442202f537a70d033ab7c2280779917f177c1ce0eb
+    not_proven:
+      - that these Linux-side settings change the sensor exposure as the shell's did
+      - exposures longer than about 1/5 s (September saw no further brightening)
+    detail: output/decompile/rea/pass-exposure-control-20261104/RESULT.md
+
+  - id: settings.manual-exposure-from-g360cap-observed-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      g360cap set, before each of three stills, DIALMODE 3, SHOOTINGMODE
+      0x10003, ISO 100 and variable 0x101 (TV 160, 96, 32). The RTOS logged
+      DIALMODE_SHUTTERSPEED, SHOOTINGMODE_MANUAL, ISO_100 and SetVideoConfig
+      m_uiExposureTimeStill 976, 15625 and 250000 us (exactly 2^(-TV/16) s)
+      with m_iSValue 80; the Linux gyro responder logged the same exposures.
+      The main JPEGs' mean levels were 2.0, 17.3 and 104.8. Setting DIALMODE
+      1, SHOOTINGMODE 0x10000 and ISO 0 afterwards restored PROGRAM and
+      ISO_AUTO. No reboot.
+    detail: output/decompile/rea/pass-expoE1/RESULT.md
+
+  - id: settings.five-second-exposure-selects-ltnr-recipe-then-stalls-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      With RAW_SUPERFINE, LTNR on, manual mode, ISO 100 and TV -37, the RTOS
+      logged ">> CMaterial_PP_Core_Still_LTNR_Image" (the long-exposure
+      recipe) and SetStillConfig m_uiExposureTimeStill 4967431 us with
+      m_iSValue 80, reconfigured both sensors (UD 2880x2880, EnableStream,
+      SensorCb(2)) and then logged nothing more about the capture for about
+      40 s: no readout, RAW work, dark frame or encode; Linux received
+      capture-start and capturing only, no gyro request and no image set.
+      g360cap timed out at 15 s and restored the settings; no reboot.
+    not_proven:
+      - whether the capture stalls or is only slow (the 15 s timeout restored settings mid-capture)
+      - the sensors' longest supported still exposure
+    detail: output/decompile/rea/pass-expoE2/RESULT.md
+
+  - id: settings.quickview-holdzoom-skips-single-still-liveview-restart-20261104
+    status: accepted
+    kind: static
+    also_involves: [linux-capture-elf]
+    statement: >
+      CDriveSingle::restartLiveview (FUN_80276c04) restarts live view after a
+      single still through CDriveBaseNx::restartLiveview (FUN_802748e8)
+      unless user setting 0x33 is 0x330005; in that case it restarts only if
+      the monitor-out check FUN_8005b4b0 returns 1 (property 0x28cc == 1 and
+      MONITOROUT 0x340000/1/3), the command mode byte is 0x15 (set by the
+      custom-WB command FUN_800efeac; CCmdCaptureNormal FUN_800ef078 sets 1
+      for a normal still), dial mode 10 is combined with smart mode
+      0x51001e and flag 0x11e, or a boot shot is running
+      (CBootShotManager+0x19 is 1 or 2, FUN_80570884); otherwise it returns
+      0 and live view stays off until the quick-view state
+      (CCaptureStateQuickview, FUN_801035f8) restarts it. Setting 0x33 is
+      USERDATA_QUICKVIEWTIME; by the order of its value names (OFF, 1SEC,
+      3SEC, 5SEC, HOLD, HOLDZOOM, NUM_OF_QUICKVIEWTIME) 0x330005 is
+      QUICKVIEWTIME_HOLDZOOM. The RTOS attribute conversion (FUN_80052b9c,
+      FUN_80543e48) maps wire attribute 0x2b with values 0x2b0000-0x2b0005
+      to 0x330000-0x330005, and libcapture's user converter (Ghidra
+      0x4408c) produces that wire attribute from its API attribute 0x1e
+      with values 0x1e0000-0x1e0005 (its own API 0x2b becomes wire 0x39).
+      Trial R1 (quick view not set)
+      logged "[restartLiveview] Change to NORMAL_LIVEVIEW" from this path.
+    address_space: rtos
+    evidence:
+      - ev_ad345c6fa264179859329ac73a95180f8221472559b461e9a13f4e356db34aab
+      - ev_175cea72e8c9d7d06fc53f22ed692eb6eb71724efac10f3d764158e6d0db9717
+      - ev_260c8ac1ece3ae9881fcba6b158ee933dbfcacc49d8157c0c779a6bbbfeb0d97
+      - ev_7551732b99631f6be6f6a960e7becf9b1d81074224eca1d168024eda6bd93126
+      - ev_b89b996f7b66715f5ac889eb7127f9b8c24a1b6d42bd620874cb1d88b0060b3f
+      - ev_b0e3f644576bc97fa2109904d7c557583184cf07d6c87df7309a9690acc43242
+      - ev_d862a62115bbf5702064ededf5e7900d364db07e28730504a86eaa53a99f7d72
+      - ev_f86f126951ebb87b17473756b56231db404e6fa40c2b651dc081e9e62454dd28
+      - ev_70d8817af1f0af7a4f6e668d6addb77cdf745217248d600e2356cd3c9a37a561
+      - ev_fd3db0d1bbd1d423e09d72d07b021f14be6e2939d0a734c50ec780029be3dafa
+      - ev_2236c19745ab5ddfb96096781986b36062db007917b2ad172de82024c6d19f6a
+      - ev_35a358af05209595cad8a6407b29ed4577adeb03dfedbf1d86cbb793fae8c49e
+      - ev_c90f90408f560ac12713e3ea7bd866784f5ac652964146046114814721bed48c
+      - ev_1b30e37e01b2044cc34b6de1fba25578266a2b7b668bdc86d0bad061e1bc35b1
+    not_proven:
+      - (trial Q1 observed the camera applying 0x1e0005 and taking the no-restart branch;
+        see raw.quickview-holdzoom-lens2-raw-intact-lens1-reused-20261104)
+      - how the quick-view state ends without the stock app, and whether the next still works from it
+        (in Q1 no capture-ready arrived within 10 s)
+      - the camera's current QUICKVIEWTIME value
+    detail: output/decompile/rea/pass-raw-keep-trace-20261104/RESULT.md
+
+  - id: settings.long-exposure-capture-path-never-delivers-20261104
+    status: accepted
+    kind: observation
+    statement: >
+      Repeating the 5 s RAW_SUPERFINE still (LTNR on, ISO 100, TV -37) with a
+      90 s wait gave no image set and no frame-end gyro request; the RTOS
+      logged CapInit eCapOption(1), sensor modes 2 -> 5, "capExposure :
+      Exposure = 4967.431ms", CapFrameReadout, set pp size1 w:0 h:0,
+      EnableStream and SensorCb(2), then nothing about the capture for 90 s.
+      Normal stills (E1, up to 1/4 s) instead read their frame from the
+      running stream (VideoFrameReadout) and reach Raw Work Done within
+      about 40 ms. So the long-exposure capture path never receives its
+      frame on this camera, and the LTNR recipe route to RAW is blocked at
+      5 s.
+    not_proven:
+      - whether the exposure length or the LTNR recipe selects the capture path
+      - the longest exposure that completes
+    detail: output/decompile/rea/pass-expoE3/RESULT.md
+
+  - id: settings.still-exposure-cap-is-four-videofull-frames-20261108
+    status: open
+    kind: static
+    statement: >
+      Reading the saved RTOS decompile (not a fresh REA session): the
+      sensor driver's exposure setter FUN_80242dc8 converts the requested
+      microseconds to lines with a 480 MHz clock and clamps them to the
+      active mode's frame lines minus 6, times 4 only for sensor modes 0x16
+      (VideoFull), 0x23 and 0x24. Normal stills run in mode 0x16 at the
+      24 fps rate class (19.99 M clocks, 41.7 ms per frame), so the cap is
+      about 4 frames, 166 ms, 1/6 s: the plateau seen in September and the
+      reason longer requested exposures give the same image. The long route
+      (E3) walks sensor modes 2-6, which are not in the times-4 set and map
+      to the UD mode (41.7 ms frame), so its sensor timing does not explain
+      the stall; the PP windows are sized 0x0 there. The sensor driver
+      picks a timing object by mode class (11 tables at 0x80674d70, 480 MHz):
+      modes 2-6 are class 2, 3399 lines x 4712 clocks = 33.4 ms, which is
+      the 33 ms readout seen in E3; no mode class gives more than 4 frames
+      (167 ms) of exposure.
+      Trial L1 (8 November, JPEG, ISO 100, LTNR off) agrees: 1/4 s and 2 s
+      stills have identical mean luma (46.3), 1/8 s is darker (42.3), and 5 s
+      gives the same image with the usual 0.85 s capture and no stall.
+    address_space: rtos
+    not_proven:
+      - confirmation in a fresh REA session
+      - that mode 22 is the sensor mode during a stream-grab still at capture time (E1 log shows eSensorMode 22 set before the readout)
+      - how Bulb recipes realise a longer exposure
+    detail: output/decompile/rea/pass-longexp-static-20261108/RESULT.md
+
+  - id: settings.raw-scales-at-both-exposure-ends-20261108
+    status: accepted
+    kind: observation
+    statement: >
+      Trial ENDS1 (8 November, home network, same boot 1794129402, ISO 100,
+      LTNR off, g360-shot RAW, one static scene, each step ending with its
+      first TV again). Black-subtracted RAW signal relative to frame 1, on
+      pixels unclipped and above 1-5% in all four frames: slow end TV 41,
+      57, 73 (requested 1/5.9, 1/11.8, 1/23.6 s) gave 1, 0.510, 0.256 and
+      the repeat 0.998 (expected 0.5, 0.25): each step halves the signal,
+      and TV 41 exposes about 166 ms rather than the requested 169 ms, the
+      4-frame cap. Fast end TV 186, 202, 218 (1/3158, 1/6317, 1/12634 s)
+      gave 1, 0.493, 0.239 and the repeat 1.008, the same at 1% and 2%
+      thresholds: halving too, consistent with every exposure being about
+      5 us shorter than requested, and TV 218 (at the ~1/12,400 s floor) is a
+      real, proportionally shorter exposure. Exif ExposureTime read 1/6, 1/13,
+      1/25 and 1/3200, 1/6400, 1/13000. Trial ENDS2 repeated the fast step
+      with about 2.4 times the light (8,599 pixels above 5%, 49,320 above
+      2%): 1, 0.494, 0.238, repeat 1.001 (0.491, 0.241 at 2%), so the
+      shortfall is reproducible and independent of signal level (a time
+      offset of about 4-5.5 us, not a sensor nonlinearity).
+    not_proven:
+      - the cause of the ~5 us shortfall (fixed offset in the line count, or a slightly different line time)
+      - linearity between the ends (only 1 EV steps at each end were measured)
+    detail: output/decompile/rea/pass-longexp-static-20261108/RESULT.md
+  - id: settings.raw-follows-set-time-not-exif-name-20261109
+    status: accepted
+    kind: observation
+    statement: >
+      Trial RANGE14 (9 November, home network, same boot 1794129402, ISO 100,
+      LTNR off, g360-shot RAW, a static scene with dark and bright parts): 14
+      TVs 0.85 EV apart from 41 to 218 and a repeat of 41 (ratio 1.0000).
+      Chained neighbour ratios (pixels chosen on an independent third frame)
+      against each model scaled by one free constant: the set time
+      2^(-TV/16) fits to 0.034 EV RMS (worst 0.088 at TV 218); the same with
+      the 166 ms cap and a 5 us shortfall, both from earlier trials and not
+      fitted here, fits to 0.013 EV RMS (worst 0.031); the firmware's Exif
+      ExposureTime (third-stop names such as 1/30 for 1/34.9 s) fits to only
+      0.083 EV RMS, worst 0.157, with single-step errors up to 0.29 EV.
+      Within each pair the ratio holds within 1% from 6% to 85% of the RAW
+      range. The Exif ExposureTime both writers copy from the firmware's
+      capture record is a rounded name, not the exposure.
+    not_proven:
+      - absolute exposure time (only ratios were measured)
+      - the cause of the 0.3-1% lower ratio in the dimmest pixels (black level?)
+    detail: output/decompile/rea/pass-longexp-static-20261108/RESULT.md

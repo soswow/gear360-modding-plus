@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gear 360 remote</title>
+<style>
+:root{--bg:#151719;--card:#25282b;--text:#eee;--dim:#a9adb2;--accent:#8ed2ff;--warm:#ffd274;--stop:#ff8e8e;--line:#3a3e42}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{font:16px/1.4 Arial,sans-serif;max-width:560px;margin:0 auto;padding:16px;background:var(--bg);color:var(--text)}
+h1{font-size:22px;margin:0 0 12px}
+h2{font-size:15px;margin:0 0 10px;color:var(--dim);font-weight:normal;text-transform:uppercase;letter-spacing:.06em}
+.card{background:var(--card);padding:14px;margin:12px 0;border-radius:10px}
+button{font:inherit;font-weight:bold;border:0;border-radius:7px;padding:12px 16px;color:#101214;background:var(--accent);cursor:pointer}
+button:disabled{opacity:.4;cursor:default}
+button.big{width:100%;padding:18px;font-size:20px;margin-bottom:8px}
+button.warm{background:var(--warm)}button.stop{background:var(--stop)}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row button{flex:1}
+#oled{background:#000;border:2px solid #333;border-radius:6px;height:96px;display:flex;flex-direction:column;justify-content:center;
+  align-items:center;font:bold 20px/1.25 "Courier New",monospace;color:#fff;white-space:pre;letter-spacing:.04em}
+#oled.number{font-size:40px}
+#icons{display:flex;gap:10px;justify-content:flex-end;color:var(--dim);font-size:14px;margin-bottom:6px;min-height:18px}
+#line{margin-top:8px;color:var(--dim)}
+#message{min-height:22px;margin:4px 0 0;color:var(--warm)}
+.setting{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.setting:first-of-type{border-top:0}
+.seg{display:flex;border-radius:7px;overflow:hidden}
+.seg button{border-radius:0;padding:9px 12px;background:#3a3e42;color:var(--text);font-weight:normal;border-left:1px solid var(--bg)}
+.seg button:first-child{border-left:0}
+.seg button.on{background:var(--accent);color:#101214;font-weight:bold}
+select{font:inherit;padding:9px 10px;border:1px solid #777;border-radius:7px;background:var(--bg);color:var(--text);min-width:110px}
+select:disabled{opacity:.4}
+input{font:inherit;width:96px;padding:10px;border:1px solid #777;border-radius:7px;background:var(--bg);color:var(--text)}
+small,.hint{color:var(--dim)}
+.off #controls{opacity:.35;pointer-events:none}
+.live{position:relative;width:100%;aspect-ratio:2/1;background:#000;border-radius:6px;overflow:hidden;margin-bottom:8px}
+.live img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.live span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--dim);text-align:center;padding:8px}
+</style>
+</head>
+<body>
+<h1>Gear 360 remote</h1>
+
+<div class="card">
+  <div id="icons" aria-label="Status"></div>
+  <div id="oled" aria-live="polite">…</div>
+  <div id="line">Connecting…</div>
+</div>
+
+<div id="controls">
+<div class="card">
+  <button id="capture" class="big" onclick="capture(0)">Capture</button>
+  <div class="row">
+    <button id="sweep" class="warm" onclick="capture(1)">HDR sweep</button>
+    <button id="cancel" class="stop" onclick="send('cmd=cancel')" hidden>Cancel countdown</button>
+  </div>
+  <p id="message" role="status"></p>
+</div>
+
+<div class="card">
+  <h2>Live preview</h2>
+  <div class="live"><img id="live" alt="Live preview from both lenses" hidden><span id="live-text">Off</span></div>
+  <div class="row">
+    <button id="live-start" onclick="startLive()">Start</button>
+    <button id="live-stop" class="stop" onclick="stopLive()">Stop</button>
+  </div>
+  <p id="live-line" class="hint"></p>
+  <p><small>Both lenses as the camera sees them, about 8 pictures a second. It pauses while the camera takes a photo or
+  sweep, and stops by itself 20 s after the last page showing it is closed.</small></p>
+</div>
+
+<div class="card">
+  <h2>Auto photos</h2>
+  <p>Press Capture every <input id="every" type="number" min="1" max="86400" step="1" value="10"> seconds</p>
+  <div class="row">
+    <button id="auto-start" onclick="startAuto()">Start</button>
+    <button id="auto-stop" class="stop" onclick="send('cmd=auto&amp;every=0')">Stop</button>
+  </div>
+  <p id="auto-line" class="hint"></p>
+  <p><small>Each press works like the button, with the Delay setting's countdown inside the interval: every 10 s with a
+  5 s delay, the countdown starts 5 s after the last photo. A delay longer than the interval wins. A short Power press
+  on the camera also stops auto photos.</small></p>
+</div>
+
+<div class="card">
+  <h2>Settings</h2>
+  <div id="settings"></div>
+  <div class="setting"><label for="shutter">Shutter</label><select id="shutter" onchange="chooseExposure('shutter',this.value)"></select></div>
+  <div class="setting"><label for="iso">ISO</label><select id="iso" onchange="chooseExposure('iso',this.value)"></select></div>
+  <p class="hint" id="exposure-hint"></p>
+  <div class="setting"><span>Wi-Fi</span><span id="wifi" class="hint"></span></div>
+  <p class="hint" id="settings-hint"></p>
+</div>
+</div>
+
+<script>
+const SETTINGS=[
+  ['mode','Mode',[['single','Single'],['hdr','HDR']]],
+  ['output','Output',[['raw','RAW'],['jpeg','JPEG'],['raw+jpeg','RAW+JPEG']]],
+  ['save','Save sweeps',[['flash','Flash'],['card','Card']]],
+  ['delay','Delay',[[0,'Off'],[2,'2 s'],[5,'5 s'],[10,'10 s']]],
+  ['sounds','Sounds',[['on','On'],['off','Off']]]];
+// Shutter and ISO, for single photos; only this page has them. The shutter
+// values are TVs (exposure 2^(-TV/16) s): the familiar third-stop speeds
+// over the camera's full range, 1/6 to 1/13000 (remote.h, G360_SHUTTER_TVS),
+// named as the camera's Exif names them.
+// Auto shutter means Auto ISO; the ISO is chosen with a set shutter.
+// A sweep puts both back to Auto.
+const SHUTTERS=[['auto','Auto'],[41,'1/6'],[48,'1/8'],[53,'1/10'],[59,'1/13'],[63,'1/15'],[69,'1/20'],[74,'1/25'],[79,'1/30'],[85,'1/40'],[90,'1/50'],[95,'1/60'],[101,'1/80'],[106,'1/100'],[111,'1/125'],[117,'1/160'],[122,'1/200'],[127,'1/250'],[133,'1/320'],[138,'1/400'],[143,'1/500'],[149,'1/640'],[154,'1/800'],[159,'1/1000'],[165,'1/1250'],[170,'1/1600'],[175,'1/2000'],[181,'1/2500'],[186,'1/3200'],[191,'1/4000'],[197,'1/5000'],[202,'1/6400'],[207,'1/8000'],[213,'1/10000'],[218,'1/13000']];
+const ISOS=[['auto','Auto'],[100,'100'],[200,'200'],[400,'400'],[800,'800'],[1600,'1600']];
+const $=id=>document.getElementById(id);
+for(const [id,options] of [['shutter',SHUTTERS],['iso',ISOS]])
+  for(const [value,text] of options){const o=document.createElement('option');o.value=value;o.textContent=text;$(id).appendChild(o)}
+let last=null,waiting=false;
+
+const box=$('settings');
+for(const [key,name,options] of SETTINGS){
+  const row=document.createElement('div');row.className='setting';
+  row.innerHTML='<span>'+name+'</span>';
+  const seg=document.createElement('div');seg.className='seg';seg.setAttribute('role','group');seg.setAttribute('aria-label',name);
+  for(const [value,text] of options){
+    const b=document.createElement('button');b.textContent=text;b.dataset.key=key;b.dataset.value=value;
+    b.onclick=()=>choose(key,value);seg.appendChild(b);
+  }
+  row.appendChild(seg);box.appendChild(row);
+}
+
+async function ask(query){
+  try{
+    const r=await fetch('/cgi-bin/g360?'+query+'&_='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw Error('HTTP '+r.status);
+    return await r.json();
+  }catch(e){return {app:'unreachable',detail:String(e)}}
+}
+async function send(query){
+  waiting=true;
+  const s=await ask(query);
+  waiting=false;
+  $('message').textContent=s.app==='on'&&!s.ok?'Not done: '+s.error+'.':'';
+  render(s);
+}
+async function poll(){if(!waiting)render(await ask('cmd=state'))}
+
+function capture(sweep){send('cmd=capture'+(sweep?'&sweep=1':''))}
+function startAuto(){
+  const n=$('every');if(!n.reportValidity())return;
+  send('cmd=auto&every='+encodeURIComponent(n.value));
+}
+function choose(key,value){
+  if(!last||last.settings[key]==value)return;
+  send('cmd=set&'+key+'='+encodeURIComponent(value));
+}
+
+function chooseExposure(key,value){
+  if(!last)return;
+  send('cmd=set&'+key+'='+encodeURIComponent(value));
+}
+
+// The live preview (preview.h).
+let liveWanted=false,liveRetry=0;
+// Relayed by the page's own CGI (one address for everything); the app also
+// serves it directly on its port (last.preview.port).
+function liveUrl(){return '/cgi-bin/g360?cmd=stream&_='+Date.now()}
+function liveConnect(){
+  if(!last||!last.preview)return;
+  const img=$('live');
+  img.src=liveUrl();img.hidden=false;
+}
+function liveDrop(){const img=$('live');img.removeAttribute('src');img.hidden=true}
+$('live').onerror=()=>{liveDrop();if(liveWanted&&!document.hidden){clearTimeout(liveRetry);liveRetry=setTimeout(liveConnect,1500)}};
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden)liveDrop();else if(liveWanted)liveConnect();
+});
+async function startLive(){
+  liveWanted=true;
+  await send('cmd=preview&on=1');
+  if(last&&last.preview&&last.preview.state!=='off')liveConnect();else liveWanted=false;
+}
+function stopLive(){liveWanted=false;liveDrop();send('cmd=preview&on=0')}
+
+const STATES={starting:'Starting',ready:'Ready',capturing:'Capturing',sweeping:'Sweep',saving:'Saving',error:'Error',stopped:'Stopped'};
+function render(s){
+  document.body.classList.toggle('off',s.app!=='on');
+  if(s.app!=='on'){
+    last=null;
+    $('oled').textContent='';$('oled').className='';$('icons').textContent='';
+    $('line').textContent=s.app==='off'?'The app is not running. Double-press Power on the camera to start it.'
+      :'Cannot reach the camera ('+(s.detail||s.app)+').';
+    return;
+  }
+  last=s;
+  const text=s.screen||'';
+  $('oled').textContent=text;
+  $('oled').className=/^\d{1,6}$/.test(text)?'number':'';
+  const icons=[];
+  if(s.settings.sounds==='on')icons.push('♫');
+  if(s.settings.output!=='jpeg')icons.push('R');
+  if(s.settings.delay)icons.push('⏱ '+s.settings.delay+' s');
+  icons.push(s.settings.mode==='hdr'?'HDR':'Single');
+  icons.push({home:'Wi-Fi home',ap:'Wi-Fi AP',none:'No Wi-Fi'}[s.network]||'');
+  icons.push(s.battery<0?'Battery ?':s.battery+'%'+(s.charging?' ⚡':''));
+  $('icons').textContent=icons.join('  ·  ');
+  let line=STATES[s.state]||s.state;
+  if(s.state==='ready'&&s.countdown)line=(s.countdown_sweep?'Sweep':'Capture')+' in '+s.countdown+' s';
+  else if(s.state==='ready')line+=' · '+(s.left?s.left+' '+(s.left===1?s.left_unit.slice(0,-1):s.left_unit)+' left':'card full');
+  if(s.state==='sweeping'&&s.sweep[0])line+=' '+s.sweep[0]+'/'+s.sweep[1];
+  if(s.menu)line+=' · settings open on the camera';
+  $('line').textContent=line+' · '+s.saved+' taken since start';
+
+  const idle=s.state==='ready'&&!s.menu&&!s.countdown;
+  const hdr=s.settings.mode==='hdr';
+  $('capture').textContent=hdr?'Capture HDR sweep':'Capture';
+  $('capture').disabled=!idle;
+  $('sweep').hidden=hdr||!!s.countdown;$('sweep').disabled=!idle;
+  $('cancel').hidden=!s.countdown;
+  const a=s.auto;
+  $('auto-start').textContent=a.every?'Change interval':'Start';
+  $('auto-stop').disabled=!a.every;
+  $('auto-line').textContent=a.every?'Every '+a.every+' s · '+a.taken+' pressed'+(a.next?' · next press in '+a.next+' s':''):'Off.';
+  if(a.every&&document.activeElement!==$('every'))$('every').value=a.every;
+
+  for(const b of box.querySelectorAll('button')){
+    b.classList.toggle('on',s.settings[b.dataset.key]==b.dataset.value);
+    b.disabled=!idle;
+  }
+  const ex=s.exposure||{shutter:0,iso:0};
+  const single=!hdr;
+  // Skipped while a menu is open, so a choice being made is not overwritten.
+  if(document.activeElement!==$('shutter'))$('shutter').value=ex.shutter?ex.shutter:'auto';
+  if(document.activeElement!==$('iso'))$('iso').value=ex.iso?ex.iso:'auto';
+  $('shutter').disabled=!idle||!single;
+  $('iso').disabled=!idle||!single||!ex.shutter;
+  $('iso').options[0].disabled=!!ex.shutter; // Auto ISO goes with the Auto shutter
+  $('exposure-hint').textContent=hdr?'Shutter and ISO are for single photos; an HDR sweep sets its own.'
+    :ex.shutter?'Set shutter and ISO for single photos. Choose Auto shutter to have both automatic.'
+    :'Auto shutter is automatic for both. Pick a shutter to choose the ISO too. A sweep or the HDR mode sets both back to Auto.';
+  $('wifi').textContent={home:'Home network',ap:'Camera access point',off:'Off'}[s.settings.wifi]+' (change it on the camera)';
+  $('settings-hint').textContent=idle?'':'Settings can be changed when the camera is ready.';
+
+  const p=s.preview||{state:'off',viewers:0,error:''};
+  if(p.state==='off'&&liveWanted){liveWanted=false;liveDrop()}
+  const showing=liveWanted&&!$('live').hidden;
+  $('live-start').textContent=p.state!=='off'&&!liveWanted?'Watch':'Start';
+  $('live-start').disabled=liveWanted;
+  $('live-stop').disabled=p.state==='off';
+  $('live-text').textContent={off:'Off',starting:'Starting…',paused:'Paused for the capture',on:showing?'':'On'}[p.state]||'';
+  $('live-text').hidden=showing&&p.state==='on';
+  $('live-line').textContent=p.state==='off'?(p.error?'Could not start: '+p.error+'.':'Off.')
+    :({starting:'Starting',on:'On',paused:'Paused for the capture'}[p.state]+' · '+p.viewers+' watching');
+}
+poll();setInterval(poll,700);
+</script>
+</body>
+</html>

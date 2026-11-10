@@ -1,0 +1,420 @@
+{
+  "schema": "gear360-historical-memory-boundary-v1",
+  "scope": "Offline p8 source-window/map/PFN/reconstruction validation, with upstream Linuxv3.5 as a compatibility model rather than exactSamsungsource. Does not certify runtime activation or RAW content. Full eMMC digest is recorded sidecar only, not rehashed.",
+  "report": {
+    "path": "reverse-engineering/RAW_HIBERNATION_MEMORY_BOUNDARY.md",
+    "bytes": 5102,
+    "sha256": "ee8efa294ba05dec9fbefb18be0ec247bcfaa4b78afbaf5361dc7973558c9d4a"
+  },
+  "upstreamTagCommit": "28a33cbc24e4256c143dce96c7d93bf423229f92",
+  "savedPageCount": 19755,
+  "candidateArenaSavedPfnCount": 0,
+  "sparseArtifactHashDefinition": "Use per-page index and PFN-ordered concatenated hash in reconstruction-manifest.json, not a digest of sparse holes.",
+  "files": [
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-boundary/REPORT.md",
+      "bytes": 5347,
+      "sha256": "0cbf1f4e578b509dfb38e38f5cad91a8317dbdd5d0850858731efa87d2314bf7"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-boundary/snapshot-boundary-manifest.json",
+      "bytes": 2881,
+      "sha256": "b99f0e210e735d6e717af51728b7a0c28033e4892c5649951f0d4d46d85afe70"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-boundary/snapshot-window-candidates.json",
+      "bytes": 2413,
+      "sha256": "971300e07d27e6d647fbf3a00f60d5148512beb95b2426faf982907bc65fa194"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-boundary/source-windows/p8-first-65536.bin",
+      "bytes": 65536,
+      "sha256": "807bec4561b1eae6ce7b07d744b2c781856c192d399634202d3db12fcc5113c1"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-boundary/source-windows/p5-uimage-header-64.bin",
+      "bytes": 64,
+      "sha256": "aef21340767870469d228209d69243a329bfc40a14bbd60a916928fc6e49d9be"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/REPORT.md",
+      "bytes": 5955,
+      "sha256": "4280fdddd55ce5e71a61d8cee9601a0a742aca68d96fd59ac144f455879a5b65"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/map-pfn-analysis.json",
+      "bytes": 46403,
+      "sha256": "08a8d1dcd7762b2357f01b7792e4f8977f90d516f199715c331937fb340bce68"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/parse_map_and_pfns.py",
+      "bytes": 9112,
+      "sha256": "d9f792be6714c15e96dd9c175773e3c7bd39ca5b77b386b680ed43c6988c19b7"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/reconstruct_sparse_ram.py",
+      "bytes": 4955,
+      "sha256": "bf2e96c0cc0917165948e194560317ad7d7e10863d04c4ba26e2a77837c24a0f"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/upstream-source-manifest.json",
+      "bytes": 1553,
+      "sha256": "6845e4d7fc8a88f907652782a44c40196b3f60872be5f45907090faf77cd7e85"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/reconstruction-manifest.json",
+      "bytes": 1043,
+      "sha256": "a419b60fbf9d79df2515682f9ab2c2d5ea4c36f27976ff5461fe1f671c880298"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/reconstructed-ram-pages.jsonl",
+      "bytes": 4205449,
+      "sha256": "34fe10672de0a6c4bde7fe07f23831fb5d86130ed1926bdc42ad3a02c7e25825"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/content-screen.md",
+      "bytes": 4094,
+      "sha256": "f7b762b7370c72ca277653822b099cf249855c0d794a3fcb3b56025a2dcf4e04"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/content-screen.json",
+      "bytes": 8574,
+      "sha256": "9b8d8ea0eb48e7f5e44f7ae21330c09a3addb408b310ee145e617cf7d71c60af"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/screen_identifiers.py",
+      "bytes": 5904,
+      "sha256": "7d1556ffe0ae6364a9ddaf4dbcf3178b9475235038e01766a740cd41a48b0276"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/parent-snapshot-validation.json",
+      "bytes": 604,
+      "sha256": "643ad0b4abeee82e16f97dd1f45d7340d7f3cbab3f55a7c8c36c11341986437d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/upstream-v3.5/kernel/power/swap.c",
+      "bytes": 35940,
+      "sha256": "da5a3fb9f3cbf53c346538df2673eb700b8fe93f29a91898a6514bc42b46fc18"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/upstream-v3.5/kernel/power/snapshot.c",
+      "bytes": 61894,
+      "sha256": "f17e8636cbeb72b89fd86af314c39c219b5f1444ded099ae8486fec28a237776"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/upstream-v3.5/kernel/power/power.h",
+      "bytes": 8509,
+      "sha256": "3ed366acae4a7fa007e901f84eea0b9c2272972ea88c9d6cc83b0f2f0d64841b"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/upstream-v3.5/include/linux/suspend.h",
+      "bytes": 16089,
+      "sha256": "fabf3a17696e5df7c99206a9c317acd9c34c4ee0d001ad6bf701980b82365f7d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/upstream-v3.5/include/linux/swap.h",
+      "bytes": 14545,
+      "sha256": "5643514e9f0612517d0e4dec5c2114d172a18ad2d422240be0622528d52e6200"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-00-slot1.bin",
+      "bytes": 4096,
+      "sha256": "8d006911be3c340f92bd212b47fe3a164a183d274f60cda55f50ae825945df60"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-01-slot513.bin",
+      "bytes": 4096,
+      "sha256": "1ee10aa0b8f1fda7798a9078d3e69459c7e377b1e0c3445a0f6b24d5748fad12"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-02-slot1025.bin",
+      "bytes": 4096,
+      "sha256": "b92d8f7416890578478a06b9b927ea2870fe13e6222a5bd1c4f0d16e50c2c1e8"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-03-slot1537.bin",
+      "bytes": 4096,
+      "sha256": "d772bdca1cdafa8a06ed9e18dd0e201170e78b5faba1db769e161f1f84848950"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-04-slot2049.bin",
+      "bytes": 4096,
+      "sha256": "8b56f68fcf2ef83c48dac41d7bb381d7f4b2808741c26d418c371b4c1955ede9"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-05-slot2561.bin",
+      "bytes": 4096,
+      "sha256": "78bb4f93869c6418f49ac95b1a53e20acfc98869b66eaafc9564aa8a3e89d9fb"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-06-slot3073.bin",
+      "bytes": 4096,
+      "sha256": "58d9e7b2c4da39c649a414551ba4a45adceda3d5396a818905c980eb19a7e027"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-07-slot3585.bin",
+      "bytes": 4096,
+      "sha256": "04644aa6dc8f51b3d58bd746312a28b615476878505eb6fc37b1b55b0709e7e0"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-08-slot4097.bin",
+      "bytes": 4096,
+      "sha256": "f3ef898f2e84a983604456055e85ca2205414a5d7bbec31c5cecdb7f478a0ef2"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-09-slot4609.bin",
+      "bytes": 4096,
+      "sha256": "6f7b90163ec47ed8f7745f4d71f6e0751e24a58872b2a7a1e264ffe931912c7c"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-10-slot5121.bin",
+      "bytes": 4096,
+      "sha256": "c8c831cc972542596be6cd831bad6fa7c79a61ee5272bf4892353f805981a961"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-11-slot5633.bin",
+      "bytes": 4096,
+      "sha256": "97f0984efdf9751e03ba38ddae2a2df8cfe956b9de07f32645eb0a2ef74c6461"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-12-slot6145.bin",
+      "bytes": 4096,
+      "sha256": "78844f07cd43157ad23cc25adaf2d836e926cc807aaa457c1a88aff9be9faa18"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-13-slot6657.bin",
+      "bytes": 4096,
+      "sha256": "901901c0c3ca5a180ed9d98b604e80b45ca09ad6a3da25a32b0d7625130b5792"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-14-slot7169.bin",
+      "bytes": 4096,
+      "sha256": "3e09d016e5863a500514805003012116d0de71449b902e18da4e2fe5589e53e7"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-15-slot7681.bin",
+      "bytes": 4096,
+      "sha256": "0a6f81a80b5bc4b7b611681d6d031a468653eb9d7fe8281dc93a166524a84bc6"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-16-slot8193.bin",
+      "bytes": 4096,
+      "sha256": "862df640bb6bd5fbecd905ed40c2a57221590dbe56ae7ca1df65d884360a5e3c"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-17-slot8705.bin",
+      "bytes": 4096,
+      "sha256": "59cde3770d965c4be58d4c1b1c4439ca4a2ea4413e63c0b9a2ec65a4eae347be"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-18-slot9217.bin",
+      "bytes": 4096,
+      "sha256": "54c0028e61c71bcf43e4caf023300550865a2be6bc27995458ee125345421808"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-19-slot9729.bin",
+      "bytes": 4096,
+      "sha256": "9f37946ae62f3eaa6fe89755670f9a76c7c29b59fb4e3be981100908c3645a91"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-20-slot10241.bin",
+      "bytes": 4096,
+      "sha256": "5f0bb01c8349f47bb9ac4f421c0d93faa651d4283e2ce3164e6137d328801455"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-21-slot10753.bin",
+      "bytes": 4096,
+      "sha256": "60ec4b81ab0e9696e4aa26560d0469665ee0fad2e49edd1138dc646b7158af00"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-22-slot11265.bin",
+      "bytes": 4096,
+      "sha256": "68e63cb6d83d546c7343a4060a46e3d09e7ebc15fb78ad17b818f3239f0bddc7"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-23-slot11777.bin",
+      "bytes": 4096,
+      "sha256": "9e3e1f0e0496cb9b9d456e59438d1f970ccdedff9dd9ecc3105f5654a510cfac"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-24-slot12289.bin",
+      "bytes": 4096,
+      "sha256": "dec3d7704a733b8dfc6fe85a79e60776cd5ed237a339b3c6fc614131d248c487"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-25-slot12801.bin",
+      "bytes": 4096,
+      "sha256": "d6056570ebb1b78f8df30a0cffb2b9401e7f1175d88d98e0c0b6d3f30e472a1b"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-26-slot13313.bin",
+      "bytes": 4096,
+      "sha256": "5a96e2c8cddecdd409e49a3d3608f1241171256d4acc81048eccc2690727396d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-27-slot13825.bin",
+      "bytes": 4096,
+      "sha256": "861ee9f29d84ae465b8bb9bd74faadca621cbe2ea46eb5064771030ba437893b"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-28-slot14337.bin",
+      "bytes": 4096,
+      "sha256": "a9da2290ea9b085a67a602364ec4cbfdacb6035fc4eeac8a013b9e1b58763d57"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-29-slot14849.bin",
+      "bytes": 4096,
+      "sha256": "39a628ac3d5f615a73b0b1d13a69327e99bd08b1a986c24266fd5e9ec41e2e81"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-30-slot15361.bin",
+      "bytes": 4096,
+      "sha256": "605a4f501a956eece872d141457d209746db8a5b70c67ab7230a21c7df5c3f89"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-31-slot15873.bin",
+      "bytes": 4096,
+      "sha256": "c64af76b6a8f1040a1b3be472b7ab06450213ed546ba99f6bd5ce0721679060a"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-32-slot16385.bin",
+      "bytes": 4096,
+      "sha256": "103b83c0c988ae494e5a6f01ab9d712c1a2fd3ba6bde5582328e73e3af8c1013"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-33-slot16897.bin",
+      "bytes": 4096,
+      "sha256": "7a59a016357456bb04b10a957be48106beefa7a3f1fd114204dfda00c3572250"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-34-slot17409.bin",
+      "bytes": 4096,
+      "sha256": "48223d48726c37b23dae93c4b09b2e79f8b42e8d45f3781d5364226fe1de76e8"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-35-slot17921.bin",
+      "bytes": 4096,
+      "sha256": "74b146a6876b9e96f3dc36a961007371b1dd07bade5f1127aae2d7f363cad4f5"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-36-slot18433.bin",
+      "bytes": 4096,
+      "sha256": "e97e3993f4733d382c3aef2cf0325c39b4ade291bea030fd0fc4c886f1b26fdf"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-37-slot18945.bin",
+      "bytes": 4096,
+      "sha256": "a04ddc2e3f1969b5958069ff6014dc9083d175969d8ec47859916db19e128cbd"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/map-38-slot19457.bin",
+      "bytes": 4096,
+      "sha256": "fb32e328d89c7d3dc045d80b83958d5bb25c42b171b2e30303fcb7c8188c6dfe"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/data-header-00-slot2.bin",
+      "bytes": 4096,
+      "sha256": "bdc894aa17fa81911e3afd44384ab62996345c9138f8ca106d6403da29003ead"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-00-slot3.bin",
+      "bytes": 4096,
+      "sha256": "ad0814b2b8fe13df9c7332ec8a52a6f275e1a94908a3d8e89be9c6a0c446ef30"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-01-slot4.bin",
+      "bytes": 4096,
+      "sha256": "005c3327d4f5ab9abd6af779267a1034ccf5fdec93cc5df09befc2cb262ce4d9"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-02-slot5.bin",
+      "bytes": 4096,
+      "sha256": "87a67bbe8b38a1ecbc4e6cadd38fe3ec562da9b1d52142b6d7b989851bc67220"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-03-slot6.bin",
+      "bytes": 4096,
+      "sha256": "089bb399ef2c1247d6b0e758317d4c35c2eb2d2ab8d72f8f81c4ed892b85b034"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-04-slot7.bin",
+      "bytes": 4096,
+      "sha256": "877dcd41746c86da3af109c4450b94e63416bca7c0c9e8b696e7cf43dad4c938"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-05-slot8.bin",
+      "bytes": 4096,
+      "sha256": "b12c84213fbabe7e664eae339ba5d7de209c358bf2b26127ab03d66a6481efce"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-06-slot9.bin",
+      "bytes": 4096,
+      "sha256": "e63b0f84489211e88919adfd763afd09adb621c4d1a059d07bfe32b36f58dd28"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-07-slot10.bin",
+      "bytes": 4096,
+      "sha256": "2ea24ec7cfb52496e97d31a7e17fee1d3d4facb13edfca8b1cf6015aeb9788fc"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-08-slot11.bin",
+      "bytes": 4096,
+      "sha256": "072326f50627bc3165a99e93fac25154ee57edf99ce7602f4acb193967476669"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-09-slot12.bin",
+      "bytes": 4096,
+      "sha256": "e1e07d909dccb94cb1ea65f9a38082a0818a3089458eaa9465f13e77fed2e13c"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-10-slot13.bin",
+      "bytes": 4096,
+      "sha256": "92afa12334ceb74291fbb352a0848361b6567f6dd81739fefcdaeba6da34ef99"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-11-slot14.bin",
+      "bytes": 4096,
+      "sha256": "6ddb14e35f59b733fee4f89615c6583c7aeb05e68761856d2f0917c3bb1ba6cc"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-12-slot15.bin",
+      "bytes": 4096,
+      "sha256": "37a2ecd9b2cc6411885f170034ebcf7bbf42a9c233c91f7d8b414b113810b0a6"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-13-slot16.bin",
+      "bytes": 4096,
+      "sha256": "a5bc8fe1663c37975cda235a8be30f929d15e0658d3935392fe428b1012ce3e3"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-14-slot17.bin",
+      "bytes": 4096,
+      "sha256": "c63874ac18963cafe359ffddb89c37e3d98729ded162a1a7b07097cbce0e1f68"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-15-slot18.bin",
+      "bytes": 4096,
+      "sha256": "8fff431579015a9a83815aacad0047e54d71d6ba58b5270f39fdc77e9a68cbb3"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-16-slot19.bin",
+      "bytes": 4096,
+      "sha256": "c7292791bbdae21fb55b7cc2fdf0884ed554977ef4c7057184ba635f59e22e2e"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-17-slot20.bin",
+      "bytes": 4096,
+      "sha256": "00a3af977d9239681b941ff31fc6d2eb312b4efd384c2d2cb634514aba3e2e1d"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-18-slot21.bin",
+      "bytes": 4096,
+      "sha256": "fb7829a64f64640f7467cdfc3f6e483b09d5bd9e5174bdeb9afdc1160267a0e4"
+    },
+    {
+      "path": "output/decompile/rea/pass0345-20261016/snapshot-parse/source-windows/pfn-meta-19-slot22.bin",
+      "bytes": 4096,
+      "sha256": "7723a428621e2f4fba01c548b47149440e98612b00e034e66bbf1304f2f78874"
+    }
+  ]
+}

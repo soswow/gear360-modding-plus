@@ -1,0 +1,14 @@
+# Where your Gear 360 may be found: one address per line, tried in this order.
+#
+# Copy this file to `camera-hosts` (same folder, without ".example") and edit it.
+# `camera-hosts` is ignored by git, so your own network stays out of the
+# repository. Tools such as tools/observe/camsh.py read it.
+#
+# 192.168.43.1 is the camera's own Wi-Fi access point; it is fixed by the
+# firmware and is always tried last, so you do not need to list it. Add the
+# address your router gives the camera once it has joined your network (the
+# app's WIFI setting): look in the router's list of clients, or run `arp -a`.
+# That address can change; update the file when it does.
+#
+# 192.168.1.50      # example: the camera on your home network
+# 172.20.10.4       # example: the camera on a phone hotspot

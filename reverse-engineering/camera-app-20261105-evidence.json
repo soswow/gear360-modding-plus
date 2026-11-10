@@ -1,0 +1,121 @@
+{
+  "date": "2026-11-05",
+  "subject": "camera app T4: the camera's open() flag numbers, the storage fix and the first app capture",
+  "boot": 1793844742,
+  "kernel": "Linux 3.5.0 (Samsung, ARM32)",
+  "card": "/dev/mmcblk1p1 exfat (FUSE) mounted at /opt/storage/sdcard",
+  "root_cause": {
+    "summary": "storage_platform.h used the generic Linux O_DIRECTORY (0200000) and O_NOFOLLOW (0400000); on the camera O_DIRECTORY is 040000 and the generic O_DIRECTORY bit is O_DIRECT, which the FUSE exfat card rejects with EINVAL",
+    "failing_call": [
+      "213:1529  12:22:22.604799 open(\"/opt/storage/sdcard/G360\", O_RDONLY|O_DIRECT|O_LARGEFILE|O_CLOEXEC) = -1 EINVAL (Invalid argument)"
+    ],
+    "generic_numbers_wrong": {
+      "O_DIRECTORY": "0200000",
+      "O_NOFOLLOW": "0400000"
+    },
+    "camera_numbers_measured": {
+      "O_DIRECTORY": "040000",
+      "O_NOFOLLOW": "0100000",
+      "O_CLOEXEC": "02000000",
+      "O_DIRECT": "0200000",
+      "O_CREAT": "0100",
+      "O_EXCL": "0200",
+      "O_TRUNC": "01000",
+      "O_APPEND": "02000",
+      "O_NONBLOCK": "04000",
+      "O_DSYNC": "010000",
+      "O_LARGEFILE": "01000000",
+      "O_PATH": "0100000000"
+    },
+    "how_identified": {
+      "O_DIRECTORY": "a regular file opened with the bit gives ENOTDIR (20)",
+      "O_NOFOLLOW": "a symbolic link opened with the bit gives ELOOP (40)",
+      "O_CLOEXEC": "the only bit for which F_GETFD reports FD_CLOEXEC",
+      "O_DIRECT": "a directory opened with the bit gives EINVAL (22) on the card, the root filesystem and tmpfs"
+    },
+    "also_observed": {
+      "directory_fsync": "works on the card (fsync returns 0), so the counter slots' durability needed no change",
+      "create_exclusive": "O_CREAT with O_EXCL creates a new file and refuses an existing one with EEXIST (17)"
+    }
+  },
+  "builds": {
+    "before": "b6c19d429cb18f324a9a59338c11b09edbf6d57fb3c1b2a5d304529d8960ef3f",
+    "after": "ab627b290487b9070f5d74ef4a674c4cb236912ccbc105b1f791bf849c12c10a",
+    "card_paths": {
+      "after": "/opt/storage/sdcard/mods/g360-app-v1-20261105/g360-app",
+      "before": "/opt/storage/sdcard/mods/g360-app-v1-20261105/g360-app.g360-before-20261105"
+    }
+  },
+  "run": {
+    "launch_mode": "reenter",
+    "stock_service": "inactive, MainPID 0, untouched",
+    "power_cycle": "none; the boot identity did not change",
+    "app_log_lines": [
+      "launch mode=fresh btime=1793844742 executable=b6c19d429cb18f324a9a59338c11b09edbf6d57fb3c1b2a5d304529d8960ef3f",
+      "APP ERROR storage open: storage IO failure",
+      "APP UI STARTING",
+      "APP UI ERROR",
+      "launch mode=reenter btime=1793844742 executable=ab627b290487b9070f5d74ef4a674c4cb236912ccbc105b1f791bf849c12c10a",
+      "APP UI STARTING",
+      "APP UI READY",
+      "APP UI CAPTURING...",
+      "APP CAPTURE 20261105-125537-00001",
+      "APP SAVED 20261105-125537-00001.jpg 20261105-125537-00001.dng",
+      "APP UI READY"
+    ],
+    "counter_slots": "state/counter.0 and state/counter.1, 20 bytes each, advanced to 1"
+  },
+  "shot": {
+    "directory": "output/camera-app-20261105/shot-001",
+    "jpeg": {
+      "name": "20261105-125537-00001.jpg",
+      "bytes": 4729708,
+      "sha256": "8a66b5b8065fb19fc2ca436ef08f992584481951e3e1c698691183950fb88b1a",
+      "exif_make": "SAMSUNG",
+      "exif_exposuretime": "1/100",
+      "exif_iso": "125",
+      "exif_exposureprogram": "Program AE",
+      "exif_fnumber": "2.2",
+      "exif_datetimeoriginal": "2026:11:05 12:55:37",
+      "exif_colorspace": "sRGB",
+      "exif_whitebalance": "Auto",
+      "exif_exifimagewidth": "5792",
+      "exif_exifimageheight": "2896",
+      "maker_note_records": true
+    },
+    "dng": {
+      "name": "20261105-125537-00001.dng",
+      "bytes": 33733196,
+      "sha256": "134c0e51501ec5b610a8826e798275b81aa9b9d2165e63d525d415c133d51875",
+      "exiftool_validate": "OK",
+      "exiftool_warnings": null,
+      "make": "SAMSUNG",
+      "camera_model_name": "SM-R210",
+      "image_width": "5824",
+      "image_height": "2896",
+      "bits_per_sample": "16",
+      "reference_parity": "byte for byte",
+      "reference_sha256": "134c0e51501ec5b610a8826e798275b81aa9b9d2165e63d525d415c133d51875"
+    }
+  },
+  "bulky_originals": {
+    "note": "the JPEG and DNG stay local at their ignored paths and on the camera's card; the DNG is 33,733,196 bytes",
+    "local_directory": "output/camera-app-20261105/shot-001",
+    "camera_directory": "/opt/storage/sdcard/G360/photos",
+    "sha256": {
+      "20261105-125537-00001.dng": "134c0e51501ec5b610a8826e798275b81aa9b9d2165e63d525d415c133d51875",
+      "20261105-125537-00001.jpg": "8a66b5b8065fb19fc2ca436ef08f992584481951e3e1c698691183950fb88b1a"
+    }
+  },
+  "local_evidence_files": {
+    "open-flags-probe.txt": "the full probe output, every candidate bit on four paths",
+    "storage-open-strace.txt": "the trace excerpt of the failing open",
+    "app-run.log": "the app and capture library logs of the run"
+  },
+  "fact_record": "target.open-flag-numbers-are-not-the-generic-ones-20261105",
+  "not_proven": [
+    "the fresh-boot path (stock active, then stopped by the launcher) was not repeated; the run used the same-boot reentry path",
+    "only one shot was taken; the counter persisted to 1",
+    "how the controls behave during a RAW capture, and what the app should do about the Power hold"
+  ]
+}

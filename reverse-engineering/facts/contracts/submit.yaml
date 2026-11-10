@@ -1,0 +1,322 @@
+# Software still submission. Code: src/lib/still-request/.
+
+claims:
+  - id: submit.stock-selected-still-index-and-flags
+    status: accepted
+    kind: static
+    statement: >
+      Pinned app UI_Mm_Camera_Start_Capture loads W3/r2 from global
+      base0x339fe8 plus0x200, address0x33a1e8; plus0x210 is not the index.
+      Selected startStillCapture arm tests saved incomingr1: zero supplies
+      UI0x18, otherwise UI0. The common setter maps these to index21 and1,
+      respectively. Selected W4/W5 are1/1 and low16 W6 is0, matching the
+      checked diagnostic flags. W6 is loaded at base+0x20c; byte+1 is
+      logged as start_flag. Storage values and other words remain separate.
+    address_space: linux-app-elf
+    evidence:
+      - ev_3de53a67e9d095d21770b132571fea029b6b06a57b00ede162d36c8ea1c0823e
+      - ev_788d9fd8b5569e9654163b3b31d1127497a58248e8f7420b1283d77ef597cc50
+      - ev_1b8573691aef131c2aa53fd8ee50123720f7b5e35824118580000000c82dba76
+    not_proven:
+      - active runtime selector or unchanged fields between setter and call
+      - missing initialization, failure cause or original C prototype
+    detail: output/decompile/rea/pass-poweroff-integration-20261029/parent-review.md
+  - id: submit.own-client-still-attempts-20261029
+    status: accepted
+    kind: observation
+    statement: >
+      Two separate recovered-boot diagnostics each logged one call to the
+      public mm_camera_capture_still with newly created handle, raw index21,
+      Cap1/Max1, remaining1 and current conservative storage budget; each
+      call returned0. Trial02 completed20.012seconds with callback count0,
+      but used an invalid internal ID as public subscription input and
+      logged the conversion error plus GetVirtualAddr line342. Its
+      termination/final guards/cleanup passed. Corrected-public-ID trial03
+      retained partial progress through return0 and the before-hold marker;
+      its process metadata request and later HTTP/FTP failed. Final callback
+      count, helper termination and capture outcome were not retrieved.
+      The user confirmed the camera fully off; cause remains unknown.
+      After physical recovery, readonly checks verified a new boot, stock
+      app active/running/MainPID254, no listed helper and all three owned
+      temporary directories absent. No pixels were read or saved.
+    not_proven:
+      - request delivery, a sensor exposure, fresh completion or no exposure
+      - why the camera powered off, or a qualified reusable stock-app handover
+      - actual caller/source of the zero address, sensor RAW or controlled lifetime
+    detail: output/decompile/rea/pass-own-transport-20261029/parent-review.md
+
+  - id: submit.facade-common-abi-word-stores
+    status: accepted
+    kind: static
+    statement: >
+      In pinned libcapture wrapper Ghidra0x3aa7c, frame pointer equals
+      incoming sp minus12. Number raw incoming words W1..W4 in r0..r3,
+      then W5 at incoming sp and subsequent words at four-byte intervals.
+      The48-byte body receives command-table output at+0, W4 at+4,
+      W5 at+8, the low two bytes of W6 at+0xc, W17 at+0x10, W7 at+0x14,
+      W9 at+0x18 and W10 at+0x1c. The body is zero-initialized; the
+      normal0x01010001 and device0x01010016 arms leave+0x20..0x2f zero.
+      The wrapper forwards that body with length48 to CaptureStillImage,
+      whose local definition is ELF0x40b40/Ghidra0x50b40. This is an
+      incoming-word and byte-store map, not recovery of original C types
+      or parameter count. W9/W10 may be one aligned64-bit source value.
+    address_space: linux-capture-elf
+    evidence:
+      - ev_907475f3f4018aeba7f278bfa08f51762fe8439d88279feb510904a062c580df
+      - ev_a21c889000d498640bd9d68eb1f664a1cc40b05507f6acd20fbdf583db1b8cf8
+    not_proven:
+      - original C prototype, source parameter grouping or sensor/storage units
+      - all command variants, live symbol binding, readiness, send success or completion
+      - sensor RAW provenance, valid backing or ownership
+    detail: output/decompile/rea/pass-lrc-export-20261026/parent-review.md
+
+  - id: submit.facade-bracket-default-tail-normalization
+    status: accepted
+    kind: static
+    statement: >
+      The same wrapper's0x01010005 bracket arm maps zero incoming W11
+      to fallback0x180002 at body+0x20 and zero W12 to0x190000 at+0x24;
+      +0x28/+0x2c remain zero. The pure still-request encoder instead
+      leaves all four tail words zero. Thus the facade's default bracket
+      body is not byte-identical to that encoder's zero-tail body. This
+      difference does not apply to the checked normal/device arms and
+      establishes no exposure count, timing unit or actual bracket effect.
+    address_space: linux-capture-elf
+    evidence:
+      - ev_907475f3f4018aeba7f278bfa08f51762fe8439d88279feb510904a062c580df
+      - ev_20282268a536167f75080013b75dc9f24fef8472ea6428a21399aa1439f407fb
+      - ev_937659857520001aa3dd9ba41d42afc71729f835f8daad6f15fd35eb9fb1bd38
+      - ev_a21c889000d498640bd9d68eb1f664a1cc40b05507f6acd20fbdf583db1b8cf8
+    not_proven:
+      - vendor enum units, supported capture count or sensor exposure behavior
+      - actual transmission, bracket completion, provenance or retained RAW
+    detail: output/decompile/rea/pass-lrc-export-20261026/parent-review.md
+
+  - id: submit.mm-camera-command-is-an-index
+    status: accepted
+    kind: static
+    statement: >
+      The Linux mm_camera_capture_still wrapper passes its third scalar
+      argument to helper0x42e18 (Ghidra), which subtracts1 and indexes cases
+      1..28; it does not dereference that argument as a command pointer.
+      Index21 reaches the literal0x01010016 at0x430f8; index1 selects
+      0x01010001. The prior backend's pointer-to-command declaration is
+      wrong even though the requested command word itself is valid.
+    address_space: linux-capture-elf
+    ghidra_addresses: ["0x3aa7c", "0x42e18", "0x430f8"]
+    evidence:
+      - ev_13bf77583af000ddaa9b163b359d3f28138ed6ed52cd6fbb4f2ee4931d05aaab
+      - ev_2aefdeb59519fe12330633bab3031b98d214dba6a493b8a48dcb11b72a20911c
+      - ev_54e0ec023abe9b0c5ebfcba4831c54651d69728d37d9e2018d78b94cf4bac76a
+      - ev_072e13e9bb08d02279c18f176d8a82433c7468bcc2748aa7c7f49e00ec358d43
+    not_proven:
+      - original C prototype, all-mode argument semantics, successful submission or completion
+      - permission to invoke the wrapper against a competing capture context
+    detail: output/decompile/rea/pass-phase2-integration-20261023/parent-review.md
+
+
+  - id: submit.legacy-command-attempts-drive-single
+    status: accepted
+    kind: static
+    statement: >
+      RTOS dispatcher8004f1ac case0x01010001 invokes8010d938. With a
+      non-null payload that receiver calls80084984(store at object+0x20,
+      native key10,value0xa0001) before80109b6c submits through object+0x24.
+      The setter return is not checked. A null payload returns0xfffffffc.
+      Thus the legacy plain command cannot be assumed to preserve a selected
+      drive mode merely because it differs from DeviceShutter0x01010016.
+    address_space: rtos
+    evidence_ids:
+      - ev_6453d9911223d301847b7bba9a46c136223434f2616f2a9087291cd03624a2aa
+      - ev_a1a5454ee442088d801272f9e5392620cc5bdfd633f218871343ea2ded021b5c
+    not_proven:
+      - successful setter or hardware state change
+      - resulting active recipe, sensor image provenance or RAW retention
+    detail: output/decompile/rea/pass-4d2deb0-review-20261023/parent-review.md
+
+
+  - id: submit.stock-control-frame-historical-20261023
+    status: accepted
+    kind: observation
+    statement: >
+      The retained stock-control-01 observer response atT2810000 on ringB
+      records D62/L58 and route bytes0300, category0x83, attribute0x0201,
+      bodylength48. Its body contains command0x01010016, Cap1, Max1,
+      remaining2448 at+0x14 and free7477198848 at+0x18. This is a bounded
+      historical log observation, not a current camera execution or a safe
+      context/transport contract. The shared request encoder's wire layout
+      agrees with these field positions.
+    not_proven:
+      - a coherent or complete passive ring snapshot or full-lap detection
+      - fresh request association, current camera identity or remote completion
+      - cause of any outage or a safe bare software trigger
+    detail: output/decompile/rea/pass-4d2deb0-review-20261023/parent-review.md
+
+  - id: submit.device-command-rtos-receiver
+    status: accepted
+    kind: static
+    statement: >
+      Category0x83 attribute0x0201 reaches0x800626f4 through command-handler
+      group2/member1. That wrapper requires48 body bytes and calls0x8004f1ac
+      with body word0 as the command. After its validator succeeds, command
+      0x01010016 selects0x8010eb08. A nonnull body first sends controller
+      record0x0102000d with value0x30; only a zero return allows the later
+      submission using body word+4.0x80109b6c rejects zero for that word,
+      then prepares record0x0102000a by default, or0x0102002b when both
+      selected userdata conditions match. These are controller records,
+      not fresh-frame completions. The selected receiver's source is now
+      identified; supported count ranges, sole session ownership, live
+      execution and retained sensor RAW remain unproved.
+    address_space: rtos
+    evidence:
+      - ev_463bc6109e935acb749072a55d74bec87d9ae57fd9c7dd69a91bb0b345cfb0e2
+      - ev_6453d9911223d301847b7bba9a46c136223434f2616f2a9087291cd03624a2aa
+      - ev_bf6e1daf7b50d9e737ca1d5c8b25219697a396cc09e427068ae1c77a6b6a7303
+      - ev_eb088b9e9a597ef38842aff4bb16a4258a994a9f7a105612d2c8e8e206663ccb
+      - ev_194aa9db73f180968739e0a6afb43eb2532875e83d5f9439d75cb554be8cb48a
+      - ev_060199aa6a217958ee66780acd816cc4a54cee7d649be5b84fd17d23a81a501d
+      - ev_9435bdbcef55a471b31d3366991e79fa7c7bd567e1e024ef3686a90c637a07d5
+    detail: output/decompile/rea/pass-8315d77-review-20261023/parent-review.md
+
+  - id: submit.forty-eight-byte-request
+    status: accepted
+    kind: static
+    statement: >
+      CaptureStillImage accepts command, buffer, and length. The normal
+      still packet is 48 bytes with command 0x01010001. The adapter command
+      is 0x201 and the bridge command is 0x83. The caller supplies the
+      storage count and free-space bytes. still_request_encode writes those
+      48 bytes. still_request_dispatch calls the caller-supplied submit
+      function once. The return is send status. CSender::Send may return -1
+      and still queue the command. Do not retry automatically.
+    address_space: linux-capture-elf
+    code: src/lib/still-request/still_request.h
+    not_proven:
+      - capture completion
+      - a RAW result
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_CAPTURE_API.md
+
+  - id: submit.reaches-recipe-statically
+    status: accepted
+    kind: static
+    statement: >
+      A conditional static chain runs from command 0x201 and the 48-byte
+      body through command 0x01010001 to record 0x0102000a, then a 12-byte
+      controller queue, CHandlerFactoryNX1 slot 10, and CCmdCaptureNormal.
+      Current capture type default 0 selects CDriveSingle, then recipe 1.
+      Current type 0x15 selects recipe 3. The active derived envelope vptr
+      is 0x8063c220. Only the first two drive stages are success-gated.
+      Later setup and StartCapture returns are ignored. The 0xa0-byte
+      metadata allocation is not pixel allocation.
+    address_space: rtos
+    not_proven:
+      - that this chain ran on the current boot
+      - recipe provenance or frame freshness
+      - a RAW result
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_SOFTWARE_CONTROL.md
+
+  - id: submit.framing
+    status: accepted
+    kind: static
+    statement: >
+      A 4-byte logical body is 12 bytes on the Linux side, 18 bytes in the
+      kernel ring, 14 bytes at the RTOS probe, and 4 logical bytes. This
+      holds when enough unread bytes exist and the write and read succeed.
+      Both Linux and RTOS reads can report the requested length without
+      copying when empty.
+    address_space: linux-capture-elf
+    not_proven:
+      - a live packet
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_SOFTWARE_CONTROL.md
+
+  - id: submit.context-still-caller-owned
+    status: open
+    kind: static
+    statement: >
+      still_request_dispatch does not initialize the vendor context, mode,
+      liveview, or 3A. The caller still has to supply an initialized
+      CaptureStillImage-compatible function. See session.owned-initializer.
+    code: src/lib/still-request/still_request.h
+
+  - id: submit.device-command-wire-path
+    status: accepted
+    kind: static
+    statement: >
+      In the pinned capture library, CaptureStillImage accepts 0x01010016
+      through the branch that logs the body words at offsets 0x04 and 0x08
+      as Cap and Max, then sends adapter command 0x0201 with body length
+      0x30. This is a second observed command variant; the previously traced
+      RTOS chain for 0x01010001 is not automatically its handler chain.
+    address_space: linux-capture-elf
+    ghidra_address: "0x50b40"
+    evidence:
+      - ev_4f73dc979a5766034a946c41424face25053e43ceb9b7dd0a71a841068f57e75
+      - ev_9f6de1fd78f6ce2e526cd205edb4b318f64654d246c76645c02583c516e547ca
+    not_proven:
+      - supported Cap and Max ranges or multi-capture behavior
+      - live execution of the now source-identified RTOS receiver for this command variant
+    detail: output/decompile/rea/pass-minimax-review-20261023/parent-review.md
+
+  - id: submit.extended-encoder-component
+    status: accepted
+    kind: static
+    statement: >
+      The reviewed extended encoder and dispatcher accept caller-supplied
+      command, Cap and Max words. Null or zero options retain the legacy
+      0x01010001 one/one request. The device-shutter preset selects
+      0x01010016 one/one. Max below Cap is refused locally without modifying
+      output or invoking submit. The dispatcher invokes submit once and
+      preserves acceptance versus indeterminate status. Host sanitizers,
+      C++ linkage, ARMv7 compilation and the saved 56-byte envelope vector
+      pass. This is a pure component, not an owned capture backend.
+    code: src/lib/still-request/still_request.h
+    not_proven:
+      - firmware support for arbitrary options
+      - owned initialization, completion, sensor RAW or release
+    detail: output/decompile/rea/pass-minimax-review-20261023/parent-review.md
+
+  - id: submit.software-request-observed-20261022
+    status: accepted
+    kind: observation
+    statement: >
+      The retained MiniMax run at 2026-10-22T10:25:34Z records one
+      0x01010016 Cap=Max=1 request, a 56-byte outgoing envelope, ioctl
+      return zero and reported word one. Ring B records the matching route
+      plus envelope, extent 62. Ring A records later acknowledgments and
+      a category 0x0081 attribute 0x0201 u32 body word 0x822a1800. The following
+      stock request reports remaining count 2517 versus 2518, and free
+      bytes 7673741312 versus 7687503872. The decoded difference is
+      13762560 bytes, correcting the report's 372736. Raw output hashes
+      match the retained run manifests. This supports software submission
+      and subsequent stock-pipeline activity during that historical run.
+    not_proven:
+      - independent session readiness or an exclusive request/completion token
+      - lossless observation or immutable descriptor and pixel lifetime
+      - the report's JPEG filename, size and timestamp from an original listing
+      - caller-owned sensor RAW or current camera state
+    detail: output/decompile/rea/pass-minimax-review-20261023/parent-review.md
+
+  - id: submit.capture-still-bracket-words-20261104
+    status: accepted
+    kind: static
+    statement: >
+      libcapture mm_camera_capture_still (0x3aa7c) converts mm capture type 6
+      to command 0x1010006 (WB bracket) and then requires word 13 in
+      0x1a0000-0x1a0005 (step 3, 2, 1, 3, 2, 1) and word 14 equal to 1 or 2
+      (axis), else returns -3 before sending; words 11 and 12 pass through.
+      For 0x1010005 (AE bracket) word 11 selects the order 0x180000-0x180003
+      and word 12 the step 0x190000-0x19000e, with defaults. The stock app's
+      UI_Mm_Camera_Set_Capture_Wbb_Param (0x11a9bc) fills these words but has
+      no caller; UI_Mm_Camera_Start_Capture sends words 11-14 from globals
+      0x33a208-0x33a214. Observed in step 5c: capture type 6 with zero words
+      returned -3 and no command reached the RTOS.
+    address_space: linux-capture-elf
+    evidence:
+      - ev_20b618381016f3f369a3d878b48c0a285643b64b850a982ca3c9e4892ceb51c1
+      - ev_9c95ed567115b0d09b0a654a8a2ba5686cb0483d8b47aaa1068a2648852300ce
+      - ev_22aa6332f0b7d082538c3d86dca60c3ecf9d8c55b370826634c2c4607ed02633
+    not_proven:
+      - the meaning of words 11 and 12 for a WB bracket
+      - that the RTOS runs a WB bracket on the dual-lens pipeline
+    detail: output/decompile/rea/pass-step5c/RESULT.md
+

@@ -1,0 +1,118 @@
+# Address spaces for SM-R210 build R210GLU0AQC6.
+# Use the space named here. Do not add an address from one space to a base from another.
+
+spaces:
+  - id: linux-acgy-elf
+    artifact: dump/extracted/platform/usr/lib/libdi-alg-acgy.so
+    sha256: b1292f9e70d49db10e1963a9b0a885ed52484f2ca3d592c667952f041b5e7911
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this shared object"
+    note: "Pinned static dependency of libcapture; current loader binding and valid motion history remain open."
+
+  - id: linux-devman-plugin-elf
+    artifact: dump/extracted/platform/usr/lib/libslp_devman_plugin.so
+    sha256: 973e5e096c9fb07d2b108d7f336fec254132d31fe4d7ed009440c055b0862b14
+    code_address: "ELF virtual address; Thumb bit cleared for aligned instruction entry"
+    ghidra: "ELF virtual address + 0x10000 for this shared object"
+
+  - id: linux-tint-elf
+    artifact: dump/extracted/platform/usr/lib/libtint-util.so
+    sha256: b68630b420a52ee9316f3b755865e3392947df753720dac707a25f21579bef0d
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-userspec-elf
+    artifact: dump/extracted/platform/usr/lib/libuser-spec.so
+    sha256: 1057e2fa0d9d88f8bd8e642f3070f0c951168d75c39bff4db13f4996531f7e06
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: rtos
+    artifact: output/decompile/rea/rtos-p6.bin
+    sha256: cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7
+    code_address: "file offset + 0x80000000"
+    copied_data_alias: "runtime VA = source VA + 0x816700 for the startup copy into 0x81006000"
+    boot_private_data_copy: "source 0x80009ed0..0x8000a01f -> runtime 0x81004440..0x8100458f; separate 336-byte boot copy"
+    note: "Flat-image zeros at runtime destinations are not the initialized tables."
+
+  - id: linux-capture-elf
+    artifact: dump/extracted/platform/usr/lib/libcapture-fw-prod.so
+    sha256: fba8947358ff1fd666fca794d2af77e77a61964e5dd022c04c499ae7b4cc8cc7
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-app-elf
+    artifact: dump/extracted/platform/usr/apps/com.samsung.di-camera-app/bin/di-camera-app
+    sha256: 5937b3abe7630abc8ac265ce280cc45ee591562968296bc4b368cf7e15742789
+    code_address: "ELF virtual address"
+    ghidra: "Ghidra = ELF virtual address for this EXEC; do not use the shared-library bias"
+
+  - id: linux-audioutil-elf
+    artifact: dump/extracted/platform/usr/lib/libaudioutil.so.0.0.0
+    sha256: a01baaab1f5357dcce143e2b6cfa4f2607782e86c257907271fba6a57188ad5c
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-mmfmodules-elf
+    artifact: dump/extracted/platform/usr/lib/libmmfmodules.so
+    sha256: 30c5e4ff320e43a34886f1474fce277f5db930b6cf60b1b365ac0db828f2ec8b
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-mmfcore-elf
+    artifact: dump/extracted/platform/usr/lib/libmmfcore.so
+    sha256: 30e2e44849fceb5fb3c4b78281a7bdaf0461a24ab79d71be32d80731991e7fdd
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-bridge-elf
+    artifact: dump/extracted/platform/usr/lib/libmulticore-bridge.so
+    sha256: 9129761c6ee9f6b62968d3a8307a8b5fbf02e1493323658c42d9ebe587673a20
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-shell-command-elf
+    artifact: dump/extracted/platform/usr/lib/libshell-command.so
+    sha256: 0fd079a9ed4cc8287be409dd3427ef9b28e0a3295eaedfddba548b0409d4a1a8
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-udd5-elf
+    artifact: dump/extracted/platform/usr/lib/libudd5.so
+    sha256: b0a7421de793d17a0ca21a88c32ccdfda61d1a817e0ac787d15bae992c48f597
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-diosal-elf
+    artifact: dump/extracted/platform/usr/lib/libdiosal.so
+    sha256: fb27249f43b671484e4c6bc028eb42b6d9c579daac30e516c7eefe0b20b3d95f
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-mm-photo-elf
+    artifact: dump/extracted/platform/usr/lib/libmm-photo.so
+    sha256: 22d7d37f3d8e28234fbc450d0be959a2655500242a5986e43dc5ee593bfa9c46
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-kernel
+    artifact: output/decompile/rea/pass-resume-20261018/luna-kernel/kernel-inflated-gzip.bin
+    sha256: ebfd2c32ea58c6b3e247294e11cec371272d8ee4c9c093c8382c434ed53d5cf4
+    code_address: "inflated offset + 0xc0008000"
+    note: "Boot patches sites in __pv_table. Do not require those instructions to match the unbooted image."
+
+  - id: linux-device-node-elf
+    artifact: dump/extracted/platform/usr/lib/libdevice-node.so.0.1
+    sha256: ff7a00ff2982f8a39ac2cd2256d025406b3cadea2ededfe4ee56b1e81e5a4db4
+    code_address: "ELF virtual address"
+    ghidra: "ELF virtual address + 0x10000 for this library"
+
+  - id: linux-mobileap-agent-elf
+    artifact: dump/extracted/platform/usr/bin/mobileap-agent
+    sha256: c0af5db6f4f26936d20d3625266e8ca3dd38d3db7f26b75de76904695834b17b
+    code_address: "ELF virtual address; data file offsets differ from virtual addresses"
+    ghidra: "ELF virtual address + 0x10000"
+
+  - id: physical
+    meaning: "/dev/mem offset and RTOS physical pointers already in that domain"
+    note: "A physical offset is not a Linux virtual address and not an RTOS linked address."

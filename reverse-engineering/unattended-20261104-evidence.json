@@ -1,0 +1,1237 @@
+{
+  "schema": "gear360-unattended-results-v1",
+  "boot_time": 1793781685,
+  "frames": 309,
+  "capture_processes": 44,
+  "dark_room": true,
+  "primary_suite": {
+    "frames": 283,
+    "capture_processes": 31
+  },
+  "per_case": {
+    "baseline": {
+      "frames": 2,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "diag-b1-1-sync": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "sync",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b1-2-off": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "off",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b1-3-off": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "off",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b1-4-sync": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "sync",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b2-1-sync": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "sync",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b2-2-off": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "off",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b2-3-off": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "off",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b2-4-sync": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "sync",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b3-1-sync": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "sync",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b3-2-off": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "off",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b3-3-off": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "off",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "diag-b3-4-sync": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "sync",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "fast-raw": {
+      "frames": 2,
+      "jpeg_policy": "skip-copy",
+      "frame_output": "save",
+      "library_log": "off",
+      "executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+    },
+    "hdr-boundaries": {
+      "frames": 3,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "hdr-ev2": {
+      "frames": 8,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "hdr-ev3": {
+      "frames": 6,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-b1-1-save": {
+      "frames": 2,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-b1-2-discard": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c1-1-save": {
+      "frames": 2,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c1-2-discard": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c1-3-skip-copy": {
+      "frames": 2,
+      "jpeg_policy": "skip-copy",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c1-4-skip-copy": {
+      "frames": 2,
+      "jpeg_policy": "skip-copy",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c1-5-discard": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c1-6-save": {
+      "frames": 2,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c2-1-save": {
+      "frames": 2,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c2-2-discard": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c2-3-skip-copy": {
+      "frames": 2,
+      "jpeg_policy": "skip-copy",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c2-4-skip-copy": {
+      "frames": 2,
+      "jpeg_policy": "skip-copy",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c2-5-discard": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c2-6-save": {
+      "frames": 2,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c3-1-save": {
+      "frames": 2,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c3-2-discard": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c3-3-skip-copy": {
+      "frames": 2,
+      "jpeg_policy": "skip-copy",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c3-4-skip-copy": {
+      "frames": 2,
+      "jpeg_policy": "skip-copy",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c3-5-discard": {
+      "frames": 2,
+      "jpeg_policy": "discard",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "jpeg-c3-6-save": {
+      "frames": 2,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "post-stress": {
+      "frames": 1,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "reentry1": {
+      "frames": 1,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "reentry2": {
+      "frames": 2,
+      "jpeg_policy": "save",
+      "frame_output": "save",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "stress10": {
+      "frames": 10,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "stress10-auto": {
+      "frames": 10,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "stress100": {
+      "frames": 100,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    },
+    "stress100-auto": {
+      "frames": 100,
+      "jpeg_policy": "discard",
+      "frame_output": "discard",
+      "library_log": "sync",
+      "executable_sha256": "c08394caf8b3237cac2b19a571027fa051c3e4925f5e5b3c424634681a76e1a1"
+    }
+  },
+  "jpeg_comparison": {
+    "save": {
+      "capture_us": {
+        "n": 12,
+        "mean": 1493500,
+        "median": 1497000.0,
+        "p95": 1586800,
+        "minimum": 1374800,
+        "maximum": 1586800
+      },
+      "save_us": {
+        "n": 12,
+        "mean": 2902133.3333333335,
+        "median": 2880000.0,
+        "p95": 3262000,
+        "minimum": 2592800,
+        "maximum": 3262000
+      },
+      "total_us": {
+        "n": 12,
+        "mean": 4433066.666666667,
+        "median": 4429200.0,
+        "p95": 4692800,
+        "minimum": 4107600,
+        "maximum": 4692800
+      },
+      "frame_hold_us": {
+        "n": 12,
+        "mean": 713333.1666666666,
+        "median": 725000.0,
+        "p95": 785200,
+        "minimum": 658000,
+        "maximum": 785200
+      }
+    },
+    "discard": {
+      "capture_us": {
+        "n": 12,
+        "mean": 1497833.3333333333,
+        "median": 1507400.0,
+        "p95": 1563600,
+        "minimum": 1385600,
+        "maximum": 1563600
+      },
+      "save_us": {
+        "n": 12,
+        "mean": 2816000,
+        "median": 2803400.0,
+        "p95": 3183600,
+        "minimum": 2460800,
+        "maximum": 3183600
+      },
+      "total_us": {
+        "n": 12,
+        "mean": 4341300,
+        "median": 4309600.0,
+        "p95": 4743200,
+        "minimum": 4032400,
+        "maximum": 4743200
+      },
+      "frame_hold_us": {
+        "n": 12,
+        "mean": 711266.5833333334,
+        "median": 721000.0,
+        "p95": 749200,
+        "minimum": 635200,
+        "maximum": 749200
+      }
+    },
+    "skip-copy": {
+      "capture_us": {
+        "n": 12,
+        "mean": 1433200,
+        "median": 1443000.0,
+        "p95": 1561600,
+        "minimum": 1325200,
+        "maximum": 1561600
+      },
+      "save_us": {
+        "n": 12,
+        "mean": 2657300,
+        "median": 2602000.0,
+        "p95": 3465600,
+        "minimum": 2339600,
+        "maximum": 3465600
+      },
+      "total_us": {
+        "n": 12,
+        "mean": 4121566.6666666665,
+        "median": 4052400.0,
+        "p95": 4978800,
+        "minimum": 3815600,
+        "maximum": 4978800
+      },
+      "frame_hold_us": {
+        "n": 12,
+        "mean": 701566.6666666666,
+        "median": 694200.0,
+        "p95": 820800,
+        "minimum": 628000,
+        "maximum": 820800
+      }
+    }
+  },
+  "stress": {
+    "stress10": {
+      "capture_us": {
+        "n": 10,
+        "mean": 1412080,
+        "median": 1396600.0,
+        "p95": 1562000,
+        "minimum": 1340800,
+        "maximum": 1562000
+      },
+      "total_us": {
+        "n": 10,
+        "mean": 1468800,
+        "median": 1456000.0,
+        "p95": 1608000,
+        "minimum": 1404000,
+        "maximum": 1608000
+      },
+      "cycle_us": {
+        "n": 9,
+        "mean": 1501555.5555555555,
+        "median": 1501600,
+        "p95": 1654000,
+        "minimum": 1428000,
+        "maximum": 1654000
+      },
+      "frame_hold_us": {
+        "n": 10,
+        "mean": 652520,
+        "median": 655800.0,
+        "p95": 743600,
+        "minimum": 612800,
+        "maximum": 743600
+      },
+      "fps_start_to_start": 0.6659760248631049
+    },
+    "stress100": {
+      "capture_us": {
+        "n": 100,
+        "mean": 1505460,
+        "median": 1407400.0,
+        "p95": 1705600,
+        "minimum": 1312400,
+        "maximum": 5049200
+      },
+      "total_us": {
+        "n": 100,
+        "mean": 1586812,
+        "median": 1470200.0,
+        "p95": 1752400,
+        "minimum": 1351600,
+        "maximum": 6232400
+      },
+      "cycle_us": {
+        "n": 99,
+        "mean": 1621474.7474747475,
+        "median": 1502000,
+        "p95": 1889600,
+        "minimum": 1379200,
+        "maximum": 6334400
+      },
+      "frame_hold_us": {
+        "n": 100,
+        "mean": 656324,
+        "median": 655400.0,
+        "p95": 718800,
+        "minimum": 608800,
+        "maximum": 757200
+      },
+      "fps_start_to_start": 0.6167225247000486
+    },
+    "stress10-auto": {
+      "capture_us": {
+        "n": 10,
+        "mean": 1903120,
+        "median": 1754600.0,
+        "p95": 3356000,
+        "minimum": 1564800,
+        "maximum": 3356000
+      },
+      "total_us": {
+        "n": 10,
+        "mean": 1912560,
+        "median": 1759400.0,
+        "p95": 3362800,
+        "minimum": 1584800,
+        "maximum": 3362800
+      },
+      "cycle_us": {
+        "n": 9,
+        "mean": 1952577.7777777778,
+        "median": 1778800,
+        "p95": 3380000,
+        "minimum": 1618400,
+        "maximum": 3380000
+      },
+      "frame_hold_us": {
+        "n": 10,
+        "mean": 683120,
+        "median": 698000.0,
+        "p95": 739200,
+        "minimum": 610800,
+        "maximum": 739200
+      },
+      "fps_start_to_start": 0.5121434912252748
+    },
+    "stress100-auto": {
+      "capture_us": {
+        "n": 100,
+        "mean": 1758252,
+        "median": 1715800.0,
+        "p95": 2010400,
+        "minimum": 1510400,
+        "maximum": 3326400
+      },
+      "total_us": {
+        "n": 100,
+        "mean": 1766608,
+        "median": 1721200.0,
+        "p95": 2015200,
+        "minimum": 1517200,
+        "maximum": 3330800
+      },
+      "cycle_us": {
+        "n": 99,
+        "mean": 1791947.4747474748,
+        "median": 1747200,
+        "p95": 2148000,
+        "minimum": 1536400,
+        "maximum": 3356400
+      },
+      "frame_hold_us": {
+        "n": 100,
+        "mean": 674896,
+        "median": 658000.0,
+        "p95": 765200,
+        "minimum": 606800,
+        "maximum": 853200
+      },
+      "fps_start_to_start": 0.5580520713314558
+    }
+  },
+  "library_log_comparison": {
+    "sync": {
+      "capture_us": {
+        "n": 12,
+        "mean": 1380033.3333333333,
+        "median": 1378200.0,
+        "p95": 1476800,
+        "minimum": 1312400,
+        "maximum": 1476800
+      },
+      "total_us": {
+        "n": 12,
+        "mean": 1418966.6666666667,
+        "median": 1405400.0,
+        "p95": 1499600,
+        "minimum": 1352000,
+        "maximum": 1499600
+      },
+      "frame_hold_us": {
+        "n": 12,
+        "mean": 668600,
+        "median": 659400.0,
+        "p95": 723600,
+        "minimum": 610400,
+        "maximum": 723600
+      }
+    },
+    "off": {
+      "capture_us": {
+        "n": 12,
+        "mean": 1335833.3333333333,
+        "median": 1335000.0,
+        "p95": 1430400,
+        "minimum": 1259200,
+        "maximum": 1430400
+      },
+      "total_us": {
+        "n": 12,
+        "mean": 1337033.3333333333,
+        "median": 1335600.0,
+        "p95": 1430400,
+        "minimum": 1259200,
+        "maximum": 1430400
+      },
+      "frame_hold_us": {
+        "n": 12,
+        "mean": 676166.6666666666,
+        "median": 674600.0,
+        "p95": 747600,
+        "minimum": 614000,
+        "maximum": 747600
+      }
+    }
+  },
+  "wire": [
+    {
+      "segment": 1,
+      "requests": 12,
+      "returns": 48,
+      "bad_cursors": 0,
+      "malformed_chunks": 0,
+      "recorder_footer": "SUMMARY frames 285 badcursor 0 dropped 0",
+      "gyro_pairs": 12,
+      "gyro_request_to_reply_us": {
+        "n": 12,
+        "mean": 741933.3333333334,
+        "median": 726000.0,
+        "p95": 819200,
+        "minimum": 690400,
+        "maximum": 819200
+      }
+    },
+    {
+      "segment": 2,
+      "requests": 44,
+      "returns": 176,
+      "bad_cursors": 0,
+      "malformed_chunks": 0,
+      "recorder_footer": "SUMMARY frames 1146 badcursor 0 dropped 0",
+      "gyro_pairs": 44,
+      "gyro_request_to_reply_us": {
+        "n": 44,
+        "mean": 725945.4545454546,
+        "median": 725400.0,
+        "p95": 796400,
+        "minimum": 634400,
+        "maximum": 844400
+      }
+    },
+    {
+      "segment": 3,
+      "requests": 16,
+      "returns": 64,
+      "bad_cursors": 0,
+      "malformed_chunks": 0,
+      "recorder_footer": null,
+      "gyro_pairs": 16,
+      "gyro_request_to_reply_us": {
+        "n": 16,
+        "mean": 676675,
+        "median": 678800.0,
+        "p95": 766800,
+        "minimum": 636800,
+        "maximum": 766800
+      }
+    },
+    {
+      "segment": 4,
+      "requests": 110,
+      "returns": 440,
+      "bad_cursors": 0,
+      "malformed_chunks": 0,
+      "recorder_footer": null,
+      "gyro_pairs": 110,
+      "gyro_request_to_reply_us": {
+        "n": 110,
+        "mean": 701232.7272727273,
+        "median": 680600.0,
+        "p95": 806800,
+        "minimum": 623200,
+        "maximum": 1748400
+      }
+    },
+    {
+      "segment": 5,
+      "requests": 101,
+      "returns": 404,
+      "bad_cursors": 0,
+      "malformed_chunks": 0,
+      "recorder_footer": null,
+      "gyro_pairs": 101,
+      "gyro_request_to_reply_us": {
+        "n": 101,
+        "mean": 711346.5346534654,
+        "median": 696000,
+        "p95": 862400,
+        "minimum": 624000,
+        "maximum": 1302400
+      }
+    },
+    {
+      "segment": 6,
+      "requests": 26,
+      "returns": 104,
+      "bad_cursors": 0,
+      "malformed_chunks": 0,
+      "recorder_footer": "SUMMARY frames 615 badcursor 0 dropped 0",
+      "gyro_pairs": 26,
+      "gyro_request_to_reply_us": {
+        "n": 26,
+        "mean": 683769.2307692308,
+        "median": 674600.0,
+        "p95": 750400,
+        "minimum": 622000,
+        "maximum": 756000
+      }
+    }
+  ],
+  "hdr": {
+    "ev2": [
+      {
+        "request_tv": 48,
+        "request_iso": 1600,
+        "rtos_exposure_us": 125000,
+        "rtos_s_value": 144
+      },
+      {
+        "request_tv": 48,
+        "request_iso": 400,
+        "rtos_exposure_us": 125000,
+        "rtos_s_value": 112
+      },
+      {
+        "request_tv": 48,
+        "request_iso": 100,
+        "rtos_exposure_us": 125000,
+        "rtos_s_value": 80
+      },
+      {
+        "request_tv": 80,
+        "request_iso": 100,
+        "rtos_exposure_us": 31250,
+        "rtos_s_value": 80
+      },
+      {
+        "request_tv": 112,
+        "request_iso": 100,
+        "rtos_exposure_us": 7812,
+        "rtos_s_value": 80
+      },
+      {
+        "request_tv": 144,
+        "request_iso": 100,
+        "rtos_exposure_us": 1953,
+        "rtos_s_value": 80
+      },
+      {
+        "request_tv": 176,
+        "request_iso": 100,
+        "rtos_exposure_us": 488,
+        "rtos_s_value": 80
+      },
+      {
+        "request_tv": 208,
+        "request_iso": 100,
+        "rtos_exposure_us": 122,
+        "rtos_s_value": 80
+      }
+    ],
+    "ev3": [
+      {
+        "request_tv": 48,
+        "request_iso": 1600,
+        "rtos_exposure_us": 125000,
+        "rtos_s_value": 144
+      },
+      {
+        "request_tv": 48,
+        "request_iso": 400,
+        "rtos_exposure_us": 125000,
+        "rtos_s_value": 112
+      },
+      {
+        "request_tv": 64,
+        "request_iso": 100,
+        "rtos_exposure_us": 62500,
+        "rtos_s_value": 80
+      },
+      {
+        "request_tv": 112,
+        "request_iso": 100,
+        "rtos_exposure_us": 7812,
+        "rtos_s_value": 80
+      },
+      {
+        "request_tv": 160,
+        "request_iso": 100,
+        "rtos_exposure_us": 976,
+        "rtos_s_value": 80
+      },
+      {
+        "request_tv": 208,
+        "request_iso": 100,
+        "rtos_exposure_us": 122,
+        "rtos_s_value": 80
+      }
+    ]
+  },
+  "telemetry": {
+    "samples": 3014,
+    "reported_health": [
+      "Good"
+    ],
+    "reported_capacity": [
+      "100"
+    ],
+    "reported_status": [
+      "Full"
+    ],
+    "temperature_raw": {
+      "n": 3014,
+      "mean": 404.4226940942269,
+      "median": 400.0,
+      "p95": 410,
+      "minimum": 400,
+      "maximum": 420
+    },
+    "ac_online": [
+      "1"
+    ],
+    "usb_online": [
+      "0"
+    ]
+  },
+  "saved_raw_checksums": [
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-6-save/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "680d4a3b2943f0484fad4c4dffb9a4ed18b04f54ec2e77b715bb25c66d8c8229"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-6-save/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "af40120a4b961274430978b8c7711b0be52713514bb470ef8b66951bead05552"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-2-discard/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "1d0fc5bc5e83fef6dde73f201fc21679bdc7075cd074b2ee35f347c9f91fd91e"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-2-discard/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "5632268d8ba66a44b61d2fa2196ee7efa40a76cf93f6c12675291836e5289fe3"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-5-discard/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "8ee5ed7eac628c2fbd2aa4797e6cebee2d278424e94ff00c2cdd540419eb617b"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-5-discard/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "800f365e29e8f9395f2caebbb648c14fa9904db035360e3cde5ed221d25b80f5"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-4-skip-copy/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "ff97556608809d2fdf66924b780fb400872ff6864419b222d5e5862bd10aba30"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-4-skip-copy/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "7c24503f3d5cc737049466960bec8a97b90b90197056c4a905ebf0ae38985772"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-3-skip-copy/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "160a4d758aaacb7997039d3b64d4c45d3743df01f4042d12b752ac59d7be4d75"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-3-skip-copy/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "3916633aef3d4d507ca7870bcb33536f73484d059fe3527221f7607428301926"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-boundaries/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "4bf6061aeb6d4e1e276bb765f2e9612b654fe2d2ed33ae64e20462e2b6db8c57"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-boundaries/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "e74e567eda62fa3e6164e98cd646930bd469ebcde7251485faac9e831213498f"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-boundaries/shots/shot-003-frame.bin",
+      "bytes": 33732608,
+      "sha256": "2991340ff72b83530151947e86f21d999475dd2e888f36d80f2f6aa1efbb84b4"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-reentry1/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "2f3cada732e55975daa41bc443537ac2c65c5b75d05839f1b6f1de11f7ab26ee"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-3-skip-copy/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "e1506bf731879df96c0809e858cb974b9b82d674332700d4f6d298e2fb177f16"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-3-skip-copy/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "95caa4918a6490f9d17036edea3c9f3ea8d2752b4f7d63093248a8664d23c524"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-4-skip-copy/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "e935dc4a047101d45b010110c2c8ac34b29b758c969112e538203f7485a99298"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-4-skip-copy/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "767594d029788e3afac77a0b49e8a7181e41f6bb5789662a74c569479ac7e576"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-5-discard/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "03e9314810fcff75f49c09b2979fe53af94475f24e76a67e3225369914763a7d"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-5-discard/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "795328c5a76e8225bcd55d811e74bfae6f691f1ab7142a393555913576dee5c9"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-baseline/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "930605f7e8fc6fc3e3a909f94f9a1e064a2d864cd9fc3e9c2218881ab8192b3a"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-baseline/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "c31bc50cb8c0552ef24eb40f7d92a588269cadcaa605e0ede8c98f798ab97126"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-1-save/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "dd2fbf9a7fe04ba0a28e306692571b24f53901b633a464eb9b1bc0237ccdf2b1"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-1-save/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "50e81615b23ba9b4b89c055b47fff0d9a717c4cf93705c0bf24b5b98adb9d8ab"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-2-discard/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "788fbe02c6ccf546690d6331390b312aa5deb5933b59629fd7b24fdfd9db30b2"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-2-discard/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "de2c7b0cd46172d387d7a2f7831cea2df536a65745ae4925439e7b50306d2ad8"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-3-skip-copy/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "38defb5236ce5def32895140e89a1d9252b3bd1c11d746c34ccc11b3ffe3feab"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-3-skip-copy/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "d5c60fb2b912c629ccd87839f318c3a1757af3e7b2aa45d818b5d0d86de7fc68"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-5-discard/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "0d600b14e904c38f13d1a1288720ed8430876492931ea9433322a7873bf26c89"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-5-discard/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "8cc9a4723ba41f6d4e76c047e5e85bd42e0fbfc2fc0bc34e087eb9097a64765c"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-fast-raw/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "a8cdb639f47f17cc76ba5a7ab1c7f7edb7b663e48466310d795aa2ba35ce3fd6"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-fast-raw/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "5b60ab51eea0adb796531bc89945c613edafb1799a5608229adf3e4493dcb79f"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-6-save/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "d18e2f98dc171e6c4f11450a6e2e6b28d48c8d49c1b720f45e0f708b3884b9f5"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-6-save/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "e503e480f1a41d1369b3288a2bce4a152dc37c70fe8d06375d5f44777a40a6c2"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev2/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "0c54d153363b001f6318f05475fa61be6312bd63c889e4e9a178949500e56e68"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev2/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "71a861a57b40c7df8e83c0b43ab53ffd5bb5aa25611214c0282b15ad1536971a"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev2/shots/shot-003-frame.bin",
+      "bytes": 33732608,
+      "sha256": "a0b9dabc6bb718926c30a0473021443a61397838a20c0073e8249e6e80dc154f"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev2/shots/shot-004-frame.bin",
+      "bytes": 33732608,
+      "sha256": "f66e1dc328e33a6fbd4382adf3f193643a66f4a451cac46d175086b2902aff12"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev2/shots/shot-005-frame.bin",
+      "bytes": 33732608,
+      "sha256": "7ceda30c09e131c9c7b2f40e604c5773a3244613d2c0232f6ffb5893c69a0427"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev2/shots/shot-006-frame.bin",
+      "bytes": 33732608,
+      "sha256": "8d2802fffb890176cdfa47f7a9b0638998506c0af3a7b57627a40488a0451c2f"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev2/shots/shot-007-frame.bin",
+      "bytes": 33732608,
+      "sha256": "fe3c4af898c598af828eaea6fa2c49b8c61411d4453e33b22e4d96550778ee00"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev2/shots/shot-008-frame.bin",
+      "bytes": 33732608,
+      "sha256": "9276349a6010eb71f657ada71a04a9173c12645cb9ad657786bcf75358e223aa"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-b1-2-discard/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "1fab45376b34a867f42354e5c53a280cadb1e1a43d1f951860796a7df8ca03d3"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-b1-2-discard/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "ea0adee6335c8117144e56edb24e4697553c14e743cf63485edd2d88dd81fe20"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-6-save/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "957e535299e2829d534387fff1b763c436f719638395db3caf48a7236a887536"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-6-save/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "28d19102f2c44ad6a0588bc7229f3317a24cb1b1bde2588ffa819e25f006c9b8"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev3/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "9e714270a8f8911c81006d986b7cc244445decb2f7750c1962b9326327beef67"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev3/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "37b37ba07fd2eafebef3c1c46e4c65448d95b682d57709f1eb3d7178326da3a3"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev3/shots/shot-003-frame.bin",
+      "bytes": 33732608,
+      "sha256": "f5321f22a6e510d4ff40f572d4b7f8be45b736f6bea7c8e31f57d7beb8d15a06"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev3/shots/shot-004-frame.bin",
+      "bytes": 33732608,
+      "sha256": "e56d2a683b835bed3688ba285983df2f5396473a893fbd1a5c0c1c1446a63564"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev3/shots/shot-005-frame.bin",
+      "bytes": 33732608,
+      "sha256": "d7c11ac4fea7f8e7963629c090755311ee9cb899cb8d8123f9c391b10b2db093"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-hdr-ev3/shots/shot-006-frame.bin",
+      "bytes": 33732608,
+      "sha256": "781b816f438232a35b405ec2a05206384b76731d7d60490e5546f5595c8eb842"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-post-stress/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "43b563c300ff465c564fb6904b620661ff4a08655f40f2912bab1bfc09c94ee2"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-2-discard/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "c39577f9e8651a6cdf4a07047d75922b74e7290ffa60f89519a57593131c43e2"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c2-2-discard/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "b75298d89aa7e703a76a7b66a67c74994472521f75470a460c668f0748f86041"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-1-save/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "d656dc179c17632fc6b1f96df59c15692b2809583eab58ab2136c91d22aef372"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c1-1-save/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "3a349aadf51c5779472cd637bf13e71bec98a6221ff17fa4e434e6e95cb057f4"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-reentry2/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "66ff408d64351c819b6ebc0d635f1b9feee22704910c86d0bb345a3ab1803153"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-reentry2/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "8576ec226161d0fdfa9df5b0bf4ec0c409c44405e0453cd9e47885a8281c349e"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-4-skip-copy/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "157eae7c94670695688da1d934a68312b24869dcb068279273d0205841fcea3c"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-4-skip-copy/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "84a7f3186d3b73056b46e0f1688723aead990239620d9b241cf2a8ac4e3f2051"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-1-save/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "739bcfe008f2deba74010c29af8b04735394870b01a345862b62f836f79eab2d"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-c3-1-save/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "6c0ad6d2310451ea0291b92abc1fa127dee62b8a7c026df2349ece291c0a0d7b"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-b1-1-save/shots/shot-001-frame.bin",
+      "bytes": 33732608,
+      "sha256": "ba2f63a0249812acb87c9e37fbdfc89fc6f5df791f8b69dc4de4c1272058094b"
+    },
+    {
+      "path": "/opt/storage/sdcard/exp-live20261104-jpeg-b1-1-save/shots/shot-002-frame.bin",
+      "bytes": 33732608,
+      "sha256": "fe3ae4bb03a97f5c046e89ca11c623db732a8ced236de5d406786ed775c18f95"
+    }
+  ],
+  "reviewed_at": "2026-11-05",
+  "scope": "Authorized unattended dark-room tests; no power cycle or stock restart",
+  "firmware_sha256": {
+    "/usr/lib/libcapture-fw-prod.so": "fba8947358ff1fd666fca794d2af77e77a61964e5dd022c04c499ae7b4cc8cc7",
+    "/usr/lib/libmulticore-bridge.so": "9129761c6ee9f6b62968d3a8307a8b5fbf02e1493323658c42d9ebe587673a20",
+    "/usr/apps/com.samsung.di-camera-app/bin/di-camera-app": "5937b3abe7630abc8ac265ce280cc45ee591562968296bc4b368cf7e15742789"
+  },
+  "source_base_commit": "86215c9f08b89760ccc70903af10ba1197e7c215",
+  "host_validation": {
+    "experiment_tests": 14,
+    "experiment_tests_passed": true,
+    "library_tests": "ASan/UBSan, fake SDK and C++ caller passed",
+    "arm_executable_sha256": "767d43df2faacaa5f405b21f57422c5d679fef53dc3795b0e177263a133f9a30"
+  },
+  "arm_guard_checks": {
+    "width_overflow_exit": 2,
+    "physical_extent_overflow_exit": 2,
+    "skip_jpeg_without_frame_exit": 2,
+    "no_open_log": true,
+    "extra_wire_still_requests": 0
+  },
+  "passive_buttons": {
+    "device": "/dev/event0",
+    "duration_seconds": 30,
+    "exit": 0,
+    "events_bytes": 0,
+    "errors_bytes": 0,
+    "physical_input_supplied": false
+  },
+  "evidence_transfer": {
+    "sha256": "746ca9aea2e171b500e1ab5d2fa2492d53d100277bf156ce137ddf935cad6267",
+    "extracted_files": 469,
+    "jpeg_files": 111,
+    "jpeg_and_descriptor_hashes_verified": 176
+  },
+  "cleanup": {
+    "case_directories_removed": 44,
+    "observer_directory_removed": true,
+    "staging_removed": true,
+    "transfer_archive_removed": true,
+    "stock_active": false,
+    "stock_main_pid": 0,
+    "boot_time": 1793781685,
+    "original_entry_pid_untouched": 337,
+    "workers_remaining": 0,
+    "sd_used_percent": 65,
+    "battery_status": "Full",
+    "battery_capacity_raw": 100,
+    "battery_health": "Good",
+    "final_health_record_sha256": "ce2b2db250edf8cdfbd9373f8e45599c73d1cf1c0d25043294723f7b7981076b"
+  },
+  "restored_settings": [
+    "Program",
+    "ISO Auto",
+    "WB Auto",
+    "Superfine",
+    "Single",
+    "Smart Range On",
+    "ISO NR Mid",
+    "LTNR On"
+  ],
+  "not_proven": [
+    "RTOS JPEG encoder bypass",
+    "RAW copy speed improvement",
+    "indefinite reliability or every-byte source coherence",
+    "other native bracket/continuous/burst drives",
+    "optical exposure/gain response or calibration in darkness",
+    "physical button gestures, LED/sound writes, charging transitions or a full controller"
+  ]
+}

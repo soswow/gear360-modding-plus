@@ -1,0 +1,1086 @@
+{
+  "schema": "gear360-interrupt-recipe-execution-evidence-v1",
+  "scope": "Reviewed offline research reports and source-bound REA evidence identities; this index contains identities and citation resolution, not raw evidence payloads.",
+  "sourceSha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7",
+  "sourceImage": {
+    "path": "output/decompile/rea/rtos-p6.bin",
+    "bytes": 31457280,
+    "sha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7"
+  },
+  "reviewedReports": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/core-mode-writer/report.md",
+      "bytes": 6386,
+      "sha256": "e9243f02aa885d73c3b39323b5346e1fc7e757fbf3e9e4ca18dcf95cbe3c1cce"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/report.md",
+      "bytes": 6871,
+      "sha256": "e3be0e57bdb0835a3cd8994e76d8e3d2a353d1495988dbf0b80f275e4aa01b85"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/checkpoint.md",
+      "bytes": 2427,
+      "sha256": "b906871366b2b8e3d0e97c95996fcba2e45ef250d8db2e42e581c4a6007e258f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/material-dispatch/checkpoint.md",
+      "bytes": 2059,
+      "sha256": "148a79845d75d0691d33a0a296dccfc6315b3eeb9d1f505dbcb73b6288caef50"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/material-dispatch/report.md",
+      "bytes": 13480,
+      "sha256": "261fae246e463ec1728b1faaa7fd1b83009509d431fbf55703211024717c9255"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/report.md",
+      "bytes": 13593,
+      "sha256": "ee0408851529542fe011a373d066b99b1da2d239002b91301117451cbf5203ac"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/candidate-lifetime-schedule/checkpoint.md",
+      "bytes": 1234,
+      "sha256": "58c0e1f6f2bfca39474d6e3dc90c23ab2568bc87c07664e3cd3e19e574cb4ac6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/candidate-lifetime-schedule/parent-disposition.md",
+      "bytes": 917,
+      "sha256": "bbc9cb004e928e6b7fb071244248e1aabbad05e44b7a90e039d13a7810668c0b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/candidate-lifetime-schedule/report.md",
+      "bytes": 10588,
+      "sha256": "f94f4d4fc4c9b000f412aa5624c86e3786bb1553dc48504264bee263bc8f9513"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/event-initial-state/report.md",
+      "bytes": 4640,
+      "sha256": "7f92395494082865e1fd88dcff04f31efd15c1015fd68bad19515ec0935b5d0b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/export-enable-routing/report.md",
+      "bytes": 3071,
+      "sha256": "4c293de16efc550044bc7d90c7169af9a42ebe239bb85ae4767b22b901f6342d"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/export-enable-routing/rtos-dispatch/report.md",
+      "bytes": 9990,
+      "sha256": "abcea502341466c268d1a748cb6db98210621381fd669e74da4f729bbd0adfa2"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/report.md",
+      "bytes": 7039,
+      "sha256": "b9db9f087d7c4b84b49868cd2debd102823607ebc640fba21ec777f1a3f1ffe6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/pass8-frontend-completion-source-report.md",
+      "bytes": 9562,
+      "sha256": "01109cb71feea4f5c84d82987e5e8e13af2a59ac8e7a1aade81f3d81d496c3af"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/pass8-task-identity-review.md",
+      "bytes": 5297,
+      "sha256": "91fbe4b70e16b511a4ab02e0233bdfa8f4ec13035acd77cc346c1ae200ae368c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/report.md",
+      "bytes": 7435,
+      "sha256": "7e0b4359c3867f07c98777271fa18e458d1b0cc2b1ed6b5ae4793b0c80b12e1e"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/independent-review/final-review.md",
+      "bytes": 3092,
+      "sha256": "f52c1d6329109a0a6c850bd78fb6ea434c33b314d20c100559b51c81725a5650"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/independent-review/independent-review.md",
+      "bytes": 19299,
+      "sha256": "8adb5360b66a20fa4906db8533111a9719c0cd701a782a2bcab6abb4c738e7bb"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/independent-review/material-dispatch-review.md",
+      "bytes": 7136,
+      "sha256": "c1fa06feba667f81a60cf3357d82608c85003c34e8d10e44b7f34447ea62675a"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/report.md",
+      "bytes": 8573,
+      "sha256": "2dd6834d9065576ab137001922e68065cb5695cf1b70c4ff2d07b3c7c0e897f0"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/report.md",
+      "bytes": 5517,
+      "sha256": "9d98c68e0f16a6f39cd31f8528a5303cb95fb070e229693444abc29b3484a688"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/report.md",
+      "bytes": 9338,
+      "sha256": "5c8699efebe57afaee3da8bce1852b59408c3e2707adb337b33a3d5dfac07661"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/recipe-factory-binding/checkpoint.md",
+      "bytes": 1255,
+      "sha256": "16f8e7a5f734afa9a0278bfea13fea3cdae736f21c8c613eb532cb4d2548c85c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/recipe-factory-binding/report.md",
+      "bytes": 5867,
+      "sha256": "21d236e01c85c8694b5088ed7689fc375be6a7d25cccd1ba9fa7c7eaf76bbbe6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/report.md",
+      "bytes": 7621,
+      "sha256": "ea77cccff2f1c0c7b3ece812c2ec537afd300b3a49a3e1414dc7ea99bd3a676a"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/report.md",
+      "bytes": 9082,
+      "sha256": "638322a95e703505745a04b0e1fcc197a298915cd76a15398d196744105e228a"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/validator/comparison.md",
+      "bytes": 1506,
+      "sha256": "aa5eb720d4855387152057d89daba0ecf6d8436ee5809c4d51bf26533aca96c1"
+    },
+    {
+      "path": "reverse-engineering/RAW_INTERRUPT_AND_RECIPE_EXECUTION.md",
+      "bytes": 15590,
+      "sha256": "69700ba91d3befdf0d9660e7fd7e52ba69f9effab3fc04a6dfb3afb74406597a"
+    }
+  ],
+  "parentAudits": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/cleanup-status.json",
+      "bytes": 1171,
+      "sha256": "48a542ae1b56a3e0964be19a43026a6a51489ef86a6b9348bd75d9e51de72b72"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/core-mode-writer/cleanup-status.json",
+      "bytes": 1294,
+      "sha256": "526e7708350a22c17e5899ce59eea2ffa566ac946497f6612df8b3d0ef86a401"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/parent-cleanup-audit.json",
+      "bytes": 1211,
+      "sha256": "251c05cc8e40194a838ce7a9acb2c01f83c9b98b15e835f7c6c4a41b77d5b24d"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/parent-validation.json",
+      "bytes": 281338,
+      "sha256": "6f5b38569d44146ce12595a0ae12f96aeb49706152057f3911d85d7b72991a66"
+    }
+  ],
+  "priorPassValidation": {
+    "path": "output/decompile/rea/continuation-20261015/pass8/reviewed-final/parent-validation.json",
+    "bytes": 270161,
+    "sha256": "194c5cd51d3a029f6933d20efef893996129e18e3be35fcabe7f7cf51dc24386"
+  },
+  "validatedCarrierManifests": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/active-recipe-executor.manifest.json",
+      "bytes": 2574,
+      "sha256": "0e7b0712841b5963ee2a2d39dc8c32d7e9a39caea3e4856cd2cb01d30c981efd",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/active-recipe-executor.elf",
+        "bytes": 66188,
+        "sha256": "9b5eea4ef798296b67faee68d7b4137eafff23ed6810b9ad19f432b6436dcac8"
+      },
+      "carrierSha256": "9b5eea4ef798296b67faee68d7b4137eafff23ed6810b9ad19f432b6436dcac8",
+      "segmentCount": 4
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/material-dispatch/carrier-manifest.json",
+      "bytes": 10175,
+      "sha256": "f3e0309ffd1176c75b28d9bce2700a27bb0a07deb79b2b5dcc7027397bcc700a",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass7/candidate-lifetime/candidate-lifecycle-v9.elf",
+        "bytes": 424508,
+        "sha256": "660eb55e8ed9cd6e059303b430ae520776b37f088bc7447b933b1c7013de888e"
+      },
+      "carrierSha256": "660eb55e8ed9cd6e059303b430ae520776b37f088bc7447b933b1c7013de888e",
+      "segmentCount": 22
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/event-initial-state/event-initial-state-v2.manifest.json",
+      "bytes": 1998,
+      "sha256": "fe2d1b227f56e4b6d3a73d8ee5fa375b073245e9f9c2c40674e472ab40cfdf3d",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/event-initial-state/event-initial-state-v2.elf",
+        "bytes": 21004,
+        "sha256": "77d95a78d8ad30b0da5026dbae677a43791211ca9d007d9d996c67ad299bd7be"
+      },
+      "carrierSha256": "77d95a78d8ad30b0da5026dbae677a43791211ca9d007d9d996c67ad299bd7be",
+      "segmentCount": 3
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/event-initial-state/event-initial-state.manifest.json",
+      "bytes": 1570,
+      "sha256": "57b4ed6d5ef6cabca90b546df8895a009680eca793f99e12d464cad9734dcd99",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/event-initial-state/event-initial-state.elf",
+        "bytes": 16800,
+        "sha256": "eedcbd7a9f45856a4ee6314d5ada771c4ab669eca19e0a88088bc10031fb4210"
+      },
+      "carrierSha256": "eedcbd7a9f45856a4ee6314d5ada771c4ab669eca19e0a88088bc10031fb4210",
+      "segmentCount": 2
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness-v2.manifest.json",
+      "bytes": 2716,
+      "sha256": "4a7d83010462ae47bdf0c031641f251a7783a41457ae9945cc9cc0b7745248e4",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness-v2.elf",
+        "bytes": 41628,
+        "sha256": "d490a75e898308d2b1be16b3c11fd1126bae879bc3e8ef4672b62873a290bbfa"
+      },
+      "carrierSha256": "d490a75e898308d2b1be16b3c11fd1126bae879bc3e8ef4672b62873a290bbfa",
+      "segmentCount": 5
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness-v3.manifest.json",
+      "bytes": 3135,
+      "sha256": "0ca6df5d28d9d87350f59d40c9bf383151fff3101d5b02e149b998362a7a529d",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness-v3.elf",
+        "bytes": 45828,
+        "sha256": "0d8c78354f753564fc6b2df6d4e428a24322784376cd79b5d8cc637d7865b4ec"
+      },
+      "carrierSha256": "0d8c78354f753564fc6b2df6d4e428a24322784376cd79b5d8cc637d7865b4ec",
+      "segmentCount": 6
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness-v4.manifest.json",
+      "bytes": 4600,
+      "sha256": "a0132ec93d1be46c3cd67a6ae5bbeab8c639cad91cbc9717bb3e438b82550bf6",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness-v4.elf",
+        "bytes": 58512,
+        "sha256": "db9990eeb71601ed7a9eb5989d4ced7ef9b2378efca134e199eb6ad5c0626ef3"
+      },
+      "carrierSha256": "db9990eeb71601ed7a9eb5989d4ced7ef9b2378efca134e199eb6ad5c0626ef3",
+      "segmentCount": 9
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness-v5.manifest.json",
+      "bytes": 5942,
+      "sha256": "d4caef6f6dd3470c28838c90a144d9f7faceada6997dc8a3dfbf6a3ced99d02c",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness-v5.elf",
+        "bytes": 71132,
+        "sha256": "a1866179294a7dcb5d4e784230031cf607e4c21a888dbb8f1773672062299c2c"
+      },
+      "carrierSha256": "a1866179294a7dcb5d4e784230031cf607e4c21a888dbb8f1773672062299c2c",
+      "segmentCount": 12
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness-v6.manifest.json",
+      "bytes": 6371,
+      "sha256": "9e960cb28f72e2258928ef38b53a7302294b38ef35f0d3a25802a102979fd114",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness-v6.elf",
+        "bytes": 75340,
+        "sha256": "3372ceb74e7c3a23dc589ff946631af9714becc3a9ee3d48d136a8f7ff184cb0"
+      },
+      "carrierSha256": "3372ceb74e7c3a23dc589ff946631af9714becc3a9ee3d48d136a8f7ff184cb0",
+      "segmentCount": 13
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness.manifest.json",
+      "bytes": 1881,
+      "sha256": "3a80a223dbb1f16a3d7203b40bab657be79dfb30ce9819e061e58766500fb9d7",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/route-a-freshness.elf",
+        "bytes": 33236,
+        "sha256": "cf062ed5b431266c6b0ddeb3e6a32fc8617ca231cc9a9cc689736887c86557ff"
+      },
+      "carrierSha256": "cf062ed5b431266c6b0ddeb3e6a32fc8617ca231cc9a9cc689736887c86557ff",
+      "segmentCount": 3
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/frontend-task-identity-v2.manifest.json",
+      "bytes": 4268,
+      "sha256": "4e808aa433d5571f0ce76e2e568f0129583a6ec9def4f1546d3c16b983e5e1d7",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/frontend-task-identity-v2.elf",
+        "bytes": 42120,
+        "sha256": "7da80adc09fe6f75afcd11cdbe7f71b4f5324b2497d3b91c6b8912421b901f55"
+      },
+      "carrierSha256": "7da80adc09fe6f75afcd11cdbe7f71b4f5324b2497d3b91c6b8912421b901f55",
+      "segmentCount": 7
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/frontend-task-identity.manifest.json",
+      "bytes": 3570,
+      "sha256": "c387f94f74e9f395ca31e1f1cca519934d75c94fb9fab2a087efa8215086a63f",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/frontend-task-identity.elf",
+        "bytes": 37828,
+        "sha256": "468646fb5e5c04225bdf6aab7c95ad87423f57c2550a3e8a83cbc8e3bc4b24a3"
+      },
+      "carrierSha256": "468646fb5e5c04225bdf6aab7c95ad87423f57c2550a3e8a83cbc8e3bc4b24a3",
+      "segmentCount": 6
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/irq-registry-v3.manifest.json",
+      "bytes": 1582,
+      "sha256": "c94555ade7b81f8bf3732a9e7cdde485fb46c9af1fc6068d0f9ac7f53f83e111",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/irq-registry-v3.elf",
+        "bytes": 25008,
+        "sha256": "a38b0e2576b500b67ad74891017191ed26300594e10107f72d76ba3f54dcd20c"
+      },
+      "carrierSha256": "a38b0e2576b500b67ad74891017191ed26300594e10107f72d76ba3f54dcd20c",
+      "segmentCount": 2
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/irq-registry.manifest.json",
+      "bytes": 1460,
+      "sha256": "40f4d134d466903b049d23f73c2745d50e8d40ef3a4694bf1528298660fd52e0",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/irq-registry.elf",
+        "bytes": 20856,
+        "sha256": "41ff24385c69538a1f3bd8e267b62524eea8593a8f6db430a843f97fc7206eb7"
+      },
+      "carrierSha256": "41ff24385c69538a1f3bd8e267b62524eea8593a8f6db430a843f97fc7206eb7",
+      "segmentCount": 2
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-bootstrap.manifest.json",
+      "bytes": 6790,
+      "sha256": "46845a27ca1c383c27c5301368708fa474d865a8da5e850f639ed2b333489ffb",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-bootstrap.elf",
+        "bytes": 67376,
+        "sha256": "d49469f19046e44458e24d81c74aac8c13c36ea01fb7e64db83899359b29f744"
+      },
+      "carrierSha256": "d49469f19046e44458e24d81c74aac8c13c36ea01fb7e64db83899359b29f744",
+      "segmentCount": 13
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-corrected.manifest.json",
+      "bytes": 4017,
+      "sha256": "9831991a08da71f2a8a0a7b81374233cc4e1fce24ab8f24dfc3f36822f8a63a4",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-corrected.elf",
+        "bytes": 38008,
+        "sha256": "9dacb086676609094ccc9bd45f58c0a11c0bc9bafd59853aad7cf7cfd567fa51"
+      },
+      "carrierSha256": "9dacb086676609094ccc9bd45f58c0a11c0bc9bafd59853aad7cf7cfd567fa51",
+      "segmentCount": 6
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-dispatch.manifest.json",
+      "bytes": 5297,
+      "sha256": "bfb3f6a7870005ddb04a2b5ef686bd0561c7dcc24a584bed0db0535386c7ba46",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-dispatch.elf",
+        "bytes": 50636,
+        "sha256": "5b3ca9196019dd491a8a03e436247ed1f02d9cf4f0d8de8a8a2e9d5ff4d5c22c"
+      },
+      "carrierSha256": "5b3ca9196019dd491a8a03e436247ed1f02d9cf4f0d8de8a8a2e9d5ff4d5c22c",
+      "segmentCount": 9
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-dispatcher.manifest.json",
+      "bytes": 5414,
+      "sha256": "6e268330bc9b2359ce4f0edc9fc4e767508fab5ef0711912596387ebbe579ad5",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-dispatcher.elf",
+        "bytes": 50688,
+        "sha256": "2f19d5fdfd8968dbbdaa43db199df46ebdb00c21c5d0374ab1008c8ddd0bf068"
+      },
+      "carrierSha256": "2f19d5fdfd8968dbbdaa43db199df46ebdb00c21c5d0374ab1008c8ddd0bf068",
+      "segmentCount": 9
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-final.manifest.json",
+      "bytes": 4657,
+      "sha256": "449c588ca6df35ae38187d9892bcd1a9b8b6cad48cbdb5c208744a1cfe18757c",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-final.elf",
+        "bytes": 42312,
+        "sha256": "f1d15583b690acd7a345ea07e4ca65349ee66b5001c3dbb512b2c3f1bed2a2a4"
+      },
+      "carrierSha256": "f1d15583b690acd7a345ea07e4ca65349ee66b5001c3dbb512b2c3f1bed2a2a4",
+      "segmentCount": 7
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-integration.manifest.json",
+      "bytes": 5737,
+      "sha256": "b87c168a74dbab081ed415e6e2c2ab376eaec3af5831eac964b4d1caf0712407",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-integration.elf",
+        "bytes": 54852,
+        "sha256": "98daefe4a2110ac2d42a98bd94020dbbd8d19a93f57db6a43955d21afb6461fd"
+      },
+      "carrierSha256": "98daefe4a2110ac2d42a98bd94020dbbd8d19a93f57db6a43955d21afb6461fd",
+      "segmentCount": 10
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-outer.manifest.json",
+      "bytes": 6046,
+      "sha256": "e9930ddfe7ddd25baeeb23c859011f5427d381bf3a7737684acbfe113ba7bb76",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-outer.elf",
+        "bytes": 59012,
+        "sha256": "56a542029a77b89b6f354a6c57f49961f9ab45d1db96d61b868c04d43ac37252"
+      },
+      "carrierSha256": "56a542029a77b89b6f354a6c57f49961f9ab45d1db96d61b868c04d43ac37252",
+      "segmentCount": 11
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-record.manifest.json",
+      "bytes": 7531,
+      "sha256": "bfc0d04758473cae1bb49f229a9d6e0d811a9c4ed95f1568c19939907f766029",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-record.elf",
+        "bytes": 75740,
+        "sha256": "65e7ca0652e5285b2d3f1bc1f6b20dbbc85006f5f370d46eb71c847430675d6c"
+      },
+      "carrierSha256": "65e7ca0652e5285b2d3f1bc1f6b20dbbc85006f5f370d46eb71c847430675d6c",
+      "segmentCount": 15
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-root.manifest.json",
+      "bytes": 4975,
+      "sha256": "b6ec55e0814895223dc92f5352e5fdf334167ff26e3f7ae58e31bf366cd3cabd",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-root.elf",
+        "bytes": 46472,
+        "sha256": "b05456940917df24a547c6be712ab2a69b539644ca304bedc5c86368218b2719"
+      },
+      "carrierSha256": "b05456940917df24a547c6be712ab2a69b539644ca304bedc5c86368218b2719",
+      "segmentCount": 8
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-root28.manifest.json",
+      "bytes": 7103,
+      "sha256": "e5f6e404089775c1c6f990eb4ea730237bc29a360ecbac3a46b1e8120737604d",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-root28.elf",
+        "bytes": 71536,
+        "sha256": "ca495c1b317ffe82b3300e557c1ca2a7dc276a4bcfe8be0df2774292a8f6f44e"
+      },
+      "carrierSha256": "ca495c1b317ffe82b3300e557c1ca2a7dc276a4bcfe8be0df2774292a8f6f44e",
+      "segmentCount": 14
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-startup.manifest.json",
+      "bytes": 6363,
+      "sha256": "8f9b06a45734a68a4a0076f3d36423b4a15175930dc7a40daf2c64f13f3ec725",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-startup.elf",
+        "bytes": 63168,
+        "sha256": "b27809b037cb6479ea9cfcc3cb8eda0e0ede0501e0a8ca202cf530bfdb1ac1a7"
+      },
+      "carrierSha256": "b27809b037cb6479ea9cfcc3cb8eda0e0ede0501e0a8ca202cf530bfdb1ac1a7",
+      "segmentCount": 12
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-trace.manifest.json",
+      "bytes": 4891,
+      "sha256": "25f31988d40133c17ca3d31b50cd8c36f63326109fb0da8d4d72e15e7d437594",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-trace.elf",
+        "bytes": 42424,
+        "sha256": "e9d8771b4b35c3e13a554d6cfaa7e97e263038d5eabe0dda01fe25776b18c76a"
+      },
+      "carrierSha256": "e9d8771b4b35c3e13a554d6cfaa7e97e263038d5eabe0dda01fe25776b18c76a",
+      "segmentCount": 7
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation.manifest.json",
+      "bytes": 2825,
+      "sha256": "8e82065b6ac904565d2558b3ce4919ab68423d52187383f823c4ba499b737bec",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation.elf",
+        "bytes": 25352,
+        "sha256": "4321c869a6f2b9c38391a66b7efa1ee2815c408afce055db7a0d9d2bc7b8946c"
+      },
+      "carrierSha256": "4321c869a6f2b9c38391a66b7efa1ee2815c408afce055db7a0d9d2bc7b8946c",
+      "segmentCount": 4
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/recipe-factory-binding/input-carrier-manifest.json",
+      "bytes": 9782,
+      "sha256": "8753ea9ac01a4e6fb2ee3822c5371eaba4cfa62b21f57c4ad6af0fef6365877a",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261014/pass4/material15000/manager-fridge-setter-caller.elf",
+        "bytes": 858848,
+        "sha256": "a40eb3b3babfcba3945be3a0b8b5dc74ff49eb8800914d5d272e78a6ab8e144e"
+      },
+      "carrierSha256": "a40eb3b3babfcba3945be3a0b8b5dc74ff49eb8800914d5d272e78a6ab8e144e",
+      "segmentCount": 16
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/rdma-vtable-route.manifest.json",
+      "bytes": 3758,
+      "sha256": "72bd00ed3100157152165a2fa9fcaefa6a90e19d9aeffe1ae5f06c6f8e9c02cd",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/rdma-vtable-route.elf",
+        "bytes": 115636,
+        "sha256": "2c18bf7adffb562611030eb8527cf5732343504fcaa1c8ee1e9240caa1530df8"
+      },
+      "carrierSha256": "2c18bf7adffb562611030eb8527cf5732343504fcaa1c8ee1e9240caa1530df8",
+      "segmentCount": 6
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/vcall-candidates.manifest.json",
+      "bytes": 1521,
+      "sha256": "a49ac1f38e2ff6abe31b726d068d6b00398dec4fb7671706e4224099f878e835",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass10/rdma-vtable-route/vcall-candidates.elf",
+        "bytes": 20852,
+        "sha256": "856e7389093923be8f5694c526ff1d3c34b8ba9c1bb792be0e7484ef39cff1b5"
+      },
+      "carrierSha256": "856e7389093923be8f5694c526ff1d3c34b8ba9c1bb792be0e7484ef39cff1b5",
+      "segmentCount": 2
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/sensor-input.manifest.json",
+      "bytes": 2916,
+      "sha256": "a819ef36d7a0dc59e7fd963bb3ad467a9043859efdc5dcf1606b998d3f5302bc",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/sensor-input.elf",
+        "bytes": 33528,
+        "sha256": "1d259ddf52cca0a3daec8d943d9366c5ebb762ab21357b2a518821d96c045ecc"
+      },
+      "carrierSha256": "1d259ddf52cca0a3daec8d943d9366c5ebb762ab21357b2a518821d96c045ecc",
+      "segmentCount": 5
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/sensor-mux-callers.manifest.json",
+      "bytes": 2064,
+      "sha256": "d90cda981842a0125e720a96a5ebe579af0fbe3b7011a4e2e21a52767ca818c2",
+      "carrierImage": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/sensor-mux-callers.elf",
+        "bytes": 33372,
+        "sha256": "9627b78fb60aecc51e04f965c906fca1f00cd8a4f5033bef89398ff890a1e0db"
+      },
+      "carrierSha256": "9627b78fb60aecc51e04f965c906fca1f00cd8a4f5033bef89398ff890a1e0db",
+      "segmentCount": 2
+    }
+  ],
+  "validatedClosedSnapshots": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/closed.snapshot.json",
+      "bytes": 464418,
+      "sha256": "a14f34413b2f7c44b6605d3a051db74f61d800a058052f4bffbca3a1b3aa7d0f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/core-mode-writer/closed.snapshot.json",
+      "bytes": 26152441,
+      "sha256": "25b94c6165f5c61b3444fe32cc8d6486631f7d988f3a14a0118f928ce432da11"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/event-initial-state/closed-private-event-state-v1.json",
+      "bytes": 275752,
+      "sha256": "e7e84d3d38c77a28923030ef86191dd785d80b07534dcc4c2d33af5a231bba1e"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/event-initial-state/closed-private-event-state-v2.json",
+      "bytes": 211858,
+      "sha256": "725c9309c93400312f4496c7911dc3de82a4a7d6f41ce1a612595bbcf16c16f0"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/export-enable-routing/linux-command-string-closed.snapshot.json",
+      "bytes": 2252319,
+      "sha256": "50ee315773b3b1af97e8b34f032b526cc0ea373a184e572832d44d9b1a23db36"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/export-enable-routing/rtos-dispatch/closed-dispatch-phase2.snapshot.json",
+      "bytes": 801891,
+      "sha256": "dcd4da39dc8aec339f7f654d8cc36c8b2006b13300c9c8a3ccce2894f57b1998"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/export-enable-routing/rtos-dispatch/closed-dispatch.snapshot.json",
+      "bytes": 9904397,
+      "sha256": "7f21ba3fc4d9d1554a2dd8b3a681309a6c9b61da514f8ef40e516855dfe8fb17"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/closed-private-freshness-v1.json",
+      "bytes": 343960,
+      "sha256": "cb7b44eff5b864043677a2f305166e7ab1f358939dcc158e4b7db15ec59bedf0"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/closed-private-freshness-v2.json",
+      "bytes": 3802100,
+      "sha256": "eb4c8640568f2686a72b5bf16838d6897bb0476dab6ad74a1d708014ccb35dfd"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/closed-private-freshness-v3.json",
+      "bytes": 492710,
+      "sha256": "ad57f1935062fd8160793ad8fa1fda4b83eff6d9dd1255a9b1e55140df7527ee"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/closed-private-freshness-v4.json",
+      "bytes": 891050,
+      "sha256": "c617f133dc4a47c8dd1e725c05904d75baf4beed739c46af35c41b8a06840544"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/closed-private-freshness-v5.json",
+      "bytes": 210278,
+      "sha256": "1d95d79e6aa378e9fb3f2c13efa22be7d6dc4558e9abafe0f5102cad28597919"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/closed-private-freshness-v6.json",
+      "bytes": 60102,
+      "sha256": "9e30af1f7e42caa3a5e719bfe4d57c273edfb6260f57f28f70d702858e2e5763"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frame-submission-freshness/closed-private-freshness-v7.json",
+      "bytes": 504360,
+      "sha256": "386af910b8eea1a8bc31763c4068061d35d1a515c2c7ecdd32bdf55e819636da"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/closed-private-task-identity-v1.json",
+      "bytes": 2660479,
+      "sha256": "0cf99c1d36afb539af9bf004993cbbe38ebbfc36e6856877d647e2dfeb3d243c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/closed-private-task-identity-v2.json",
+      "bytes": 11253,
+      "sha256": "3915b7cf010a0b0596106b894afc079668f3cd1a8a7e2b2de909b83e09f15149"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/closed-private-task-identity-v3.json",
+      "bytes": 434166,
+      "sha256": "ad61d9eff6169fd5ff21c928280c347a5d2627ea8f578a3c2cfb3bc6a39b9d69"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/closed-private-task-identity-v4.json",
+      "bytes": 380782,
+      "sha256": "ceca7bc483b0989e4c06c42b38ddea14836af0cd6eeee01bf0215396690e850c"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/closed-private-registry-v1.json",
+      "bytes": 143692,
+      "sha256": "8a4faf48d7507805e0af7b674bd7d1b10de548106694ec7c36f2d17037c5e357"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/closed-private-registry-v2.json",
+      "bytes": 325548,
+      "sha256": "b85ab2f6aa473036ae3118dd6bbc937233d8d57357a6f9d9ff26c79e24d2bc9f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/closed-private-registry-v3.json",
+      "bytes": 1025114,
+      "sha256": "3340ba487472237d38491cd2f51c2a69c3d43d48155246f4a134f8ff7fb34d09"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/closed-private-registry-v4.json",
+      "bytes": 289841,
+      "sha256": "1046152f1cbd1f8ffa3823e505cc11442569b702ad3a8055d790c5f92af00452"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/phase1-closed.snapshot.json",
+      "bytes": 2966817,
+      "sha256": "d70a565d03a02b114311453848cf669d22a74fbdf6199809b0b55b64fff16753"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/phase2-closed.snapshot.json",
+      "bytes": 943934,
+      "sha256": "ee54c52b4a18c4518323a26b5edac40a0c26e9cf74243e5a2821f9218c20c620"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/phase3-closed.snapshot.json",
+      "bytes": 1019338,
+      "sha256": "ba43cdb2d787c60309ccad0ceab0b93d90957615f09b4d6620ea0e5e61dedf8f"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/phase1-closed.snapshot.json",
+      "bytes": 1245010,
+      "sha256": "fdefc31c6ef4133b7a974788926982a3fba9954a3c327e73c66eb81de70788c2"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/phase2-closed.snapshot.json",
+      "bytes": 1897154,
+      "sha256": "f14705c35f6c25bb60fbc9e7be838b642d097429d320047a11b1a486ed82588b"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/phase3-closed.snapshot.json",
+      "bytes": 611212,
+      "sha256": "a4f4d7f5bccb33a0392da84691d2a79047cebf79cce28add4ba00d881a9a4c43"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/phase4-closed.snapshot.json",
+      "bytes": 1351666,
+      "sha256": "d58c0137773637e5c2c7206173f98c67aede9bd38222ce7bea43426871c0b0f6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/phase5-closed.snapshot.json",
+      "bytes": 114048,
+      "sha256": "e64ff3406284bf8110e3bdd2037338629a10fc589441aac9c0aefd138ae2d4c6"
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/phase6-closed.snapshot.json",
+      "bytes": 204384,
+      "sha256": "d7fd3c6a209b0607d75f48effb5dce940dcdd6a11077a71948720da180e2b2ca"
+    }
+  ],
+  "validatedSourceWindowManifests": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/core-mode-writer/source-byte-windows.json",
+      "bytes": 22310,
+      "sha256": "87b816a36d16dcc7ec518f1997eaba81213c9071b98adf190a49ae67df921b0b",
+      "validatedWindowCount": 24
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/source-byte-windows.json",
+      "bytes": 25114,
+      "sha256": "9543c5acd33de37043959eb51be95cc118bc0f6fce9f68b812f9bd97f6582cd3",
+      "validatedWindowCount": 16
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/material-dispatch/source-byte-windows.json",
+      "bytes": 19503,
+      "sha256": "8b14e8b063d842a536ea70fac032bc773a21a41a57b2c84e60cf2f8ae586eb26",
+      "validatedWindowCount": 13
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/source-windows.json",
+      "bytes": 11078,
+      "sha256": "358fffebec73e2047463ea69ac871cb579d09d84f282cdadf1f419d94af5abb3",
+      "validatedWindowCount": 16
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/export-enable-routing/rtos-dispatch/source-byte-windows.json",
+      "bytes": 12108,
+      "sha256": "06850473d152e1ea71976382dab55181432cead72b18680c73382668b9c79947",
+      "validatedWindowCount": 40
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/factory-activation-source-windows.json",
+      "bytes": 8392,
+      "sha256": "85ad00b183aed4c7ea9290d50115ddde4b7e4e722794788bcdc4337f103c5d92",
+      "validatedWindowCount": 19
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/source-windows.json",
+      "bytes": 7708,
+      "sha256": "4d18a3085d7c50897955eb611e3ae7da82be7c85d2fde8b48866052102063843",
+      "validatedWindowCount": 15
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/recipe-factory-binding/source-byte-windows.json",
+      "bytes": 5401,
+      "sha256": "c9a79bff10285f34c67a1ac5232033d76cea4696c034a0a892eb1fd4e2beea98",
+      "validatedWindowCount": 7
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/rdma-vtable-route/source-byte-manifest.json",
+      "bytes": 1888,
+      "sha256": "fd49c7261fcb8e108d102f9e5318320b1c2a1f1b8858af336ed52dd36a6fafa1",
+      "validatedWindowCount": 3
+    },
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass9/sensor-input-topology/source-byte-windows.json",
+      "bytes": 17537,
+      "sha256": "6162f080d2e93fdee9bf3721b7aad565b0ce6ead747c02abfbeed7431420c4f9",
+      "validatedWindowCount": 19
+    }
+  ],
+  "citedRecords": [
+    {
+      "evidenceId": "ev_00309bf876111f40d5babf042d61b54f919a70c8c8861b06fd5ebc963fe8afef",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/closed.snapshot.json",
+        "bytes": 464418,
+        "sha256": "a14f34413b2f7c44b6605d3a051db74f61d800a058052f4bffbca3a1b3aa7d0f"
+      }
+    },
+    {
+      "evidenceId": "ev_084108a53e040d574fd676e1b39e58b3daa5eff7df3db16e964fb2eedbdecc4e",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/export-enable-routing/rtos-dispatch/closed-dispatch.snapshot.json",
+        "bytes": 9904397,
+        "sha256": "7f21ba3fc4d9d1554a2dd8b3a681309a6c9b61da514f8ef40e516855dfe8fb17"
+      }
+    },
+    {
+      "evidenceId": "ev_0996e2de2b9cd6fe7bf9d4d543bb639c1a3d93ed19e9f96bd1f04c6cbb1d52ef",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/material-dispatch/body-80258478-v4.json",
+        "bytes": 1567711,
+        "sha256": "ac396168e39015f5020466d7be98ce18c7036cfd5ae3fa563a5903bd86f17bfd"
+      }
+    },
+    {
+      "evidenceId": "ev_0e1d651cfc7875a08723f7f180fe25ace004ee9761517dd1c67ec6d4105d30fb",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/material-dispatch/bytes-mid15000-vtable-v5.json",
+        "bytes": 8342,
+        "sha256": "a445056c7e4c3a9371ab4b61cb6d610fb6ed24e6a80679fb9e8745e18a7dd108"
+      }
+    },
+    {
+      "evidenceId": "ev_136232860d251098ac8d4601c939024f40a4ad16c40cabba5256281cd8fea97d",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/closed-private-registry-v3.json",
+        "bytes": 1025114,
+        "sha256": "3340ba487472237d38491cd2f51c2a69c3d43d48155246f4a134f8ff7fb34d09"
+      }
+    },
+    {
+      "evidenceId": "ev_1eb866ea423e6dc30becab2183aa92e95689d27ff4f46c81a1b0daba99223a8a",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/material-dispatch/body-802e508c-v7.json",
+        "bytes": 341523,
+        "sha256": "2c5254ba96eeec4174904b11ea5a90c8e196ad7d6650d4a68a9ca4f88ab912c6"
+      }
+    },
+    {
+      "evidenceId": "ev_24b30618809d9067513c59009690e1e9156163b5a48af0836f9a9b161ba2fbbc",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/core-mode-writer/closed.snapshot.json",
+        "bytes": 26152441,
+        "sha256": "25b94c6165f5c61b3444fe32cc8d6486631f7d988f3a14a0118f928ce432da11"
+      }
+    },
+    {
+      "evidenceId": "ev_265fe324e48d9d7fadd872eddbfd60d244a6a16c60e45f4d39c80de3236fe715",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/recipe-factory-binding/analyze-manager-ctor.json",
+        "bytes": 183729,
+        "sha256": "8a841a88990c63a45f1dbb37d4f4b1e61c6d7ca3a82cb8bcaab6c8b5c033d880"
+      }
+    },
+    {
+      "evidenceId": "ev_2ffadce05950b0b94a50d7bfbd3f9867096715d5c7417acea558e833f9a94892",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/closed.snapshot.json",
+        "bytes": 464418,
+        "sha256": "a14f34413b2f7c44b6605d3a051db74f61d800a058052f4bffbca3a1b3aa7d0f"
+      }
+    },
+    {
+      "evidenceId": "ev_448418ccc34de941b3860f7c79d6efc03a18370b0bfaa6ae81c09f7701a8510d",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/activation6-init-target-115940.json",
+        "bytes": 130317,
+        "sha256": "a380390952d4ca4f6ea0e71d32548db21c2636006685035ab43473cffb9b497e"
+      }
+    },
+    {
+      "evidenceId": "ev_45e64c4aeab2638aaa0548221f4d7a5ab5bcdd40d8e661efcd1b4d25bb7a7f8b",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/activation6-root-caller-116f8.json",
+        "bytes": 200175,
+        "sha256": "b7110691991f79e6e23bae81337dff6422e265533976f52837667af8856918f4"
+      }
+    },
+    {
+      "evidenceId": "ev_59ed67a9f1ffb2b3b7720f1f24144f5d1490678e418ad2353cc3b2109df57b09",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/core-mode-writer/closed.snapshot.json",
+        "bytes": 26152441,
+        "sha256": "25b94c6165f5c61b3444fe32cc8d6486631f7d988f3a14a0118f928ce432da11"
+      }
+    },
+    {
+      "evidenceId": "ev_62f0be84a1d7340faa2bd7e1195cefb0443accc750877414c622d23b52529673",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/core-mode-writer/closed.snapshot.json",
+        "bytes": 26152441,
+        "sha256": "25b94c6165f5c61b3444fe32cc8d6486631f7d988f3a14a0118f928ce432da11"
+      }
+    },
+    {
+      "evidenceId": "ev_70f6c4048e2b66ebef70e164e07eada641ad5dc9be001bc15e0a381fdc83d1df",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/closed.snapshot.json",
+        "bytes": 464418,
+        "sha256": "a14f34413b2f7c44b6605d3a051db74f61d800a058052f4bffbca3a1b3aa7d0f"
+      }
+    },
+    {
+      "evidenceId": "ev_72156217ad5054a67efd7f7d1344ae91dfce8ed51530526c10197f44658b5664",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/core-mode-writer/closed.snapshot.json",
+        "bytes": 26152441,
+        "sha256": "25b94c6165f5c61b3444fe32cc8d6486631f7d988f3a14a0118f928ce432da11"
+      }
+    },
+    {
+      "evidenceId": "ev_76b21ab83e2a4d8f5cef52c4d04d11e303f748d61dc23cd8de6af1c1b1fbe638",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/closed-private-task-identity-v1.json",
+        "bytes": 2660479,
+        "sha256": "0cf99c1d36afb539af9bf004993cbbe38ebbfc36e6856877d647e2dfeb3d243c"
+      }
+    },
+    {
+      "evidenceId": "ev_7f794caeb477b9945e8567fd7321988517470fa5e4f2552f5db53d0e0b8d1a8c",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/closed-private-task-identity-v1.json",
+        "bytes": 2660479,
+        "sha256": "0cf99c1d36afb539af9bf004993cbbe38ebbfc36e6856877d647e2dfeb3d243c"
+      }
+    },
+    {
+      "evidenceId": "ev_823bfac974a9487c3c9a91a5ad98be9c244338fffa64a8846dbcd5fa7bcb891b",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/material-dispatch/body-80254b5c-v2.json",
+        "bytes": 6026525,
+        "sha256": "5ecba415a2e4e5ce7bfed6f09a867b11c182d691484b76c6e9fcf173e927a70c"
+      }
+    },
+    {
+      "evidenceId": "ev_83c717cd560e5b8208822c1cc58399cc24e55d3dfbfbafa7eb72a3f380902fa0",
+      "pass": "earlier-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass8/export-config-invocation/analyze-dump-option-handler.json",
+        "bytes": 4091289,
+        "sha256": "69155df2d586ce041da778c8d82e9e152b81701c419efe5c8a885a3f9c668582"
+      }
+    },
+    {
+      "evidenceId": "ev_883170a5fea166521b7a4cb05e8d2b7b4ea7f35797b3d06be2cd2366904a1b44",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/closed-private-task-identity-v1.json",
+        "bytes": 2660479,
+        "sha256": "0cf99c1d36afb539af9bf004993cbbe38ebbfc36e6856877d647e2dfeb3d243c"
+      }
+    },
+    {
+      "evidenceId": "ev_8e783094975303f2405bb3380c55ad1f34fcb47809fcf45446f16417617bbb54",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/core-mode-writer/closed.snapshot.json",
+        "bytes": 26152441,
+        "sha256": "25b94c6165f5c61b3444fe32cc8d6486631f7d988f3a14a0118f928ce432da11"
+      }
+    },
+    {
+      "evidenceId": "ev_9d7e171af978d38c2e41bf23e325c59fbb2007860be274d2973e135c917c8fa9",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/closed-private-registry-v2.json",
+        "bytes": 325548,
+        "sha256": "b85ab2f6aa473036ae3118dd6bbc937233d8d57357a6f9d9ff26c79e24d2bc9f"
+      }
+    },
+    {
+      "evidenceId": "ev_a6e361c0fbdefd2b0f081a07557cecb874e8fb6a049602a79145a0164d1d34b5",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/closed-private-registry-v1.json",
+        "bytes": 143692,
+        "sha256": "8a4faf48d7507805e0af7b674bd7d1b10de548106694ec7c36f2d17037c5e357"
+      }
+    },
+    {
+      "evidenceId": "ev_ac9b1a8da3f406316881f2e5b95d75d1d32e63a97b49b4aaa36d1b3bc3c3ebdd",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-frontend-gates/closed.snapshot.json",
+        "bytes": 464418,
+        "sha256": "a14f34413b2f7c44b6605d3a051db74f61d800a058052f4bffbca3a1b3aa7d0f"
+      }
+    },
+    {
+      "evidenceId": "ev_b2f5ecc6d37a74b33dafb64508ec238d73553657edbc94e499722b4dacc29bd9",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/adjacent-registry-consumer.json",
+        "bytes": 197763,
+        "sha256": "265e62fbf6c71d0d016a7dc55892c01534700d3cf2a529d25d26d5fafeed37f1"
+      }
+    },
+    {
+      "evidenceId": "ev_b4a162ff8e1a4b9137ad36af3327a32e1da2c9dc2a43c7d4def41550ade98527",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/active-recipe-executor/material-dispatch/body-80250ca0-v2.json",
+        "bytes": 761965,
+        "sha256": "ab215c07ee446ef7486a425df4b9c70175777dadc05e0f17fbb42ffdb1012643"
+      }
+    },
+    {
+      "evidenceId": "ev_b532a97d2fcd468cd3bfaade0b5f7a81dfefe13c9407c8aa8f20c161e396779c",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/activation5-helper-b53ac.json",
+        "bytes": 678197,
+        "sha256": "ee74ea2b552a9add9af8e65fb16e719e6af6be3654569f3e23e182fbad941b9b"
+      }
+    },
+    {
+      "evidenceId": "ev_c47cf94d25a5c08d58677cb299ab701ba7286ef6d06a96f6d38e3402149f0cea",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/r210-profile-selection/factory-activation/activation5-getter.json",
+        "bytes": 163575,
+        "sha256": "8884b4fe110ca9c5d476ea67643e8e951b2a5e63118be87250dd0ccd7c2f7b51"
+      }
+    },
+    {
+      "evidenceId": "ev_ca2a45cbacf77ac04537bd6b8a66162ca393e021a753285772c1f5a54531c051",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/closed-private-task-identity-v1.json",
+        "bytes": 2660479,
+        "sha256": "0cf99c1d36afb539af9bf004993cbbe38ebbfc36e6856877d647e2dfeb3d243c"
+      }
+    },
+    {
+      "evidenceId": "ev_cb107b48b7e34e7d4a4f02a29bad3afc2cd24d2a6fdf31728b07129dda8313c9",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/irq-registry-consumer/closed-private-registry-v2.json",
+        "bytes": 325548,
+        "sha256": "b85ab2f6aa473036ae3118dd6bbc937233d8d57357a6f9d9ff26c79e24d2bc9f"
+      }
+    },
+    {
+      "evidenceId": "ev_d5d6358cb07b085c8362dc2ee0a56c87d874f0aaf56d7de704cc65064259861b",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/export-enable-routing/rtos-dispatch/earlier-source-records/analyze-option-registration.json",
+        "bytes": 6847259,
+        "sha256": "564b1136cc20a52f89495a6ae6c60a242d589fe7649c3a091b8d0058fd8cfc74"
+      }
+    },
+    {
+      "evidenceId": "ev_dc95b44af9ee76ce84c231d74c9beabac1ac5fc0b9377d6377a52b78673f7ac5",
+      "pass": "current-pass",
+      "record": {
+        "path": "output/decompile/rea/continuation-20261015/pass9/frontend-task-identity/closed-private-task-identity-v1.json",
+        "bytes": 2660479,
+        "sha256": "0cf99c1d36afb539af9bf004993cbbe38ebbfc36e6856877d647e2dfeb3d243c"
+      }
+    }
+  ],
+  "counts": {
+    "reviewedReports": 28,
+    "parentAudits": 4,
+    "carrierManifests": 32,
+    "closedSnapshots": 31,
+    "sourceWindowManifests": 10,
+    "citedEvidenceIds": 32,
+    "currentPassCitations": 31,
+    "earlierPassCitations": 1,
+    "staleValidationArtifacts": 0
+  },
+  "staleValidationArtifacts": []
+}

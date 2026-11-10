@@ -1,0 +1,323 @@
+{
+  "source_sha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7",
+  "initialized_data": {
+    "copy_entry": "0x80011600",
+    "load_start": "0x807ef900",
+    "destination_start": "0x81006000",
+    "destination_end": "0x81447f40",
+    "address_delta": "0x816700",
+    "source_end_exclusive": "0xc31840",
+    "instruction_bytes": {
+      "file_offset": "0x11620",
+      "bytes": "38119fe538219fe538319fe5c0f0d1f5100bb1ec100ba2ec030052e1faffff3a",
+      "length": 32,
+      "sha256": "d5da17fb31cc1b19b3223a69f0ab0617f4493dc6134fd6d33d98c01d919521ac"
+    },
+    "literal_bytes": {
+      "file_offset": "0x11760",
+      "bytes": "00f97e8000600081407f4481",
+      "length": 12,
+      "sha256": "becaf33a42e4466a360b8c54028877919cb3187c786e203afeddbee8b5bf668c"
+    },
+    "coverage": "Startup code mapping; does not observe current RAM values"
+  },
+  "tables": {
+    "command_category": [
+      {
+        "index": 0,
+        "runtime_address": "0x8100f7c8",
+        "source_offset": "0x7f90c8",
+        "original_bytes": "d44e068000000000",
+        "target": "0x80064ed4",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 1,
+        "runtime_address": "0x8100f7d0",
+        "source_offset": "0x7f90d0",
+        "original_bytes": "241c068000000000",
+        "target": "0x80061c24",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 2,
+        "runtime_address": "0x8100f7d8",
+        "source_offset": "0x7f90d8",
+        "original_bytes": "281d068000000000",
+        "target": "0x80061d28",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 3,
+        "runtime_address": "0x8100f7e0",
+        "source_offset": "0x7f90e0",
+        "original_bytes": "2c1e068000000000",
+        "target": "0x80061e2c",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 4,
+        "runtime_address": "0x8100f7e8",
+        "source_offset": "0x7f90e8",
+        "original_bytes": "301f068000000000",
+        "target": "0x80061f30",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 5,
+        "runtime_address": "0x8100f7f0",
+        "source_offset": "0x7f90f0",
+        "original_bytes": "3420068000000000",
+        "target": "0x80062034",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 6,
+        "runtime_address": "0x8100f7f8",
+        "source_offset": "0x7f90f8",
+        "original_bytes": "3821068000000000",
+        "target": "0x80062138",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 7,
+        "runtime_address": "0x8100f800",
+        "source_offset": "0x7f9100",
+        "original_bytes": "3c22068000000000",
+        "target": "0x8006223c",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 8,
+        "runtime_address": "0x8100f808",
+        "source_offset": "0x7f9108",
+        "original_bytes": "4023068000000000",
+        "target": "0x80062340",
+        "this_adjustment_encoded": 0
+      }
+    ],
+    "system_command": [
+      {
+        "index": 0,
+        "runtime_address": "0x8100f810",
+        "source_offset": "0x7f9110",
+        "original_bytes": "d44e068000000000",
+        "target": "0x80064ed4",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 1,
+        "runtime_address": "0x8100f818",
+        "source_offset": "0x7f9118",
+        "original_bytes": "4424068000000000",
+        "target": "0x80062444",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 2,
+        "runtime_address": "0x8100f820",
+        "source_offset": "0x7f9120",
+        "original_bytes": "c424068000000000",
+        "target": "0x800624c4",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 3,
+        "runtime_address": "0x8100f828",
+        "source_offset": "0x7f9128",
+        "original_bytes": "c425068000000000",
+        "target": "0x800625c4",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 4,
+        "runtime_address": "0x8100f830",
+        "source_offset": "0x7f9130",
+        "original_bytes": "0826068000000000",
+        "target": "0x80062608",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 5,
+        "runtime_address": "0x8100f838",
+        "source_offset": "0x7f9138",
+        "original_bytes": "9426068000000000",
+        "target": "0x80062694",
+        "this_adjustment_encoded": 0
+      }
+    ],
+    "production_command": [
+      {
+        "index": 0,
+        "runtime_address": "0x8100fa38",
+        "source_offset": "0x7f9338",
+        "original_bytes": "d44e068000000000",
+        "target": "0x80064ed4",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 1,
+        "runtime_address": "0x8100fa40",
+        "source_offset": "0x7f9340",
+        "original_bytes": "144b068000000000",
+        "target": "0x80064b14",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 2,
+        "runtime_address": "0x8100fa48",
+        "source_offset": "0x7f9348",
+        "original_bytes": "584b068000000000",
+        "target": "0x80064b58",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 3,
+        "runtime_address": "0x8100fa50",
+        "source_offset": "0x7f9350",
+        "original_bytes": "d44b068000000000",
+        "target": "0x80064bd4",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 4,
+        "runtime_address": "0x8100fa58",
+        "source_offset": "0x7f9358",
+        "original_bytes": "184c068000000000",
+        "target": "0x80064c18",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 5,
+        "runtime_address": "0x8100fa60",
+        "source_offset": "0x7f9360",
+        "original_bytes": "5c4c068000000000",
+        "target": "0x80064c5c",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 6,
+        "runtime_address": "0x8100fa68",
+        "source_offset": "0x7f9368",
+        "original_bytes": "a04c068000000000",
+        "target": "0x80064ca0",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 7,
+        "runtime_address": "0x8100fa70",
+        "source_offset": "0x7f9370",
+        "original_bytes": "e44c068000000000",
+        "target": "0x80064ce4",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 8,
+        "runtime_address": "0x8100fa78",
+        "source_offset": "0x7f9378",
+        "original_bytes": "284d068000000000",
+        "target": "0x80064d28",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 9,
+        "runtime_address": "0x8100fa80",
+        "source_offset": "0x7f9380",
+        "original_bytes": "6c4d068000000000",
+        "target": "0x80064d6c",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 10,
+        "runtime_address": "0x8100fa88",
+        "source_offset": "0x7f9388",
+        "original_bytes": "b04d068000000000",
+        "target": "0x80064db0",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 11,
+        "runtime_address": "0x8100fa90",
+        "source_offset": "0x7f9390",
+        "original_bytes": "f44d068000000000",
+        "target": "0x80064df4",
+        "this_adjustment_encoded": 0
+      },
+      {
+        "index": 12,
+        "runtime_address": "0x8100fa98",
+        "source_offset": "0x7f9398",
+        "original_bytes": "644e068000000000",
+        "target": "0x80064e64",
+        "this_adjustment_encoded": 0
+      }
+    ]
+  },
+  "notify_vtable": {
+    "file_offset": "0x5ec838",
+    "bytes": "50df0580a8e0058084e30580b4e30580ece30580",
+    "length": 20,
+    "sha256": "2edd22651633d0d8c530ee55a64dc1ccbd1fca6fd4068e7f5884da34af4e0f7f"
+  },
+  "file_dump_ack": {
+    "wire_command": "0x105",
+    "category_index": 1,
+    "subcategory_index": 5,
+    "handler": "0x80062694",
+    "internal_command": "0x0107000b",
+    "dispatcher": "0x800502a8",
+    "completion": "0x8010ce50",
+    "semaphore_offset": "0x4"
+  },
+  "limitations": [
+    "Static original-image evidence only",
+    "No camera request or current physical memory access",
+    "Only selected initialized tables and paths retained"
+  ],
+  "file_io_completion": {
+    "command": "0xaa0b",
+    "payload_bytes": 4,
+    "category_index": 8,
+    "subcategory_index": 11,
+    "handler": "0x80064df4",
+    "wrapper": "0x8005215c",
+    "singleton": "0x81475270",
+    "setter": "0x8004e910",
+    "result_offset": "0x24",
+    "semaphore_offset": "0x20"
+  },
+  "evidence_ids": [
+    "ev_e850a09f1fcee61fb7e0a82c8252261562429d1ca773a24b75420649141798f1",
+    "ev_5cf8567ccba0cc4ca4316b92f05cc6dcc52f2bb723af637ab91b9ab9f2a905f7",
+    "ev_f109f315eca4f232f3c9d86fd18ddb5dd24c817378f7ac7e8fa8b3795f597dfe",
+    "ev_6f3faf070fcb8cc9dd811b3d704501a91fd71a5488bc38b57cb93ebcaefee8e1",
+    "ev_74258ae21860206b0f58e30762c90a5c782e62eabd3cbd283b27be9d78d4e6b4",
+    "ev_b1b7f1b4cec73a96d3b717b96b79f3795bb6e867a995a5067f9357d8b689ac4f",
+    "ev_b28be378f9ffcb828a1bc9a00ca2406c5f0c3e638dea9507ee11a63728936006"
+  ],
+  "notify_interface": {
+    "object_offset": "0x8",
+    "constructor": "0x8005dd90",
+    "vtable_address": "0x805ec86c",
+    "callback_slot": "0x8",
+    "callback": "0x8005e3e4",
+    "vtable": {
+      "source_offset": "0x5ec86c",
+      "address": "0x805ec86c",
+      "length": 12,
+      "original_bytes": "90e00580e0e00580e4e30580",
+      "sha256": "63e0693d51caaf39becd9a98463fc4c017c86e63c5c6adc6cd2dae4ae1844a28"
+    },
+    "adjustor": {
+      "source_offset": "0x5e3e4",
+      "address": "0x8005e3e4",
+      "length": 8,
+      "original_bytes": "080040e2f1ffffea",
+      "sha256": "9e517577ac723be0b2c0c1aaf9cc719190919e65e79d6d2b4e70604d4062393d"
+    },
+    "wrapper": "0x8005e3b4",
+    "transmitter": "0x8005fadc",
+    "registration": "0x8005ea2c",
+    "dispatch": "0x800b3af0"
+  }
+}

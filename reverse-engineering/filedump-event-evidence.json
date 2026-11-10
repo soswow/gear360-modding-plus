@@ -1,0 +1,254 @@
+{
+  "source_sha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7",
+  "binding": {
+    "topic": "0x1070005",
+    "name": "CAPTURE_TOPIC_ID_NOTIFY_OP_FILE_SAVE",
+    "string_file_offset": "0x5ee5ac",
+    "string_address": "0x805ee5ac",
+    "path": [
+      {
+        "file_offset": "0x6f170",
+        "word": "0xe3a02006",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f174",
+        "word": "0xe3402105",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f178",
+        "word": "0xe1530002",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f17c",
+        "word": "0xa0002d1",
+        "condition": 0,
+        "condition_passed": false
+      },
+      {
+        "file_offset": "0x6f180",
+        "word": "0xe3a02006",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f184",
+        "word": "0xe3402105",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f188",
+        "word": "0xe1530002",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f18c",
+        "word": "0x8a000107",
+        "condition": 8,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5b0",
+        "word": "0xe3a02001",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5b4",
+        "word": "0xe3402108",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5b8",
+        "word": "0xe1530002",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5bc",
+        "word": "0xa000218",
+        "condition": 0,
+        "condition_passed": false
+      },
+      {
+        "file_offset": "0x6f5c0",
+        "word": "0xe3a02001",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5c4",
+        "word": "0xe3402108",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5c8",
+        "word": "0xe1530002",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5cc",
+        "word": "0x8a000089",
+        "condition": 8,
+        "condition_passed": false
+      },
+      {
+        "file_offset": "0x6f5d0",
+        "word": "0xe3a0200a",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5d4",
+        "word": "0xe3402106",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5d8",
+        "word": "0xe1530002",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5dc",
+        "word": "0xa0001e3",
+        "condition": 0,
+        "condition_passed": false
+      },
+      {
+        "file_offset": "0x6f5e0",
+        "word": "0xe3a0200a",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5e4",
+        "word": "0xe3402106",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5e8",
+        "word": "0xe1530002",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f5ec",
+        "word": "0x8a00003f",
+        "condition": 8,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f6f0",
+        "word": "0xe3a02001",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f6f4",
+        "word": "0xe3402107",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f6f8",
+        "word": "0xe1530002",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f6fc",
+        "word": "0xa0001b0",
+        "condition": 0,
+        "condition_passed": false
+      },
+      {
+        "file_offset": "0x6f700",
+        "word": "0xe3a02001",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f704",
+        "word": "0xe3402107",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f708",
+        "word": "0xe1530002",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f70c",
+        "word": "0x8a00001d",
+        "condition": 8,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f788",
+        "word": "0xe3a02005",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f78c",
+        "word": "0xe3402107",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f790",
+        "word": "0xe1530002",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6f794",
+        "word": "0xa000196",
+        "condition": 0,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6fdf4",
+        "word": "0xe30e35ac",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6fdf8",
+        "word": "0xe348305e",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6fdfc",
+        "word": "0xea000061",
+        "condition": 14,
+        "condition_passed": true
+      },
+      {
+        "file_offset": "0x6ff88",
+        "word": "0xe1a00003",
+        "condition": 14,
+        "condition_passed": true
+      }
+    ]
+  },
+  "limits": [
+    "Formatter name binding does not prove runtime delivery"
+  ]
+}

@@ -1,0 +1,15 @@
+> **Frozen 20 October 2026.** Not the task list. Claims live in `reverse-engineering/facts/`. The open phase is `reverse-engineering/CURRENT_INVESTIGATION.md`.
+
+# Resume from the first passive pixel fragment
+
+16 October2026. Main goal remains unfinished: verified sensor RAW pixels in a complete file with provenance, packing/geometry, fresh completion and safe backing lifetime. This pass closes near the95%-used cutoff; closing meter before archival93% used. No capture command, firmware change, device write or new MMIO read was performed in this continuation.
+
+**Start with actual bytes:** `output/decompile/rea/pass-completion-20261016/preview-sample-runtime/UNVERIFIED-preview-sample.bin`,4096bytes, SHA256 `59c5a5d172ed0487a0d2f76d935c175ae57e3a6ce75a4b16f366afebcb1ec9cb`. Parent verified request/body/file hashes, fixed guards and cleanup. The helper read a fixed page at a77bb000; selected image82246000/1920×960/stride2880 matched before/after. No lease, DMA quiescence, complete frame or sensor origin is claimed.
+
+**Highest-value next task:** test the packed12-bit hypothesis from the original configurator's full enum-to-bpp calculation and actual bytes. 1920×12/8=2880. The fragment does not consistently fit mask3ffc as16-bit words in either endian/phase. Do not infer YUV merely from1.5bytes/pixel, nor RAW merely from an arbitrary3-byte/two-sample split. A fuller passive snapshot into Linux-owned memory could reveal image/Bayer structure, but must still be labelled unverified until producer/freshness/lifetime are demonstrated. Reuse current source and observations before adding new address profiles.
+
+[Format and gate findings](RAW_LIVE_FORMAT_AND_LEASE_GATES_20261016.md): current metadata predicts hardware format bits2, matching saved340word; candidate/debug path writes4. Allocation gateM+686a0 is not ordinary release gateM+68620; bulk cleanup bypasses both and reaches800b04b4. Record-write gateM+68640 does not stop DMA; its enter helper can fail and callers discard return. Parent fresh REA4dossiers are in parent-owner-contract/native-evidence.json and closed.snapshot.json. New completion-name leads resolved to configuration setters/DVFS labels, not a drain; full Luna evidence/snapshots retained.
+
+Luna supplied bounded REA tracing and the fixed sample helper; Cursor's init transcript confirms Grok4.6Medium for its read-only design critique. Parent independently rebuilt the helper, reviewed original bytes, decoded BL targets, performed target reads and owns integration. All workers finished; owned native engines closed; camera helper/directory removed, appPID254/starttime1042 unchanged,21threads untraced. No remote push.
+
+Complete evidence archive (not published: `../evidence/pass-completion-20261016.tar.gz`) and hash index (not published: `../evidence/pass-completion-20261016.index.json`) preserve reports, original native records/source windows, immutable snapshots, agent transcripts, helper/tests/build and raw requests/sample. Unrelated work is preserved.

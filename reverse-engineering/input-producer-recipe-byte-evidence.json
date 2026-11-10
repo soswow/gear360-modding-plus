@@ -1,0 +1,120 @@
+{
+  "schema": "gear360-reviewed-static-evidence-v1",
+  "report": {
+    "path": "reverse-engineering/RAW_INPUT_DESCRIPTOR_PRODUCER_AND_RECIPE_BYTE.md",
+    "bytes": 3829,
+    "sha256": "d2a4bf3c078db0659022122affbf4c83ebb54f6cc4939128cab45e3dd06006f3"
+  },
+  "archive": {
+    "path": "reverse-engineering/evidence/pass-resume-20261016-control-input.tar.gz",
+    "bytes": 1657050,
+    "sha256": "9dd7885c63d3e57b00768a0ca18f57231ac6b463b791c9d353ec6ea2b9e6615d"
+  },
+  "files": [
+    {
+      "path": "output/decompile/rea/continuation-20261015/pass7/geometry-row-writers/fulltext-row-state.manifest.json",
+      "bytes": 3092,
+      "sha256": "9fd8c93064ac970698b33bc40cb99ddb3b85b498207b6e3d95f61a125becbc41"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/RUN_CHECKPOINT.json",
+      "bytes": 671,
+      "sha256": "adfc791b23e35287bf80c5ba2021d6466cccb56babf3cbfffea82df96a4da4c6"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/caller-80210a88.json",
+      "bytes": 355103,
+      "sha256": "23a70efde8866e79daafbb0ef89c992f367f885f5f26cd1f1e32f2c8d06fe2ce"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/caller-80210a88.snapshot.json",
+      "bytes": 710584,
+      "sha256": "1830c7225996479c6b2513cac9f6bedbebd85d34198e8577299ced37c68f2530"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/caller-803217d8.json",
+      "bytes": 175017,
+      "sha256": "ea85c181a2714c78df74b79da43427d53ad78705dbd5060884d03b6c07f70797"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/caller-803217d8.snapshot.json",
+      "bytes": 350412,
+      "sha256": "8d9982845f89236528d38a2ae8bfb2fa2e2ef617267f50bdcdbdf886aac70179"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/copy-803224e8.json",
+      "bytes": 30151,
+      "sha256": "a23756faafb516ddee6543fe46b6b74f73aa7bd41597392793118409f5a623fc"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/copy-803224e8.snapshot.json",
+      "bytes": 60680,
+      "sha256": "4a55fb3ffbadefd3411f19688526ef473ae9154d5df0fef341d0329f253e600a"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/copy-80322514.json",
+      "bytes": 24243,
+      "sha256": "67144f0975c1be150e2d71d40ef78cb39b505382fab667531b6f832998e65221"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/copy-80322514.snapshot.json",
+      "bytes": 48864,
+      "sha256": "301646dad74cf7533935087f394fc65c44248c8f3ceacf805a60340030140c19"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/parent-original-source-window-schema.json",
+      "bytes": 5885,
+      "sha256": "df209fe79f09cd7d0908c671ce23b16c9118c5bdbadd0476d25030eb57449a00"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/partial-report.md",
+      "bytes": 1508,
+      "sha256": "10a38c2421c649c60d55959e0f7883763e6acf1703a7341544ac39d2bff74707"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-descriptor-producer/source-byte-windows.json",
+      "bytes": 9298,
+      "sha256": "a0056a34a4d6824eb89cc340a7fec3a18356b23ea3465b23734a1656325d1a7e"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/input-producer-validation.json",
+      "bytes": 4919,
+      "sha256": "fdf43db06f6ff1692a29d549b95cc4ae1342768b8c014c8093985a02ea84db91"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/parent-recipe-source-review.json",
+      "bytes": 812,
+      "sha256": "1690a1302793fcaec9281f898147197c4cf679f4d0e266cf0c1ff091f4c283c5"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/recipe-one-three-source/aligned_reference_scan.py",
+      "bytes": 1618,
+      "sha256": "c25f169eacdfff3206d5575e9b918b8d9fe64c894decf39e7ca723eebaa435e8"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/recipe-one-three-source/report.md",
+      "bytes": 4196,
+      "sha256": "45f43ec95694a7aed4b5c1e19d8d6c5b251b4350636132256403235b4e81e0b6"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/recipe-one-three-source/scan-results.txt",
+      "bytes": 1115,
+      "sha256": "3bf5f8a657e06960748e8cab837f5f0e1781f382515863268d87125c00a66974"
+    },
+    {
+      "path": "output/decompile/rea/pass-resume-20261016/recipe-one-three-source/source-windows.json",
+      "bytes": 3251,
+      "sha256": "0d5305e62b8ee0628f6a130f139c72c4dd5088308ddb6b76dfd053528cc6f2e9"
+    }
+  ],
+  "source": {
+    "path": "output/decompile/rea/rtos-p6.bin",
+    "sha256": "cfe69efe127b2ae16368e96fb0ae8893570a4e3d94a87fd14ccbc6aeba3e8cd7",
+    "base": "0x80000000"
+  },
+  "dependencies": [
+    "reverse-engineering/recipe-command-gates-evidence.json",
+    "reverse-engineering/core-input-cleanup-evidence.json"
+  ],
+  "validationLimits": "Complete native records retained. Canceled phase2/app-0x113ef8.json is explicitly no Evidence. Original schema/manifest backups are historical. Parent corrected two app address mappings and refreshed corresponding manifest hashes. Schema/hash validation is not semantic or runtime certification."
+}

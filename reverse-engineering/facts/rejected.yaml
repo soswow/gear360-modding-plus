@@ -1,0 +1,936 @@
+# Closed routes and closed proofs. Do not resume these as the product
+# backend or as the next investigation task.
+
+claims:
+  - id: rejected.power-operation-name-list-as-still-command-range
+    status: rejected
+    kind: inference
+    statement: >
+      Adjacent E_CAP_CMD_OP strings do not define the range or names of
+      class1 still commands. Pinned ID2FuncString uses bits16..23 to
+      select separate tables:01010016 identifies Lock3ACapture, while
+      class7 codes01070001/2/3 identify DoPowerOn/Off/Save. Index21 is
+      not invalid from that string-list length. Following enum-text
+      pointers are not paired with the same numeric input.
+    evidence:
+      - ev_1d43a581b1faf8409be20097c95681e4236730c9efa1ba68bf71aaa9c7d3dc8b
+      - ev_b95d2019e6930982b51b2343ea97f2e2fd7d28a911885b2524fe90a1609fa44c
+      - ev_4911631052742ac565bf936363eac9b2ba324600452dd1b4f41a97e51c4c6aff
+    detail: output/decompile/rea/pass-poweroff-integration-20261029/parent-review.md
+
+  - id: rejected.no-imports-or-direct-callers-as-shutdown-exclusion
+    status: rejected
+    kind: inference
+    statement: >
+      Absence of signal/sigaction imports, direct power-entry callers or
+      literal property-key consumers does not prove absence of installed
+      handlers, indirect/framework/syscall routes, other daemon initiators,
+      pending shutdown or teardown side effects. Do not treat finite native
+      searches or successful240second controls as global causal closure.
+    detail: output/decompile/rea/pass-poweroff-integration-20261029/parent-review.md
+  - id: rejected.category10-writer-census-as-fresh-response-proof
+    status: rejected
+    kind: inference
+    statement: >
+      Finite materialized-address and direct-caller surveys do not prove
+      exclusive writers of the RTOS pre-reply byte or destination-alive byte.
+      A checked pre-reply store occurs before sending and cannot certify send
+      success; another checked path clears the pre-reply byte. Independently,
+      an untagged Linux category0x10 latch rise cannot associate an incoming
+      frame with this request. Older, queued or unrelated traffic is not
+      excluded by observing stock-process/device absence. Do not infer a
+      fresh reply or a closed peer-announcement contract from either flag.
+    detail: output/decompile/rea/pass-startup-integration-20261029/parent-review.md
+
+  - id: rejected.file-guards-and-imports-as-sdk-load-closure
+    status: rejected
+    kind: inference
+    statement: >
+      File-zero initialization guards, absence of named imports and partial
+      constructor/getter inspection do not establish that SDK loading has
+      no device or other side effects, nor complete its dependency closure.
+      Runtime guards, transitive calls, loader resolution, interposition and
+      dependency constructors remain separate obligations. Known readonly
+      getter device probes already contradict a general no-device-I/O claim.
+      Byte-window equality also cannot validate an incorrect address label.
+    detail: output/decompile/rea/pass-startup-integration-20261029/parent-review.md
+
+  - id: rejected.direct-reset-census-as-mode-whole-word-reset-absence
+    status: rejected
+    kind: inference
+    statement: >
+      Fourteen resolved reset-entry callers, six resolved reset-helper
+      callers and a non-writing mode slot+0x0c do not prove that the mode
+      owner has no whole-word reset path or can only clear bits individually.
+      Indirect/transitive calls, aliases and other writes are not exhausted
+      by that survey. Its absence argument also cannot qualify a correct
+      stock-app handover from the observed index1 arm/completion sequence.
+      The specific leaf, direct callers and conditional OFF behavior remain
+      evidence within their stated limits.
+    address_space: rtos
+    evidence:
+      - ev_b95d84ea5d9148d7696a2ca30633a500852e3769e9c9b139a69142330810d92c
+      - ev_c8e9bb48448f0588787399bda8c0dbd2c1fae09aa181f719305aaa4c2068811d
+    detail: output/decompile/rea/pass-handover-integration-20261028/parent-review.md
+
+  - id: rejected.unmasked-mid-as-selected-derived-class-proof
+    status: rejected
+    kind: inference
+    statement: >
+      Raw MID0x14001 does not select the derived0x14001 arm of checked
+      factory0x80290e54. Instruction0x80290e74 clears its low8bits;
+      0x14001 & 0xffffff00 is0x14000. Reading the later0x14001 compare
+      while ignoring that mask cannot bind the selected object to the
+      derived constructor or its embedded image. Existing masked-base
+      selection remains in force; other factories and runtime dispatch
+      identity require their own evidence.
+    address_space: rtos
+    evidence:
+      - ev_48395790b9de0b56b8a3bc2ea281ce0f9ec0100ba0acd598c6e4809cf1af3063
+    detail: output/decompile/rea/pass-selected-bootstrap-20261028/parent-review.md
+
+  - id: rejected.first-plane-clear-as-both-plane-blocks-zero-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The selected factory's accepted first16-byte record clear at
+      image+0x84..0x93 does not prove that image+0x94..0xa3 is also zero.
+      Container800b4cec copies both blocks from its source; the cited
+      first-plane operation supplies no proof that the second copied block
+      is zero. This rejects whole-record zeroing inferred from that clear,
+      without asserting current second-block contents or no later writes.
+    address_space: rtos
+    evidence:
+      - ev_f76dbe6ac387a2c10119c0a087045825fc7807839b98ffed601185561d23f746
+      - ev_aceadcdc461662e1270fb44e2ceefcae182af3a00e22cb8b1e463b0236a00a35
+      - ev_a5d3fca56421943f9f95e393dbe8a5bd5d09dfc72fc8a7a5a38561588f94b1f3
+      - ev_52d29cf19b97bec1a9eefe6a53723497f930d3d532696c569665fdfe25bfa910
+    detail: output/decompile/rea/pass-selected-bootstrap-20261028/parent-review.md
+
+  - id: rejected.receiver-loop-or-shell-ack-as-exclusive-readiness-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The examined receiver loop, busy/creation flags and category0xb6
+      callback do not prove that no readiness interface exists or that the
+      shell acknowledgement is the sole readiness gate. Posting a semaphore
+      alone does not establish association with the just-sent command,
+      successful capture, RAW provenance or a completed round trip.
+      The checked timeout argument10000 has no verified unit in this pass;
+      local-command success and early send failure remain separate paths.
+    detail: output/decompile/rea/pass-receiver-integration-20261028/parent-review.md
+
+  - id: rejected.factory-clear-as-successful-wrong-payload-or-zero-offset-proof
+    status: rejected
+    kind: inference
+    statement: >
+      Conditional clearing of image+0x84 and a separately mode-gated copy
+      do not establish that a capture returns a well-formed wrong payload
+      or a zero published offset. Actual selected image identity, intervening
+      writers, source/destination lifetime, mode, successful copying,
+      descriptor-to-frame transmission and host address reconciliation
+      remain unjoined. The checked image descriptor clear remains accepted;
+      neither a guaranteed fault nor successful wrong output follows.
+    detail: output/decompile/rea/pass-receiver-integration-20261028/parent-review.md
+
+  - id: rejected.base-return-stub-as-runtime-frame-builder-proof
+    status: rejected
+    kind: inference
+    statement: >
+      RTOS0x800c69bc is not the alleged indirect dispatch to a runtime-
+      supplied frame builder in the checked image. Its complete32-byte
+      Ghidra body spills r0/r1 to its stack, restores the frame and returns
+      with bx lr, with no outgoing builder call. Original bytes agree.
+      The pinned carrier already maps initialized data at0x81006000;
+      its flat source offset is0x7ef900, source VA0x807ef900 under the
+      accepted copy delta0x816700. A missing copied module is not established.
+    address_space: rtos
+    evidence:
+      - ev_7f4fbd6a1fce007837e05cf5222b5f3ae7a28e0dee6c433b8937a1f1e409994b
+      - ev_ebcce71a43589397442d8434a428e205133e05abf5b45ebe32df8bd2e163d176
+      - ev_3686b94e385791febc4b4f228aec1a2af0b0776443bd08402178f4958f79e63c
+    detail: output/decompile/rea/pass-receiver-integration-20261028/parent-review.md
+
+  - id: rejected.direct-call-survey-as-never-waits-or-only-retirement-proof
+    status: rejected
+    kind: inference
+    statement: >
+      Named direct-call lists do not prove that OperateCapture never waits
+      or that FThread::Destroy is the only retirement route. Callees,
+      indirect calls, callbacks and external control paths remain outside
+      that negative proof. Existing accepted facts qualify specific masked
+      results, cancellation requests and destructor ordering; they do not
+      establish unconditional nonblocking behavior or universal cleanup absence.
+    detail: output/decompile/rea/pass-receiver-integration-20261028/parent-review.md
+
+  - id: rejected.adapter-direct-caller-census-as-bootstrap-impossibility-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The reviewed direct-call lists do not establish that Initialize is
+      reachable only through OperateCapture or that no existing entry can
+      initialize a local process when preference0x1268 is nonzero.
+      Instance and Initialize have defined exported dynamic symbols in the
+      pinned ELF. The checked stock arm skips them when the preference is
+      nonzero, but caller lists do not exclude external, indirect or newly
+      reconstructed calls. This is not proof that a direct sequence is safe.
+    address_space: linux-capture-elf
+    detail: output/decompile/rea/pass-local-bootstrap-20261028/parent-review.md
+
+  - id: rejected.unresolved-mcb-import-as-minus-one-return-proof
+    status: rejected
+    kind: inference
+    statement: >
+      A missing or unresolved mcb_init or mcb_register_handler import does
+      not establish that all registration calls return nonzero or that
+      subscribe returns minus1. The reviewed status arithmetic assumes
+      actual calls return normally. Loader/relocation failure and normal
+      callee error returns are different cases; no checked source edge
+      converts unresolved imports into that numeric failure path.
+    address_space: linux-capture-elf
+    detail: output/decompile/rea/pass-local-bootstrap-20261028/parent-review.md
+
+  - id: rejected.mode-command-decimal63-as-hex63-or-state1
+    status: rejected
+    kind: inference
+    statement: >
+      Descriptor0x0102003f selects command0x3f, decimal63, not0x63,
+      decimal99. A bound that would clamp99 above0x5a does not exclude
+      that descriptor. The accepted value1 arm requests target state0/OFF;
+      it does not request state1/SLEEP. Parent's shorthand phase02 brief
+      introduced the incorrect0x63 premise, which is withdrawn. Reuse the
+      accepted module+0x104 and OFF-entry bindings rather than seeking a
+      nonexistent state1-to-OFF mapping.
+    address_space: rtos
+    detail: output/decompile/rea/pass-owner-retirement-20261027/parent-review.md
+
+  - id: rejected.lazy-getter-cleanup-as-rendezvous-event-callback-proof
+    status: rejected
+    kind: inference
+    statement: >
+      Getter80556bf4 passing objectA,800fd968 and a DSO-shaped argument
+      to805836e0 does not identify the pending-empty event callback.
+      A's actual callback field+0x10 points to nested C=A+0x1c;
+      C vptr0x8063c068 slot+8 targets800fdcac. The cleanup-shaped
+      800fd968 body resets vptrs and performs base/subobject cleanup.
+      Likewise IDLE entry must be read at state vptr+8, not at its
+      destructor-shaped neighboring slot+4. Use the actual object/slot
+      identities rather than a generic callback label or table adjacency.
+    address_space: rtos
+    detail: output/decompile/rea/pass-owner-retirement-20261027/parent-review.md
+
+  - id: rejected.callback-member-call-as-thread-switch-or-exclusive-consumer-proof
+    status: rejected
+    kind: inference
+    statement: >
+      Calling receiverR's member0x800cc3e8 from callback0x800cf568's
+      synchronous call chain does not establish a switch to R's thread.
+      The checked ordinary arm constructs and submits a message inline.
+      Empty direct-caller sets, an installed vtable or that submission chain
+      do not establish an exclusive queue consumer, a distinct 3A engine
+      caller thread, serialization of all pending-word writers or retirement.
+      The accepted facts preserve the object/context indirection and one
+      conditional notification path with those execution proofs left open.
+    address_space: rtos
+    detail: output/decompile/rea/pass-owner-retirement-20261027/parent-review.md
+
+  - id: rejected.lrc-stop-slot-as-normal-done-zero-proof
+    status: rejected
+    kind: inference
+    statement: >
+      Base-LRC slot+0x1c bound to0x80251adc is not a proof of normal
+      selector0 Done. Its checked status1 forwards0x80250150(M,1),
+      statuses2/3 forward0x80250150(M,2), and other statuses do not call
+      that helper. The separate code4 hook and its setting-gated Finish0
+      router are the accepted conditional normal path. Do not substitute
+      a stop-selector pointer-preservation trace for normal activation.
+    address_space: rtos
+    detail: output/decompile/rea/pass-owner-retirement-20261027/parent-review.md
+
+  - id: rejected.rendezvous-derived-slot18-logger-override
+    status: rejected
+    kind: inference
+    statement: >
+      MiniMax C12's claimed derived override is contradicted by original
+      base and mode primary tables. Both use8025bacc at+0x18;8025bae8 is
+      at+0x1c in both. There is no such override whose motivation needs
+      research. The stack-only stub behavior itself is accepted separately.
+    evidence:
+      - ev_986039f533f2d62e1460b4ea606b0b23a8db968d0850782c765dda8950ffd01a
+      - ev_7a7f655885e8a071810e2b800e18b72eaecc535bfb9c5752fec34368b9c2ad58
+    detail: output/decompile/rea/pass-autonomous-review-20261027/parent-review.md
+
+  - id: rejected.awb-init-range-rejection-as-global-no-signal-proof
+    status: rejected
+    kind: inference
+    statement: >
+      MiniMax C3's unconditional cannot-reach-slot14 conclusion is not
+      established by rejection of0x7101 in the clear helper. Completion
+      independently reloads the pending word after that helper. With no
+      outer lock/interference proof, another mutation could change the
+      post-check result. Only the stable-word cases are accepted; no actual
+      concurrent callback or race is inferred by rejecting the broad claim.
+    evidence:
+      - ev_b3d46a209058785a48283bf10749860f3884720d7614daa643d32e1d03b851de
+      - ev_094284a0e2ace47b5aa7e0adf81673acf975cb0d4a6de0600c2d78d64b6502da
+      - ev_b18b91d242fc196db8e8a521bc49dea106aa309a34b81bfc4838ad98b7e717d0
+      - ev_2d95d4d92c479d3996625738a49f2005b0acd20b2a2c9d8c4b3f5a8b923474e3
+    detail: output/decompile/rea/pass-autonomous-review-20261027/parent-review.md
+
+  - id: rejected.rendezvous-reset-count-as-before-census-discrepancy
+    status: rejected
+    kind: inference
+    statement: >
+      MiniMax C6 compares nine guarded-clear callers for8025b734 with26
+      arm callers for8025b6c4 and treats this as a corpus discrepancy.
+      These count different targets and do not contradict each other.
+      Its later17-count claim was separately traced to truncated display.
+      The worker proposal is not a reason to overwrite the accepted census.
+    detail: output/decompile/rea/pass-autonomous-review-20261027/parent-review.md
+
+  - id: rejected.capture-queue-depth-as-participant-id
+    status: rejected
+    kind: inference
+    statement: >
+      MiniMax's interpretation of8051f524's30/12 arguments as participant
+      registration and id30 is unsupported and contradicted by the recovered
+      create body. It multiplies these inputs for request capacity, stores
+      the size separately, calls805177ec and writes a returned queue handle.
+      The descriptor consumer and mode-completion participants are separate
+      relationships and cannot be inferred from these queue dimensions.
+    address_space: rtos
+    evidence:
+      - ev_c00b627b5da60009c0e85b50c7170eb7bbe89ee5ee5ea756ad0cf521315165f9
+    detail: output/decompile/rea/pass-mode-dispatch-20261027/parent-review.md
+
+  - id: rejected.mode-rendezvous-nonempty-callback-gate
+    status: rejected
+    kind: inference
+    statement: >
+      The MiniMax claim that post-reset nonzero pending state reaches the
+      completion callback is false.8056f7a0 returns8054759c(word) XOR1;
+      8054759c is word!=0. Instruction8025b864 branches away from the
+      callback arm when this NOT-any result iszero. The positive callback
+      arm therefore requires post-reset wordzero. The claimed constructor
+      inconsistency is also false: S+4 is lower index0, while callback
+      S+0x1c is stored at byte+0x10, not at byte+4.
+    address_space: rtos
+    evidence:
+      - ev_b3d46a209058785a48283bf10749860f3884720d7614daa643d32e1d03b851de
+      - ev_cf96c21324d6db3a841deab46af9877cfe1dba5fac149492bd69d6ad0f295095
+    detail: output/decompile/rea/pass-idle-ownership-20261027/parent-review.md
+
+  - id: rejected.idle-mvn-one-makes-failure-unreachable
+    status: rejected
+    kind: static
+    statement: >
+      IDLE27's initial MiniMax claim that8051f05c MVNEQ immediate1 returns
+      positive1, contradicts the pseudo and makes ChangeMode's minus2 failure
+      branch unreachable is false. MVN computes bitwise NOT: NOT1 isfffffffe,
+      minus2 in32 bits. Original-bound Ghidra instructions and pseudo agree.
+      The same report miscomputed descriptor0102003f and mask1122 bit positions;
+      those initial arithmetic/causal claims are not native outcome evidence.
+      Kernel timeout identity and clear/match semantics need their own proof.
+    address_space: rtos
+    evidence:
+      - ev_fbce34e4fc529cb1f6de626033cafaa3dd3407d54ebf3b5a99ff4f3d947cd657
+    detail: output/decompile/rea/pass-idle-ownership-20261027/parent-review.md
+
+  - id: rejected.no-stack-reread-as-no-plane-consumption
+    status: rejected
+    kind: static
+    statement: >
+      The LRCRUN26 suggestion that material SetParam does not consume/pass
+      its own-plane value because no later scalar load re-reads its stack
+      slot is incorrect. At80294f88 the own-plane getter is called;
+      80294f90 stores its return at r11-minus0xc. Instructions80294fa8..b4
+      pass aggregate base r11-minus0x1c to80312870. The stored word is
+      therefore aggregate byte+0x10, already covered by
+      raw.lrc-own-plane-control-path. Passing an aggregate by address
+      does not require an explicit scalar reload in the caller. This
+      correction does not establish nonzero backing or sensor provenance.
+    address_space: rtos
+    evidence:
+      - ev_70eedb6bbd1f4213e22438754974c7ab295bd4957675cdee1836f2e1fe35df02
+    detail: output/decompile/rea/pass-owned-start-20261026/parent-review.md
+  - id: rejected.gyro-request-reply-and-free-conflation
+    status: rejected
+    kind: inference
+    statement: >
+      The expansion descriptor's RTOS-to-Linux publication and registered
+      Linux image-set client call are not the host-to-RTOS reply. The
+      allocator+0x5c call in0x80139df8 retires the12-byte auxiliary; it is
+      not an RTOS-to-Linux notification. Length4 in0x800609f8 does not
+      transmit16 adjacent context bytes, and0x80139da4 passes the event
+      variable's address, not its loaded handle value. Neither the raw
+      wait argument1 nor an unrelated getIsoExpansion symbol establishes
+      a wait mask, payload units or responder identity. These withdrawn
+      worker interpretations reject those arguments, not the host-service
+      or encoded-image routes.
+    detail: output/decompile/rea/pass-host-services-20261026/parent-review.md
+
+  - id: rejected.shell-refusal-timing-as-delivery-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The handover's11.4-second refusal versus1.4-second log command
+      does not prove successful MCB send, RTOS arrival or a missing
+      RTOS acknowledgement. shell_capture shares one refusal path
+      between nonzero send and wait results, and permits earlier
+      local command success. A successful st cap log therefore does
+      not itself prove an MCB round trip. Linux uptime before/after
+      also cannot exclude an RTOS-only reset. The worker experiments
+      remain historical reports, not parent-qualified observations.
+    address_space: linux-shell-command-elf
+    evidence:
+      - ev_ecc42f30bd5610a4f89ad1e3fdc2ac95d29ab11154b5cff477e1dbbdde5a568e
+      - ev_0d609e1d8e604017cb798131f6b555b36ea801c9f01cdd79cb0d4eaa4eca8573
+    detail: output/decompile/rea/pass-a177dc3-review-20261025/parent-review.md
+
+  - id: rejected.pp-config-composers-as-completion-consumers
+    status: rejected
+    kind: static
+    statement: >
+      The proposed virtual entries0x801df1cc and0x80305098 compose
+      configuration output from caller-provided object fields and
+      descriptor accessors. Both write the32-bit literal0xe004 at
+      output+4 and zero a32-bit word at output+0x10, alongside byte
+      fields. These writes do not identify a completion notification,
+      IRQ producer or freshly completed buffer. The worker's14-byte
+      output-size claim is false: the checked word at+0x10 alone
+      requires at least20 bytes. A table entry's existence or lack
+      of direct callers does not supply completion provenance.
+    address_space: rtos
+    evidence:
+      - ev_f5a01480b674d01ac27cdbf6599d8e9fa54f30794abdd1aef7a93f2547261260
+      - ev_8404935fcb63d1b34bcb1ce68cf6481dc5d3bd4247f898b29a906c72ac0c64a5
+      - ev_c06e6c217a025109209f0f4804aa9df5fcc59dab07b756bbb74472d1d98326c8
+    detail: output/decompile/rea/pass-owned-raw-20261025/parent-review.md
+
+  - id: rejected.pp-global-finalizer-as-dma-completion
+    status: rejected
+    kind: static
+    statement: >
+      The worker's generic-IPC/completion interpretation of registration
+      through0x805836e0 is unsupported. Guarded construction0x8039400c
+      constructs global0x81955778 and registers0x80393f5c with handle
+      0x81006000. That registered body reinstalls its vptr and invokes
+      two member lifecycle calls at object+0x194, consistent with
+      teardown rather than a submitted-buffer completion receiver.
+      Separately0x8057b780 only stores its byte argument at object+0x190
+      and returns; it is not a wait or signal operation. Neither edge
+      supplies fresh DMA completion or request/buffer association.
+    address_space: rtos
+    evidence:
+      - ev_213f049305e39ab7108bb526162e824140f2179cb579c886018f2abd4efdbd34
+      - ev_35cec7402c5ca9b4de64dd71fbf755d3093c50ad434c71b8527e909890a0801b
+      - ev_1e564776aa936cc038335cfb7ac2715a695ca3b2eff94e07f46eedf747afeaeb
+    detail: output/decompile/rea/pass-owned-raw-20261025/parent-review.md
+
+  - id: rejected.lrc-field-copy-as-plane-provenance
+    status: rejected
+    kind: inference
+    statement: >
+      The0f976d1 proposal treats the LRC image's descriptor copy as proof
+      that it retains the capture material's plane and size. Factory0x0b
+      constructs a new object, calls0x80142304 and overwrites its buffer
+      ID/declared size. When sheet, context and image guards succeed,
+      that initializer calls0x8025cc24(image,0), clearing four plane
+      words. Failure of the guards is not proof of valid preserved
+      backing either. A later binding edge and runtime identity remain
+      required. The report also labels a0x5c0 clamp as image height:
+      the called setter0x805617d0 stores to image+0x20, not the separate
+      height word at+0x10. Its semantic role needs its own evidence.
+    address_space: rtos
+    evidence:
+      - ev_f8fe9a554634da0f9a607afb839608adc5a6f737f030af8f9263539712f64fd2
+      - ev_13371c61145e94b59ce4608f33a0fadfd8b52b0d3035104d6a0ffe4c62572dd5
+    not_proven:
+      - clearing when initializer guards fail or absence of other later binding paths
+      - active builder/material identity, valid native extent or sensor provenance
+    detail: output/decompile/rea/pass-0f976d1-review-20261024/parent-review.md
+
+  - id: rejected.first-image-provenance-by-equal-geometry
+    status: rejected
+    kind: inference
+    statement: >
+      MiniMax0f976d1 proposes that matching first-descriptor size and
+      geometry to a historical Bayer file would close sensor provenance.
+      Equal dimensions and byte extent do not establish object identity,
+      producer, capture association or retained backing. A descriptor's
+      size word is not automatically a measured payload length: the LRC
+      factory writes a declared0xfff200 size, whose live meaning remains
+      unproved. The RAW filename and the published ten-word excerpt also
+      do not establish12-bit sensor precision. All ten words have their
+      low6bits clear; both10-bit-shift6 and12-bit-shift4 interpretations
+      fit that excerpt. Existing raw.measured-still-raster establishes a
+      different, source-bound historical observation, not every new file.
+      The filename's11648 matches5824 two-byte samples per row; treating
+      it as another two-sensor pixel width doubles the claimed extent.
+    not_proven:
+      - that the new report's card file has the accepted historical raster hash
+      - actual sample precision beyond stored significant bits or both-lens CFA
+      - any current callback plane's provenance, valid payload extent or lifetime
+    detail: output/decompile/rea/pass-0f976d1-review-20261024/parent-review.md
+
+  - id: rejected.type-three-as-two-exposure-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The ffa0598 reports do not prove that every type3 encoded set carries
+      two exposures. A named two-times serializer caller and doubled size
+      accounting do not establish the command selector, two sensor captures
+      or their exposure settings. The report's claimed uniform0x228 stride
+      between offsets0x18,0x240,0x580,0x858 is arithmetically false: the
+      deltas are0x228,0x340,0x2d8. This rejects the supplied proof, not the
+      existence of a native two-times path or exposure-bracket support.
+    detail: output/decompile/rea/pass-ffa0598-review-20261024/parent-review.md
+
+  - id: rejected.client-topic-names-exclude-sensor-raw
+    status: rejected
+    kind: inference
+    statement: >
+      The branch's claim that no client topic can carry sensor samples is
+      not established by naming the image and image-set topics. The
+      accepted encoded-set route has a conditional first descriptor whose
+      producer, backing and lifetime remain open. A missing dedicated RAW
+      arm does not exclude sensor data inside another set, and finding
+      preview/YCC routes does not exhaust indirect or conditional delivery.
+      This also does not prove that sensor RAW is available: both global
+      absence and the required owned sensor result remain unproved.
+    related:
+      - completion.normal-graph-publishes-encoded-set
+      - raw.lrc-production-image-attachment
+      - raw.encoded-set-descriptor-writer
+    detail: output/decompile/rea/pass-phase2-integration-20261023/parent-review.md
+
+  - id: rejected.lrc-unregister-byte-as-retained-pixels-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The LRC material's byte at+0x128 is not a proved pixel-retention flag.
+      Getter0x805740d0 uses ldrb and setter0x805740a0 uses strb. Destructor
+      0x80294c48 tests it and, when nonzero, warns that unregisterISR was
+      not called and calls0x802950d4. That helper invokes service+0x10
+      withmaterial+0x120 thenmaterial+0x24 withzero. The branch report's
+      claim that nonzero skips teardown is inverted. Neither this byte nor
+      that cleanup chain proves retained pixel backing for our caller.
+    address_space: rtos
+    evidence:
+      - ev_92dc1e97ea28ffc67b3eb44f3e1ee9a266f99772ad1d19d53cbcd4f8b4b34bc7
+      - ev_9e900cac92ef3173ac9711de8309b007bd5ddbc8bf4270991760b508e0d35622
+      - ev_a59b40b5701017f6fcd3ce7a706058f277d79ad6a3df8935f42beb61e5044790
+      - ev_dd09e0f9171b0c960cc13ae60f79e452ef2146713352f6463854ab825bf2fd26
+    detail: output/decompile/rea/pass-4d2deb0-review-20261023/parent-review.md
+
+  - id: rejected.4d2deb0-exact-half-frame-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The candidate extent0xfff200 is16773632 bytes, whereas5824*1440*2
+      is16773120 bytes (0xfff000), a512-byte difference. Dividing a chosen
+      byte count by an assumed two-byte sample/row width does not establish
+      sensor dimensions, lens identity, packing or crop. Changing pool words
+      and a low-word-bit statistic do not close those identities or lifetime.
+    detail: output/decompile/rea/pass-4d2deb0-review-20261023/parent-review.md
+
+  - id: rejected.4d2deb0-still-only-reboot-isolation
+    status: rejected
+    kind: inference
+    statement: >
+      The retained still-only trial has a web timeout, before-uptime and no
+      helper progress, outgoing trace or after-boot identity. Its historical
+      ELF differs from the current source rebuild. Selected mode alone does
+      not establish that still transmission occurred or caused a reboot;
+      this trial cannot exonerate other mapping/copy paths. The current
+      runner also supplies zero-valued options rejected before its C helper
+      initializes its output pointer. Those source bugs are not assigned to
+      the unmatched historical ELF without source/build binding.
+    detail: output/decompile/rea/pass-4d2deb0-review-20261023/parent-review.md
+
+  - id: rejected.4d2deb0-late-image-request-trace
+    status: rejected
+    kind: inference
+    statement: >
+      The stock-control trace's newly observed4.134-second ringB packet is
+      route0300/category0x83/attribute0x020c/bodylength8, with type5 and
+      address0xaa004000. It is not the report's alleged RTOS-to-Linux
+      category0x80/attribute0x0191 request. The legacy parser confuses ringB
+      with its hex marker and can parse stale bytes beyond the observed
+      extent. This rejects that timeline/causal proof, not the existence of
+      other protocol operations or unobserved traffic.
+    detail: output/decompile/rea/pass-4d2deb0-review-20261023/parent-review.md
+
+  - id: rejected.size-bank-echo-as-exclusive-allocation-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The8315d77 lease helper labels any0x81/0x018c reply with matching
+      words2/3 as ours and overwrites its saved address on every match.
+      Size/bank echoes alone do not distinguish concurrent or stale
+      requests and do not establish authority to release the address.
+      The passive modulo-ring copy also lacks immutable-copy ownership
+      and full-lap detection. This rejects the association proof, not the
+      source-bound existence of the allocation request.
+    detail: output/decompile/rea/pass-8315d77-review-20261023/parent-review.md
+
+  - id: rejected.opaque-object-comparison-as-sensor-binding-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The8315d77 probe compares an allocation with words in the context
+      named by0x81/0x0201 and calls offset0x84 its plane. That event carries
+      an image-set context pointer, without a demonstrated plane layout
+      or lease. Different pointer-looking words do not settle whether a
+      supported sensor destination/export exists. A64MiB allocation in
+      DebugStartStill360 does not by itself identify the normal still's
+      sensor-plane size or binding. Generic CCapImage RAW methods likewise
+      do not establish that a selected callback produces sensor samples.
+    detail: output/decompile/rea/pass-8315d77-review-20261023/parent-review.md
+
+  - id: rejected.lease-helper-unconditional-cleanup-proof
+    status: rejected
+    kind: static
+    statement: >
+      The8315d77 helper's failed still-encode/write branches jump to done
+      past the release block, and release-only bypasses the normal address
+      guards. Its source does not guarantee a release on every exit or
+      release authority. A release write and healthy app afterwards do not
+      demonstrate freed backing; the native handler constructs no release
+      reply. A lost reply/resend also has no established idempotence rule.
+    detail: output/decompile/rea/pass-8315d77-review-20261023/parent-review.md
+
+  - id: rejected.outages-as-proven-allocation-leak-cause
+    status: rejected
+    kind: inference
+    statement: >
+      Allocation side effects and unsafe retry/cleanup paths are credible
+      diagnostic risks, but the8315d77 reports do not establish leaked
+      allocations as the cause of earlier camera outages. Later successful
+      runs, a driver write result, or an HTTP timeout alone do not supply
+      that causal proof. Preserve historical cleanup uncertainty separately.
+    detail: output/decompile/rea/pass-8315d77-review-20261023/parent-review.md
+
+  - id: rejected.nextshot-ready-string-as-raw-dma-completion
+    status: rejected
+    kind: inference
+    statement: >
+      The NEXTSHOT_READY warning/string and its diagnostic recording do
+      not prove a just-completed sensor DMA, identify the requested RAW
+      buffer or grant ownership. The warning is on a manager-check failure
+      branch, and execution continues regardless of that result. Counting
+      callers of the diagnostic marker does not identify a notification
+      dispatcher or establish its wire form. This rejects the proof in
+      MiniMax 6aa5d98, not the possibility of a separately recovered event.
+    address_space: rtos
+    detail: output/decompile/rea/pass-minimax-followup-review-20261023/parent-review.md
+  - id: rejected.userdata-enums-as-twenty-byte-raw-pool-producer
+    status: rejected
+    kind: inference
+    statement: >
+      MiniMax a18b965 treats output selector 0x14 in 0x80052b9c as a
+      twenty-byte reply length and 0x00140000-family values from
+      0x8054346c as a fixed structure plus bit masks. The checked functions
+      instead store immediate converted values through output pointers.
+      This does not identify the 0x018c reply producer or close its lease
+      question. The displayed idle/busy last words differ by 185892864
+      bytes, not the claimed 10485760-byte block. Neither arithmetic nor
+      these functions establishes the words' pool or sensor meanings.
+    address_space: rtos
+    detail: output/decompile/rea/pass-minimax-followup-review-20261023/parent-review.md
+
+  - id: rejected.category50-and83-shared-handler-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The cited receive function 0x80129e98 dispatches through
+      0x8012fbb8, which reads the high byte of the u16 at frame-data +4.
+      That is an attribute field in the recovered layout, not the category
+      field at +2. Helper 0x8012fd28 maps the low byte of the same
+      attribute. A table indexed using category values therefore does not
+      show that categories 0x50 and 0x83 share an effector handler.
+      The 0x8012fadc wrapper's three u16 arguments and payload argument
+      are not identified as width, height, stride and sensor destinations.
+    address_space: rtos
+    detail: output/decompile/rea/pass-minimax-followup-review-20261023/parent-review.md
+
+  - id: rejected.ssif-strings-as-018c-sensor-provenance
+    status: rejected
+    kind: inference
+    statement: >
+      SSIF_RAW and buffer-full strings name existing firmware concepts;
+      their presence does not associate attribute 0x018c's words with the
+      requested still's sensor plane or identify a producer writing caller
+      storage. Likewise a stride-like word and nearby addresses in an
+      untyped completion object do not establish its pixel layout. Keep
+      those associations open rather than deriving them from vocabulary,
+      repeated values or an assumed image-object type.
+    detail: output/decompile/rea/pass-minimax-followup-review-20261023/parent-review.md
+  - id: rejected.passive-ring-observation-as-owned-completion-proof
+    status: rejected
+    kind: inference
+    statement: >
+      A passive producer-cursor observer does not close the receiver race
+      merely because the stock consumer leaves bytes in place. That
+      consumer can release them for overwrite while the observer copies.
+      Equal modulo cursors hide a full revolution; matching frame length
+      and category/attribute do not distinguish generations or callers.
+      The historical observed packets remain useful evidence, but the
+      inference that this supplies reliable owned completion is withdrawn.
+    detail: output/decompile/rea/pass-minimax-review-20261023/parent-review.md
+
+  - id: rejected.effector-address-setters-as-sensor-raw-handoff-proof
+    status: rejected
+    kind: inference
+    statement: >
+      Local address setters, affine address conversion, an acknowledgment
+      callback and a CYcc effector message do not establish that sensor DMA
+      delivers RAW into caller-owned memory. The cited functions neither
+      identify that producer nor establish backing allocation, cache rules,
+      capture association or lifetime. This rejects the proof in MiniMax's
+      handover summary, not the possibility of a future supported interface.
+    detail: output/decompile/rea/pass-minimax-review-20261023/parent-review.md
+  - id: rejected.console-tags-and-scheduler-as-provider-proof
+    status: rejected
+    kind: inference
+    statement: >
+      SHAR/cons name tags, adjacent clock text and an unrelated scheduler
+      callback family do not identify the console byte provider or prove
+      physical-UART-only access. The checked name helper uses four-byte
+      object-creation tags. No console edge was supplied to scheduler
+      hook0x81006008. Fresh console source instead shows device and
+      in-memory input arms with a gated input-ring producer. This rejects
+      those attribution/exclusivity proofs, not every diagnostic route.
+    detail: output/decompile/rea/pass-audit-20261022-review/console-provider-review.md
+
+  - id: rejected.ref-reg-uatb-as-active-control-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The UATB-labelled ref-reg word cannot by itself establish a fresh
+      active TTBR0 or CPU translation-control state. Its checked getter
+      copies record+0xd4. One writer stores a supplied input and only
+      conditionally programs CP15; zero input selects sampled TTBR1,
+      while nonzero input is combined with TTBR1 attributes. Neither
+      this getter nor that stored word reports active SCTLR/PRRR/NMRR.
+      This rejects that proposed proof, not every possible diagnostic route.
+    detail: output/decompile/rea/pass-audit-20261022-review/svc-context-review.md
+
+  - id: rejected.mapping-audit-cache-and-barrier-inference
+    status: rejected
+    kind: inference
+    statement: >
+      The pass-audit-20261021-2 decoder and report do not establish
+      cacheable Normal Linux IPCC memory or remove cross-CPU ordering
+      proof obligations. TEX001/C0/B0 is Normal non-cacheable with
+      TRE0; TRE1 requires PRRR/NMRR. Device descriptors alone do not
+      prove active mappings or payload/cursor/notify observer ordering.
+      The report's proposed cache-invalidation requirement and assertion
+      that no barrier proof is needed are withdrawn, not findings of
+      an observed transport defect.
+    detail: output/decompile/rea/pass-audit-20261022-review/parent-review.md
+
+  - id: rejected.naejae-graph-for-type-0
+    status: rejected
+    kind: static
+    statement: >
+      Naejae builder 0x802b3b90 rejects lens type 0. Its type-1 and type-2
+      graph does not establish the 360 still path. Key 0x1b selects Naejae.
+      Keys 0 and 4 do not.
+    address_space: rtos
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_CODEX_RECONCILIATION.md
+
+  - id: rejected.stock-main-raw-callback-as-receiver
+    status: rejected
+    kind: static
+    statement: >
+      The Linux single-image callback fills descriptors for three liveview
+      topics. Registering a MAIN_RAW callback id does not make that wrapper
+      deliver a still RAW buffer. The image-set RAW topic takes a no-export
+      path in the reviewed RTOS branch.
+    detail: archive/SENSOR_RAW_FINDINGS.md
+
+  - id: rejected.ipc-end-as-a-lease
+    status: rejected
+    kind: static
+    statement: >
+      The checked Ipc_End path frees and clears backing before the MainRaw
+      enqueue. A queued object on that path is not retained pixels.
+    address_space: rtos
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_CODEX_RECONCILIATION.md
+
+  - id: rejected.aa09-aa0a-raw-commands
+    status: rejected
+    kind: static
+    statement: >
+      Copied member tables select 0x80064d6c for command 0xaa09 and
+      0x80064db0 for 0xaa0a. Both bodies check for length 1 and return -1,
+      otherwise -2. They have no acquisition side effect on this build.
+      This rejects these two commands, not every lower-level RAW interface.
+    address_space: rtos
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_SOFTWARE_CONTROL.md
+
+  - id: rejected.debug-dump-backend
+    status: rejected
+    kind: inference
+    statement: >
+      The stock SSIF debug capture, RAW_SAVE and SSIF_RAW flag toggles, and
+      the already acquired debug RAW file are diagnostic evidence. They are
+      not the capture-library backend.
+    detail: archive/CAPTURE_LIBRARY_ARCHITECTURE_CORRECTION_20261019.md
+
+  - id: rejected.st-cap-capt-single-start
+    status: rejected
+    kind: runtime
+    statement: >
+      The RTOS debug request "st cap capt single start" took the camera
+      offline. Do not run it. The timeline runner rejects --trigger capt
+      before file or network operations.
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_CODEX_RECONCILIATION.md
+
+  - id: rejected.stock-app-release-hook
+    status: rejected
+    kind: inference
+    statement: >
+      A copy-before-stock-release hook, a stock-app RAW tap, and a physical
+      shutter workflow are not the product. Release-hook traces remain
+      evidence about stock internals.
+    detail: archive/CAPTURE_LIBRARY_ARCHITECTURE_CORRECTION_20261019.md
+
+  - id: rejected.preview-as-library-result
+    status: rejected
+    kind: inference
+    statement: >
+      The liveview movie-work buffer at physical 0xa77bb000 is not the
+      still RAW result. See routes/preview-movie-work.yaml.
+    detail: archive/RAW_ACQUISITION_DIRECTION_REVIEW_20261018.md
+
+
+  - id: rejected.linux-type0-word0-as-hardware-descriptor
+    status: rejected
+    kind: static
+    statement: >
+      Directly decoding type0 word0 value0x653 as an ARM hardware small-page
+      descriptor is invalid on the reviewed path. Converter0xc0018440
+      transforms the software PTE before a separate hardware store. With
+      extension0 its protection becomes0x453. Comparing unconverted0x653
+      against section protection does not prove different effective memory
+      classes or hardware permissions.
+    address_space: linux-kernel
+    detail: output/decompile/rea/pass-linux-ipcc-parent-review-20261021/parent-review.md
+
+  - id: rejected.opcode-census-as-complete-row-writer-proof
+    status: rejected
+    kind: inference
+    statement: >
+      A whole-image census of selected address-materialization opcodes is
+      not an exhaustive writer proof for the memory-type row. Pointer
+      derivations, indexed writes, code/data boundaries, indirect accesses
+      and runtime or boot-patched behavior remain coverage limits. The
+      reviewed initializer supplies bounded positive write relationships;
+      it does not establish that every writer has been found.
+    address_space: linux-kernel
+    detail: output/decompile/rea/pass-linux-ipcc-parent-review-20261021/parent-review.md
+
+
+  - id: rejected.wait-insert-as-one-waiter-limit
+    status: rejected
+    kind: static
+    statement: >
+      The MiniMax draft transcribed0xc0043c00 as storing the head into
+      head.next. Original streq r5,[r6] stores entry+0xc there. The scoped
+      list operations support multiple entries under ordinary list
+      preconditions; the invented one-waiter limit and a failure inferred
+      from it are rejected. Synthetic multi-entry checks are not a live test.
+    address_space: linux-kernel
+    detail: output/decompile/rea/pass-minimax-transport-20261021/parent-review.md
+
+  - id: rejected.scheduler-offsets-as-task-instance-proof
+    status: rejected
+    kind: inference
+    statement: >
+      Similar +4/pointee/mask chains do not bind the ioctl object from
+      aligned-SP+0xc to scheduler object R loaded from0xc0788cdc. That
+      cell is addressed directly as0xc07888e8+0x3f4, not by an extra
+      dereference. Without an object or pointee alias proof, scheduler
+      flag/state operations cannot establish ioctl signal-wake behavior.
+      This rejects the proof, not the possibility that the objects alias.
+    address_space: linux-kernel
+    detail: output/decompile/rea/pass-minimax-transport-20261021/parent-review.md
+
+  - id: rejected.cp15-census-as-complete-interface-proof
+    status: rejected
+    kind: inference
+    statement: >
+      The selected A32 MRC/MCR census and bounded string inventory do not
+      prove that PRRR/NMRR are never read or that no reporting interface
+      exists. Other encodings, Thumb, external/dynamic code, truncated
+      operands, unanalyzed islands and runtime tables bound coverage.
+      The initial whole-image search exceeded scope; later permission was
+      candidate discovery only. The worker's c1,c0,1 bit0x40 TRE label is
+      retracted without a replacement semantic claim.
+    address_space: rtos
+    detail: output/decompile/rea/pass-minimax-transport-20261021/parent-review.md
+
+  - id: rejected.literal-and-xref-census-as-console-exclusivity
+    status: rejected
+    kind: inference
+    statement: >
+      One resolved console-dispatch caller and zero exact in-image address
+      literals do not prove that all other host routes or command handlers
+      are excluded. Computed/relative addresses, other encodings, indirect
+      calls, runtime registration and alternate entry points remain limits.
+      A corrected finite CP15 candidate list does not repair that reachability
+      proof. The accepted result is a scoped resolved console call, with
+      safe host access still open.
+    address_space: rtos
+    detail: output/decompile/rea/pass-sc-parent-review-20261021/parent-review.md
+
+  - id: rejected.ref-reg-stack-only-and-tid-parser
+    status: rejected
+    kind: static
+    statement: >
+      The first ref-state worker omitted the six register/context format
+      lines in0x80516ae4 and misidentified0x80517a98 as a TID conversion.
+      Caller0x80012834 passes an existing argument plus three buffer
+      pointers, then prints their contents after a nonnegative service
+      return. Additional stack-area output comes from a separate service.
+      No direct coprocessor instruction in the caller proves absence of
+      CPU-register data or of hardware access inside an unresolved syscall.
+    address_space: rtos
+    detail: output/decompile/rea/pass-sc-parent-review-20261021/parent-review.md
+
+  - id: rejected.rtos-log-is-readable-through-the-preference-window
+    status: rejected
+    kind: inference
+    statement: >
+      The inference that the RTOS's LogBuffer_SendPrintEx destination
+      0x81c11c3c lies inside the shared-memory region the capture library's
+      preference mapping exposes to Linux, and that the RTOS's failure lines
+      would therefore be readable from Linux through that window, is false.
+      The preference window's RTOS base is 0x85400000, not 0x81b00000, so
+      0x81c11c3c is 0x38EE3C4 below the window and not at offset 0x11c3c;
+      the live window carries no printable text at all and does not change
+      over half a second; the capture library's virtual-address window
+      covers physical 0xa6000000..0xc0000000 and does not reach it; and the
+      stock application's own /dev/mem mappings do not cover it. Direct
+      /dev/mem reads are refused by this kernel, so the library's mapping is
+      the only working read path into that region. Do not resume a log
+      probe against the preference window and do not plan a still-trial poll
+      loop on that window.
+    address_space: linux-shared-window
+    detail: output/decompile/rea/pass-log-read-probe-20261102/LOG-READ-PROBE-RESULT.md
+
+  - id: rejected.still-jpeg-encode-never-finishes-in-dying-runs-20261103
+    status: rejected
+    kind: observation
+    statement: >
+      Rejected 3 November (step 4v). The claim was that in dying stills the
+      RTOS never completes the main JPEG encode, because no SD-card RTOS
+      log showed "Enc Work is Ended". The streamed RTOS log of step 4v shows
+      the encode ending at restart +32.5 ms and the image set being sent;
+      the SD-card reader's last append in 4g, 4i2 and 4j was before those
+      runs' encodes ended (encode time varies; one survivor ended at
+      +104 ms). The deaths are a segfault in our receiver thread on the
+      image set (session.dying-still-is-receiver-segfault-and-kernel-reboot-20261103).
+    detail: output/decompile/rea/pass-step4v/RESULT.md

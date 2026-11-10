@@ -1,0 +1,65 @@
+# Normal 360 still graph. Lens type 0. This is the product route.
+# Static graph, not an observed capture on a named boot.
+
+claims:
+  - id: route.type0.normal-graph
+    status: accepted
+    kind: static
+    statement: >
+      For normal key 0, no alignment override, and sheet +0x218, +0x64, and
+      +0x170 all zero, builder 0x802ab858 uses S, then PP-A, then E, then
+      PP-B. PP-A also depends on E and PP-B. Put(R) is on PP-B post. Two
+      processed branches join through stitch, resize, and JPEG. Under a
+      normally started graph, S's gyro post wait gates downstream start and
+      Put. The Linux host supplies the reply; a built-in library responder
+      is identified by host.ordinary-gyro-builtin-responder. Its live
+      process-local activation and data readiness remain separate predicates.
+    address_space: rtos
+    not_proven:
+      - that those sheet fields were zero on a live capture
+      - a caller-owned hold
+      - hardware or cache completion
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_CODEX_RECONCILIATION.md
+
+  - id: route.type0.factories
+    status: accepted
+    kind: static
+    statement: >
+      Factory 0x80290e54 masks the low byte. MID 0x10f01 therefore selects
+      constructor 0x802ee880. Type-0 PP-A and PP-B select 0x80293138, vtable
+      0x80684fb0. Naejae builder 0x802b3b90 rejects type 0, so its type-1 and
+      type-2 graph is not this route. Recipe keys 0 and 4 dispatch to
+      0x802a9570. Key 0x1b selects Naejae.
+    address_space: rtos
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_CODEX_RECONCILIATION.md
+
+  - id: route.type0.descriptor-to-dma-registers
+    status: accepted
+    kind: static
+    statement: >
+      S route-3 output R reaches CPP_Preview and CPP_Core and start_wdma
+      at 0x8031c098. Later PP memory-to-memory work takes GetSource(PP, 0)
+      into route 1, then CPP_Capture input 0 and CPP_Core input 0.
+      start_rwdma at 0x8031b9b4 programs that address as RDMA0. Helpers
+      write RDMA0 address and stride at 0x20800300 and 0x20800304, and
+      WDMA0 address and stride at 0x20800338 and 0x2080033c. These
+      instructions were analyzed offline and not executed by us.
+    address_space: rtos
+    not_proven:
+      - that the programmed address held a finished sensor frame
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_DUAL_PRODUCER.md
+
+  - id: route.type0.linux-handoff
+    status: accepted
+    kind: static
+    statement: >
+      The Linux still request reaches this graph as the 48-byte command.
+      Later edges on the followed route are RTOS-internal. The first edge
+      that programs this still's sample destination is
+      raw.wdma-destination-has-no-linux-receiver. That edge has no
+      Linux-callable receiver with retained backing.
+    address_space: rtos
+    not_proven:
+      - a Linux command outside this followed chain
+      - backing lifetime. See raw.owned-handoff
+    detail: archive/INVESTIGATION_CHECKPOINT_20261019_DUAL_PRODUCER.md
