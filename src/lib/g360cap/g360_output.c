@@ -103,9 +103,10 @@ int g360_save_dng_full_xmp(const g360_frame *frame, const g360_image *maker_note
                            const g360_exif_info *info, const char *description, const char *xmp,
                            const char *path)
 {
+    static const unsigned char trailer_pad[G360_DNG_TRAILER_PAD] = {0};
     unsigned char *header = malloc(G360_DNG_FULL_HEADER_BYTES);
     size_t size = 0;
-    output_part parts[2];
+    output_part parts[5];
     int status;
     if (header == 0) return G360_E_IO;
     status = g360_dng_header_full_xmp(frame, maker_note, info, description, xmp, header,
@@ -115,7 +116,15 @@ int g360_save_dng_full_xmp(const g360_frame *frame, const g360_image *maker_note
         parts[0].size = size;
         parts[1].data = frame->image.data;
         parts[1].size = frame->image.size;
-        status = save_parts(path, parts, 2);
+        /* The opcode lists the header points to, right after the samples. */
+        parts[2].data = g360_dng_opcode_list1;
+        parts[2].size = G360_DNG_OPCODE_LIST1_BYTES;
+        parts[3].data = g360_dng_opcode_list2;
+        parts[3].size = G360_DNG_VIGNETTING ? G360_DNG_OPCODE_LIST2_BYTES : 0u;
+        /* macOS refuses a DNG whose opcode list ends at the end of the file. */
+        parts[4].data = trailer_pad;
+        parts[4].size = G360_DNG_TRAILER_PAD;
+        status = save_parts(path, parts, 5);
     }
     free(header);
     return status;

@@ -150,7 +150,8 @@ def main():
                     "program": info.exposure_program, "white_balance": info.white_balance,
                     "datetime": info.datetime.decode()}
             expected = make_dng.build_full(frame_bytes, rec, maker(), exif, (description or b"").decode())
-            assert head + frame_bytes == expected, ("full parity", info.datetime, description)
+            list1, list2 = make_dng.opcode_lists()
+            assert head + frame_bytes + list1 + list2 + make_dng.trailer_pad() == expected, ("full parity", info.datetime, description)
             back, text = make_dng.read_full_exif(expected)
             assert text == (description or b"").decode() and back["datetime"] == info.datetime.decode()
             tags = {t: v for t, _, _, v, _ in stock_iq._ifd(expected, struct.unpack_from("<I", expected, 4)[0], "<")}
@@ -166,7 +167,7 @@ def main():
             assert struct.unpack("<I", tags[273])[0] == FULL
         dng_full_path = work / "synthetic-full.dng"
         status, head = call_full(*cases[0])
-        dng_full_path.write_bytes(head + frame_bytes)
+        dng_full_path.write_bytes(head + frame_bytes + b"".join(make_dng.opcode_lists()) + make_dng.trailer_pad())
         # Refusals: bad dates and descriptions, no info, small capacity, a bad frame.
         good = cases[0][0]
         for bad_date in (b"2026-11-06 08:12:30", b"2026:11:06 08:12:3x", b"2026:11:06"):

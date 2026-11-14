@@ -1,6 +1,8 @@
 /* DNG 1.4, uncompressed whole-frame CFA; see dng/make_dng.py. */
 #include "g360_dng.h"
 #include "capture_libc.h"
+/* The per-camera opcode lists (hot pixels, vignetting), one definition. */
+#include "g360_dng_calibration.c"
 
 /* Python performs separate multiply/add operations. Preserve those roundings
  * on hosts with fused multiply-add as well as on the camera's Cortex-A9. */
@@ -311,12 +313,14 @@ typedef struct dng_entry {
     uint32_t tag, type, count;
     const unsigned char *data; /* NULL: reserved, filled by the caller */
     size_t bytes;
+    uint32_t outside; /* nonzero: the value is stored at this file offset, after the samples */
 } dng_entry;
 
 static void add_entry(dng_entry *e, size_t *n, uint32_t tag, uint32_t type, uint32_t count,
                       const unsigned char *data, size_t bytes)
 {
     e[*n].tag = tag; e[*n].type = type; e[*n].count = count; e[*n].data = data; e[*n].bytes = bytes;
+    e[*n].outside = 0;
     ++*n;
 }
 
@@ -335,7 +339,7 @@ static void sort_entries(dng_entry *e, size_t n)
 static size_t ifd_bytes(const dng_entry *e, size_t n)
 {
     size_t i, total = 2 + 12 * n + 4;
-    for (i = 0; i < n; ++i) if (e[i].bytes > 4) total += e[i].bytes + (e[i].bytes & 1u);
+    for (i = 0; i < n; ++i) if (e[i].bytes > 4 && !e[i].outside) total += e[i].bytes + (e[i].bytes & 1u);
     return total;
 }
 
@@ -353,6 +357,7 @@ static size_t write_ifd(unsigned char *base, size_t at, const dng_entry *e, size
             memcpy(p + 8, e[i].data, e[i].bytes);
             continue;
         }
+        if (e[i].outside) { put32(p + 8, e[i].outside); continue; }
         put32(p + 8, (uint32_t)blob);
         if (e[i].data) memcpy(base + blob, e[i].data, e[i].bytes);
         else if (reserved) *reserved = blob;
@@ -372,6 +377,15 @@ static int datetime_ok(const char *text)
         else if (text[i] != pattern[i]) return 0;
     }
     return text[19] == '\0';
+}
+
+/* Little-endian IEEE double (the camera and hosts are little-endian). */
+static void put_double(unsigned char *p, double v)
+{
+    union { double value; uint64_t bits; } u;
+    u.value = v;
+    put32(p, (uint32_t)u.bits);
+    put32(p + 4, (uint32_t)(u.bits >> 32));
 }
 
 #define MAKERNOTE_BYTES ((size_t)(2 + 12 * 5 + 4 + 6000 + 13000 + 13000 + 2048))
@@ -398,8 +412,8 @@ int g360_dng_header_full_xmp(const g360_frame *frame, const g360_image *maker_no
     unsigned char color[72], forward[72], neutral[24], baseline[8];
     unsigned char zero[4], width[4], height[4], strip[4], count_bytes[4], black[4], white[4], exif_at_bytes[4];
     unsigned char sixteen[2], one[2], cfa_photometric[2], d65[2], focal35[2];
-    unsigned char exposure[8], program[2], iso[2], wb[2];
-    dng_entry ifd0[41], exif[16], note[5];
+    unsigned char exposure[8], program[2], iso[2], wb[2], noise[16];
+    dng_entry ifd0[44], exif[16], note[5];
     size_t n0 = 0, ne = 0, nn = 0, exif_at, end, mn_at = 0, described = 0, xmp_size = 0;
     const g360_image *image;
     if (size == 0) return G360_E_ARGUMENT;
@@ -447,7 +461,7 @@ int g360_dng_header_full_xmp(const g360_frame *frame, const g360_image *maker_no
     add_entry(ifd0, &n0, 278, 4, 1, height, 4);
     add_entry(ifd0, &n0, 279, 4, 1, count_bytes, 4);
     add_entry(ifd0, &n0, 284, 3, 1, one, 2);
-    add_entry(ifd0, &n0, 305, 2, 20, (const unsigned char *)"gear360 make_dng.py", 20);
+    add_entry(ifd0, &n0, 305, 2, 24, (const unsigned char *)"gear360-modding g360cap", 24);
     if (info->datetime[0]) add_entry(ifd0, &n0, 306, 2, 20, (const unsigned char *)info->datetime, 20);
     if (xmp_size) add_entry(ifd0, &n0, 700, 1, (uint32_t)xmp_size, (const unsigned char *)xmp, xmp_size);
     add_entry(ifd0, &n0, 33421, 3, 2, cfa_dims, 4);
@@ -466,6 +480,18 @@ int g360_dng_header_full_xmp(const g360_frame *frame, const g360_image *maker_no
     add_entry(ifd0, &n0, 50736, 5, 4, lens, sizeof lens);
     add_entry(ifd0, &n0, 50778, 3, 1, d65, 2);
     add_entry(ifd0, &n0, 50964, 10, 9, forward, sizeof forward);
+    /* Hot pixels and vignetting: opcode lists stored after the samples. */
+    add_entry(ifd0, &n0, 51008, 7, G360_DNG_OPCODE_LIST1_BYTES, g360_dng_opcode_list1, G360_DNG_OPCODE_LIST1_BYTES);
+    ifd0[n0 - 1].outside = (uint32_t)(G360_DNG_FULL_HEADER_BYTES + DNG_FRAME_BYTES);
+#if G360_DNG_VIGNETTING
+    add_entry(ifd0, &n0, 51009, 7, G360_DNG_OPCODE_LIST2_BYTES, g360_dng_opcode_list2, G360_DNG_OPCODE_LIST2_BYTES);
+    ifd0[n0 - 1].outside = (uint32_t)(G360_DNG_FULL_HEADER_BYTES + DNG_FRAME_BYTES + G360_DNG_OPCODE_LIST1_BYTES);
+#endif
+    /* NoiseProfile is measured at ISO 100 only (gear360-calibration/PHOTOMETRY.md 1a). */
+    if (info->iso == 100) {
+        put_double(noise, G360_DNG_NOISE_S); put_double(noise + 8, G360_DNG_NOISE_O);
+        add_entry(ifd0, &n0, 51041, 12, 2, noise, sizeof noise);
+    }
 
     if (info->exposure_numerator && info->exposure_denominator) {
         put32(exposure, info->exposure_numerator); put32(exposure + 4, info->exposure_denominator);

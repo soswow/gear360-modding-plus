@@ -30,10 +30,16 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import stock_iq  # noqa: E402
 
+REPO = Path(__file__).resolve().parents[2]
+CALIBRATION_C = REPO / "src/lib/g360cap/g360_dng_calibration.c"
+
 WIDTH, HEIGHT, STRIDE = 5824, 2896, 11648
 BLACK, WHITE = 4106, 65472
 BASELINE_EXPOSURE = 0.34
 FULL_HEADER_BYTES = 40960
+SOFTWARE_FULL = "gear360-modding g360cap"
+# NoiseProfile at ISO 100: gain 0.078 e-/DN, read noise 54 DN, range 61366 DN.
+NOISE_S, NOISE_O = 1.0 / (0.078 * 61366.0), (54.0 / 61366.0) * (54.0 / 61366.0)
 F_NUMBER, FOCAL_LENGTH, FOCAL_35MM = (22, 10), (12, 10), 6   # as in our JPEG Exif
 UNKNOWN = 0xFFFF
 # (MakerNote tag, offset in the capture library's buffer, bytes)
@@ -138,14 +144,34 @@ def build(frame: bytes, rec: dict) -> bytes:
     return head + b"\0" * (strip_at - len(head)) + frame
 
 
+def opcode_lists():
+    """The opcode lists the C writer stores after the samples: hot pixels,
+    and vignetting when G360_DNG_VIGNETTING is 1 (else an empty second list)."""
+    sys.path.insert(0, str(REPO / "gear360-calibration/dng-calibration"))
+    import dng_calibration  # noqa: E402
+    list1, list2 = dng_calibration.parse_c(CALIBRATION_C.read_text())
+    header = CALIBRATION_C.with_suffix(".h").read_text()
+    return list1, (list2 if "#define G360_DNG_VIGNETTING 1" in header else b"")
+
+
+def trailer_pad():
+    """Zero bytes after the opcode lists (macOS refuses a list ending at EOF)."""
+    import re
+    header = CALIBRATION_C.with_suffix(".h").read_text()
+    return b"\0" * int(re.search(r"G360_DNG_TRAILER_PAD (\d+)u", header).group(1))
+
+
 def _ifd(entries, at):
     """One little-endian IFD at absolute offset `at`, followed by its values
-    longer than 4 bytes in tag order, each padded to an even length."""
+    longer than 4 bytes in tag order, each padded to an even length. A value
+    given as ("@", offset) is stored elsewhere in the file, at that offset."""
     entries = sorted(entries, key=lambda e: e[0])
     data_at = at + 2 + 12 * len(entries) + 4
     ifd, blobs = struct.pack("<H", len(entries)), b""
     for tag, typ, count, value in entries:
-        if len(value) <= 4:
+        if isinstance(value, tuple):
+            ifd += struct.pack("<HHII", tag, typ, count, value[1])
+        elif len(value) <= 4:
             ifd += struct.pack("<HHI", tag, typ, count) + value.ljust(4, b"\0")
         else:
             ifd += struct.pack("<HHII", tag, typ, count, data_at + len(blobs))
@@ -197,7 +223,7 @@ def build_full(frame: bytes, rec: dict, buffer: bytes, exif: dict, description: 
         (278, 4, 1, struct.pack("<I", HEIGHT)),
         (279, 4, 1, struct.pack("<I", STRIDE * HEIGHT)),
         (284, 3, 1, struct.pack("<H", 1)),
-        (305, *ascii_("gear360 make_dng.py")),
+        (305, *ascii_(SOFTWARE_FULL)),
         (33421, 3, 2, struct.pack("<2H", 2, 2)),
         (33422, 1, 4, bytes([1, 0, 2, 1])),
         (34665, 4, 1, None),                         # Exif IFD, filled below
@@ -215,6 +241,13 @@ def build_full(frame: bytes, rec: dict, buffer: bytes, exif: dict, description: 
         (50778, 3, 1, struct.pack("<H", 21)),       # D65
         (50964, 10, 9, b"".join(rational(v, True) for v in flat(forward))),
     ]
+    list1, list2 = opcode_lists()
+    after = FULL_HEADER_BYTES + STRIDE * HEIGHT
+    ifd0.append((51008, 7, len(list1), ("@", after)))
+    if list2:
+        ifd0.append((51009, 7, len(list2), ("@", after + len(list1))))
+    if exif.get("iso", 0) == 100:
+        ifd0.append((51041, 12, 2, struct.pack("<2d", NOISE_S, NOISE_O)))
     if description:
         ifd0.append((270, *ascii_(description)))
     if datetime:
@@ -245,7 +278,7 @@ def build_full(frame: bytes, rec: dict, buffer: bytes, exif: dict, description: 
     head = b"II*\0" + struct.pack("<I", 8) + _ifd(first, 8) + _ifd(exif_entries, exif_at)
     if len(head) > FULL_HEADER_BYTES:
         raise ValueError("header is %d bytes, over %d" % (len(head), FULL_HEADER_BYTES))
-    return head + b"\0" * (FULL_HEADER_BYTES - len(head)) + frame
+    return head + b"\0" * (FULL_HEADER_BYTES - len(head)) + frame + list1 + list2 + trailer_pad()
 
 
 def read_full_exif(dng: bytes) -> tuple:

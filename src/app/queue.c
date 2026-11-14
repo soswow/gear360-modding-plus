@@ -319,7 +319,8 @@ static int complete_output(const char *path, int jpeg, uint64_t *bytes)
     size = file_size(fd);
     valid = size < 0 ? -1 : 0;
     if (size >= 0 && !jpeg)
-        valid = (uint64_t)size == G360_QUEUE_FRAME_BYTES || (uint64_t)size == G360_QUEUE_OLD_FRAME_BYTES;
+        valid = (uint64_t)size == G360_QUEUE_FRAME_BYTES || (uint64_t)size == G360_QUEUE_PREV_FRAME_BYTES ||
+                (uint64_t)size == G360_QUEUE_OLD_FRAME_BYTES;
     else if (size >= 4 && (uint64_t)size <= G360_QUEUE_JPEG_MAX_BYTES) {
         int read_status = read_marker(fd, marker);
         if (read_status < 0) valid = -1;

@@ -119,6 +119,11 @@ static int setting(const char *key, size_t key_length, const char *value, size_t
         r->setting = G360_REMOTE_ISO;
         if (whole(value, length, &n) == 0 && (n == 100 || n == 200 || n == 400 || n == 800 || n == 1600)) r->value = n;
         else return -1;
+    } else if (same(key, key_length, "stop")) {
+        r->setting = G360_REMOTE_STOP;
+        if (same(value, length, "auto")) r->value = 1;
+        else if (same(value, length, "full")) r->value = 0;
+        else return -1;
     } else {
         return -1;
     }
@@ -171,10 +176,18 @@ int g360_remote_parse(const char *query, g360_remote_request *r)
         if (setting(set_key, set_key_length, set_value, set_value_length, r) != 0) { r->setting = 0; r->value = 0; return -1; }
         r->command = G360_REMOTE_SET;
     } else if (same(cmd, cmd_length, "capture")) {
-        if (set_key || every) return -1;
+        if (every) return -1;
         if (sweep) {
             if (same(sweep, sweep_length, "1")) r->sweep = 1;
             else if (!same(sweep, sweep_length, "0")) return -1;
+        }
+        /* nd=left|right|both: an ND sweep, so sweep=1 too. */
+        if (set_key) {
+            if (!same(set_key, set_key_length, "nd") || !r->sweep) { r->sweep = 0; return -1; }
+            if (same(set_value, set_value_length, "left")) r->nd = G360_REMOTE_ND_LEFT;
+            else if (same(set_value, set_value_length, "right")) r->nd = G360_REMOTE_ND_RIGHT;
+            else if (same(set_value, set_value_length, "both")) r->nd = G360_REMOTE_ND_LEFT | G360_REMOTE_ND_RIGHT;
+            else { r->sweep = 0; return -1; }
         }
         r->command = G360_REMOTE_CAPTURE;
     } else if (same(cmd, cmd_length, "auto")) {

@@ -4,6 +4,7 @@
 
 #include "g360cap.h"
 #include "g360_exif.h"
+#include "g360_dng_calibration.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,8 +35,20 @@ int g360_dng_header(const g360_frame *frame, const g360_image *maker_note,
                     unsigned char *header, size_t capacity, size_t *size);
 
 /* The full header: the samples start at this fixed offset, so every such DNG
- * has the same size (header + frame). */
+ * has the same size (header + frame + calibration trailer). */
 #define G360_DNG_FULL_HEADER_BYTES ((size_t)40960u)
+
+/* After the samples, a full DNG carries the per-camera opcode lists
+ * g360_dng_opcode_list1 (hot pixels) then g360_dng_opcode_list2
+ * (vignetting), G360_DNG_TRAILER_BYTES in all; the full header points to
+ * them. The whole file is G360_DNG_FULL_FILE_BYTES. */
+#define G360_DNG_FULL_FILE_BYTES (G360_DNG_FULL_HEADER_BYTES + (size_t)11648u * 2896u + (size_t)G360_DNG_TRAILER_BYTES)
+
+/* NoiseProfile at ISO 100 (one pair for all planes): variance of a value x
+ * normalised 0..1 after black is S*x + O. Gain 0.078 e-/DN and read noise
+ * 54 DN over a 61366 DN range (gear360-calibration/PHOTOMETRY.md 1a). */
+#define G360_DNG_NOISE_S (1.0 / (0.078 * 61366.0))
+#define G360_DNG_NOISE_O ((54.0 / 61366.0) * (54.0 / 61366.0))
 
 /*
  * The same DNG with the shot's metadata, matching make_dng.build_full()
@@ -46,7 +59,10 @@ int g360_dng_header(const g360_frame *frame, const g360_image *maker_note,
  * FocalLength 1.2 mm, FocalLengthIn35mmFilm 6, ExifVersion 0230 and the
  * camera's IQ records as a little-endian Samsung Type 2 MakerNote (tags
  * 0x0001 "0100", 0x0060 AE, 0x00a0 and 0x00a1 AWB, 0x00c0 colour; offsets
- * relative to the MakerNote). description (NULL or "" for none) is at most
+ * relative to the MakerNote). Also in IFD0: Software "gear360-modding
+ * g360cap", OpcodeList1/OpcodeList2 pointing past the samples (the caller
+ * writes g360_dng_opcode_list1 and _list2 there; see G360_DNG_TRAILER_BYTES)
+ * and, at ISO 100 only, NoiseProfile. description (NULL or "" for none) is at most
  * 63 printable ASCII characters; info->datetime is "" or
  * "YYYY:MM:DD HH:MM:SS". The header is zero-padded to
  * G360_DNG_FULL_HEADER_BYTES, which capacity must reach. Same inputs,

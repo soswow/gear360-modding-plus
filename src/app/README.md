@@ -253,19 +253,64 @@ mid-save ([validation](VALIDATION.md)).
 
 Start it with a Capture click in HDR mode, or in single mode by holding
 Capture: after a second the screen shows `HDR SWEEP`; release it. The app
-plays `hdr_start.wav`, then takes 7 stills (each shot starts `07_N_AF.wav`,
+plays `hdr_start.wav`, then takes up to 7 stills (each shot starts `07_N_AF.wav`,
 which plays during the shot instead of holding it up) at fixed manual
-exposures, all at ISO 100, covering the camera's whole usable shutter range:
-familiar speeds 2 EV apart down from the fastest, with the last step to the
-slowest (1/13 to 1/6) about 1.1 EV:
+exposures, all at ISO 100, covering the camera's whole usable shutter range,
+**fastest first** (since 14 November 2026; before, slowest first): familiar
+speeds 2 EV apart from the fastest, with the last step to the slowest (1/13
+to 1/6) about 1.1 EV:
 
 | Frame | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
 |---|---|---|---|---|---|---|---|
-| Speed | 1/6 | 1/13 | 1/50 | 1/200 | 1/800 | 1/3200 | 1/13000 |
-| TV | 41 | 59 | 90 | 122 | 154 | 186 | 218 |
-| Step from previous | | 1.1 EV | 1.94 EV | 2 EV | 2 EV | 2 EV | 2 EV |
-| Exif ExposureTime (real) | 1/6.0 | 1/12.9 | 1/49.4 | 1/197.6 | 1/792.7 | 1/3209 | 1/13,486 |
+| Speed | 1/13000 | 1/3200 | 1/800 | 1/200 | 1/50 | 1/13 | 1/6 |
+| TV | 218 | 186 | 154 | 122 | 90 | 59 | 41 |
+| Step from previous | | 2 EV | 2 EV | 2 EV | 2 EV | 1.94 EV | 1.1 EV |
+| Exif ExposureTime (real) | 1/13,486 | 1/3209 | 1/792.7 | 1/197.6 | 1/49.4 | 1/12.9 | 1/6.0 |
 | ISO | 100 | 100 | 100 | 100 | 100 | 100 | 100 |
+
+**The RAW scan and the early stop** (T31, `scan.h`). With RAW in the output,
+each frame is scanned in memory right after its capture, before it is
+saved: every other 2 × 2 colour quad across and down (all four colours, a
+quarter of the samples), counted in 32 × 32 blocks, only inside each lens's
+image circle (the board calibration's circle, radius 1420 of 1433.5, so the
+rim's fall-off never counts). A quad is *clipped* when any of its four
+samples is at white (65472) and *dark* when its greens are under 1024 DN
+above black (about 5.9 EV under white). Each block keeps its sampled quads,
+clipped and dark counts, mean level and brightest sample. On the camera the
+scan takes about 90 ms a frame (88–110 ms; twice 169 and 245 ms) of the
+frame's 2.7 s.
+
+With **early stop** on (the default; the remote page's *Early stop: Every
+frame* turns it off until the app restarts), the sweep stops after a frame
+once at most 2 in 1000 of the scanned quads are dark, and never before the
+second frame: the slower frames would only add light to quads that are
+already measured. The frame it stops on plays `hdr_end.wav`. Indoors on 14
+November nothing stopped early (4% still dark at 1/6 s); on the 14 November
+garden sweep `20261114-085220` the rule would have stopped after 1/50 s,
+skipping 1/13 and 1/6. JPEG-only sweeps have no RAW to scan and take every
+frame.
+
+**ND sweeps** (remote page only, HDR mode: *ND filter on: Off / Left /
+Right*, Left and Right both allowed, Off clears them; Capture then reads
+*Capture ND sweep (lens)* and sends `cmd=capture&sweep=1&nd=left|right|both`).
+Put the ND filter on, choose the lens it covers, then press Capture. The
+choice lives in the page only, is Off when the page opens, and stays until
+changed. The sweep runs like a plain one, fastest
+first, and aims at the *targets*: the blocks of that lens the last plain
+sweep's fastest frame clipped (with no scanned plain sweep since the app
+started, every block of that lens). A target is *measured* in a frame with
+none of its quads clipped and its brightest sample at least 1024 DN above
+black. The sweep stops once every target is measured, or the rest clip
+already (slower frames would clip them too); the page then says how many
+are still clipped. The screen shows `ND SWEEP k/7`; the DNG description
+says `HDR SWEEP YYYYMMDD-HHMMSS FRAME k ND RIGHT` (or `LEFT`, `BOTH`). The
+ND's strength is not known to the app: the merge has to measure it from the
+overlap.
+
+The page's scan file is `/tmp/g360-scan.bin` on the camera (RAM; nothing on
+the card), rewritten after every scanned frame and served by the CGI as
+`cmd=scan` (format in `scan.h`): the last plain sweep's frames, then the ND
+sweep aimed by it. The state's `scan.rev` changes when it does.
 
 The exposure is 2^(-TV/16) s. Trials L1, F1, ENDS1 and ENDS2 (8 November,
 `output/decompile/rea/pass-longexp-static-20261108/RESULT.md`) found the
@@ -281,7 +326,7 @@ November 2026 the sweep was 6 or 8 frames from 1/8 to 1/8192 s, the 8-shot
 and the old 6-shot sets starting at ISO 1600 and 400; old stored settings
 still load.
 
-The screen counts `SWEEP 1/7` … `SWEEP 7/7`. As soon as the last frame has been
+The screen counts `SWEEP 1/7` … `SWEEP 7/7` (fewer when the sweep stops early). As soon as the last frame has been
 captured (it is in memory; before it is written out), `hdr_end.wav` plays:
 **the camera can move from then on.** With `SAVE:
 FLASH` the app then shows `SAVING 1/7` … `SAVING 7/7` while it moves the
@@ -314,7 +359,8 @@ from the same exposure and carry the same Exif and pose XMP.
 Each DNG carries the frame's own Exif: the real exposure time (above),
 the ISO as the camera recorded it, exposure program, white-balance mode,
 f/2.2, 1.2 mm, the sweep's start time and the description
-`HDR SWEEP YYYYMMDD-HHMMSS FRAME k/n`, plus the camera's IQ MakerNote (see
+`HDR SWEEP YYYYMMDD-HHMMSS FRAME k` (with ` ND LEFT|RIGHT|BOTH` for an ND
+sweep; until 14 November `FRAME k/n`), plus the camera's IQ MakerNote (see
 below). Each sweep also gets `photos/YYYYMMDD-HHMMSS-sweep.csv`:
 
 ```
@@ -546,16 +592,21 @@ is a remote for the running app. It shows what the camera's screen shows
 settings, and it can do what the buttons do:
 
 - **Capture** is a Capture click: with `DELAY` set the camera counts down
-  and ticks, then shows `CAPTURING...` and plays the same sounds. In single
-  mode **HDR sweep** is the one-second hold; in HDR mode Capture is the
-  sweep. **Cancel countdown** stops a countdown, like a button press during
+  and ticks, then shows `CAPTURING...` and plays the same sounds. In HDR mode
+  Capture is the sweep; in single mode the page has no sweep button (the
+  camera's one-second hold still sweeps). **Cancel countdown** stops a countdown, like a button press during
   one.
 - **Settings** are five of the Menu's six. A choice is stored on the card
   at once and the camera shows it (status corner, ready count). Wi-Fi is
   shown but changed only on the camera: a change would cut the page off
   from it (the remote refuses `wifi=` as a bad request).
 - **Shutter and ISO** (dropdowns, this page only: nothing on the camera's
-  screen or Menu, nothing stored on the card) are for single photos.
+  screen or Menu, nothing stored on the card) are for single photos and
+  the live preview. The preview takes them when it starts and again when
+  they change while it runs; it goes back to automatic when it stops or
+  pauses for a capture. Measured 14 November 2026 (preview frame mean,
+  0–255): auto 73; ISO 100 at 1/30 82, 1/125 28, 1/500 19, 1/2000 17;
+  ISO 800 at 1/125 107. Slower than the movie frame time is not tested.
   Shutter is Auto or one of the 34 familiar third-stop speeds over the
   camera's whole range, 1/6, 1/8, 1/10 … 1/8000, 1/10000, 1/13000 s, named as
   the firmware names them and sent as the TV nearest each name (the photo's
@@ -568,10 +619,19 @@ settings, and it can do what the buttons do:
   and kept when another shutter is chosen. Manual exposure with the ISO is
   `g360_set_manual_exposure`, as the sweeps use it. The worker applies the
   choice just before each still and puts the automatic exposure back right
-  after it. A sweep (the **HDR sweep** button or HDR mode, also chosen on the
-  camera) puts both back to Auto; going back to single keeps Auto. They are
+  after it. A sweep (HDR mode, also chosen on the camera, or the one-second hold) puts both back to Auto; going back to single keeps Auto. They are
   refused in HDR mode (`single mode only`), and a restart of the app means
   Auto.
+- **Sweep scan** (HDR mode only; see "The HDR sweep"): *Early stop* Auto / Every frame,
+  the ND filter choice, and the last sweeps' scan. The frame strip
+  lists each scanned frame (speed, clipped and dark share; ■ where the sweep
+  stopped; ND frames marked yellow). *This frame* draws both lenses block by
+  block: grey from the block's mean level (log scale), red where anything
+  clipped, blue where most of the block is dark. *Whole sweep* draws each block's scene
+  brightness (its brightest unclipped plain frame, less that frame's
+  exposure), red where even the fastest frame clipped and no ND frame
+  measured it, orange where an ND frame did, blue where every frame was
+  dark. A finished plain sweep opens on its fastest frame.
 - **Auto photos** press Capture every N seconds (1 to 86400), inside the
   app, so they continue with the page closed, until **Stop**, a short
   Power press on the camera, a full card or the app's end. Between shots
@@ -765,6 +825,7 @@ python3 src/app/tests/test_settings.py
 python3 src/app/tests/test_status.py
 python3 src/app/tests/test_alerts.py
 python3 src/app/tests/test_remote.py
+python3 src/app/tests/test_scan.py
 sh src/lib/g360display/tests/run.sh
 python3 src/app/tests/test_launcher.py
 python3 src/app/tests/test_app.py

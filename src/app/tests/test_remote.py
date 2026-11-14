@@ -16,11 +16,11 @@ HERE = Path(__file__).resolve().parents[1]
 RE = HERE.parent / 'lib'
 
 BAD, STATE, SET, CAPTURE, CANCEL, AUTO, PREVIEW = range(7)
-MODE, OUTPUT, SAVE, WIFI, DELAY, SOUNDS, SHUTTER, ISO = range(8)  # WIFI: never from the remote
+MODE, OUTPUT, SAVE, WIFI, DELAY, SOUNDS, SHUTTER, ISO, STOP = range(9)  # WIFI: never from the remote
 
 
 class Request(C.Structure):
-    _fields_ = [('command', C.c_int), ('setting', C.c_int), ('value', C.c_uint32), ('sweep', C.c_int)]
+    _fields_ = [('command', C.c_int), ('setting', C.c_int), ('value', C.c_uint32), ('sweep', C.c_int), ('nd', C.c_uint32)]
 
 
 HANDLER = C.CFUNCTYPE(None, C.c_void_p, C.c_char_p, C.c_void_p, C.c_size_t)
@@ -46,6 +46,8 @@ def main():
             r = Request()
             status = lib.g360_remote_parse(query.encode(), C.byref(r))
             assert (status == 0) == (r.command != BAD), (query, status, r.command)
+            if r.nd:
+                return (r.command, r.setting, r.value, r.sweep, r.nd)
             return (r.command, r.setting, r.value, r.sweep)
 
         # Commands and settings, as the page sends them.
@@ -55,6 +57,13 @@ def main():
         assert parse('cmd=capture') == (CAPTURE, 0, 0, 0)
         assert parse('cmd=capture&sweep=1') == (CAPTURE, 0, 0, 1)
         assert parse('cmd=capture&sweep=0') == (CAPTURE, 0, 0, 0)
+        # ND sweeps: which lens the filter covers.
+        assert parse('cmd=capture&sweep=1&nd=left') == (CAPTURE, 0, 0, 1, 1)
+        assert parse('cmd=capture&nd=right&sweep=1') == (CAPTURE, 0, 0, 1, 2)
+        assert parse('cmd=capture&sweep=1&nd=both&_=5') == (CAPTURE, 0, 0, 1, 3)
+        # Early stop of sweeps (in memory).
+        assert parse('cmd=set&stop=auto') == (SET, STOP, 1, 0)
+        assert parse('cmd=set&stop=full') == (SET, STOP, 0, 0)
         assert parse('cmd=auto&every=10') == (AUTO, 0, 10, 0)
         assert parse('every=86400&cmd=auto') == (AUTO, 0, 86400, 0)
         assert parse('cmd=auto&every=0') == (AUTO, 0, 0, 0)
@@ -101,7 +110,10 @@ def main():
                     'cmd=set&shutter=8', 'cmd=set&shutter=8192', 'cmd=set&shutter=40', 'cmd=set&shutter=219', 'cmd=set&shutter=130', 'cmd=set&shutter=112', 'cmd=set&shutter=041',
                     'cmd=set&shutter=-8', 'cmd=set&shutter=', 'cmd=set&iso=125', 'cmd=set&iso=3200', 'cmd=set&iso=0', 'cmd=set&iso=auto',
                     'cmd=set&iso=100&shutter=auto', 'cmd=set&iso=400&iso=100',
-                    'cmd=preview&off=1', 'cmd=preview&on=1&every=3', 'cmd=preview&on=01'):
+                    'cmd=preview&off=1', 'cmd=preview&on=1&every=3', 'cmd=preview&on=01',
+                    'cmd=capture&nd=left', 'cmd=capture&sweep=0&nd=left', 'cmd=capture&sweep=1&nd=top',
+                    'cmd=capture&sweep=1&nd=', 'cmd=capture&sweep=1&mode=hdr', 'cmd=capture&sweep=1&nd=left&nd=right',
+                    'cmd=set&stop=on', 'cmd=set&stop=', 'cmd=state&nd=left'):
             assert parse(bad) == (BAD, 0, 0, 0), bad
 
         # Auto photos with the self-timer overlapping the interval. Times in ms.

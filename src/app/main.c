@@ -2,8 +2,10 @@
  * responsive and discards busy presses. All capture API calls stay on that
  * worker. Launch only through start.sh, after verified stock-app shutdown.
  * In single mode a Capture click takes one still and a one-second hold an
- * HDR sweep; in HDR mode a click takes the sweep. A sweep is 7
- * exposures at ISO 100, saved to the built-in flash first (then moved to the card) or
+ * HDR sweep; in HDR mode a click takes the sweep. A sweep is up to 7
+ * exposures at ISO 100, fastest first; each RAW frame is scanned in memory
+ * and the sweep stops early when the slower frames would add nothing
+ * (scan.h). Frames are saved to the built-in flash first (then moved to the card) or
  * straight to the card. A Menu press opens the settings (mode, output,
  * save, ...). OUTPUT selects RAW (DNG), JPEG, or both for stills and every
  * sweep frame. JPEG-only sweeps go straight to the card. After each
@@ -28,6 +30,7 @@
 #include "wifi.h"
 #include "remote.h"
 #include "preview.h"
+#include "scan.h"
 #include "g360cap.h"
 #include "g360_output.h"
 #include "g360_dng.h"
@@ -36,6 +39,10 @@
 #include "power.h"
 #include "motion.h"
 #include "g360_pose.h"
+#ifdef G360_QUEUE_FRAME_BYTES_DEFAULT
+/* A queued frame file is one full DNG: header, samples and calibration trailer. */
+_Static_assert(G360_QUEUE_FRAME_BYTES == G360_DNG_FULL_FILE_BYTES, "queue frame size is not the DNG size");
+#endif
 
 #define SPACE_RESERVE UINT64_C(134217728)
 #define FRAME_BYTES UINT64_C(33732608)
@@ -43,8 +50,10 @@
    measured typical 6 MiB plus Exif and allocation slack. */
 #define JPEG_BUDGET ((uint64_t)G360_MAX_IMAGE_BYTES + G360_EXIF_APP1_MAX_SIZE)
 #define JPEG_TYPICAL (UINT64_C(6291456) + G360_EXIF_APP1_MAX_SIZE + 4096u)
-/* The sweep: the camera's full shutter range at ISO 100, 7 frames, 1/6 s to
-   1/13000 s, 2 EV apart from the fastest (remote.h, G360_SWEEP_TVS). */
+/* The sweep: the camera's full shutter range at ISO 100, up to 7 frames,
+   fastest first, 1/13000 s to 1/6 s, 2 EV apart from the fastest (remote.h,
+   G360_SWEEP_TVS). Each RAW frame is scanned in memory (scan.h); the sweep
+   stops early when the scan says the slower frames add nothing. */
 #define SWEEP_FRAMES G360_SWEEP_COUNT
 #define SWEEP_ISO 100u
 static const int32_t sweep_tv[SWEEP_FRAMES] = G360_SWEEP_TVS;
@@ -94,6 +103,11 @@ static shared_u32 setting_mode = G360_MODE_SINGLE, setting_save = G360_SAVE_FLAS
    automatic, which is what an automatic shutter always has; else 100 to
    1600). A sweep or the HDR mode puts both back to automatic. */
 static shared_u32 exposure_shutter, exposure_iso;
+/* Sweeps: whether they stop early (remote's stop=auto|full, in memory, auto
+   after a restart); the next or current sweep's ND lenses (G360_SCAN_ND_*
+   bits, 0 a plain sweep, set by its press); the scan file's revision (the
+   page fetches it when this changes) and frame count. */
+static shared_u32 sweep_stop = 1, sweep_nd, scan_rev, scan_frames;
 /* The ISO a set shutter starts with: the one the September scripts verified. */
 #define MANUAL_SHUTTER_ISO 100u
 /* The card budget left, in KiB (rounded down), set by the worker. */
@@ -325,12 +339,12 @@ static const char *output_wire(uint32_t output)
 }
 static uint64_t single_need(uint32_t output)
 {
-    return (output_raw(output) ? FRAME_BYTES + G360_DNG_FULL_HEADER_BYTES : 0u) +
+    return (output_raw(output) ? FRAME_BYTES + G360_DNG_FULL_HEADER_BYTES + G360_DNG_TRAILER_BYTES : 0u) +
            (output_jpeg(output) ? JPEG_BUDGET : 0u);
 }
 static uint64_t single_typical(uint32_t output)
 {
-    return (output_raw(output) ? FRAME_BYTES + G360_DNG_FULL_HEADER_BYTES : 0u) +
+    return (output_raw(output) ? FRAME_BYTES + G360_DNG_FULL_HEADER_BYTES + G360_DNG_TRAILER_BYTES : 0u) +
            (output_jpeg(output) ? JPEG_TYPICAL : 0u);
 }
 
@@ -423,7 +437,7 @@ static int single_shot(worker *w)
     status = raw ? g360_save_dng_full_xmp(&shot.frame, &still->maker_note, &exif, 0, pose_xmp, dng_path) : G360_OK;
     if (status == G360_OK && jpg) status = g360_save_jpeg_exif_xmp(jpeg, &still->maker_note, &exif, pose_xmp, jpg_path);
     written = jpg ? jpeg->size + G360_EXIF_APP1_MAX_SIZE + 4096u : 0u;
-    if (raw) written += shot.frame.image.size + G360_DNG_FULL_HEADER_BYTES;
+    if (raw) written += shot.frame.image.size + G360_DNG_FULL_HEADER_BYTES + G360_DNG_TRAILER_BYTES;
     g360_shot_free(&shot);
     if (exposure && restore_exposure() != 0) return -1;
     if (status != G360_OK) { fail("save", g360_status_text(status)); return -1; }
@@ -442,11 +456,37 @@ static int single_shot(worker *w)
 /* On the worker, at READY: starts the camera's preview when the page wants
    it, stops it when not. A start that fails turns the request off. */
 static char preview_error[48];
+/* The remote's shutter and ISO as last sent to the camera for the preview
+   (0, 0: automatic, the camera's state at READY otherwise). */
+static uint32_t preview_shutter, preview_iso;
+/* The preview shows the remote's exposure: sent before the preview starts
+   and again whenever the remote changes it while the preview runs. */
+static void preview_exposure(void)
+{
+    uint32_t shutter = get(&exposure_shutter), iso = shutter ? get(&exposure_iso) : 0u;
+    int status;
+    if (shutter == preview_shutter && iso == preview_iso) return;
+    status = shutter ? g360_set_manual_exposure((int32_t)shutter, iso) : g360_set_auto_exposure();
+    printf("APP PREVIEW exposure %s%s ISO %lu: %s\n", shutter ? exposure_name(shutter) : "auto", shutter ? " s" : "",
+           (unsigned long)iso, g360_status_text(status)); (void)fflush(stdout);
+    if (status != G360_OK) { (void)g360_set_auto_exposure(); shutter = 0; iso = 0; }
+    preview_shutter = shutter; preview_iso = iso;
+}
+/* Back to the automatic exposure the stills and sweeps start from. */
+static void preview_exposure_off(void)
+{
+    if (preview_shutter == 0) return;
+    int status = g360_set_auto_exposure();
+    printf("APP PREVIEW exposure back to auto: %s\n", g360_status_text(status)); (void)fflush(stdout);
+    preview_shutter = 0; preview_iso = 0;
+}
 static void preview_sync(int allowed)
 {
     int status;
+    if (allowed && g360_app_preview_wanted() && g360_preview_running()) preview_exposure();
     if (allowed && g360_app_preview_wanted() && !g360_preview_running()) {
         g360_preview_options options;
+        preview_exposure();
         memset(&options, 0, sizeof options);
         options.width = G360_PREVIEW_WIDTH; options.height = G360_PREVIEW_HEIGHT;
         options.fps_x10 = G360_PREVIEW_FPS_X10; options.with_set = 1;
@@ -463,6 +503,7 @@ static void preview_sync(int allowed)
         status = g360_preview_stop(3000u);
         printf("APP PREVIEW camera stop: %s\n", g360_status_text(status)); (void)fflush(stdout);
     }
+    if (!g360_preview_running()) preview_exposure_off();
     g360_app_preview_running(g360_preview_running(), 0);
 }
 
@@ -474,7 +515,63 @@ static void preview_pause(void)
         int status = g360_preview_stop(3000u);
         printf("APP PREVIEW paused for the capture: %s\n", g360_status_text(status)); (void)fflush(stdout);
     }
+    preview_exposure_off();
     g360_app_preview_running(0, g360_app_preview_wanted());
+}
+
+/* ---- The sweep's RAW scan (scan.h) -------------------------------------- */
+
+/* The last plain sweep's frames, then the ND sweep aimed by it (if any):
+   at most 2 x SWEEP_FRAMES. Worker thread only. */
+static g360_scan_frame scans[2u * SWEEP_FRAMES];
+static unsigned scan_plain, scan_nd; /* frames of each */
+static uint8_t scan_target[G360_SCAN_LENSES * G360_SCAN_COLS * G360_SCAN_ROWS];
+static uint8_t scan_measured[G360_SCAN_LENSES * G360_SCAN_COLS * G360_SCAN_ROWS];
+
+#if !defined(__APPLE__)
+int rename(const char *from, const char *to);
+#endif
+
+static uint64_t now_us(void)
+{
+    capture_timespec t;
+    if (clock_gettime(CAPTURE_CLOCK_MONOTONIC, &t) != 0) return 0;
+    return (uint64_t)t.tv_sec * 1000000u + (uint64_t)(t.tv_nsec / 1000L);
+}
+
+static int write_all(int file, const void *data, size_t size)
+{
+    const uint8_t *p = data;
+    while (size > 0) {
+        ptrdiff_t n = write(file, p, size);
+        if (n <= 0) return -1;
+        p += n; size -= (size_t)n;
+    }
+    return 0;
+}
+
+/* Writes every kept frame to G360_SCAN_FILE (a RAM file system, so the
+   rename over the old file is safe there; never on the card) and bumps the
+   revision the state shows. */
+static void scan_publish(void)
+{
+    static const char temporary[] = G360_SCAN_FILE ".new";
+    uint8_t head[G360_SCAN_FRAME_HEADER > G360_SCAN_FILE_HEADER ? G360_SCAN_FRAME_HEADER : G360_SCAN_FILE_HEADER];
+    unsigned k, total = scan_plain + scan_nd;
+    int file = open(temporary, CAPTURE_O_WRONLY | CAPTURE_O_CREAT | CAPTURE_O_TRUNC, 0644), bad;
+    if (file < 0) { printf("APP SCAN cannot write %s\n", temporary); (void)fflush(stdout); return; }
+    bad = write_all(file, head, g360_scan_file_header(head, total));
+    for (k = 0; k < total && !bad; ++k) {
+        bad = write_all(file, head, g360_scan_frame_header(head, &scans[k], scan_nd > 0 && k < scan_plain));
+        if (!bad) bad = write_all(file, scans[k].cells, sizeof scans[k].cells);
+    }
+    if (close(file) != 0) bad = 1;
+    if (bad || rename(temporary, G360_SCAN_FILE) != 0) {
+        printf("APP SCAN cannot write %s\n", G360_SCAN_FILE); (void)fflush(stdout);
+        (void)unlink(temporary); return;
+    }
+    set(&scan_frames, total);
+    set(&scan_rev, get(&scan_rev) + 1u);
 }
 
 /* ---- The sweep ---------------------------------------------------------- */
@@ -508,15 +605,25 @@ static uint64_t queue_need(unsigned frames, uint32_t output)
     return (uint64_t)frames * (G360_QUEUE_FRAME_BYTES + (output_jpeg(output) ? JPEG_BUDGET + 4096u : 0u)) + UINT64_C(67108864);
 }
 
+/* The ND lenses as the log and the DNG description name them. */
+static const char *nd_text(uint32_t nd)
+{
+    return nd == (G360_SCAN_ND_LEFT | G360_SCAN_ND_RIGHT) ? "BOTH" : nd == G360_SCAN_ND_LEFT ? "LEFT"
+           : nd == G360_SCAN_ND_RIGHT ? "RIGHT" : "NONE";
+}
+
 /* Every selected output is saved before the next exposure. RAW sweeps
    (including RAW+JPEG pairs) use the flash queue when selected and available;
-   JPEG-only sweeps go straight to the card. */
+   JPEG-only sweeps go straight to the card. Fastest frame first; with RAW
+   each frame is scanned before it is saved, and the sweep stops early when
+   the scan allows (scan.h) and sweep_stop is on. An ND sweep (sweep_nd)
+   aims at the blocks the last plain sweep's fastest frame clipped. */
 static int sweep(worker *w)
 {
     g360_queue_info info[SWEEP_FRAMES];
-    char stamp[16], path[512], jpg_path[512], stem[64], description[64], date[20];
+    char stamp[16], path[512], jpg_path[512], stem[64], description[80], date[20];
     unsigned k, done = 0, frames = SWEEP_FRAMES;
-    uint32_t output = get(&setting_output);
+    uint32_t output = get(&setting_output), nd = get(&sweep_nd), stop_early = get(&sweep_stop);
     int status, failed = 0, restore, raw = output_raw(output), jpg = output_jpeg(output);
     int direct = !raw || get(&setting_save) == G360_SAVE_CARD;
     uint64_t started = 0, still_until = 0, moving;
@@ -531,8 +638,20 @@ static int sweep(worker *w)
     }
     status = g360_storage_timestamp(stamp);
     if (status != G360_STORAGE_OK) { fail("sweep clock", g360_storage_status_text(status)); return -1; }
-    printf("APP SWEEP %s: %u frames, %s, %s\n", stamp, frames, output_text(output),
-           direct ? "straight to the card" : "flash first");
+    printf("APP SWEEP %s: up to %u frames fastest first, %s, %s, ND %s, %s\n", stamp, frames, output_text(output),
+           direct ? "straight to the card" : "flash first", nd_text(nd), stop_early ? "early stop" : "every frame");
+    if (nd) {
+        /* The plain sweep's fastest frame aims the ND sweep; without one,
+           every block of the covered lenses is a target. */
+        const g360_scan_frame *reference = scan_plain > 0 && scans[0].index == 1 && scans[0].nd == 0 ? &scans[0] : 0;
+        uint32_t targets = g360_scan_targets(reference, nd, scan_target);
+        memset(scan_measured, 0, sizeof scan_measured);
+        scan_nd = 0;
+        printf("APP SWEEP ND targets: %lu blocks %s\n", (unsigned long)targets,
+               reference ? "clipped in the last plain sweep's fastest frame" : "(no plain sweep scanned: all)");
+    } else {
+        scan_plain = 0; scan_nd = 0;
+    }
     (void)fflush(stdout);
     shot_flash(); /* the first frame's flash, on the press */
     while (get(&displayed_state) != SWEEPING && !get(&stopping)) pause_ms(1);
@@ -550,7 +669,7 @@ static int sweep(worker *w)
         const char *pose_xmp;
         const g360_image *jpeg;
         uint64_t line_bytes = 0, frame_bytes;
-        int queued = G360_QUEUE_OK, reserved = G360_STORAGE_OK;
+        int queued = G360_QUEUE_OK, reserved = G360_STORAGE_OK, last;
         if (k > 0) shot_flash();
         set(&sweep_frame, k + 1u);
         status = g360_set_manual_exposure(sweep_tv[k], SWEEP_ISO);
@@ -569,20 +688,51 @@ static int sweep(worker *w)
             fail("sweep capture", status == G360_OK ? "expected one image set" : g360_status_text(status));
             g360_shot_free(&shot); failed = 1; break;
         }
-        /* The last frame is in memory: the camera can move now, before the
-           frame is written out. */
-        if (k + 1u == frames) {
-            shot_sound_end();
-            if (app_sound_play(SOUND("hdr_end.wav")) != 0) printf("APP sweep end sound failed\n");
-        }
         jpeg = &shot.sets[0].images[G360_IMAGE_MAIN];
         g360_exif_from_still(&shot.sets[0], jpg ? jpeg : 0, &exif);
         /* The real exposure time, not the firmware's third-stop name. */
         g360_exif_exposure_from_tv(sweep_tv[k], &exif.exposure_numerator, &exif.exposure_denominator);
+        last = k + 1u == frames;
+        /* The RAW scan, while the frame is in memory: whether slower frames
+           would add anything. */
+        if (raw && scan_plain + scan_nd < 2u * SWEEP_FRAMES) {
+            g360_scan_frame *f = &scans[scan_plain + scan_nd];
+            const g360_image *image = &shot.frame.image;
+            uint64_t scan_started = now_us();
+            if (g360_scan_raw(image->data, image->size, image->width, image->height, image->stride_x, f) == 0) {
+                int enough;
+                f->scan_us = (uint32_t)(now_us() - scan_started);
+                memcpy(f->stamp, stamp, sizeof f->stamp);
+                f->index = k + 1u; f->nd = nd; f->tv = sweep_tv[k];
+                f->exposure_numerator = exif.exposure_numerator; f->exposure_denominator = exif.exposure_denominator;
+                f->still_clipped = 0;
+                enough = nd ? g360_scan_nd_done(f, k + 1u, scan_target, scan_measured) : g360_scan_plain_done(f, k + 1u);
+                if (enough && stop_early) last = 1;
+                f->last = (uint32_t)last;
+                if (nd) ++scan_nd; else ++scan_plain;
+                printf("APP SCAN frame %u TV %ld: %lu us; left %lu quads %lu clipped %lu dark; right %lu quads %lu clipped "
+                       "%lu dark%s%s%s\n", k + 1u, (long)sweep_tv[k], (unsigned long)f->scan_us,
+                       (unsigned long)f->quads[0], (unsigned long)f->clipped[0], (unsigned long)f->dark[0],
+                       (unsigned long)f->quads[1], (unsigned long)f->clipped[1], (unsigned long)f->dark[1],
+                       nd && f->still_clipped ? "; targets still clipped: " : "",
+                       nd && f->still_clipped ? "yes" : "", enough ? (stop_early ? "; enough, stopping" : "; enough") : "");
+                (void)fflush(stdout);
+                scan_publish();
+            } else {
+                printf("APP SCAN frame %u: not a full RAW frame, not scanned\n", k + 1u); (void)fflush(stdout);
+            }
+        }
+        /* The last frame is in memory: the camera can move now, before the
+           frame is written out. */
+        if (last) {
+            shot_sound_end();
+            if (app_sound_play(SOUND("hdr_end.wav")) != 0) printf("APP sweep end sound failed\n");
+        }
         /* All frames carry the sweep's start time and say where they belong. */
         (void)snprintf(exif.datetime, sizeof exif.datetime, "%.4s:%.2s:%.2s %.2s:%.2s:%.2s",
                        stamp, stamp + 4, stamp + 6, stamp + 9, stamp + 11, stamp + 13);
-        (void)snprintf(description, sizeof description, "HDR SWEEP %s FRAME %u/%u", stamp, k + 1u, frames);
+        if (nd) (void)snprintf(description, sizeof description, "HDR SWEEP %s FRAME %u ND %s", stamp, k + 1u, nd_text(nd));
+        else (void)snprintf(description, sizeof description, "HDR SWEEP %s FRAME %u", stamp, k + 1u);
         row->frame = k + 1u; row->tv = sweep_tv[k]; row->iso = SWEEP_ISO;
         row->exposure_numerator = exif.exposure_numerator;
         row->exposure_denominator = exif.exposure_denominator;
@@ -635,6 +785,7 @@ static int sweep(worker *w)
                (unsigned long)exif.exposure_denominator, (unsigned long)exif.iso,
                (unsigned long)(now_ms() - started));
         (void)fflush(stdout);
+        if (last) break;
     }
     shot_sound_end();
     restore = g360_set_auto_exposure();
@@ -1060,8 +1211,9 @@ static void label(uint32_t current, int hint, int countdown, int countdown_sweep
         (void)snprintf(text, 48, "%s\n- %s -", titles[ui->item], value_text(ui->item, ui->pending));
     } else if (current == SWEEPING) {
         uint32_t frame = get(&sweep_frame);
-        if (frame == 0) (void)snprintf(text, 48, "HDR SWEEP");
-        else (void)snprintf(text, 48, "SWEEP %lu/%lu", (unsigned long)frame, (unsigned long)get(&sweep_total));
+        const char *kind = get(&sweep_nd) ? "ND SWEEP" : "SWEEP";
+        if (frame == 0) (void)snprintf(text, 48, "%s", get(&sweep_nd) ? "ND SWEEP" : "HDR SWEEP");
+        else (void)snprintf(text, 48, "%s %lu/%lu", kind, (unsigned long)frame, (unsigned long)get(&sweep_total));
     } else if (current == SAVING) {
         uint32_t total = get(&saving_total), done = get(&saving_done);
         if (total == 0) (void)snprintf(text, 48, "SAVING");
@@ -1116,9 +1268,10 @@ static void countdown_tick(int left)
 
 /* A Capture click (the release): the self-timer's countdown, or the
    capture now. FROM_AUTO: auto photos pressed it. */
-static void press_capture(int sweep_now, int from_auto)
+static void press_capture(int sweep_now, int from_auto, uint32_t nd)
 {
     uint32_t delay = get(&setting_delay);
+    set(&sweep_nd, sweep_now ? nd : 0u);
     set(&wear_warning, 0); /* seen: back to READY */
     if (delay) {
         countdown_until = now_ms() + (uint64_t)delay * 1000u; countdown_sweep = sweep_now; countdown_last = 0;
@@ -1187,7 +1340,7 @@ static void auto_tick(const ui_settings *ui, int held)
     printf("APP AUTO press %lu (every %lu s)\n", (unsigned long)auto_taken, (unsigned long)auto_every);
     (void)fflush(stdout);
     auto_target = g360_remote_auto_next(now, lead, (uint64_t)auto_every * 1000u);
-    press_capture(sweep_now, 1);
+    press_capture(sweep_now, 1, 0u);
 }
 
 /* ---- The remote --------------------------------------------------------- */
@@ -1233,7 +1386,8 @@ static void remote_state(char *out, size_t size, const char *error, const ui_set
         "\"exposure\":{\"shutter\":%lu,\"iso\":%lu},"
         "\"wifi_home\":%s,\"left\":%lu,\"left_unit\":\"%s\",\"battery\":%d,\"charging\":%s,\"network\":\"%s\","
         "\"auto\":{\"every\":%lu,\"taken\":%lu,\"next\":%lu},\"saved\":%lu,\"wear\":%lu,"
-        "\"preview\":{\"state\":\"%s\",\"port\":%d,\"viewers\":%lu,\"frames\":%lu,\"error\":\"%s\"}}",
+        "\"preview\":{\"state\":\"%s\",\"port\":%d,\"viewers\":%lu,\"frames\":%lu,\"error\":\"%s\"},"
+        "\"sweep_stop\":\"%s\",\"sweep_nd\":%lu,\"scan\":{\"rev\":%lu,\"frames\":%lu}}",
         error[0] ? "false" : "true", error, names[current <= SAVING ? current : APP_ERROR],
         ui->screen != UI_NORMAL ? "true" : "false", screen,
         countdown_until ? countdown : 0, countdown_until && countdown_sweep ? "true" : "false",
@@ -1250,7 +1404,9 @@ static void remote_state(char *out, size_t size, const char *error, const ui_set
         (unsigned long)auto_every, (unsigned long)auto_taken, (unsigned long)next,
         (unsigned long)get(&saved_count), (unsigned long)get(&wear_warning),
         previews[g360_app_preview_state() & 3], G360_PREVIEW_PORT, (unsigned long)g360_app_preview_viewers(),
-        (unsigned long)g360_app_preview_encoded(), preview_error);
+        (unsigned long)g360_app_preview_encoded(), preview_error,
+        get(&sweep_stop) ? "auto" : "full", (unsigned long)get(&sweep_nd), (unsigned long)get(&scan_rev),
+        (unsigned long)get(&scan_frames));
 }
 
 /* The UI thread answers a waiting request, with the same code the buttons
@@ -1268,7 +1424,10 @@ static void remote_answer(ui_settings *ui, const g360display_status *s, int held
         else if (countdown_until) error = "countdown running";
         else if (get(&state) != READY || held) error = "busy";
         else if (r.command == G360_REMOTE_SET) {
-            if (r.setting == G360_REMOTE_SHUTTER || r.setting == G360_REMOTE_ISO) {
+            if (r.setting == G360_REMOTE_STOP) {
+                printf("APP REMOTE %s\n", remote_request); (void)fflush(stdout);
+                set(&sweep_stop, r.value);
+            } else if (r.setting == G360_REMOTE_SHUTTER || r.setting == G360_REMOTE_ISO) {
                 if (r.value && get(&setting_mode) == G360_MODE_HDR) error = "single mode only";
                 else if (r.setting == G360_REMOTE_ISO && !get(&exposure_shutter)) error = "set a shutter first";
                 else {
@@ -1291,7 +1450,7 @@ static void remote_answer(ui_settings *ui, const g360display_status *s, int held
                 error = "card full";
             } else {
                 printf("APP REMOTE %s\n", remote_request); (void)fflush(stdout);
-                press_capture(sweep_now, 0);
+                press_capture(sweep_now, 0, r.nd);
             }
         }
     } else if (r.command == G360_REMOTE_CANCEL) {
@@ -1596,7 +1755,7 @@ int main(int argc, char **argv)
             if (eligible_press) {
                 /* HDR mode: every press is a sweep; single mode: a hold is. */
                 int sweep_now = get(&setting_mode) == G360_MODE_HDR || now_ms() - pressed_at >= SWEEP_HOLD_MS;
-                press_capture(sweep_now, 0);
+                press_capture(sweep_now, 0, 0u);
             }
             eligible_press = 0; hint = 0;
         }

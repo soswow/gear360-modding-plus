@@ -292,12 +292,21 @@ int g360_preview_stop(uint32_t ms) {
 }
 int g360_preview_running(void) { return preview_on; }
 static void allocate(g360_image *i) { i->data=malloc(16); assert(i->data); memset(i->data,0x5a,16); i->size=16; i->flags=G360_IMAGE_COPIED; }
+/* APP_TEST_RAW: a full-size RAW frame (scan.h's layout), evenly lit 4000 DN
+   above black with a clipped 64 x 64 patch in the right lens. */
+static void allocate_raw(g360_image *i) {
+    unsigned y,x; uint16_t *p;
+    i->size=11648u*2896u; i->data=malloc(i->size); assert(i->data); p=(uint16_t*)(void*)i->data;
+    for(y=0;y<2896u;++y) for(x=0;x<5824u;++x) p[y*5824u+x]=(y>=800 && y<864 && x>=4212 && x<4276)?65472u:8106u;
+    i->data[0]=0x5a; /* outside the circle; the DNG stub checks it */
+    i->width=5824; i->height=2896; i->stride_x=11648; i->stride_y=16; i->flags=G360_IMAGE_COPIED;
+}
 int g360_capture_shot(const g360_capture_options *o,g360_shot *shot) {
     owner(); assert(!preview_on); assert(o->max_sets==1 && (o->frame==1 || (o->frame==0 && !o->skip_jpeg_copy)));
     trace(!o->frame?"CAPTURE JPEG":o->skip_jpeg_copy?"CAPTURE RAW":"CAPTURE");
     pthread_mutex_lock(&lock); in_capture=1; pthread_mutex_unlock(&lock);
     memset(shot,0,sizeof *shot); shot->set_count=1;
-    if(o->frame) allocate(&shot->frame.image);
+    if(o->frame) { if(getenv("APP_TEST_RAW")) allocate_raw(&shot->frame.image); else allocate(&shot->frame.image); }
     allocate(&shot->sets[0].maker_note); if(!o->skip_jpeg_copy) allocate(&shot->sets[0].images[0]);
     shot->sets[0].images[0].width=5792; shot->sets[0].images[0].height=2896;
     delay(30); ++shots; return is("capture-fail") || (is("sweep-fail") && shots==3)?G360_E_IMAGE:0;
@@ -419,7 +428,7 @@ def main():
                         *["-I"+str(p) for p in includes],str(ROOT/"src/app/main.c"),
                         str(ROOT/"src/app/storage.c"),str(ROOT/"src/app/queue.c"),str(ROOT/"src/app/wear.c"),
                         str(ROOT/"src/app/settings.c"),str(ROOT/"src/app/status.c"),str(ROOT/"src/app/alerts.c"),str(ROOT/"src/app/wifi.c"),str(ROOT/"src/app/remote.c"),
-                        str(ROOT/"src/app/preview.c"),*preview_flags(work),
+                        str(ROOT/"src/app/preview.c"),str(ROOT/"src/app/scan.c"),f'-DG360_SCAN_FILE="{work/"scan.bin"}"',*preview_flags(work),
                         str(ROOT/"src/app/power_relaunch.c"),str(ROOT/"src/app/motion.c"),str(ROOT/"src/lib/g360cap/g360_pose.c"),str(stub),"-lm","-o",str(exe)],check=True)
         for scenario in ("once","two","capture-fail","save-fail","sound-fail","display-fail","power","power-busy"):
             root=work/scenario; trace=work/(scenario+".txt")
@@ -512,8 +521,11 @@ def main():
 # What READY's place shows: the stills left in the card budget, as main.c
 # counts them (this build's sweep frames are 5 bytes).
 SPACE_RESERVE=134217728
-SHOT_BUDGET=33732608+40960+96*1024*1024+40000
-SHOT_TYPICAL=33732608+40960+6*1024*1024+40000+4096
+# A full DNG: header, samples and the calibration trailer (g360_dng_calibration.h).
+DNG_TRAILER=int(re.search(r"G360_DNG_TRAILER_BYTES (\d+)u",(Path(__file__).resolve().parents[2]/"lib/g360cap/g360_dng_calibration.h").read_text()).group(1))
+DNG_FILE=33732608+40960+DNG_TRAILER
+SHOT_BUDGET=DNG_FILE+96*1024*1024+40000
+SHOT_TYPICAL=DNG_FILE+6*1024*1024+40000+4096
 FRAME_CARD_BUDGET=5+32768
 # RAW OFF: a JPEG alone.
 JPEG_BUDGET=96*1024*1024+40000
@@ -528,14 +540,15 @@ def left(free,sweep_frames=0,raw=True,output=None):
         need=(sweep_frames*FRAME_CARD_BUDGET if has_raw else 0)+(JPEG_BUDGET+(sweep_frames-1)*JPEG_TYPICAL if has_jpeg else 0)
         each=(sweep_frames*FRAME_CARD_BUDGET if has_raw else 0)+(sweep_frames*JPEG_TYPICAL if has_jpeg else 0)
     else:
-        need=(33732608+40960 if has_raw else 0)+(JPEG_BUDGET if has_jpeg else 0)
-        each=(33732608+40960 if has_raw else 0)+(JPEG_TYPICAL if has_jpeg else 0)
+        need=(DNG_FILE if has_raw else 0)+(JPEG_BUDGET if has_jpeg else 0)
+        each=(DNG_FILE if has_raw else 0)+(JPEG_TYPICAL if has_jpeg else 0)
     n=0 if remaining<SPACE_RESERVE+need else 1+(remaining-SPACE_RESERVE-need)//each
     return "CARD FULL" if n==0 else str(min(n,99999))
 
 
 LEFT_1GB=left(1000000000)
-SWEEP=[(41,100),(59,100),(90,100),(122,100),(154,100),(186,100),(218,100)]
+# Fastest first (since 14 November 2026).
+SWEEP=[(218,100),(186,100),(154,100),(122,100),(90,100),(59,100),(41,100)]
 SWEEP6=SWEEP
 
 
@@ -650,7 +663,7 @@ def settings_scenarios(work,exe):
     r,lines=run_script(work,exe,"settings-reload",root,qdir,script)
     assert "APP SETTINGS loaded: mode HDR, output RAW+JPEG, save flash first" in r.stdout,r.stdout
     assert "APP SETTINGS saved: mode HDR, output RAW+JPEG, save straight to the card" in r.stdout,r.stdout
-    assert ": 7 frames, RAW+JPEG, straight to the card" in r.stdout and lines.count("CAPTURE")==7,r.stdout
+    assert ": up to 7 frames fastest first, RAW+JPEG, straight to the card, ND NONE, early stop" in r.stdout and lines.count("CAPTURE")==7,r.stdout
     saves=[l for l in lines if l.startswith("SAVE DNG")]
     assert len(saves)==7 and all(str(root/"photos") in l for l in saves),saves
     assert not any(l.startswith("DISPLAY SAVING") for l in lines) and queued(qdir)==[],lines
@@ -734,7 +747,7 @@ def settings_scenarios(work,exe):
     root2=work/"override"
     r,lines=run_script(work,exe,"override",root2,None,"",
                        ("--sweep-once","--sweep-save","card"))
-    assert lines.count("CAPTURE")==7 and ": 7 frames, RAW+JPEG, straight to the card" in r.stdout,r.stdout
+    assert lines.count("CAPTURE")==7 and ": up to 7 frames fastest first, RAW+JPEG, straight to the card, ND NONE, early stop" in r.stdout,r.stdout
     assert not (root2/"state"/"settings.0").exists()
 
 
@@ -787,7 +800,7 @@ def output_scenarios(work,exe):
         f.write(b"\xff\xd8"); f.seek(40*1024*1024-2); f.write(b"\xff\xd9")
     trace=work/"output-recover-space.txt"
     env=dict(os.environ,APP_TEST_TRACE=str(trace),APP_TEST_SCENARIO="once")
-    r=subprocess.run([str(exe),"--root",str(root),"--free-bytes",str(SPACE_RESERVE+33732608+40960+1024),
+    r=subprocess.run([str(exe),"--root",str(root),"--free-bytes",str(SPACE_RESERVE+DNG_FILE+1024),
         "--event-device","synthetic","--queue",str(qdir),"--queue-free-bytes","5000000000","--once","--output","raw"],
         env=env,capture_output=True,text=True,timeout=30)
     assert r.returncode==1 and "APP ERROR card space" in r.stdout,(r.stdout,r.stderr)
@@ -889,7 +902,7 @@ def animation_scenario(work,td_includes):
                     *["-I"+str(p) for p in td_includes],str(ROOT/"src/app/main.c"),
                     str(ROOT/"src/app/storage.c"),str(ROOT/"src/app/queue.c"),str(ROOT/"src/app/wear.c"),
                     str(ROOT/"src/app/settings.c"),str(ROOT/"src/app/status.c"),str(ROOT/"src/app/alerts.c"),str(ROOT/"src/app/wifi.c"),str(ROOT/"src/app/remote.c"),
-                    str(ROOT/"src/app/preview.c"),*preview_flags(work),
+                    str(ROOT/"src/app/preview.c"),str(ROOT/"src/app/scan.c"),f'-DG360_SCAN_FILE="{work/"scan.bin"}"',*preview_flags(work),
                     str(ROOT/"src/app/power_relaunch.c"),str(ROOT/"src/app/motion.c"),str(ROOT/"src/lib/g360cap/g360_pose.c"),str(work/"stub.c"),"-lm","-o",str(exe)],check=True)
     st=work/"anim-root"
     header=ROUTE_HEADER.replace("\\t","\t").replace("\\n","\n")
@@ -1337,7 +1350,7 @@ def queued(qdir):
 
 def sweeps(work,exe,copy,log):
     for scenario in ("sweep","sweep-once","sweep-fail","power-sweep","recover","hold-no-space",
-                     "sweep-worn","sweep-worn-out","worn-click"):
+                     "sweep-worn","sweep-worn-out","worn-click","sweep-stop"):
         root=work/scenario; trace=work/(scenario+".txt"); qdir=work/(scenario+"-flash")/"queue"
         qdir.parent.mkdir()
         env=dict(os.environ,APP_TEST_TRACE=str(trace),APP_TEST_SCENARIO=scenario)
@@ -1345,8 +1358,9 @@ def sweeps(work,exe,copy,log):
               "--queue",str(qdir),"--queue-free-bytes","5000000000" if scenario!="hold-no-space" else "1000"]
         initial_left=LEFT_1GB if scenario=="recover" else left(1000000000,output="raw")
         if scenario!="recover": args += ["--output","raw"]
-        if scenario in ("sweep-once","sweep-fail","sweep-worn","sweep-worn-out"):
+        if scenario in ("sweep-once","sweep-fail","sweep-worn","sweep-worn-out","sweep-stop"):
             args.append("--sweep-once"); env["APP_TEST_ONCE"]="1"
+        if scenario=="sweep-stop": env["APP_TEST_RAW"]="1"
         life={"sweep":(1,1),"sweep-worn":(1,4),"sweep-worn-out":(11,3),"worn-click":(4,2)}.get(scenario)
         if life: args+=["--wear-dir",str(wear_dir(work,scenario+"-mmc",*life))]
         if scenario=="recover":
@@ -1383,7 +1397,9 @@ def sweeps(work,exe,copy,log):
             first_saves=[i for i,l in enumerate(lines) if l.startswith("SAVE DNG ")][:7]
             assert caps[-1]<lines.index("SOUND HDR END")<first_saves[-1],lines
             descs=[l for l in lines if l.startswith("DESC ")]
-            assert [d.split()[-1] for d in descs]==[f"{k}/7" for k in range(1,8)],descs
+            assert [d.split()[-2:] for d in descs]==[["FRAME",str(k)] for k in range(1,8)],descs
+            # The stub's 16-byte frames are not RAW frames: nothing is scanned, every frame is taken.
+            assert r.stdout.count("not a full RAW frame, not scanned")==7 and "APP SCAN frame 1 TV" not in r.stdout,r.stdout
             frames=[l for l in lines if l.startswith("SAVE DNG ")]
             assert len(frames)==7 and all(str(work/(scenario+"-flash")/"queue") in l for l in frames),frames
             for k in range(1,8): assert f"DISPLAY SWEEP {k}/7" in lines and f"DISPLAY SAVING {k}/7" in lines,lines
@@ -1407,13 +1423,37 @@ def sweeps(work,exe,copy,log):
             else:  # no debugfs on the host: logged, no warning
                 assert "APP FLASH LIFE unreadable from /sys/kernel/debug/mmc0" in r.stdout,r.stdout
             assert r.stdout.index("APP SWEEP SAVED")<r.stdout.index("APP FLASH LIFE")<r.stdout.rindex(f"APP UI {initial_left}"),r.stdout
+        elif scenario=="sweep-stop":
+            # Real-size RAW frames with nothing dark: the scan stops the sweep
+            # after the minimum two frames (fastest first). The end sound
+            # follows the second capture; two DNGs and two list rows.
+            assert raw==2 and manual==[f"MANUAL {tv} {iso}" for tv,iso in SWEEP[:2]],(raw,manual)
+            assert "; enough, stopping" in r.stdout and r.stdout.count("APP SCAN frame ")==2,r.stdout
+            caps=[i for i,l in enumerate(lines) if l=="CAPTURE RAW"]
+            assert caps[-1]<lines.index("SOUND HDR END")<[i for i,l in enumerate(lines) if l.startswith("SAVE DNG ")][-1],lines
+            dngs=[n for n in photos if n.endswith(".dng")]
+            stamp=dngs[0][:15]
+            rows=(root/"photos"/f"{stamp}-sweep.csv").read_text().splitlines()
+            assert len(dngs)==2 and rows[1:]==[f"{stamp}-{k:05d}.dng,{k},{tv},{iso},{tv}/10000000,125" for k,(tv,iso) in enumerate(SWEEP[:2],1)],rows
+            # The page's scan file: both frames, the patch clipped in the right
+            # lens (2 x 2 blocks, 64 sampled quads each), nothing dark.
+            import struct
+            data=(work/"scan.bin").read_bytes()
+            assert data[:8]==b"G360SCN1" and struct.unpack_from("<8H",data,8)==(1,2,91,91,32,5,2,0),data[:36]
+            assert len(data)==36+2*(80+2*91*91*5),len(data)
+            for k in range(2):
+                h=struct.unpack_from("<16s16I",data,36+k*(80+2*91*91*5))
+                assert h[0].rstrip(b"\0").decode()==stamp and h[1:4]==(k+1,0,SWEEP[k][0]),h
+                quads,clipped,dark=h[7:9],h[9:11],h[11:13]
+                assert quads[0]==quads[1]>0 and clipped==(0,256) and dark==(0,0) and h[13]==k,h
         elif scenario=="sweep-fail":
+
             # Frame 3 fails: frames 1-2 and their exposures stay on the flash
             # for the next start; automatic exposure is set back.
             assert raw==3 and lines.count("FREE")==3 and lines.count("AUTO")==2 and "SOUND HDR END" not in lines and "SOUND SWEEP DONE" not in lines,lines
             stamp=queued(qdir)[0][:15]
             assert queued(qdir)==[f"{stamp}-1.dng",f"{stamp}-2.dng",f"{stamp}.csv"],queued(qdir)
-            assert (qdir/f"{stamp}.csv").read_text().splitlines()[2:]==["1,41,100,41,10000000,125","2,59,100,59,10000000,125"]
+            assert (qdir/f"{stamp}.csv").read_text().splitlines()[2:]==["1,218,100,218,10000000,125","2,186,100,186,10000000,125"]
             assert photos==[] and "APP ERROR sweep capture" in r.stdout,(photos,r.stdout)
         elif scenario=="power-sweep":
             # Power held during frame 3: that frame finishes, the rest is skipped,

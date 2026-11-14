@@ -11,7 +11,7 @@ import subprocess
 import tempfile
 import xml.etree.ElementTree as ET
 
-from test_dng import Frame, Image, HERE, maker, fixture
+from test_dng import Frame, Image, HERE, maker, fixture, make_dng
 from test_output import ExifInfo
 
 NS = {"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -171,8 +171,9 @@ def main():
         assert lib.g360_save_dng_full_xmp(C.byref(frame), C.byref(note), C.byref(info), b"HDR SWEEP 4/6", None,
                                           os.fsencode(without)) == 0
         d = with_xmp.read_bytes()
-        assert len(d) == len(without.read_bytes()) == 40960 + len(pixels)
-        assert d[40960:] == pixels
+        trailer = b"".join(make_dng.opcode_lists()) + make_dng.trailer_pad()
+        assert len(d) == len(without.read_bytes()) == 40960 + len(pixels) + len(trailer)
+        assert d[40960:40960 + len(pixels)] == pixels and d[40960 + len(pixels):] == trailer
         ifd0 = struct.unpack_from("<I", d, 4)[0]
         count = struct.unpack_from("<H", d, ifd0)[0]
         entries = {}

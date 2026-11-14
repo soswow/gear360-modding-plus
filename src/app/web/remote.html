@@ -33,15 +33,28 @@ select{font:inherit;padding:9px 10px;border:1px solid #777;border-radius:7px;bac
 select:disabled{opacity:.4}
 input{font:inherit;width:96px;padding:10px;border:1px solid #777;border-radius:7px;background:var(--bg);color:var(--text)}
 small,.hint{color:var(--dim)}
-.off #controls{opacity:.35;pointer-events:none}
+.off #controls,.off #side{opacity:.35;pointer-events:none}
+@media (min-width:900px){body{max-width:1100px}.cols{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:16px;align-items:start}}
 .live{position:relative;width:100%;aspect-ratio:2/1;background:#000;border-radius:6px;overflow:hidden;margin-bottom:8px}
 .live img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .live span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--dim);text-align:center;padding:8px}
+.map{position:relative;width:100%;aspect-ratio:2/1;background:#000;border-radius:6px;overflow:hidden;margin:8px 0}
+.map canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.map span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--dim);text-align:center;padding:8px}
+#frames{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+#frames button{flex:0 0 auto;padding:6px 8px;background:#3a3e42;color:var(--text);font-weight:normal;font-size:13px;line-height:1.25;text-align:left}
+#frames button.on{outline:2px solid var(--accent)}
+#frames button.nd{border-left:4px solid var(--warm)}
+#frames b{display:block}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--dim)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:4px;vertical-align:-1px}
 </style>
 </head>
 <body>
 <h1>Gear 360 remote</h1>
 
+<div class="cols">
+<div class="main">
 <div class="card">
   <div id="icons" aria-label="Status"></div>
   <div id="oled" aria-live="polite">…</div>
@@ -50,39 +63,48 @@ small,.hint{color:var(--dim)}
 
 <div id="controls">
 <div class="card">
-  <button id="capture" class="big" onclick="capture(0)">Capture</button>
+  <button id="capture" class="big" onclick="capture()">Capture</button>
   <div class="row">
-    <button id="sweep" class="warm" onclick="capture(1)">HDR sweep</button>
     <button id="cancel" class="stop" onclick="send('cmd=cancel')" hidden>Cancel countdown</button>
   </div>
   <p id="message" role="status"></p>
 </div>
 
+<div class="card" id="scan-card" hidden>
+  <h2>Sweep scan</h2>
+  <div class="setting"><span>Early stop</span><div class="seg" role="group" aria-label="Early stop">
+    <button data-stop="auto" onclick="chooseStop('auto')">Auto</button><button data-stop="full" onclick="chooseStop('full')">Every frame</button></div></div>
+  <div class="setting"><span>ND filter on</span><div class="seg" role="group" aria-label="ND filter on">
+    <button data-nd="off" onclick="chooseNd('off')">Off</button><button data-nd="left" onclick="chooseNd('left')">Left</button><button data-nd="right" onclick="chooseNd('right')">Right</button></div></div>
+  <p class="hint" id="nd-hint"></p>
+  <div id="frames" role="group" aria-label="Scanned frames"></div>
+  <div class="map"><canvas id="map" width="182" height="91" aria-label="Scan map: left lens, then right lens"></canvas><span id="map-text">No scanned sweep yet.</span></div>
+  <div class="seg" role="group" aria-label="Map" style="display:inline-flex;margin-bottom:8px">
+    <button data-view="frame" onclick="chooseView('frame')">This frame</button><button data-view="sweep" onclick="chooseView('sweep')">Whole sweep</button></div>
+  <div class="legend" id="legend"></div>
+</div>
+
 <div class="card">
-  <h2>Live preview</h2>
-  <div class="live"><img id="live" alt="Live preview from both lenses" hidden><span id="live-text">Off</span></div>
+  <h2>Live preview <span class="state" id="live-state">| Off</span></h2>
+  <div class="live" id="live-box" hidden><img id="live" alt="Live preview from both lenses" hidden><span id="live-text">Off</span></div>
   <div class="row">
     <button id="live-start" onclick="startLive()">Start</button>
     <button id="live-stop" class="stop" onclick="stopLive()">Stop</button>
   </div>
-  <p id="live-line" class="hint"></p>
-  <p><small>Both lenses as the camera sees them, about 8 pictures a second. It pauses while the camera takes a photo or
-  sweep, and stops by itself 20 s after the last page showing it is closed.</small></p>
 </div>
 
 <div class="card">
-  <h2>Auto photos</h2>
+  <h2>Auto photos <span class="state" id="auto-state">| Off</span></h2>
   <p>Press Capture every <input id="every" type="number" min="1" max="86400" step="1" value="10"> seconds</p>
   <div class="row">
     <button id="auto-start" onclick="startAuto()">Start</button>
     <button id="auto-stop" class="stop" onclick="send('cmd=auto&amp;every=0')">Stop</button>
   </div>
-  <p id="auto-line" class="hint"></p>
-  <p><small>Each press works like the button, with the Delay setting's countdown inside the interval: every 10 s with a
-  5 s delay, the countdown starts 5 s after the last photo. A delay longer than the interval wins. A short Power press
-  on the camera also stops auto photos.</small></p>
+</div>
+</div>
 </div>
 
+<div class="side" id="side">
 <div class="card">
   <h2>Settings</h2>
   <div id="settings"></div>
@@ -93,6 +115,7 @@ small,.hint{color:var(--dim)}
   <p class="hint" id="settings-hint"></p>
 </div>
 </div>
+</div>
 
 <script>
 const SETTINGS=[
@@ -101,7 +124,7 @@ const SETTINGS=[
   ['save','Save sweeps',[['flash','Flash'],['card','Card']]],
   ['delay','Delay',[[0,'Off'],[2,'2 s'],[5,'5 s'],[10,'10 s']]],
   ['sounds','Sounds',[['on','On'],['off','Off']]]];
-// Shutter and ISO, for single photos; only this page has them. The shutter
+// Shutter and ISO, for single photos and the live preview; only this page has them. The shutter
 // values are TVs (exposure 2^(-TV/16) s): the familiar third-stop speeds
 // over the camera's full range, 1/6 to 1/13000 (remote.h, G360_SHUTTER_TVS),
 // named as the camera's Exif names them.
@@ -142,7 +165,7 @@ async function send(query){
 }
 async function poll(){if(!waiting)render(await ask('cmd=state'))}
 
-function capture(sweep){send('cmd=capture'+(sweep?'&sweep=1':''))}
+function capture(){const nd=last&&last.settings.mode==='hdr'?ndLens():'';send('cmd=capture'+(nd?'&sweep=1&nd='+nd:''))}
 function startAuto(){
   const n=$('every');if(!n.reportValidity())return;
   send('cmd=auto&every='+encodeURIComponent(n.value));
@@ -183,7 +206,7 @@ const STATES={starting:'Starting',ready:'Ready',capturing:'Capturing',sweeping:'
 function render(s){
   document.body.classList.toggle('off',s.app!=='on');
   if(s.app!=='on'){
-    last=null;
+    last=null;$('live-box').hidden=true;
     $('oled').textContent='';$('oled').className='';$('icons').textContent='';
     $('line').textContent=s.app==='off'?'The app is not running. Double-press Power on the camera to start it.'
       :'Cannot reach the camera ('+(s.detail||s.app)+').';
@@ -204,20 +227,23 @@ function render(s){
   let line=STATES[s.state]||s.state;
   if(s.state==='ready'&&s.countdown)line=(s.countdown_sweep?'Sweep':'Capture')+' in '+s.countdown+' s';
   else if(s.state==='ready')line+=' · '+(s.left?s.left+' '+(s.left===1?s.left_unit.slice(0,-1):s.left_unit)+' left':'card full');
+  if(s.state==='sweeping'&&s.sweep_nd)line='ND sweep ('+ND_NAME[s.sweep_nd]+')';
   if(s.state==='sweeping'&&s.sweep[0])line+=' '+s.sweep[0]+'/'+s.sweep[1];
   if(s.menu)line+=' · settings open on the camera';
   $('line').textContent=line+' · '+s.saved+' taken since start';
 
   const idle=s.state==='ready'&&!s.menu&&!s.countdown;
   const hdr=s.settings.mode==='hdr';
-  $('capture').textContent=hdr?'Capture HDR sweep':'Capture';
+  const nd=hdr?ndLens():'';
+  $('capture').textContent=nd?'Capture ND sweep ('+nd+')':hdr?'Capture HDR sweep':'Capture';
+  $('capture').classList.toggle('warm',!!nd);
   $('capture').disabled=!idle;
-  $('sweep').hidden=hdr||!!s.countdown;$('sweep').disabled=!idle;
+  $('scan-card').hidden=!hdr;
   $('cancel').hidden=!s.countdown;
   const a=s.auto;
   $('auto-start').textContent=a.every?'Change interval':'Start';
   $('auto-stop').disabled=!a.every;
-  $('auto-line').textContent=a.every?'Every '+a.every+' s · '+a.taken+' pressed'+(a.next?' · next press in '+a.next+' s':''):'Off.';
+  $('auto-state').textContent='| '+(a.every?'On':'Off');
   if(a.every&&document.activeElement!==$('every'))$('every').value=a.every;
 
   for(const b of box.querySelectorAll('button')){
@@ -233,11 +259,12 @@ function render(s){
   $('iso').disabled=!idle||!single||!ex.shutter;
   $('iso').options[0].disabled=!!ex.shutter; // Auto ISO goes with the Auto shutter
   $('exposure-hint').textContent=hdr?'Shutter and ISO are for single photos; an HDR sweep sets its own.'
-    :ex.shutter?'Set shutter and ISO for single photos. Choose Auto shutter to have both automatic.'
-    :'Auto shutter is automatic for both. Pick a shutter to choose the ISO too. A sweep or the HDR mode sets both back to Auto.';
+    :ex.shutter?'Set shutter and ISO for single photos and the live preview. Choose Auto shutter to have both automatic.'
+    :'';
   $('wifi').textContent={home:'Home network',ap:'Camera access point',off:'Off'}[s.settings.wifi]+' (change it on the camera)';
   $('settings-hint').textContent=idle?'':'Settings can be changed when the camera is ready.';
 
+  renderScan(s);
   const p=s.preview||{state:'off',viewers:0,error:''};
   if(p.state==='off'&&liveWanted){liveWanted=false;liveDrop()}
   const showing=liveWanted&&!$('live').hidden;
@@ -246,9 +273,137 @@ function render(s){
   $('live-stop').disabled=p.state==='off';
   $('live-text').textContent={off:'Off',starting:'Starting…',paused:'Paused for the capture',on:showing?'':'On'}[p.state]||'';
   $('live-text').hidden=showing&&p.state==='on';
-  $('live-line').textContent=p.state==='off'?(p.error?'Could not start: '+p.error+'.':'Off.')
-    :({starting:'Starting',on:'On',paused:'Paused for the capture'}[p.state]+' · '+p.viewers+' watching');
+  $('live-box').hidden=p.state==='off'&&!liveWanted;
+  $('live-state').textContent='| '+({off:p.error?'Off (could not start: '+p.error+')':'Off',starting:'Starting',on:'On',paused:'Paused'}[p.state]||p.state);
 }
+// ---- The sweep scan (scan.h): fetched when the state's scan.rev changes.
+const SPEEDS={218:'1/13000',186:'1/3200',154:'1/800',122:'1/200',90:'1/50',59:'1/13',41:'1/6'};
+const ND_NAME={1:'left',2:'right',3:'both'};
+let scan=null,scanRev=-1,scanBusy=false,pick=-1,view='frame';
+function chooseStop(v){if(last&&last.sweep_stop!==v)send('cmd=set&stop='+v)}
+// The lenses with an ND filter on (this page only): Capture in HDR mode
+// then starts an ND sweep. Left and Right can both be on; Off clears them.
+const ndOn={left:false,right:false};
+function ndLens(){return ndOn.left&&ndOn.right?'both':ndOn.left?'left':ndOn.right?'right':''}
+function chooseNd(v){if(v==='off')ndOn.left=ndOn.right=false;else ndOn[v]=!ndOn[v];drawNd();if(last)render(last)}
+function drawNd(){for(const b of document.querySelectorAll('[data-nd]'))b.classList.toggle('on',b.dataset.nd==='off'?!ndLens():ndOn[b.dataset.nd])}
+function chooseView(v){view=v;drawScan()}
+function parseScan(buf){
+  const d=new DataView(buf),u8=new Uint8Array(buf);
+  if(buf.byteLength<36||String.fromCharCode(...u8.slice(0,8))!=='G360SCN1')throw Error('not a scan file');
+  const n=d.getUint16(10,true),cols=d.getUint16(12,true),rows=d.getUint16(14,true),cb=d.getUint16(18,true),lenses=d.getUint16(20,true);
+  const out={cols,rows,cb,lenses,dark:d.getUint32(32,true),frames:[]};
+  const lensBytes=cols*rows*cb;let at=36;
+  for(let k=0;k<n;++k){
+    const h=new DataView(buf,at,80),q=i=>h.getUint32(16+4*i,true);
+    const stamp=String.fromCharCode(...u8.slice(at,at+16)).replace(/\0.*$/,'');
+    out.frames.push({stamp,index:q(0),nd:q(1),tv:h.getInt32(24,true),num:q(3),den:q(4),us:q(5),
+      quads:[q(6),q(7)],clipped:[q(8),q(9)],dark:[q(10),q(11)],last:q(12),still:q(13),reference:q(14),
+      cells:u8.subarray(at+80,at+80+lenses*lensBytes)});
+    at+=80+lenses*lensBytes;
+  }
+  return out;
+}
+async function fetchScan(rev){
+  scanBusy=true;
+  try{
+    const r=await fetch('/cgi-bin/g360?cmd=scan&_='+Date.now(),{cache:'no-store'});
+    if(r.ok){
+      const fresh=parseScan(await r.arrayBuffer()),grew=!scan||fresh.frames.length!==scan.frames.length;
+      scan=fresh;scanRev=rev;
+      if(grew||pick>=scan.frames.length)pick=scan.frames.length-1;
+      // A finished plain sweep opens on its fastest frame: that is where highlights clip.
+      const f=scan.frames;if(f.length&&f[f.length-1].last&&!f[f.length-1].nd)pick=0;
+      drawFrames();drawScan();
+    }else if(r.status===404){scanRev=rev}
+  }catch(e){$('map-text').textContent='Could not read the scan: '+e.message;$('map-text').hidden=false}
+  scanBusy=false;
+}
+const pct=(a,b)=>!b?'–':!a?'0%':(100*a/b<0.01?'<0.01':(100*a/b).toFixed(a*1000<b?2:1))+'%';
+function frameName(f){return (f.nd?'ND ':'')+(SPEEDS[f.tv]||('TV '+f.tv))}
+function drawFrames(){
+  const box=$('frames');box.textContent='';
+  if(!scan)return;
+  scan.frames.forEach((f,k)=>{
+    const b=document.createElement('button');
+    b.className=(k===pick?'on ':'')+(f.nd?'nd':'');
+    const cl=f.clipped[0]+f.clipped[1],q=f.quads[0]+f.quads[1],dk=f.dark[0]+f.dark[1];
+    b.innerHTML='<b></b><span></span>';
+    b.firstChild.textContent=f.index+'. '+frameName(f)+(f.last?' ■':'');
+    b.lastChild.textContent='clip '+pct(cl,q)+' · dark '+pct(dk,q);
+    b.onclick=()=>{pick=k;view='frame';drawFrames();drawScan()};
+    box.appendChild(b);
+  });
+}
+function drawScan(){
+  for(const b of document.querySelectorAll('[data-view]'))b.classList.toggle('on',b.dataset.view===view);
+  const cv=$('map'),ctx=cv.getContext('2d');
+  if(!scan||!scan.frames.length){ctx.clearRect(0,0,cv.width,cv.height);$('map-text').textContent='No scanned sweep yet.';$('map-text').hidden=false;$('legend').textContent='';return}
+  $('map-text').hidden=true;
+  const {cols,rows,cb}=scan,W=cols*2,img=ctx.createImageData(W,rows),px=img.data,F=scan.frames,f=F[Math.max(0,pick)];
+  const plain=F.filter(x=>!x.nd),nd=F.filter(x=>x.nd);
+  const cell=(fr,lens,i)=>fr.cells.subarray((lens*cols*rows+i)*cb,(lens*cols*rows+i)*cb+cb);
+  // The whole-sweep view: each block's scene brightness, 16 per EV, from
+  // its brightest unclipped frame of the plain sweep, less that frame's
+  // exposure (log2 of the time, 16 per EV, against the fastest frame).
+  const ev=fr=>16*Math.log2(fr.num/fr.den/(plain[0]?plain[0].num/plain[0].den:1));
+  const radiance=(lens,i)=>{
+    let best=-1,at=null;
+    for(const fr of plain){const x=cell(fr,lens,i);if(!x[1]&&x[3]>best){best=x[3];at=fr}}
+    if(!at)return 255; // clipped in every frame
+    return best-ev(at);
+  };
+  let lo=1e9,hi=-1e9;
+  if(view==='sweep')for(let lens=0;lens<2;++lens)for(let i=0;i<cols*rows;++i)
+    if(cell(plain[0]||f,lens,i)[0]){const v=radiance(lens,i);if(v<lo)lo=v;if(v>hi)hi=v}
+  const sceneGrey=v=>Math.round(255*Math.min(1,Math.max(0,(v-lo)/Math.max(16,hi-lo)))**1.2);
+  // Grey from the block's mean level (16 per EV, 0..254); the whole-sweep
+  // view uses the frame where the block is brightest without clipping.
+  const grey=l=>Math.round(255*Math.min(1,Math.max(0,(l-64)/190))**1.4);
+  for(let lens=0;lens<2;++lens)for(let r=0;r<rows;++r)for(let c=0;c<cols;++c){
+    const i=r*cols+c,o=4*(r*W+lens*cols+c);
+    let R,G,B;
+    if(view==='frame'){
+      const [n,clip,dark,level]=cell(f,lens,i);
+      if(!n){R=G=B=0}
+      else{
+        const g=grey(level),a=clip/n,b=dark/n;
+        R=g;G=g;B=g;
+        if(clip){R=255;G=Math.round(g*(1-Math.max(a,.55)));B=G}
+        else if(b>.5){B=Math.round(g+(255-g)*0.6*b);R=Math.round(g*(1-0.5*b));G=R}
+      }
+    }else{
+      const n=cell(plain[0]||f,lens,i)[0];
+      if(!n){R=G=B=0}
+      else{
+        let clipFast=plain.length&&cell(plain[0],lens,i)[1]>0,measuredNd=false,darkAll=true;
+        for(const fr of plain){const x=cell(fr,lens,i);if(x[2]*2<x[0])darkAll=false}
+        for(const fr of nd){const x=cell(fr,lens,i);if(!x[1]&&x[4]>=Math.round(16*Math.log2(1+scan.dark)))measuredNd=true}
+        const g=sceneGrey(radiance(lens,i));R=G=B=g;
+        if(clipFast&&!measuredNd){R=255;G=B=40}
+        else if(clipFast&&measuredNd){R=255;G=180;B=40}
+        else if(darkAll){R=Math.round(g*.5);G=R;B=200}
+      }
+    }
+    px[o]=R;px[o+1]=G;px[o+2]=B;px[o+3]=255;
+  }
+  ctx.putImageData(img,0,0);
+  ctx.fillStyle='rgba(255,255,255,.25)';ctx.fillRect(cols,0,0.15,rows);
+  // Legend.
+  const key=(c,t)=>'<span><i style="background:'+c+'"></i>'+t+'</span>';
+  $('legend').innerHTML=view==='frame'
+    ?key('#ff2020','clipped (any colour)')+key('#4060e0','mostly dark')+key('#888','level, log scale')
+    :key('#ff2828','clipped even at the fastest speed')+(nd.length?key('#ffb428','measured by the ND sweep'):'')+key('#4040c8','dark in every frame');
+}
+function renderScan(s){
+  for(const b of document.querySelectorAll('[data-stop]')){b.classList.toggle('on',s.sweep_stop===b.dataset.stop);b.disabled=!(s.state==='ready'&&!s.menu&&!s.countdown)}
+  const plain=scan?scan.frames.filter(f=>!f.nd):[];
+  const fast=plain.find(f=>f.index===1);
+  $('nd-hint').textContent=!fast?'No plain sweep scanned yet: an ND sweep would aim at the whole covered lens.'
+    :(fast.clipped[0]+fast.clipped[1]?'The last plain sweep\'s fastest frame clipped: left '+fast.clipped[0]+', right '+fast.clipped[1]+' quads.':'The last plain sweep\'s fastest frame clipped nothing: no ND sweep needed.');
+  if(s.scan&&s.scan.rev!==scanRev&&!scanBusy)fetchScan(s.scan.rev);
+}
+drawScan();drawNd();
 poll();setInterval(poll,700);
 </script>
 </body>

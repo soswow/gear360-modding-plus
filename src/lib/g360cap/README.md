@@ -73,7 +73,13 @@ colour matrices and gains; it matches [make_dng.py](../../../reverse-engineering
 Since 6 November it also carries the still's Exif (exposure time, ISO,
 program, white-balance mode, F2.2, 1.2 mm) and the Samsung IQ MakerNote
 (`g360_save_dng_full`, matching `make_dng.build_full`); its header is
-40,960 bytes. g360-shot writes the firmware's ExposureTime (a third-stop name);
+40,960 bytes. Since 14 November the full DNG also carries this camera's
+hot pixels (`OpcodeList1`) and provisional vignetting (`OpcodeList2`), stored
+after the samples and followed by 4 zero bytes, plus `NoiseProfile` at ISO 100
+and Software `gear360-modding g360cap`. The data is generated into
+`g360_dng_calibration.c`; see
+dng-calibration (not published: `../../../gear360-calibration/dng-calibration/README.md`).
+g360-shot writes the firmware's ExposureTime (a third-stop name);
 the app writes the real time for a set shutter with
 `g360_exif_exposure_from_tv` (`g360_exif.h`).
 It requires one set per still and the normal frame layout. `save` and
@@ -105,7 +111,8 @@ of requested settings. [Native trace and validation](../../../reverse-engineerin
 The formatting APIs (`g360_dng_header`, `g360_exif_app1`) are pure. Output
 helpers use only the retained result, never SDK state: DNG output is a
 header (588 bytes plain, 40,960 bytes with metadata) followed by the
-existing RAW buffer, with no extra frame allocation/copy. CLI output currently waits for each file's write/fsync.
+existing RAW buffer (and, with metadata, the static calibration trailer), with
+no extra frame allocation/copy. CLI output currently waits for each file's write/fsync.
 A future batch API can queue retained results for a bounded output worker,
 with explicit memory limits, backpressure, error reporting and a final drain.
 This preserves a short capture path without introducing that queue here.

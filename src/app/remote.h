@@ -18,15 +18,25 @@
  *                                 memory, back to auto after a sweep or when
  *                                 the mode becomes HDR): shutter=auto|TV (one of
  *                                 G360_SHUTTER_TVS, 41-218), iso=100|200|400|800|
- *                                 1600 (with a set shutter only)
+ *                                 1600 (with a set shutter only);
+ *                                 stop=auto|full (kept in memory, auto after
+ *                                 a restart): whether a sweep stops early
+ *                                 once its RAW scan says the slower frames
+ *                                 add nothing (scan.h)
  *                                 (not Wi-Fi: the state shows it, only the
  *                                 camera's Menu changes it)
  *   cmd=capture[&sweep=1]         a Capture click (sweep=1: the hold)
+ *   cmd=capture&sweep=1&nd=left|right|both
+ *                                 an ND sweep: the ND filter covers that
+ *                                 lens (or both); it aims at the blocks the
+ *                                 last plain sweep's fastest frame clipped
  *   cmd=cancel                    cancels a self-timer countdown
  *   cmd=auto&every=N              auto photos every N s (1-86400); 0 stops
  *   cmd=preview&on=1|0            the live preview (preview.h): watch / stop
  *   cmd=stream                    (the CGI's own, not sent to the app) the
  *                                 preview's MJPEG, relayed from its port
+ *   cmd=scan                      (the CGI's own) the last sweeps' RAW scan
+ *                                 file, G360_SCAN_FILE (scan.h's format)
  * No capture/SDK calls. */
 #ifndef G360_APP_REMOTE_H
 #define G360_APP_REMOTE_H
@@ -56,20 +66,24 @@ enum g360_remote_setting {
        of G360_SHUTTER_TVS (the exposure is 2^(-TV/16) s). ISO: 100, 200, 400, 800 or
        1600, only with a set shutter (an automatic shutter means automatic
        ISO too). */
-    G360_REMOTE_SHUTTER, G360_REMOTE_ISO
+    G360_REMOTE_SHUTTER, G360_REMOTE_ISO,
+    /* Remote only, in memory: 1 a sweep stops early when its scan allows
+       (the default), 0 it always takes every frame. */
+    G360_REMOTE_STOP
 };
 
-/* The HDR sweep, 7 frames at ISO 100 over the camera's full usable shutter
-   range: the two ends, then familiar speeds 2 EV apart down from the
+/* The HDR sweep, up to 7 frames at ISO 100 over the camera's full usable
+   shutter range, fastest first (since 14 November 2026; before, slowest
+   first): the two ends, then familiar speeds 2 EV apart down from the
    fastest (TV 32 apart; 31 between 1/13 and 1/50, and the slowest step
-   short, 1.1 EV): 1/6, 1/13, 1/50, 1/200, 1/800, 1/3200, 1/13000, the
+   short, 1.1 EV): 1/13000, 1/3200, 1/800, 1/200, 1/50, 1/13, 1/6, the
    same TVs as those G360_SHUTTER_TVS entries. Measured (trials L1, F1,
    ENDS1, ENDS2, RANGE14): no still exposes longer than about 166 ms, so TV
    41 (1/5.9 s requested) is 1/6 s; TV 218 (1/12,634 s) is the shortest real
    exposure. The Exif has the real times (g360_exif_exposure_from_tv):
    1/6.0, 1/12.9, 1/49.4, 1/197.6, 1/792.7, 1/3209 and 1/13,486 s. */
 #define G360_SWEEP_COUNT 7u
-#define G360_SWEEP_TVS {41, 59, 90, 122, 154, 186, 218}
+#define G360_SWEEP_TVS {218, 186, 154, 122, 90, 59, 41}
 
 /* The remote's shutter choices: the familiar third-stop speeds over the same
    range, each the TV nearest its name (round(16 log2 N), within 2%), named
@@ -87,7 +101,15 @@ typedef struct g360_remote_request {
     int setting;     /* SET: G360_REMOTE_MODE ... G360_REMOTE_ISO, never WIFI */
     uint32_t value;  /* SET: the value as settings.h stores it; AUTO: seconds (0 stops); PREVIEW: 1 on, 0 off */
     int sweep;       /* CAPTURE: 1 for a sweep (the one-second hold) */
+    uint32_t nd;     /* CAPTURE: an ND sweep's lenses, G360_REMOTE_ND_* bits (0: none) */
 } g360_remote_request;
+
+#define G360_REMOTE_ND_LEFT 1u
+#define G360_REMOTE_ND_RIGHT 2u
+/* Where the app keeps the scan file for the page (a RAM file system). */
+#ifndef G360_SCAN_FILE
+#define G360_SCAN_FILE "/tmp/g360-scan.bin"
+#endif
 
 /* Parses QUERY. Returns 0, or -1 (command G360_REMOTE_BAD) for anything
  * unknown, repeated, missing or out of range. */

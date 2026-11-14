@@ -19,11 +19,17 @@ extern "C" {
 #endif
 #define G360_QUEUE_MAX_FRAMES 16u
 /* A complete frame file: the DNG header with the shot's metadata
- * (G360_DNG_FULL_HEADER_BYTES) and the whole 5824 x 2896 16-bit frame.
- * Frames queued by builds before 6 November have the plain 588-byte header
- * and are accepted too. Tests override both. */
+ * (G360_DNG_FULL_HEADER_BYTES), the whole 5824 x 2896 16-bit frame and the
+ * calibration trailer (G360_DNG_TRAILER_BYTES; main.c checks the sum).
+ * Frames queued by older builds are accepted too: without the trailer
+ * (before 14 November) or with the plain 588-byte header (before
+ * 6 November). Tests override these. */
 #ifndef G360_QUEUE_FRAME_BYTES
-#define G360_QUEUE_FRAME_BYTES (UINT64_C(40960) + UINT64_C(33732608))
+#define G360_QUEUE_FRAME_BYTES (UINT64_C(40960) + UINT64_C(33732608) + UINT64_C(110368))
+#define G360_QUEUE_FRAME_BYTES_DEFAULT 1
+#endif
+#ifndef G360_QUEUE_PREV_FRAME_BYTES
+#define G360_QUEUE_PREV_FRAME_BYTES (UINT64_C(40960) + UINT64_C(33732608))
 #endif
 #ifndef G360_QUEUE_OLD_FRAME_BYTES
 #define G360_QUEUE_OLD_FRAME_BYTES (UINT64_C(588) + UINT64_C(33732608))

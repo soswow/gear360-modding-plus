@@ -955,3 +955,33 @@ App running (PID 2195), state ready; original HDR/JPEG/8/card/home/2 s/sounds
 settings restored. Stock inactive, boot unchanged. Temporary trial photos
 cleaned; logs, paths and final photo hashes retained. No full sensor pixels
 were downloaded.
+
+## 14 November 2026: fastest-first sweeps, RAW scan, early stop, ND sweeps (T31)
+
+Sweeps now run fastest first; each RAW frame is scanned in memory (`scan.c`)
+before it is saved, and the remote page shows the scan. Host checks passed:
+`test_scan.py` (the C scan against a numpy model cell by cell on synthetic
+frames and, with `G360_SCAN_DNG`, on the 14 November ND frame
+`20261114-085331-00319.dng`: 10 clipped quads in the right lens, 4.4 ms on
+the Mac), `test_app.py` (new `sweep-stop` scenario with full-size frames:
+stop after two frames, end sound, two DNGs and list rows, the scan file),
+`test_remote.py` (`nd=`, `stop=`), ARM build. Replaying the C scan over the
+14 November garden sweeps: the plain sweep `20261114-085220` would have
+stopped after 1/50 s; the ND sweep `20261114-085331` (right lens) found 3
+target blocks, 1 still clipped (the sun), and would have stopped after 3
+frames. The page was checked in the built-in browser on that replay and
+then on the camera.
+
+On the camera (boot unchanged, home network): installed app SHA-256
+`670e1786dda75af6ea2343927cf4aa82648b20d3c2f5a36b74ba197dca3edab5`
+(backup `sweepscan-20261114`) and CGI
+`efd77a0ad0256c98be7d76629ca61a617bd559745c0b663a2d31cc0e36cce8b9`.
+Three indoor RAW flash-first sweeps (`20261114-101015`, `-101149`,
+`-101315`): 7 frames fastest first, no early stop (4–7% of quads still dark
+at 1/6 s, correctly), scan 88–110 ms a frame (twice 169 and 245 ms), held
+still 18.1–18.2 s (18.0 s before the change), the scan file served by
+`cmd=scan` after every frame, state requests answered in 0.1–0.25 s during
+the sweep. One state reply in the first trial did not parse as JSON
+("invalid control character" at byte 80) around the self-timer's end; it
+did not happen again in about 100 replies, cause unknown. Not yet tried on
+the camera: an early stop, an ND sweep.
